@@ -1,6 +1,6 @@
-# API RESTful de bolsa de trabajo
-<h2>Instalacion:</h2>
-<p>Instalar dependencias</p>
+# Sistema de bolsa de trabajo
+<h2>Instalacion de la API RESTful:</h2>
+<p>Entrar en la carpeta api e instalar dependencias</p>
 <pre>
     <code>npm install</code>
 </pre>
@@ -20,4 +20,14 @@
         npm run dev
     </code>
 </pre>
-
+<h2>Instalacion del cliente:</h2>
+<p>Entrar en la carpeta cliente e instalar las dependencias</p>
+<pre>
+    <code>npm install</code>
+</pre>
+<p>Correr React en el cliente</p>
+<pre>
+    <code>
+        npm run dev
+    </code>
+</pre>

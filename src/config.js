@@ -5,9 +5,14 @@ import { config } from "dotenv";
 config();
 
 //Crear la cadena de conexion
-const connectionString = `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`;
+//const connectionString = `postgres://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`;
 
 //Exportar las variables de entorno
 export default {
-  pgURI: connectionString,
+  //pgURI: connectionString,
+  pgHost: process.env.PG_HOST,
+  pgUser: process.env.PG_USER,
+  pgDatabase: process.env.PG_DATABASE,
+  pgPassword: process.env.PG_PASSWORD,
+  pgPort: process.env.PG_PORT,
 };

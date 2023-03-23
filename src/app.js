@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 
 //Importaciones de rutas
+import empresasRoutes from "./routes/empresas.routes";
 
 //Creacion de aplicacion
 const app = express();
@@ -29,5 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.json({ message: "Bienvenidos a la API del Sistema de Bolsa de Trabajo" });
 });
+
+app.use(empresasRoutes);
 
 export default app;

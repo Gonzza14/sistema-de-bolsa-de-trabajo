@@ -1,17 +1,25 @@
-//Importar sequelize y dataTypes
-import { DataTypes } from "sequelize";
-import { sequelize } from "../database";
-
-//Definir esquema de la tabla
-export const Perfil = sequelize.define("perfiles", {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  descripcion: {
-    type: DataTypes.STRING,
-  },
-});
-
-
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Perfil extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      models.Perfil.belongsTo(models.Empresa, { foreignKey: "IdEmpresa", targetKey: "id", onDelete: 'RESTRICT' });
+    }
+  }
+  Perfil.init({
+    descripcion: DataTypes.STRING,
+    IdEmpresa: DataTypes.INTEGER,
+    estado: DataTypes.BOOLEAN
+  }, {
+    sequelize,
+    modelName: 'Perfil',
+  });
+  return Perfil;
+};

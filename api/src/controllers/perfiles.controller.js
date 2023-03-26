@@ -1,12 +1,12 @@
 //Importamos el modelo de datos
-import { Perfil } from "../models/Perfil";
+import { Perfil } from "../models";
 
 //Definimos los metodos del controlador
 export const getPerfiles = async (req, res) => {
   try {
     //Se obtienen todas las empresas
     const perfiles = await Perfil.findAll();
-    res.json(perfiles);
+    res.json({ perfiles });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
@@ -14,11 +14,12 @@ export const getPerfiles = async (req, res) => {
 export const createPerfil = async (req, res) => {
   try {
     //Se obtienen los datos del cuerpo de la peticion
-    const { descripcion, id_empresa } = req.body;
+    const { descripcion, IdEmpresa } = req.body;
     //Se crea una nueva instancia del modelo de datos
     const newPerfil = await Perfil.create({
       descripcion,
-      id_empresa,
+      IdEmpresa,
+      estado: true,
     });
     res.json(newPerfil);
   } catch (err) {
@@ -39,7 +40,6 @@ export const updatePerfil = async (req, res) => {
     perfil.set(req.body);
     await perfil.save();
     res.json(perfil);
-
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

@@ -1,6 +1,6 @@
 //Importamos el modelo de datos
-import { Empresa } from "../models/Empresa";
-import { Perfil } from "../models/Perfil";
+import { Empresa } from "../models";
+import { Perfil } from "../models";
 
 //Definimos los metodos del controlador
 export const getEmpresas = async (req, res) => {
@@ -23,6 +23,7 @@ export const createEmpresa = async (req, res) => {
     const newEmpresa = await Empresa.create({
       nombre,
       descripcion,
+      estado: true,
     });
 
     //Se imprime la empresa creada
@@ -99,7 +100,7 @@ export const getPerfilesPorEmpresa = async (req, res) => {
     const { id } = req.params;
     //Se obtienen los perfiles de la empresa
     const perfil = await Perfil.findAll({
-      where: { id_empresa: id },
+      where: { IdEmpresa: id },
     });
 
     //Se verifica si se encontraron perfiles

@@ -2,7 +2,7 @@
 import app from "./app";
 
 //Importar conexion de base de datos
-import "./database";
+//import "./database";
 
 //Puerto de escucha del servidor y arranca la apliacion
 app.listen(app.get("port"));

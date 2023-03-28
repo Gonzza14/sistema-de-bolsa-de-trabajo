@@ -42,6 +42,14 @@ export const HeroTitleTwo = styled.h3`
   margin-top: 4em;
   width: 50vh;
   text-align: center;
+  color: #0F2651;
 `;
 
-export const ButtonEmpresa = styled.button``;
+export const ButtonEmpresa = styled.button`
+  margin-top: 2em;
+  text-decoration: none;
+  color: #F3F3F3;
+  background-color: #747191;
+  padding: 1em;
+`;
+  

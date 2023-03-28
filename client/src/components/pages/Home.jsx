@@ -1,5 +1,5 @@
 import { HomeBody, HomeContainer, HomeHeader, HomeLogo, HeroTitle, HomeTitle, HeroTitleTwo, ButtonEmpresa } from "../../styles/home";
-import { CerrarAbajo, CerrarArriba, IconClose, IconsContainer, IconSearch, SearchContainer, SearchInput } from "../../styles/buscador";
+import { EquisAbajo, EquisArriba, IconClose, IconsContainer, IconSearch, SearchContainer, SearchInput } from "../../styles/buscador";
 import { useEffect, useRef } from "react";
 
 
@@ -9,12 +9,12 @@ const Buscador = () => {
 
     return (
         <SearchContainer>
-            <SearchInput placeholder="Buscar..." />
+            <SearchInput placeholder="Buscar empleo" />
             <IconsContainer>
                 <IconSearch />
                 <IconClose>
-                    <CerrarArriba />
-                    <CerrarAbajo />
+                    <EquisArriba />
+                    <EquisAbajo />
                 </IconClose>
             </IconsContainer>
         </SearchContainer>
@@ -37,7 +37,7 @@ export const Home = () => {
                 <HeroTitleTwo>
                     ¿Eres una empresa? Ingresa aquí para publicar tus ofertas de empleo.
                 </HeroTitleTwo>
-                <ButtonEmpresa>
+                <ButtonEmpresa as="a" href="#">
                     Publicar tus ofertas de empleo
                 </ButtonEmpresa>
             </HomeBody>

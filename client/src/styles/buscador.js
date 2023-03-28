@@ -1,22 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-const spin = keyframes`
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
-`;
-
-const cambiarColor = keyframes`
-    0%{
-        background-color: #EB73B9;
-    }
-    100%{
-        background-color: #EB73B9;
-    }
-`;
+import styled from "styled-components";
 
 export const SearchContainer = styled.fieldset`
   position: relative;
@@ -37,9 +19,9 @@ export const IconsContainer = styled.div`
   overflow: hidden;
 `;
 
-export const CerrarArriba = styled.div``;
+export const EquisArriba = styled.div``;
 
-export const CerrarAbajo = styled.div``;
+export const EquisAbajo = styled.div``;
 
 export const IconClose = styled.div`
   position: absolute;
@@ -68,7 +50,7 @@ export const IconClose = styled.div`
     border-bottom-color: #0f2651;
     transition: opacity 0.2s ease;
   }
-  ${CerrarArriba} {
+  ${EquisArriba} {
     position: relative;
     width: 100%;
     height: 50%;
@@ -93,7 +75,7 @@ export const IconClose = styled.div`
       transform: rotate(-45deg);
     }
   }
-  ${CerrarAbajo} {
+  ${EquisAbajo} {
     position: relative;
     width: 100%;
     height: 50%;
@@ -116,33 +98,6 @@ export const IconClose = styled.div`
       height: 2px;
       background-color: #0f2651;
       transform: rotate(45deg);
-    }
-  }
-  .is-type & {
-    &:before {
-      opacity: 1;
-      animation: ${spin} 0.85s infinite;
-    }
-    ${CerrarArriba} {
-      &:before,
-      &:after {
-        animation: ${cambiarColor} 0.85s infinite;
-      }
-      &:after {
-        animation-delay: 0.3s;
-      }
-    }
-    ${CerrarAbajo} {
-      &:before,
-      &:after {
-        animation: ${cambiarColor} 0.85s infinite;
-      }
-      &:before {
-        animation-delay: 0.2s;
-      }
-      &:after {
-        animation-delay: 0.1s;
-      }
     }
   }
 `;
@@ -178,11 +133,11 @@ export const SearchInput = styled.input`
   padding: 15px 20px;
   background: white;
   border-radius: 3px;
-  box-shadow: 1px 8px 15px rgba(75, 72, 72, 0.1);
+  //box-shadow: 1px 8px 15px rgba(75, 72, 72, 0.1);
   transition: all 0.4s ease;
   &:focus {
     outline: none;
-    box-shadow: 0px 9px 20px rgba(75, 72, 72, 0.3);
+    //box-shadow: 0px 9px 20px rgba(75, 72, 72, 0.3);
     + ${IconsContainer} {
       ${IconClose} {
         opacity: 1;
@@ -196,6 +151,3 @@ export const SearchInput = styled.input`
   }
 `;
 
-const theme = {
-  shadow: "rgba(#4b4848, 0.1);",
-};

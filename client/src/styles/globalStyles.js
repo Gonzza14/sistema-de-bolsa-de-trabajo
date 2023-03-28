@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import Montserrat from "../assets/fonts/Montserrat.ttf";
 import MonsterratItalic from "../assets/fonts/Montserrat-Italic.ttf";
 import MonsterratBold from "../assets/fonts/Montserrat-Bold.ttf";
+import { MainNav, NavList, NavContainer, NavItem, NavButton } from "./navBar";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -41,16 +42,93 @@ const GlobalStyles = createGlobalStyle`
 
 body{
     font-family: 'Montserrat';
-    position: relative;
-    width: 100%;
+    margin: 0;
+    padding: 0;
     background-color: #F3F3F3;
-    color: #4B4848;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 1.25s ease-in-out;
-    &.is-focus {
-        background-color: #17EAD9;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (max-width: 950px) {
+    ${MainNav}{
+        display: flex;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5em;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0;
+        /*background-color: #222222;*/
+    }
+
+    ${NavContainer}{
+        transform: none;
+        width: 100%;
+        margin: 0;
+    }
+
+    ${NavList}{
+        display: flex;
+        position: relative;
+        transform: none;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        flex-direction: row-reverse;
+    }
+    
+    ${NavItem}{
+        margin-bottom: 0;
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+    ${NavButton}{
+        padding: 1em 0.8em;
+        transform: rotate(0deg);
+    }
+
+    .logo{
+        display: none;
+    }
+
+    /*.about-me{
+        width: calc(100% - 2em);
+        padding-top: 3em;
+    }*/
+}
+
+@media screen and (max-width: 330px){
+
+    ${NavItem}{
+        margin-bottom: 0;
+        margin-left: 0.4;
+        margin-right: 0.4;
+    }
+    ${NavButton}{
+        padding: 0.8em 0.4em;
+    }
+}
+
+@media screen and (max-width: 300px){
+
+    ${NavItem}{
+        margin-bottom: 0;
+        margin-left: 0.3;
+        margin-right: 0.3;
+    }
+    ${NavButton}{
+        padding: 0.4em 0.2em;
+    }
+}
+
+@media screen and (max-height: 636px) {
+    ${NavItem}{
+        margin-left: 1em;
     }
 }
 `;

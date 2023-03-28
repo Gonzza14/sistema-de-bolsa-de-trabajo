@@ -2,7 +2,17 @@ import { createGlobalStyle } from "styled-components";
 import Montserrat from "../assets/fonts/Montserrat.ttf";
 import MonsterratItalic from "../assets/fonts/Montserrat-Italic.ttf";
 import MonsterratBold from "../assets/fonts/Montserrat-Bold.ttf";
-import { MainNav, NavList, NavContainer, NavItem, NavButton, NavParagraph } from "./navBar";
+import {
+  MainNav,
+  NavList,
+  NavContainer,
+  NavItem,
+  NavButton,
+  NavParagraph,
+  StyledFontAwesomeIcon,
+} from "./navBar";
+import { HeroTitle, HomeContainer, HomeHeader } from "./home";
+import { EquisArriba, IconSearch, SearchContainer, SearchInput, EquisAbajo } from "./buscador";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -32,14 +42,40 @@ body{
     font-family: 'Montserrat';
     margin: 0;
     padding: 0;
-    background-color: #F3F3F3;
+    background-color: #747191;
 }
 
 ::-webkit-scrollbar {
     display: none;
 }
 
+.blob-motion {
+    position: absolute;
+    transform: translateY(-2%);
+    z-index: -1;
+}
+
+
 @media screen and (max-width: 950px) {
+
+    ${HomeContainer}{
+        margin-left: 0;
+    }
+
+
+    ${HomeHeader}{
+        width: 100%;
+    }
+
+
+    ${HeroTitle}{
+        font-size: 2.0em;
+    }
+
+    ${SearchContainer}{
+        width: 25em;
+    }
+
     ${MainNav}{
         display: flex;
         top: auto;
@@ -51,7 +87,6 @@ body{
         align-items: center;
         justify-content: space-around;
         padding: 0;
-        /*background-color: #222222;*/
     }
 
     ${NavContainer}{
@@ -79,7 +114,7 @@ body{
     ${NavButton}{
         padding: 1em 0.8em;
         transform: rotate(0deg);
-        display: ${props => props.visible ? "none" : "block"};
+        display: ${(props) => (props.visible ? "none" : "block")};
     }
 
     ${NavParagraph}{
@@ -89,11 +124,82 @@ body{
         display: none;
     }
 
-    /*.about-me{
-        width: calc(100% - 2em);
-        padding-top: 3em;
-    }*/
+
 }
+
+
+@media screen and (max-height: 636px) {
+    ${NavItem}{
+        //margin-left: 1em;
+    }
+
+    ${HomeContainer}{
+        margin-left: 0;
+    }
+
+    ${HomeHeader}{
+        width: 100%;
+    }
+
+
+    ${MainNav}{
+        display: flex;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5em;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0;
+        /*background-color: #222222;*/
+    }
+
+
+    ${NavContainer}{
+        transform: none;
+        width: 100%;
+        margin: 0;
+    }
+
+    ${NavList}{
+        display: flex;
+        position: relative;
+        transform: none;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        flex-direction: row-reverse;
+    }
+    
+    ${NavItem}{
+        margin-bottom: 0;
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    ${NavButton}{
+        padding: 1em 0.8em;
+        transform: rotate(0deg);
+        display: ${(props) => (props.visible ? "none" : "block")};
+    }
+
+    ${NavParagraph}{
+        display: none;
+    }
+    .imagen{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 476px) {
+    ${SearchContainer}{
+        width: 13.5em;
+    }
+}
+
 
 @media screen and (max-width: 330px){
 
@@ -103,9 +209,35 @@ body{
         margin-right: 0.4;
     }
     ${NavButton}{
-        padding: 0.8em 0.4em;
+        padding: 0;
     }
+
+    ${HeroTitle}{
+        font-size: 1.7em;
+    }
+
+    ${SearchContainer}{
+        width: 10em;
+    }
+
+    ${SearchInput}{
+        font-size: 0.7em;
+    }
+
+    ${MainNav}{
+        height: 3em;
+    }
+
+
+    ${StyledFontAwesomeIcon}{
+        font-size: 1.5em;
+    }
+
+    /*${EquisArriba}, ${EquisAbajo}, ${IconSearch} {
+        display: none;
+    }*/
 }
+
 
 @media screen and (max-width: 300px){
 
@@ -119,11 +251,6 @@ body{
     }
 }
 
-@media screen and (max-height: 636px) {
-    ${NavItem}{
-        margin-left: 1em;
-    }
-}
 `;
 
 export default GlobalStyles;

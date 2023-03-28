@@ -4,10 +4,11 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 export const MainNav = styled.nav`
   position: fixed;
+  flex: auto;
   left: 0;
   right: 0;
   background-color: #06062a;
-  width: 6em;
+  width: 10vh;
   padding: 0 1em;
   height: 100%;
   z-index: 20;

@@ -1,25 +1,19 @@
-import { HomeBody, HomeContainer, HomeHeader, HomeLogo, HeroTitle, HomeTitle, HeroTitleTwo, ButtonEmpresa } from "../../styles/home";
-import { EquisAbajo, EquisArriba, IconClose, IconsContainer, IconSearch, SearchContainer, SearchInput } from "../../styles/buscador";
-import { useEffect, useRef } from "react";
+import {
+    HomeBody,
+    HomeContainer,
+    HomeHeader,
+    HomeLogo,
+    HeroTitle,
+    HomeTitle,
+    HeroTitleTwo,
+    ButtonEmpresa,
+    HomeSection,
+} from "../../styles/home";
+import { Buscador } from "../Buscador";
+import { AnimacionInicio } from "../tools/AnimacionInicio";
 
 
 import logo from "../../assets/images/logo.png";
-
-const Buscador = () => {
-
-    return (
-        <SearchContainer>
-            <SearchInput placeholder="Buscar empleo" />
-            <IconsContainer>
-                <IconSearch />
-                <IconClose>
-                    <EquisArriba />
-                    <EquisAbajo />
-                </IconClose>
-            </IconsContainer>
-        </SearchContainer>
-    );
-}
 
 export const Home = () => {
     return (
@@ -30,18 +24,22 @@ export const Home = () => {
             </HomeHeader>
 
             <HomeBody>
-                <HeroTitle>
-                    Descubre un mundo de oportunidades laborales
-                </HeroTitle>
-                <Buscador />
-                <HeroTitleTwo>
-                    ¿Eres una empresa? Ingresa aquí para publicar tus ofertas de empleo.
-                </HeroTitleTwo>
-                <ButtonEmpresa as="a" href="#">
-                    Publicar tus ofertas de empleo
-                </ButtonEmpresa>
+                <div className="flip">
+                <HomeSection>
+                    <HeroTitle>Descubre un mundo de oportunidades laborales</HeroTitle>
+                    <Buscador />
+                    <AnimacionInicio/>
+                </HomeSection>
+                </div>
+                <HomeSection>
+                    <HeroTitleTwo>
+                        ¿Eres una empresa? Ingresa aquí para publicar tus ofertas de empleo.
+                    </HeroTitleTwo>
+                    <ButtonEmpresa as="a" href="#">
+                        Publicar tus ofertas de empleo
+                    </ButtonEmpresa>
+                </HomeSection>
             </HomeBody>
         </HomeContainer>
     );
-}
-
+};

@@ -8,8 +8,8 @@ function App() {
   return (
     <div className="App">
       <GlobalStyles />
-      <NavBar/>
-      <Home />
+        <NavBar />
+        <Home />
     </div>
   )
 }

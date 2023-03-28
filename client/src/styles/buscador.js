@@ -6,8 +6,7 @@ export const SearchContainer = styled.fieldset`
   margin-right: 2.5em;
   margin-top: 3em;
   border: 0;
-  width: 15em;
-  height: 2.5em;
+  width: 50em;
 `;
 
 export const IconsContainer = styled.div`
@@ -131,7 +130,8 @@ export const SearchInput = styled.input`
   width: 100%;
   height: 100%;
   padding: 15px 20px;
-  background: white;
+  background: #C3C1D2;
+  color: #0F2651;
   border-radius: 3px;
   //box-shadow: 1px 8px 15px rgba(75, 72, 72, 0.1);
   transition: all 0.4s ease;

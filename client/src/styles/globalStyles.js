@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import Montserrat from "../assets/fonts/Montserrat.ttf";
 import MonsterratItalic from "../assets/fonts/Montserrat-Italic.ttf";
 import MonsterratBold from "../assets/fonts/Montserrat-Bold.ttf";
-import { MainNav, NavList, NavContainer, NavItem, NavButton } from "./navBar";
+import { MainNav, NavList, NavContainer, NavItem, NavButton, NavParagraph } from "./navBar";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -25,18 +25,6 @@ const GlobalStyles = createGlobalStyle`
 @font-face {
     font-family: 'Montserrat-Italic';
     src: local('Montserrat-Italic'), url(${MonsterratItalic}) format('truetype');
-}
-
-::selection {
-  background: #6078EA;
-  color: white;
-  text-shadow: none;
-}
-
-::-webkit-selection{
-  background: #6078EA;
-  color: white;
-  text-shadow: none;
 }
 
 
@@ -87,12 +75,17 @@ body{
         margin-left: 2em;
         margin-right: 2em;
     }
+
     ${NavButton}{
         padding: 1em 0.8em;
         transform: rotate(0deg);
+        display: ${props => props.visible ? "none" : "block"};
     }
 
-    .logo{
+    ${NavParagraph}{
+        display: none;
+    }
+    .imagen{
         display: none;
     }
 

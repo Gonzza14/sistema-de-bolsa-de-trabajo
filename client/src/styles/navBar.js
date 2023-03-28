@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 export const MainNav = styled.nav`
   position: fixed;
@@ -40,24 +42,40 @@ export const NavItem = styled.li`
   align-items: center;
 `;
 
+export const NavParagraph = styled.p`
+  color: #f3f3f3;
+  margin-top: 0.3em;
+  visibility: visible;
+
+`;
+
+export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  color: #f3f3f3;
+  margin-left: 0.3em;
+
+`;
+
 export const NavButton = styled.button`
-  display: block;
+  display: ${(props) => (props.visible ? "block" : "none")};
   position: relative;
   transition: 400ms;
-  //writing-mode: vertical-lr;
   transform: rotate(90deg);
   text-decoration: none;
-  /*color: #222222;*/
-  color: #ffffff;
+  color: #f3f3f3;
   padding: 0.8em 1.6em;
   border-radius: 3.125em;
   white-space: nowrap;
   z-index: 100000;
-
-  &:hover {
+  &:hover ${NavParagraph} {
     cursor: pointer;
-    color: #E84616;
+    color: #e84616;
   }
+  &:hover ${StyledFontAwesomeIcon} {
+    cursor: pointer;
+    color: #e84616;
+  }
+  
+  
 `;
 
 export const NavImage = styled.img`

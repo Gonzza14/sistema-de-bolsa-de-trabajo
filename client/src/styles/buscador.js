@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const SearchContainer = styled.fieldset`
   position: relative;
-  padding: 0;
-  margin-right: 2.5em;
+  padding: 0 4.5em 0 0;
+  background-color: #C3C1D2;
+  //margin-right: 2.5em;
   margin-top: 3em;
   border: 0;
   width: 50em;
@@ -12,7 +13,7 @@ export const SearchContainer = styled.fieldset`
 export const IconsContainer = styled.div`
   position: absolute;
   top: 0.3em;
-  right: -1.5em;
+  right: 1em;
   width: 2em;
   height: 2em;
   overflow: hidden;

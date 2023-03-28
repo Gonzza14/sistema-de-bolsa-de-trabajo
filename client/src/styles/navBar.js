@@ -25,11 +25,11 @@ export const NavList = styled.ul`
   position: absolute;
   display: flex;
   right: 0;
-  top: 50%;
   padding: 0;
   list-style: none;
   font-weight: bold;
   align-items: center;
+  justify-content: space-between;
   transform: translateY(-50%);
 `;
 
@@ -45,20 +45,22 @@ export const NavItem = styled.li`
 
 export const NavParagraph = styled.p`
   color: #f3f3f3;
-  margin-top: 0.3em;
   visibility: visible;
 
 `;
 
 export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   color: #f3f3f3;
-  margin-left: 0.3em;
 
 `;
 
 export const NavButton = styled.button`
-  display: ${(props) => (props.visible ? "block" : "none")};
   position: relative;
+  width: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transition: 400ms;
   transform: rotate(90deg);
   text-decoration: none;
@@ -87,4 +89,8 @@ export const NavImage = styled.img`
 
 export const NavLogo = styled.a`
   transform: rotate(90deg);
+  padding: 0.8em 1.6em;
+  &:hover{
+    cursor: pointer;
+  }
 `;

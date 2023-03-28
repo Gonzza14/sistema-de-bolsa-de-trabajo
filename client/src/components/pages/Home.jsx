@@ -10,7 +10,8 @@ import {
     HomeSection,
 } from "../../styles/home";
 import { Buscador } from "../Buscador";
-import { AnimacionInicio } from "../tools/AnimacionInicio";
+import { AnimacionInicio } from "../util/AnimacionInicio";
+
 
 
 import logo from "../../assets/images/logo.png";

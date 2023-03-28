@@ -21,7 +21,7 @@ export const AnimacionInicio = () => {
             width="900"
             height="600"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
             version="1.1"
         >
             <g transform="translate(437.5940594979618 283.7733414069437)">

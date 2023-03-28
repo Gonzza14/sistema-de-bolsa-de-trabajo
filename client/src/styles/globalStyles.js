@@ -12,7 +12,13 @@ import {
   StyledFontAwesomeIcon,
 } from "./navBar";
 import { HeroTitle, HomeContainer, HomeHeader } from "./home";
-import { EquisArriba, IconSearch, SearchContainer, SearchInput, EquisAbajo } from "./buscador";
+import {
+  EquisArriba,
+  IconSearch,
+  SearchContainer,
+  SearchInput,
+  EquisAbajo,
+} from "./buscador";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -54,6 +60,22 @@ body{
     transform: translateY(-2%);
     z-index: -1;
 }
+
+@media screen and (max-height: 1193px) {
+
+    ${NavButton}{
+        width: 2em;
+    }
+}
+
+
+@media screen and (max-width: 1006px) {
+
+    ${SearchContainer}{
+        width: 35em;
+    }
+}
+
 
 
 @media screen and (max-width: 950px) {
@@ -114,7 +136,6 @@ body{
     ${NavButton}{
         padding: 1em 0.8em;
         transform: rotate(0deg);
-        display: ${(props) => (props.visible ? "none" : "block")};
     }
 
     ${NavParagraph}{
@@ -128,7 +149,7 @@ body{
 }
 
 
-@media screen and (max-height: 636px) {
+@media screen and (max-height: 722px) {
     ${NavItem}{
         //margin-left: 1em;
     }
@@ -182,7 +203,6 @@ body{
     ${NavButton}{
         padding: 1em 0.8em;
         transform: rotate(0deg);
-        display: ${(props) => (props.visible ? "none" : "block")};
     }
 
     ${NavParagraph}{
@@ -190,6 +210,21 @@ body{
     }
     .imagen{
         display: none;
+    }
+
+}
+
+@media screen and (max-width: 539px) {
+    ${MainNav}{
+        height: 4em;
+    }
+
+    ${NavItem}{
+        margin: 0;
+    }
+
+    ${StyledFontAwesomeIcon}{
+        font-size: 1.5em;
     }
 
 }

@@ -1,5 +1,5 @@
 import 'normalize.css'
-import { Home } from './components/pages/Home'
+import { Home } from './pages/Home'
 import { NavBar } from './components/NavBar'
 import GlobalStyles from './styles/globalStyles'
 

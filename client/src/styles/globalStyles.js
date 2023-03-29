@@ -11,7 +11,17 @@ import {
   NavParagraph,
   StyledFontAwesomeIcon,
 } from "./navBar";
-import { HeroTitle, HomeContainer, HomeHeader } from "./home";
+import {
+  HeroTitle,
+  HomeContainer,
+  HomeHeader,
+  ImgSection,
+  SectionContainer,
+  SectionInner,
+  ButtonLogin,
+  HeroTitleTwo,
+  HeroText,
+} from "./home";
 import {
   EquisArriba,
   IconSearch,
@@ -48,7 +58,12 @@ body{
     font-family: 'Montserrat';
     margin: 0;
     padding: 0;
-    background-color: #747191;
+    background-color: #F3F3F3;
+    -ms-text-size-adjust: 100%;
+
+-webkit-text-size-adjust: 100%;
+
+overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -61,11 +76,31 @@ body{
     z-index: -1;
 }
 
+
+@media screen and (max-width: 1370px) {
+    ${SectionInner}{
+        margin-left: 4em;
+    }
+
+    ${ImgSection}{
+        margin-right: 4em;
+        margin-left: 4em;
+        max-width: 20em;
+    }
+
+    ${ButtonLogin}{
+        margin-top: 0em;
+    }
+}
+
+
 @media screen and (max-height: 1193px) {
 
     ${NavButton}{
         width: 2em;
     }
+
+
 }
 
 
@@ -79,6 +114,10 @@ body{
 
 
 @media screen and (max-width: 950px) {
+
+    .blob-motion{
+        width: 50em;
+    }
 
     ${HomeContainer}{
         margin-left: 0;
@@ -99,7 +138,6 @@ body{
     }
 
     ${MainNav}{
-        display: flex;
         top: auto;
         bottom: 0;
         left: 0;
@@ -144,12 +182,58 @@ body{
     .imagen{
         display: none;
     }
+}
+
+@media screen and (max-height: 847px) {
+    ${SectionContainer}{
+        padding: 0;
+    }
+
+    ${ButtonLogin}{
+        margin-bottom: 5em;
+    }
+
+    ${HeroTitleTwo}{
+        font-size: 1.5em;  
+        line-height: 1.5rem;
+    }
+
+    ${HeroText}{
+        font-size: 1em;
+        margin-bottom: 1rem;
+    }
+}
 
 
+@media screen and (max-width: 797px) {
+    .blob-motion{
+        width: 43.75em;
+    }
+    ${SectionContainer}{
+        flex-direction: column-reverse;
+    }
+    ${SectionInner}{
+        margin-left: 0em;
+    }
+
+    ${HeroTitle}{
+        text-align: center;
+     }
+    ${ImgSection}{
+        margin-top: 2em;
+        margin-right: 0em;
+        margin-left: 0em;
+        max-width: 15em;
+    }
+
+    ${ButtonLogin}{ 
+        width: 100%;
+     }
 }
 
 
 @media screen and (max-height: 722px) {
+    
     ${NavItem}{
         //margin-left: 1em;
     }
@@ -174,7 +258,6 @@ body{
         align-items: center;
         justify-content: space-around;
         padding: 0;
-        /*background-color: #222222;*/
     }
 
 
@@ -214,6 +297,14 @@ body{
 
 }
 
+@media screen and (max-width: 657px) {
+    ${SectionInner}{
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+}
+
 @media screen and (max-width: 539px) {
     ${MainNav}{
         height: 4em;
@@ -233,6 +324,11 @@ body{
     ${SearchContainer}{
         width: 13.5em;
     }
+
+    ${ButtonLogin}{
+        margin-bottom: 4em;
+    }
+
 }
 
 
@@ -263,9 +359,26 @@ body{
         height: 3em;
     }
 
-
     ${StyledFontAwesomeIcon}{
         font-size: 1.5em;
+    }
+
+    ${SectionContainer}{
+        padding-bottom: 0em;
+    }
+
+    ${ButtonLogin}{
+        margin-bottom: 4em;
+    }
+
+    ${HeroTitleTwo}{
+        font-size: 1.5em;  
+        line-height: 1.5rem;
+    }
+
+    ${HeroText}{
+        font-size: 1em;
+        margin-bottom: 1rem;
     }
 
     /*${EquisArriba}, ${EquisAbajo}, ${IconSearch} {

@@ -12,7 +12,7 @@ export const HomeHeader = styled.header`
   position: absolute;
   align-items: center;
   justify-content: center;
-  width: 92%;
+  width: 90%;
   height: 6em;
 `;
 
@@ -35,13 +35,13 @@ export const HomeTitle = styled.h1`
   font-family: "Montserrat-Bold";
   margin-top: 0.7em;
   text-align: center;
-  color: #f3f3f3;
+  color: #06062A;
 `;
 
 export const HomeCurve = styled.div``;
 
 export const HomeLogo = styled.img`
-  width: 3em;
+  width: 7em;
 `;
 
 export const HomeBody = styled.main`
@@ -54,22 +54,69 @@ export const HeroTitle = styled.h2`
   font-family: "Montserrat-Bold";
   text-align: center;
   font-size: 3em;
-  color: #06062A;
+  color: #06062a;
   margin: 0;
+`;
+
+//------------------------------------------------------------
+//Seccion 2
+
+export const SectionContainer = styled.div`
+  width: 100%;
+  max-width: 71.25em;
+  max-height: 40em;
+  padding: 8rem 6rem;
+  display: flex;
+  align-items: center;
+`;
+
+export const SectionInner = styled.div`
+  max-width: 36rem;
 `;
 
 export const HeroTitleTwo = styled.h3`
   font-family: "Montserrat-Bold";
-  margin-top: 4em;
-  width: 50vh;
-  text-align: center;
-  color: #0f2651;
+  font-size: 1.875rem;
+  line-height: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
 `;
 
-export const ButtonEmpresa = styled.button`
+export const HeroText = styled.p`
+  font-size: 1rem;
+  line-height: 1.75rem;
+  margin-bottom: 3rem;
+`;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+`;
+export const ButtonLogin = styled.button`
   margin-top: 2em;
   text-decoration: none;
   color: #f3f3f3;
-  background-color: #E84616;
+  background-color: #e84616;
   padding: 1em;
+  width: 50%;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+`;
+
+
+export const ImgSection = styled.img`
+  max-width: 25em;
+  margin-left: 10em;
+  object-fit: cover;
 `;

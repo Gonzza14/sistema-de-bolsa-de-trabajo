@@ -99,10 +99,7 @@ overflow-x: hidden;
     ${NavButton}{
         width: 2em;
     }
-
-
 }
-
 
 @media screen and (max-width: 1006px) {
 
@@ -111,7 +108,34 @@ overflow-x: hidden;
     }
 }
 
+@media screen and (max-height: 722px) {
+    
+    ${NavItem}{
+        //margin-left: 1em;
+    }
 
+    ${NavContainer}{
+        margin-top: 3em;
+    }
+
+    ${MainNav}{
+        width: 4em;
+    }
+    ${NavItem}{
+        margin-left: 0.8em;
+    }
+    ${NavButton}{
+        
+    }
+    ${NavParagraph}{
+        font-size: 0.8em;
+    }
+
+     ${StyledFontAwesomeIcon}{
+        font-size: 1.5em;
+    }
+
+}
 
 @media screen and (max-width: 950px) {
 
@@ -122,7 +146,6 @@ overflow-x: hidden;
     ${HomeContainer}{
         margin-left: 0;
     }
-
 
     ${HomeHeader}{
         width: 100%;
@@ -232,70 +255,6 @@ overflow-x: hidden;
 }
 
 
-@media screen and (max-height: 722px) {
-    
-    ${NavItem}{
-        //margin-left: 1em;
-    }
-
-    ${HomeContainer}{
-        margin-left: 0;
-    }
-
-    ${HomeHeader}{
-        width: 100%;
-    }
-
-
-    ${MainNav}{
-        display: flex;
-        top: auto;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 5em;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        padding: 0;
-    }
-
-
-    ${NavContainer}{
-        transform: none;
-        width: 100%;
-        margin: 0;
-    }
-
-    ${NavList}{
-        display: flex;
-        position: relative;
-        transform: none;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-        flex-direction: row-reverse;
-    }
-    
-    ${NavItem}{
-        margin-bottom: 0;
-        margin-left: 2em;
-        margin-right: 2em;
-    }
-
-    ${NavButton}{
-        padding: 1em 0.8em;
-        transform: rotate(0deg);
-    }
-
-    ${NavParagraph}{
-        display: none;
-    }
-    .imagen{
-        display: none;
-    }
-
-}
 
 @media screen and (max-width: 657px) {
     ${SectionInner}{
@@ -303,6 +262,65 @@ overflow-x: hidden;
         margin-right: 1em;
     }
 
+}
+
+@media screen and (max-height: 613px) {
+
+${HomeContainer}{
+    margin-left: 0;
+}
+
+${HomeHeader}{
+    width: 100%;
+}
+
+${MainNav}{
+    display: flex;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+}
+
+
+${NavContainer}{
+    transform: none;
+    width: 100%;
+    margin: 0;
+}
+
+${NavList}{
+    display: flex;
+    position: relative;
+    transform: none;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+
+${NavItem}{
+    margin-bottom: 0;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+${NavButton}{
+    padding: 1em 0.8em;
+    transform: rotate(0deg);
+}
+
+${NavParagraph}{
+    display: none;
+}
+.imagen{
+    display: none;
+}
 }
 
 @media screen and (max-width: 539px) {

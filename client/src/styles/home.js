@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const HomeContainer = styled.div`
   flex: auto;
-  margin-left: 7em;
+  margin-left: 8em;
   flex-direction: column;
   align-items: center;
 `;
@@ -11,9 +12,10 @@ export const HomeHeader = styled.header`
   display: flex;
   position: absolute;
   align-items: center;
-  justify-content: center;
   width: 90%;
+  justify-content: space-between;
   height: 6em;
+  z-index: 20;
 `;
 
 export const HomeSection = styled.section`
@@ -34,6 +36,7 @@ export const HeroContainer = styled.div`
 export const HomeTitle = styled.h1`
   font-family: "Montserrat-Bold";
   margin-top: 0.7em;
+  margin-right: 1em;
   text-align: center;
   color: #06062A;
 `;
@@ -42,6 +45,7 @@ export const HomeCurve = styled.div``;
 
 export const HomeLogo = styled.img`
   width: 7em;
+  margin-left: 0.3em;
 `;
 
 export const HomeBody = styled.main`
@@ -93,7 +97,7 @@ export const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
 `;
-export const ButtonLogin = styled.button`
+export const ButtonRegister = styled(Link)`
   margin-top: 2em;
   text-decoration: none;
   color: #f3f3f3;
@@ -120,3 +124,10 @@ export const ImgSection = styled.img`
   margin-left: 10em;
   object-fit: cover;
 `;
+
+export const ButtonLogin = styled(ButtonRegister)`
+  width: 10em;
+  height: 1em;
+  margin-top: 0;
+
+`

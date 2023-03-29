@@ -11,8 +11,9 @@ import {
     SectionInner,
     HeroText,
     ButtonContainer,
-    ButtonLogin,
+    ButtonRegister,
     ImgSection,
+    ButtonLogin,
 } from "../styles/home";
 import { Buscador } from "../components/Buscador";
 import { AnimacionInicio } from "../util/AnimacionInicio";
@@ -24,6 +25,9 @@ export const Home = () => {
         <HomeContainer>
             <HomeHeader>
                 <HomeLogo src={logo} alt="Logo de la empresa" />
+                <ButtonLogin to={"/Login"}>
+                    Iniciar sesion
+                </ButtonLogin>
                 {/*<HomeTitle>SBT</HomeTitle>*/}
             </HomeHeader>
 
@@ -43,9 +47,9 @@ export const Home = () => {
                                 Únete a nuestra comunidad de búsqueda de empleo y descubre todas las oportunidades laborales que tenemos para ti. Con nuestra ayuda, encontrarás el trabajo que siempre has deseado y podrás avanzar en tu carrera profesional.
                             </HeroText>
                             <ButtonContainer>
-                                <ButtonLogin as="a" href="#">
+                                <ButtonRegister to={"/Login"}>
                                     Crea tu cuenta
-                                </ButtonLogin>
+                                </ButtonRegister>
                             </ButtonContainer>
                         </SectionInner>
                         <ImgSection src={imagen}>

@@ -2,14 +2,14 @@ import 'normalize.css'
 import { Home } from './pages/Home'
 import { NavBar } from './components/NavBar'
 import GlobalStyles from './styles/globalStyles'
+import { Rutas } from './components/Rutas'
 
 function App() {
 
   return (
-    <div className="App">
+    <div>
       <GlobalStyles />
-        <NavBar />
-        <Home />
+      <Rutas />
     </div>
   )
 }

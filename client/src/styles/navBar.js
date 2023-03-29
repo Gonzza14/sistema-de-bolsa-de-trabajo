@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export const MainNav = styled.nav`
   position: fixed;
@@ -53,7 +54,7 @@ export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 
 `;
 
-export const NavButton = styled.button`
+export const NavButton = styled(Link)`
   position: relative;
   width: 5em;
   display: flex;
@@ -76,8 +77,6 @@ export const NavButton = styled.button`
     cursor: pointer;
     color: #e84616;
   }
-  
-  
 `;
 
 export const NavImage = styled.img`
@@ -86,7 +85,7 @@ export const NavImage = styled.img`
   border-radius: 3.125em;
 `;
 
-export const NavLogo = styled.a`
+export const NavLogo = styled(Link)`
   transform: rotate(90deg);
   padding: 0.8em 1.6em;
   &:hover{

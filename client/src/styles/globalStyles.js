@@ -21,6 +21,9 @@ import {
   ButtonLogin,
   HeroTitleTwo,
   HeroText,
+  ButtonRegister,
+  HomeLogo,
+  HomeTitle,
 } from "./home";
 import {
   EquisArriba,
@@ -88,8 +91,16 @@ overflow-x: hidden;
         max-width: 20em;
     }
 
-    ${ButtonLogin}{
+    ${ButtonRegister}{
         margin-top: 0em;
+    }
+
+    ${ButtonLogin}{
+        margin-right: 1.8em;
+    }
+
+    ${HomeLogo}{
+        margin-left: 0.8em;
     }
 }
 
@@ -106,6 +117,15 @@ overflow-x: hidden;
     ${SearchContainer}{
         width: 35em;
     }
+
+    ${HomeHeader}{
+        height: 5em;
+    }
+
+    ${ButtonLogin}{
+        padding: 0.8em;
+    }
+
 }
 
 @media screen and (max-height: 722px) {
@@ -151,6 +171,13 @@ overflow-x: hidden;
         width: 100%;
     }
 
+    ${HomeLogo}{
+        width: 6em;
+    }
+
+    ${HomeTitle}{
+        font-size: 1.5em;
+    }
 
     ${HeroTitle}{
         font-size: 2.0em;
@@ -212,10 +239,13 @@ overflow-x: hidden;
         padding: 0;
     }
 
-    ${ButtonLogin}{
+    ${ButtonRegister}{
         margin-bottom: 5em;
     }
 
+    ${ButtonLogin}{
+        margin-bottom: 0em;
+    }
     ${HeroTitleTwo}{
         font-size: 1.5em;  
         line-height: 1.5rem;
@@ -226,7 +256,6 @@ overflow-x: hidden;
         margin-bottom: 1rem;
     }
 }
-
 
 @media screen and (max-width: 797px) {
     .blob-motion{
@@ -249,12 +278,14 @@ overflow-x: hidden;
         max-width: 15em;
     }
 
-    ${ButtonLogin}{ 
+    ${ButtonRegister}{ 
         width: 100%;
      }
+
+     ${ButtonLogin}{
+        width: 8em;
+     }
 }
-
-
 
 @media screen and (max-width: 657px) {
     ${SectionInner}{
@@ -336,6 +367,10 @@ ${NavParagraph}{
         font-size: 1.5em;
     }
 
+
+    ${HomeLogo}{
+        width: 5em;
+    }
 }
 
 @media screen and (max-width: 476px) {
@@ -343,12 +378,14 @@ ${NavParagraph}{
         width: 13.5em;
     }
 
-    ${ButtonLogin}{
+    ${ButtonRegister}{
         margin-bottom: 4em;
     }
 
+    ${ButtonLogin}{
+        margin-bottom: 0em;
+    }
 }
-
 
 @media screen and (max-width: 330px){
 
@@ -385,8 +422,12 @@ ${NavParagraph}{
         padding-bottom: 0em;
     }
 
-    ${ButtonLogin}{
+    ${ButtonRegister}{
         margin-bottom: 4em;
+    }
+
+    ${ButtonLogin}{
+        margin-bottom: 0em;
     }
 
     ${HeroTitleTwo}{
@@ -416,7 +457,6 @@ ${NavParagraph}{
         padding: 0.4em 0.2em;
     }
 }
-
 `;
 
 export default GlobalStyles;

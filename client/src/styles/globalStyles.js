@@ -96,8 +96,13 @@ overflow-x: hidden;
     }
 
     ${ButtonLogin}{
+        margin-right: 3.8em;
+    }
+
+    ${HomeTitle}{
         margin-right: 1.8em;
     }
+
 
     ${HomeLogo}{
         margin-left: 0.8em;
@@ -161,6 +166,15 @@ overflow-x: hidden;
 
     .blob-motion{
         width: 50em;
+    }
+
+    ${HomeTitle}{
+        margin-right: 1.2em;
+    }
+
+
+    ${ButtonLogin}{
+        margin-right: 1.8em;
     }
 
     ${HomeContainer}{

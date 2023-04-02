@@ -1,43 +1,28 @@
 import {
-    HomeBody,
-    HomeContainer,
-    HomeHeader,
-    HomeLogo,
-    HeroTitle,
-    HomeTitle,
     HeroTitleTwo,
-    HomeSection,
-    SectionContainer,
     SectionInner,
     HeroText,
-    ButtonContainer,
-    ButtonRegister,
     ImgSection,
-    ButtonLogin,
-} from "../styles/home";
+    HeroTitle
+} from "../styles/pages/home";
+import { ButtonRegister, ButtonContainer } from "../styles/elements/botones";
+import { Header } from "../components/Header";
 import { Buscador } from "../components/Buscador";
 import { AnimacionInicio } from "../util/AnimacionInicio";
-import logo from "../assets/images/logo.png";
+import { BaseContainer, BaseBody, BaseSection, SectionContainer } from "../styles/base";
 import imagen from "../assets/images/imagen-seccion.png";
 
 export const Home = () => {
     return (
-        <HomeContainer>
-            <HomeHeader>
-                <HomeLogo src={logo} alt="Logo de la empresa" />
-                <ButtonLogin to={"/Login"}>
-                    Iniciar sesion
-                </ButtonLogin>
-                {/*<HomeTitle>SBT</HomeTitle>*/}
-            </HomeHeader>
-
-            <HomeBody>
-                <HomeSection>
+        <BaseContainer>
+            <Header/>
+            <BaseBody>
+                <BaseSection>
                     <HeroTitle>Descubre un mundo de oportunidades laborales</HeroTitle>
                     <Buscador />
                     <AnimacionInicio />
-                </HomeSection>
-                <HomeSection>
+                </BaseSection>
+                <BaseSection>
                     <SectionContainer>
                         <SectionInner>
                             <HeroTitleTwo>
@@ -56,8 +41,8 @@ export const Home = () => {
 
                         </ImgSection>
                     </SectionContainer>
-                </HomeSection>
-            </HomeBody>
-        </HomeContainer>
+                </BaseSection>
+            </BaseBody>
+        </BaseContainer>
     );
 };

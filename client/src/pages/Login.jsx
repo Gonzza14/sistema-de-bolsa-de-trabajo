@@ -1,9 +1,14 @@
-import { HomeContainer, HomeHeader } from "../styles/home";
-
+import { Header } from "../components/Header";
+import { BaseContainer, BaseBody, BaseSection } from "../styles/base";
 export const Login = () => {
-    return (<HomeContainer>
-        <HomeHeader>
-            <h2>Login</h2>
-        </HomeHeader>
-    </HomeContainer>);
-}
+    return (
+        <BaseContainer>
+            <Header titulo="Login"/>
+            <BaseBody>
+                <BaseSection>
+                    Contenido
+                </BaseSection>
+            </BaseBody>
+        </BaseContainer>
+    );
+};

@@ -10,28 +10,28 @@ import {
   NavButton,
   NavParagraph,
   StyledFontAwesomeIcon,
-} from "./navBar";
+} from "./elements/navBar";
+
+import { BaseLogo, BaseHeader, BaseTitle } from "./elements/header";
+import { BaseContainer, SectionContainer } from "./base";
+
 import {
-  HeroTitle,
-  HomeContainer,
-  HomeHeader,
-  ImgSection,
-  SectionContainer,
   SectionInner,
-  ButtonLogin,
   HeroTitleTwo,
   HeroText,
-  ButtonRegister,
-  HomeLogo,
-  HomeTitle,
-} from "./home";
+  HeroTitle,
+  ImgSection,
+} from "./pages/home";
+
 import {
   EquisArriba,
   IconSearch,
   SearchContainer,
   SearchInput,
   EquisAbajo,
-} from "./buscador";
+} from "./elements/buscador";
+
+import { ButtonLogin, ButtonRegister } from "./elements/botones";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -99,12 +99,12 @@ overflow-x: hidden;
         margin-right: 3.8em;
     }
 
-    ${HomeTitle}{
+    ${BaseTitle}{
         margin-right: 1.8em;
     }
 
 
-    ${HomeLogo}{
+    ${BaseLogo}{
         margin-left: 0.8em;
     }
 }
@@ -123,7 +123,7 @@ overflow-x: hidden;
         width: 35em;
     }
 
-    ${HomeHeader}{
+    ${BaseHeader}{
         height: 5em;
     }
 
@@ -168,7 +168,7 @@ overflow-x: hidden;
         width: 50em;
     }
 
-    ${HomeTitle}{
+    ${BaseTitle}{
         margin-right: 1.2em;
     }
 
@@ -177,19 +177,19 @@ overflow-x: hidden;
         margin-right: 1.8em;
     }
 
-    ${HomeContainer}{
+    ${BaseContainer}{
         margin-left: 0;
     }
 
-    ${HomeHeader}{
+    ${BaseHeader}{
         width: 100%;
     }
 
-    ${HomeLogo}{
+    ${BaseLogo}{
         width: 6em;
     }
 
-    ${HomeTitle}{
+    ${BaseTitle}{
         font-size: 1.5em;
     }
 
@@ -311,13 +311,18 @@ overflow-x: hidden;
 
 @media screen and (max-height: 613px) {
 
-${HomeContainer}{
+${BaseContainer}{
     margin-left: 0;
 }
 
-${HomeHeader}{
+${BaseHeader}{
     width: 100%;
 }
+
+
+${ButtonLogin}{
+        margin-right: 1em;
+    }
 
 ${MainNav}{
     display: flex;
@@ -382,7 +387,7 @@ ${NavParagraph}{
     }
 
 
-    ${HomeLogo}{
+    ${BaseLogo}{
         width: 5em;
     }
 }
@@ -393,7 +398,7 @@ ${NavParagraph}{
     }
 
     ${ButtonRegister}{
-        margin-bottom: 4em;
+        margin-bottom: 4.5em;
     }
 
     ${ButtonLogin}{

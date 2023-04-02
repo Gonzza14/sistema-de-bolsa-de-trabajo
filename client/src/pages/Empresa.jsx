@@ -1,18 +1,14 @@
-import { EmpresaContainer, EmpresaHeader, EmpresaTitle, EmpresaBody, EmpresaSection } from "../styles/empresa";
-import { HomeLogo } from "../styles/home";
-import logo from "../assets/images/logo.png";
+import { Header } from "../components/Header";
+import { BaseContainer, BaseBody, BaseSection } from "../styles/base";
 export const Empresa = () => {
     return (
-        <EmpresaContainer>
-            <EmpresaHeader>
-                <HomeLogo src={logo} alt="Logo de la empresa" />
-                <EmpresaTitle>Empresa</EmpresaTitle>
-            </EmpresaHeader>
-            <EmpresaBody>
-                <EmpresaSection>
+        <BaseContainer>
+            <Header titulo="Empresa"/>
+            <BaseBody>
+                <BaseSection>
                     Contenido
-                </EmpresaSection>
-            </EmpresaBody>
-        </EmpresaContainer>
+                </BaseSection>
+            </BaseBody>
+        </BaseContainer>
     );
 };

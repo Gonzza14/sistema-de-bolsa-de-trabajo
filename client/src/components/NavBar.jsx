@@ -1,4 +1,4 @@
-import { MainNav, NavContainer, NavImage, NavList, NavLogo, NavButton, NavItem, NavParagraph, StyledFontAwesomeIcon } from "../styles/navBar";
+import { MainNav, NavContainer, NavImage, NavList, NavLogo, NavButton, NavItem, NavParagraph, StyledFontAwesomeIcon } from "../styles/elements/navBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faBars, faUser, faFileText, faPaperPlane, faSearch, faBuildingUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";

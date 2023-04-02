@@ -1,18 +1,14 @@
-import { BuscarContainer, BuscarHeader, BuscarTitle, BuscarBody, BuscarSection } from "../styles/buscar";
-import { HomeLogo } from "../styles/home";
-import logo from "../assets/images/logo.png";
+import { Header } from "../components/Header";
+import { BaseContainer, BaseBody, BaseSection } from "../styles/base";
 export const Buscar = () => {
     return (
-        <BuscarContainer>
-            <BuscarHeader>
-                <HomeLogo src={logo} alt="Logo de la Buscar" />
-                <BuscarTitle>Buscar</BuscarTitle>
-            </BuscarHeader>
-            <BuscarBody>
-                <BuscarSection>
+        <BaseContainer>
+            <Header titulo="Buscar"/>
+            <BaseBody>
+                <BaseSection>
                     Contenido
-                </BuscarSection>
-            </BuscarBody>
-        </BuscarContainer>
+                </BaseSection>
+            </BaseBody>
+        </BaseContainer>
     );
 };

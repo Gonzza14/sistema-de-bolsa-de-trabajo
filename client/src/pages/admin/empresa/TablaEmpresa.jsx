@@ -1,6 +1,6 @@
 import { FilaDeTabla } from "../FilaDeTabla";
 
-export const TablaEmpresa = ({ data }) => {
+export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
     return (
         <div>
             <h3>Tabla de empresas</h3>
@@ -12,12 +12,15 @@ export const TablaEmpresa = ({ data }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.length === 0 ? (
+                    {data.length > 0 ? (
+                        data.map((el) => (
+                            <FilaDeTabla key={el.id} el={el} setDataToEdit={setDataToEdit}
+                            deleteData={deleteData}/>
+                        ))
+                    ) : (
                         <tr>
                             <td colSpan="3">Sin datos</td>
                         </tr>
-                    ) : (
-                        data.map((elemento) => <FilaDeTabla key={elemento.id} element={elemento} />)
                     )}
                 </tbody>
             </table>

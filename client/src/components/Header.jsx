@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BaseLogo, BaseHeader, BaseTitle } from '../styles/elements/header';
 import { ButtonLogin } from '../styles/elements/botones';
-import { useLocation } from 'react-router-dom';
 import logo from "../assets/images/logo.png";
 
 

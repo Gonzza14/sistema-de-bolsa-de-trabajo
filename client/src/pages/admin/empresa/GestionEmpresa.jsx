@@ -2,12 +2,11 @@ import { Header } from "../../../components/Header";
 import { BaseContainer, BaseBody, BaseSection, SectionContainer } from "../../../styles/base";
 import { ButtonCreate } from "../../../styles/elements/botones";
 import { FormularioEmpresa } from "./FormularioEmpresa";
-import { Route, Routes } from "react-router-dom";
-import { TablaEmpresa } from "./TablaEmpresa";
+import { Route, Routes, useFetcher, useLocation, useMatch } from "react-router-dom";
 import { helpHttp } from "../../../helpers/helpHttp"
 import { useState, useEffect } from "react";
-import Loader from "../../../components/Loader";
-import Message from "../../../components/Message";
+import { ListarEmpresa } from "./ListarEmpresa";
+
 
 export const GestionEmpresa = () => {
 
@@ -15,8 +14,11 @@ export const GestionEmpresa = () => {
     const [dataToEdit, setDataToEdit] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+
     let url = "http://localhost:3000/api/empresas"
 
+    const {pathname} = useLocation()
+    console.log(pathname)
     useEffect(() => {
         helpHttp().get(url).then(res => {
             setLoading(true);
@@ -100,26 +102,28 @@ export const GestionEmpresa = () => {
             <Header titulo="Gestion de empresa" />
             <BaseBody>
                 <BaseSection>
-                    <SectionContainer>
-                        <FormularioEmpresa
+                    {pathname === "/GestionEmpresa" && <ButtonCreate to={`agregar`}>Agregar empresa</ButtonCreate>}
+                    <Routes>
+                        <Route path={``} element={<ListarEmpresa
+                            error={error}
+                            loading={loading}
+                            setDataToEdit={setDataToEdit}
+                            dataBase={dataBase}
+                            deleteData={deleteData}
+                        />} />
+                        <Route path={`agregar`} element={<FormularioEmpresa
                             createData={createData}
                             updateData={updateData}
                             dataToEdit={dataToEdit}
                             setDataToEdit={setDataToEdit}
-                        />
-                        {loading && <Loader />}
-                        {error && (
-                            <Message
-                                msg={`Error ${error.status}: ${error.statusText}`}
-                                bgColor="#dc3545"
-                            />
-                        )}
-                        {dataBase && <TablaEmpresa 
-                            data={dataBase}
+                        />} />
+                        <Route path={`editar/:id`} element={<FormularioEmpresa
+                            createData={createData}
+                            updateData={updateData}
+                            dataToEdit={dataToEdit}
                             setDataToEdit={setDataToEdit}
-                            deleteData={deleteData} 
-                        />}
-                    </SectionContainer>
+                        />} />
+                    </Routes>
                 </BaseSection>
             </BaseBody>
         </BaseContainer>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const initialForm = {
   nombre: "",
@@ -13,7 +14,7 @@ export const FormularioEmpresa = ({
   setDataToEdit,
 }) => {
   const [form, setForm] = useState(initialForm);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (dataToEdit) {
       setForm(dataToEdit);
@@ -47,6 +48,7 @@ export const FormularioEmpresa = ({
   const handleReset = (e) => {
     setForm(initialForm);
     setDataToEdit(null);
+    navigate("/GestionEmpresa")
   };
   return (
     <div>
@@ -71,7 +73,7 @@ export const FormularioEmpresa = ({
           value={form.descripcion}
         />
         <input type="submit" value="Enviar" />
-        <input type="reset" value="Limpiar" onClick={handleReset} />
+        {/*<input type="reset" value="Limpiar" onClick={handleReset} />*/}
       </form>
     </div>
   );

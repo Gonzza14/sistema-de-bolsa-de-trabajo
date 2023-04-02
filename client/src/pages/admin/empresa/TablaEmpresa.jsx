@@ -1,4 +1,4 @@
-import { FilaDeTabla } from "../FilaDeTabla";
+import { FilaEmpresa } from "./FilaEmpresa";
 
 export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
     return (
@@ -14,7 +14,7 @@ export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
                 <tbody>
                     {data.length > 0 ? (
                         data.map((el) => (
-                            <FilaDeTabla key={el.id} el={el} setDataToEdit={setDataToEdit}
+                            <FilaEmpresa key={el.id} el={el} setDataToEdit={setDataToEdit}
                             deleteData={deleteData}/>
                         ))
                     ) : (

@@ -1,18 +1,14 @@
-import { CVContainer, CVHeader, CVTitle, CVBody, CVSection } from "../styles/curriculumVitae";
-import { HomeLogo } from "../styles/home";
-import logo from "../assets/images/logo.png";
+import { Header } from "../components/Header";
+import { BaseContainer, BaseBody, BaseSection } from "../styles/base";
 export const CurriculumVitae = () => {
     return (
-        <CVContainer>
-            <CVHeader>
-                <HomeLogo src={logo} alt="Logo de la empresa" />
-                <CVTitle>CV</CVTitle>
-            </CVHeader>
-            <CVBody>
-                <CVSection>
+        <BaseContainer>
+            <Header titulo="CV"/>
+            <BaseBody>
+                <BaseSection>
                     Contenido
-                </CVSection>
-            </CVBody>
-        </CVContainer>
+                </BaseSection>
+            </BaseBody>
+        </BaseContainer>
     );
 };

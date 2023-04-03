@@ -7,6 +7,9 @@ import { Buscar } from '../pages/Buscar';
 import { Home } from '../pages/Home';
 import { NavBar } from './NavBar';
 import { Usuario } from '../pages/Usuario';
+import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
+import PrivateRoutes from './PrivateRoutes';
+import { Error404 } from '../pages/errors/Error404';
 
 export const Rutas = () => {
     return (
@@ -20,6 +23,10 @@ export const Rutas = () => {
                 <Route path='/Buscar' element={<Buscar />} />
                 <Route path='/Empresa' element={<Empresa />} />
                 <Route path='/Login' element={<Login />} />
+                <Route element={<PrivateRoutes />}>
+                    <Route path='/GestionEmpresa/*' element={<GestionEmpresa/>}/>
+                </Route>
+                <Route path="*" element={<Error404 />} />
             </Routes>
         </Router>
     );

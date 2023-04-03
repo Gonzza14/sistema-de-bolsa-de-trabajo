@@ -29,7 +29,7 @@ export const createEmpresa = async (req, res) => {
     //Se imprime la empresa creada
     console.log(newEmpresa);
 
-    res.json({ message: "Empresa creada" });
+    res.json(newEmpresa);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

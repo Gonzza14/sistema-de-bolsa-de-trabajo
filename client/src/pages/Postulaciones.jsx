@@ -1,18 +1,15 @@
-import { PostulacionesContainer, PostulacionesHeader, PostulacionesTitle, PostulacionesBody, PostulacionesSection } from "../styles/postulaciones";
-import { HomeLogo } from "../styles/home";
-import logo from "../assets/images/logo.png";
+import { Header } from "../components/Header";
+import { BaseContainer, BaseBody, BaseSection} from "../styles/base";
+
 export const Postulaciones = () => {
     return (
-        <PostulacionesContainer>
-            <PostulacionesHeader>
-                <HomeLogo src={logo} alt="Logo de la Postulaciones" />
-                <PostulacionesTitle>Postulaciones</PostulacionesTitle>
-            </PostulacionesHeader>
-            <PostulacionesBody>
-                <PostulacionesSection>
+        <BaseContainer>
+            <Header titulo="Postulaciones"/>
+            <BaseBody>
+                <BaseSection>
                     Contenido
-                </PostulacionesSection>
-            </PostulacionesBody>
-        </PostulacionesContainer>
+                </BaseSection>
+            </BaseBody>
+        </BaseContainer>
     );
 };

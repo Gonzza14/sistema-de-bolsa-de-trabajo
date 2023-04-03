@@ -1,18 +1,14 @@
-import { UsuarioContainer, UsuarioHeader, UsuarioTitle, UsuarioBody, UsuarioSection } from "../styles/usuario";
-import { HomeLogo } from "../styles/home";
-import logo from "../assets/images/logo.png";
+import { Header } from "../components/Header";
+import { BaseContainer, BaseBody, BaseSection } from "../styles/base";
 export const Usuario = () => {
     return (
-        <UsuarioContainer>
-            <UsuarioHeader>
-                <HomeLogo src={logo} alt="Logo de la Usuario" />
-                <UsuarioTitle>Usuario</UsuarioTitle>
-            </UsuarioHeader>
-            <UsuarioBody>
-                <UsuarioSection>
+        <BaseContainer>
+            <Header titulo="Usuario"/>
+            <BaseBody>
+                <BaseSection>
                     Contenido
-                </UsuarioSection>
-            </UsuarioBody>
-        </UsuarioContainer>
+                </BaseSection>
+            </BaseBody>
+        </BaseContainer>
     );
 };

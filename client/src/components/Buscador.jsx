@@ -6,7 +6,7 @@ import {
     IconSearch,
     SearchContainer,
     SearchInput,
-} from "../styles/buscador";
+} from "../styles/elements/buscador";
 
 export const Buscador = () => {
     return (

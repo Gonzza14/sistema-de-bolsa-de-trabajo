@@ -121,7 +121,7 @@ export const GestionEmpresa = () => {
                             <Route path={`agregar`} element={<FormularioEmpresa
                                 createData={createData}
                                 updateData={updateData}
-                                dataToEdit={dataToEdit}
+                                dataToEdit={null}
                                 setDataToEdit={setDataToEdit}
                             />} />
                             <Route path={`editar/:id`} element={<FormularioEmpresa

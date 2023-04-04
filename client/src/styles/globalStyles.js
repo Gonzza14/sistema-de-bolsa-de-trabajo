@@ -38,8 +38,6 @@ import {
   SpanButton,
 } from "./elements/botones";
 
-import { TablaTD, TablaHeaderCell } from "./elements/tabla";
-
 const GlobalStyles = createGlobalStyle`
 @font-face {
     font-family: 'Montserrat';
@@ -92,11 +90,15 @@ overflow-x: hidden;
         margin-left: 4em;
     }
 
+
     ${ImgSection}{
         margin-right: 4em;
         margin-left: 4em;
         max-width: 20em;
     }
+
+    .rdt_TableCell{
+    margin: 0;}
 
     ${ButtonRegister}{
         margin-top: 0em;
@@ -114,6 +116,9 @@ overflow-x: hidden;
     ${BaseLogo}{
         margin-left: 0.8em;
     }
+
+    .rdt_TableCol_Sortable div{
+    margin: 0;}
 }
 
 
@@ -200,6 +205,10 @@ overflow-x: hidden;
         font-size: 1.5em;
     }
 
+    .rdt_TableCol_Sortable div{
+    font-size: 0.8em;
+    }
+
     ${HeroTitle}{
         font-size: 2.0em;
     }
@@ -276,6 +285,10 @@ overflow-x: hidden;
         font-size: 1em;
         margin-bottom: 1rem;
     }
+
+    .rdt_TableHeadRow{
+        margin:0;
+    }
 }
 
 @media screen and (max-width: 797px) {
@@ -308,13 +321,14 @@ overflow-x: hidden;
         width: 8em;
      }
 
-     ${TablaTD}{
+     .rdt_TableCell {
+        margin: 0;
         &:nth-last-child(2){
             display: none;
         }
      }
 
-     ${TablaHeaderCell}{
+     .rdt_TableCol {
         &:nth-last-child(2){
             display: none;
         }
@@ -335,12 +349,12 @@ overflow-x: hidden;
         width: 1em;
     }
 
-    ${TablaTD}{
+    .rdt_TableCell{
+        margin: 0;
         &:nth-last-child(1){
             width: 20%;
         }
     }
-
 }
 
 @media screen and (max-height: 613px) {
@@ -493,6 +507,9 @@ ${NavParagraph}{
         margin-bottom: 1rem;
     }
 
+    .rdt_TableHeadRow{
+        margin:0;
+    }
     /*${EquisArriba}, ${EquisAbajo}, ${IconSearch} {
         display: none;
     }*/

@@ -31,7 +31,12 @@ import {
   EquisAbajo,
 } from "./elements/buscador";
 
-import { ButtonLogin, ButtonRegister } from "./elements/botones";
+import {
+  ButtonCreate,
+  ButtonLogin,
+  ButtonRegister,
+  SpanButton,
+} from "./elements/botones";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -79,17 +84,27 @@ overflow-x: hidden;
     z-index: -1;
 }
 
+.rdt_Pagination{
+    color: #747191;
+    background-color: #f3f3f3;
+    margin-bottom: 6em;
+}
+
 
 @media screen and (max-width: 1370px) {
     ${SectionInner}{
         margin-left: 4em;
     }
 
+
     ${ImgSection}{
         margin-right: 4em;
         margin-left: 4em;
         max-width: 20em;
     }
+
+    .rdt_TableCell{
+    margin: 0;}
 
     ${ButtonRegister}{
         margin-top: 0em;
@@ -107,6 +122,9 @@ overflow-x: hidden;
     ${BaseLogo}{
         margin-left: 0.8em;
     }
+
+    .rdt_TableCol_Sortable div{
+    margin: 0;}
 }
 
 
@@ -193,6 +211,16 @@ overflow-x: hidden;
         font-size: 1.5em;
     }
 
+    .rdt_TableCol_Sortable div{
+    font-size: 0.8em;
+    }
+
+    
+    .rdt_TableRow {
+    font-size: 0.7em;
+    height: 0.1em;
+    }
+
     ${HeroTitle}{
         font-size: 2.0em;
     }
@@ -269,6 +297,10 @@ overflow-x: hidden;
         font-size: 1em;
         margin-bottom: 1rem;
     }
+
+    .rdt_TableHeadRow{
+        margin:0;
+    }
 }
 
 @media screen and (max-width: 797px) {
@@ -278,6 +310,7 @@ overflow-x: hidden;
     ${SectionContainer}{
         flex-direction: column-reverse;
     }
+
     ${SectionInner}{
         margin-left: 0em;
     }
@@ -299,6 +332,19 @@ overflow-x: hidden;
      ${ButtonLogin}{
         width: 8em;
      }
+
+     .rdt_TableCell {
+        margin: 0;
+        &:nth-last-child(2){
+            display: none;
+        }
+     }
+
+     .rdt_TableCol {
+        &:nth-last-child(2){
+            display: none;
+        }
+     }
 }
 
 @media screen and (max-width: 657px) {
@@ -307,6 +353,20 @@ overflow-x: hidden;
         margin-right: 1em;
     }
 
+    ${SpanButton}{
+        display: none;
+    }
+
+    ${ButtonCreate}{
+        width: 1em;
+    }
+
+    .rdt_TableCell{
+        margin: 0;
+        &:nth-last-child(1){
+            width: 20%;
+        }
+    }
 }
 
 @media screen and (max-height: 613px) {
@@ -459,6 +519,9 @@ ${NavParagraph}{
         margin-bottom: 1rem;
     }
 
+    .rdt_TableHeadRow{
+        margin:0;
+    }
     /*${EquisArriba}, ${EquisAbajo}, ${IconSearch} {
         display: none;
     }*/

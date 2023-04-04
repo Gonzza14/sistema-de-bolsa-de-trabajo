@@ -2,11 +2,10 @@ import styled from "styled-components";
 
 export const BaseHeader = styled.header`
   display: flex;
-  position: absolute;
   align-items: center;
-  width: 90%;
+  width: 100%;
   justify-content: space-between;
-  height: 6em;
+  height: 10vh;
   z-index: 20;
 `;
 

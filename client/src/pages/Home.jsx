@@ -9,7 +9,7 @@ import { ButtonRegister, ButtonContainer } from "../styles/elements/botones";
 import { Header } from "../components/Header";
 import { Buscador } from "../components/Buscador";
 import { AnimacionInicio } from "../util/AnimacionInicio";
-import { BaseContainer, BaseBody, BaseSection, SectionContainer } from "../styles/base";
+import { BaseContainer, BaseBody, BaseSection, BaseSectionHeader, SectionContainer } from "../styles/base";
 import imagen from "../assets/images/imagen-seccion.png";
 
 export const Home = () => {
@@ -17,11 +17,11 @@ export const Home = () => {
         <BaseContainer>
             <Header/>
             <BaseBody>
-                <BaseSection>
+                <BaseSectionHeader>
                     <HeroTitle>Descubre un mundo de oportunidades laborales</HeroTitle>
                     <Buscador />
                     <AnimacionInicio />
-                </BaseSection>
+                </BaseSectionHeader>
                 <BaseSection>
                     <SectionContainer>
                         <SectionInner>

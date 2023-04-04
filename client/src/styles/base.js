@@ -8,7 +8,6 @@ export const BaseContainer = styled.div`
 `;
 
 export const BaseSection = styled.section`
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,6 +16,14 @@ export const BaseSection = styled.section`
   height: 100vh;
   width: 100%;
 `;
+
+export const BaseSectionHeader = styled(BaseSection)`
+  height: 90vh;
+`;
+
+export const BaseSectionData = styled(BaseSectionHeader)`
+  justify-content: flex-start;
+`
 
 export const BaseBody = styled.main`
   display: flex;
@@ -39,7 +46,6 @@ export const DataContainer = styled.div`
   width: 100%;
   max-width: 71.25em;
   max-height: 40em;
-  padding: 8rem 6rem;
   display: flex;
   align-items: center;
 `;

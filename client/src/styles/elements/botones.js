@@ -30,6 +30,7 @@ export const ButtonLogin = styled(ButtonRegister)`
   width: 10em;
   height: 1em;
   margin-top: 0;
+  margin-right: 2em;
 `;
 
 export const ButtonCreate = styled(Link)`

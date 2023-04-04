@@ -1,9 +1,8 @@
 import { ButtonOp } from "../../../styles/elements/botones";
 import { StyledFontAwesomeIconBoton } from "../../../styles/elements/botones";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { DataTableStyle } from "../../../styles/elements/tabla";
+import { DataTableStyle, paginationComponentOptions} from "../../../styles/elements/tabla";
 import { useNavigate } from "react-router-dom";
-
 
 export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
     
@@ -19,6 +18,7 @@ export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
         {
             name: 'Nombre',
             selector: row => row.nombre,
+            sortable: true,
         },
         {
             name: 'Descripcion',
@@ -43,8 +43,11 @@ export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
     ];
     return (
         <DataTableStyle
+            dense
             columns={columns}
             data={data}
+            pagination 
+            paginationComponentOptions={paginationComponentOptions}
         />
     );
 };

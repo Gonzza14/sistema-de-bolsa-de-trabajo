@@ -84,6 +84,12 @@ overflow-x: hidden;
     z-index: -1;
 }
 
+.rdt_Pagination{
+    color: #747191;
+    background-color: #f3f3f3;
+    margin-bottom: 6em;
+}
+
 
 @media screen and (max-width: 1370px) {
     ${SectionInner}{
@@ -207,6 +213,12 @@ overflow-x: hidden;
 
     .rdt_TableCol_Sortable div{
     font-size: 0.8em;
+    }
+
+    
+    .rdt_TableRow {
+    font-size: 0.7em;
+    height: 0.1em;
     }
 
     ${HeroTitle}{

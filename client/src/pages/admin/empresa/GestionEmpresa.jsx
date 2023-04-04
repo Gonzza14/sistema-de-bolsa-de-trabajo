@@ -1,5 +1,5 @@
 import { Header } from "../../../components/Header";
-import { BaseContainer, BaseBody, BaseSection } from "../../../styles/base";
+import { BaseContainer, BaseBody, BaseSectionData } from "../../../styles/base";
 import { ButtonCreate, SpanButton } from "../../../styles/elements/botones";
 import { FormularioEmpresa } from "./FormularioEmpresa";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -105,7 +105,7 @@ export const GestionEmpresa = () => {
         <BaseContainer>
             <Header titulo="Gestion de empresa" />
             <BaseBody>
-                <BaseSection>
+                <BaseSectionData>
                     <GestionSection>
                         <ButtonSection>
                             {pathname === "/GestionEmpresa" && <ButtonCreate to={`agregar`}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar empresa</SpanButton></ButtonCreate>}
@@ -132,7 +132,7 @@ export const GestionEmpresa = () => {
                             />} />
                         </Routes>
                     </GestionSection>
-                </BaseSection>
+                </BaseSectionData>
             </BaseBody>
         </BaseContainer>
     );

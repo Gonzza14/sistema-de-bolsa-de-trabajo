@@ -4,11 +4,9 @@ import DataTable from "react-data-table-component";
 export const DataTableStyle = styled(DataTable)`
   .rdt_Table {
     text-align: left;
-    overflow: hidden;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     display: table;
-    padding: 0;
   }
 
   .rdt_TableHeadRow {
@@ -20,9 +18,15 @@ export const DataTableStyle = styled(DataTable)`
     margin: 0;
     text-align: left;
     color: #f3f3f3;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-left: 1%;
     font-family: "Montserrat-Bold";
   }
 
+  .rdt_TableBody{
+    overflow-y: scroll;
+  }
   .rdt_TableCell {
     font-weight: normal;
     font-size: 1.3em;
@@ -80,3 +84,10 @@ export const DataTableStyle = styled(DataTable)`
     }
   }
 `;
+
+export const paginationComponentOptions = {
+  rowsPerPageText: 'Filas por página',
+  rangeSeparatorText: 'de',
+  selectAllRowsItem: true,
+  selectAllRowsItemText: 'Todos',
+};

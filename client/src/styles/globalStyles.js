@@ -31,7 +31,14 @@ import {
   EquisAbajo,
 } from "./elements/buscador";
 
-import { ButtonLogin, ButtonRegister } from "./elements/botones";
+import {
+  ButtonCreate,
+  ButtonLogin,
+  ButtonRegister,
+  SpanButton,
+} from "./elements/botones";
+
+import { TablaTD, TablaHeaderCell } from "./elements/tabla";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -278,6 +285,7 @@ overflow-x: hidden;
     ${SectionContainer}{
         flex-direction: column-reverse;
     }
+
     ${SectionInner}{
         margin-left: 0em;
     }
@@ -299,12 +307,38 @@ overflow-x: hidden;
      ${ButtonLogin}{
         width: 8em;
      }
+
+     ${TablaTD}{
+        &:nth-last-child(2){
+            display: none;
+        }
+     }
+
+     ${TablaHeaderCell}{
+        &:nth-last-child(2){
+            display: none;
+        }
+     }
 }
 
 @media screen and (max-width: 657px) {
     ${SectionInner}{
         margin-left: 1em;
         margin-right: 1em;
+    }
+
+    ${SpanButton}{
+        display: none;
+    }
+
+    ${ButtonCreate}{
+        width: 1em;
+    }
+
+    ${TablaTD}{
+        &:nth-last-child(1){
+            width: 20%;
+        }
     }
 
 }

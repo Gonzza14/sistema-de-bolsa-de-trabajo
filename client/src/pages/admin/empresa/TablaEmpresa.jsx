@@ -1,29 +1,28 @@
+import { TablaContainer, TablaHeader, TablaRow, TablaHeaderCell, TablaBody, TablaTD, TablaColumnTitle} from "../../../styles/elements/tabla";
 import { FilaEmpresa } from "./FilaEmpresa";
 
 export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
     return (
-        <div>
-            <h3>Tabla de empresas</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <TablaContainer>
+                <TablaHeader>
+                    <TablaRow>
+                        <TablaHeaderCell><TablaColumnTitle>Nombre</TablaColumnTitle></TablaHeaderCell>
+                        <TablaHeaderCell><TablaColumnTitle>Descripcion</TablaColumnTitle></TablaHeaderCell>
+                        <TablaHeaderCell><TablaColumnTitle>Ops.</TablaColumnTitle></TablaHeaderCell>
+                    </TablaRow>
+                </TablaHeader>
+                <TablaBody>
                     {data.length > 0 ? (
                         data.map((el) => (
                             <FilaEmpresa key={el.id} el={el} setDataToEdit={setDataToEdit}
                             deleteData={deleteData}/>
                         ))
                     ) : (
-                        <tr>
-                            <td colSpan="3">Sin datos</td>
-                        </tr>
+                        <TablaRow>
+                            <TablaTD colSpan="3">No existen registros en la base de datos</TablaTD>
+                        </TablaRow>
                     )}
-                </tbody>
-            </table>
-        </div>
+                </TablaBody>
+            </TablaContainer>
     );
 };

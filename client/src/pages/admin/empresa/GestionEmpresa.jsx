@@ -1,11 +1,14 @@
 import { Header } from "../../../components/Header";
-import { BaseContainer, BaseBody, BaseSection, SectionContainer } from "../../../styles/base";
-import { ButtonCreate } from "../../../styles/elements/botones";
+import { BaseContainer, BaseBody, BaseSection } from "../../../styles/base";
+import { ButtonCreate, SpanButton } from "../../../styles/elements/botones";
 import { FormularioEmpresa } from "./FormularioEmpresa";
-import { Route, Routes, useFetcher, useLocation, useMatch } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { helpHttp } from "../../../helpers/helpHttp"
 import { useState, useEffect } from "react";
 import { ListarEmpresa } from "./ListarEmpresa";
+import { ButtonSection, GestionSection } from "../../../styles/pages/admin/gestion";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { StyledFontAwesomeIcon } from "../../../styles/elements/navBar";
 
 
 export const GestionEmpresa = () => {
@@ -17,8 +20,9 @@ export const GestionEmpresa = () => {
 
     let url = "http://localhost:3000/api/empresas"
 
-    const {pathname} = useLocation()
-    console.log(pathname)
+    const { pathname } = useLocation()
+
+
     useEffect(() => {
         helpHttp().get(url).then(res => {
             setLoading(true);
@@ -102,28 +106,32 @@ export const GestionEmpresa = () => {
             <Header titulo="Gestion de empresa" />
             <BaseBody>
                 <BaseSection>
-                    {pathname === "/GestionEmpresa" && <ButtonCreate to={`agregar`}>Agregar empresa</ButtonCreate>}
-                    <Routes>
-                        <Route path={``} element={<ListarEmpresa
-                            error={error}
-                            loading={loading}
-                            setDataToEdit={setDataToEdit}
-                            dataBase={dataBase}
-                            deleteData={deleteData}
-                        />} />
-                        <Route path={`agregar`} element={<FormularioEmpresa
-                            createData={createData}
-                            updateData={updateData}
-                            dataToEdit={dataToEdit}
-                            setDataToEdit={setDataToEdit}
-                        />} />
-                        <Route path={`editar/:id`} element={<FormularioEmpresa
-                            createData={createData}
-                            updateData={updateData}
-                            dataToEdit={dataToEdit}
-                            setDataToEdit={setDataToEdit}
-                        />} />
-                    </Routes>
+                    <GestionSection>
+                        <ButtonSection>
+                            {pathname === "/GestionEmpresa" && <ButtonCreate to={`agregar`}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar empresa</SpanButton></ButtonCreate>}
+                        </ButtonSection>
+                        <Routes>
+                            <Route path={``} element={<ListarEmpresa
+                                error={error}
+                                loading={loading}
+                                setDataToEdit={setDataToEdit}
+                                dataBase={dataBase}
+                                deleteData={deleteData}
+                            />} />
+                            <Route path={`agregar`} element={<FormularioEmpresa
+                                createData={createData}
+                                updateData={updateData}
+                                dataToEdit={dataToEdit}
+                                setDataToEdit={setDataToEdit}
+                            />} />
+                            <Route path={`editar/:id`} element={<FormularioEmpresa
+                                createData={createData}
+                                updateData={updateData}
+                                dataToEdit={dataToEdit}
+                                setDataToEdit={setDataToEdit}
+                            />} />
+                        </Routes>
+                    </GestionSection>
                 </BaseSection>
             </BaseBody>
         </BaseContainer>

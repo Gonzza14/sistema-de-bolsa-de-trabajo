@@ -44,11 +44,9 @@ export const SectionContainer = styled.div`
 
 export const DataContainer = styled.div`
   width: 100%;
-  max-width: 71.25em;
-  max-height: 40em;
   display: flex;
   align-items: center;
 `;
 
-
-
+export const SectionTitle = styled.h1`
+`

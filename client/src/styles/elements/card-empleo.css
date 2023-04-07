@@ -5,10 +5,10 @@
     --card-footer-color: white;
  }
  .card{
-     margin: 15px;
+     margin: 1em;
      background: var(--card-color);
      color: black;
-     width: 400px;
+     width: 25%;
      padding: 20px;
      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
      border-radius: 20px;            

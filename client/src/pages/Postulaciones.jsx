@@ -1,6 +1,7 @@
 import { Header } from "../components/Header";
 import { TarjetaEmpleo } from "../components/empleo";
-import { BaseContainer, BaseBody, BaseSection, SectionContainer} from "../styles/base";
+import { BaseContainer, BaseBody, BaseSectionData, SectionTitle } from "../styles/base";
+import { PostulacionesSection } from "../styles/pages/postulaciones";
 
 const empleos = [
     {
@@ -25,59 +26,57 @@ const empleos = [
     },
 ]
 
-    const getItems = empleos.map((item, key)=>{
-        
-    })
+const getItems = empleos.map((item, key) => {
+
+})
 
 
 export const Postulaciones = () => {
     return (
         <BaseContainer>
-            <Header titulo="Postulaciones"/>
+            <Header titulo="Postulaciones" />
             <BaseBody>
-                <h1>Postulaciones realizadas</h1>
-                <BaseSection>
-                    <SectionContainer>
-                        <TarjetaEmpleo 
-                            tituloEmpleo = "Titulo del empleo" 
-                            nombreEmpresa="Nombre de la empresa" 
+                <BaseSectionData>
+                    <SectionTitle>Postulaciones realizadas</SectionTitle>
+                    <PostulacionesSection>
+                        <TarjetaEmpleo
+                            tituloEmpleo="Titulo del empleo"
+                            nombreEmpresa="Nombre de la empresa"
                             descripcionEmpleo="Descripcion del empleo"
                             enlace="#">
                         </TarjetaEmpleo>
-                        <TarjetaEmpleo 
-                            tituloEmpleo = "Titulo del empleo" 
-                            nombreEmpresa="Nombre de la empresa" 
+                        <TarjetaEmpleo
+                            tituloEmpleo="Titulo del empleo"
+                            nombreEmpresa="Nombre de la empresa"
                             descripcionEmpleo="Descripcion del empleo"
                             enlace="#">
                         </TarjetaEmpleo>
-                        <TarjetaEmpleo 
-                            tituloEmpleo = "Titulo del empleo" 
-                            nombreEmpresa="Nombre de la empresa" 
+                        <TarjetaEmpleo
+                            tituloEmpleo="Titulo del empleo"
+                            nombreEmpresa="Nombre de la empresa"
                             descripcionEmpleo="Descripcion del empleo"
                             enlace="#">
                         </TarjetaEmpleo>
-                    </SectionContainer>
-                    <SectionContainer>
-                        <TarjetaEmpleo 
-                            tituloEmpleo = "Titulo del empleo" 
-                            nombreEmpresa="Nombre de la empresa" 
+                        <TarjetaEmpleo
+                            tituloEmpleo="Titulo del empleo"
+                            nombreEmpresa="Nombre de la empresa"
                             descripcionEmpleo="Descripcion del empleo"
                             enlace="#">
                         </TarjetaEmpleo>
-                        <TarjetaEmpleo 
-                            tituloEmpleo = "Titulo del empleo" 
-                            nombreEmpresa="Nombre de la empresa" 
+                        <TarjetaEmpleo
+                            tituloEmpleo="Titulo del empleo"
+                            nombreEmpresa="Nombre de la empresa"
                             descripcionEmpleo="Descripcion del empleo"
                             enlace="#">
                         </TarjetaEmpleo>
-                        <TarjetaEmpleo 
-                            tituloEmpleo = "Titulo del empleo" 
-                            nombreEmpresa="Nombre de la empresa" 
+                        <TarjetaEmpleo
+                            tituloEmpleo="Titulo del empleo"
+                            nombreEmpresa="Nombre de la empresa"
                             descripcionEmpleo="Descripcion del empleo"
                             enlace="#">
                         </TarjetaEmpleo>
-                    </SectionContainer>
-                </BaseSection>
+                    </PostulacionesSection>
+                </BaseSectionData>
             </BaseBody>
         </BaseContainer>
     );

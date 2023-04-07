@@ -5,7 +5,7 @@ import { ButtonContainer } from "../../elements/botones";
 export const GestionSection = styled(DataContainer)`
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  width: 90%;
   max-width: 100%;
   max-height: 150%;
 `;

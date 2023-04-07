@@ -13,7 +13,7 @@ import {
 } from "./elements/navBar";
 
 import { BaseLogo, BaseHeader, BaseTitle } from "./elements/header";
-import { BaseContainer, SectionContainer } from "./base";
+import { BaseContainer, SectionContainer, SectionTitle } from "./base";
 
 import {
   SectionInner,
@@ -37,6 +37,7 @@ import {
   ButtonRegister,
   SpanButton,
 } from "./elements/botones";
+import { PostulacionesSection } from "./pages/postulaciones";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -274,6 +275,10 @@ overflow-x: hidden;
     .imagen{
         display: none;
     }
+
+    ${PostulacionesSection}{
+        padding-bottom: 7em;
+    }
 }
 
 @media screen and (max-height: 847px) {
@@ -307,6 +312,12 @@ overflow-x: hidden;
     .blob-motion{
         width: 43.75em;
     }
+
+    .card{
+        width: 100%;
+    }
+
+
     ${SectionContainer}{
         flex-direction: column-reverse;
     }
@@ -375,6 +386,9 @@ ${BaseContainer}{
     margin-left: 0;
 }
 
+    ${PostulacionesSection}{
+        padding-bottom: 7em;
+    }
 ${BaseHeader}{
     width: 100%;
 }
@@ -464,6 +478,10 @@ ${NavParagraph}{
     ${ButtonLogin}{
         margin-bottom: 0em;
     }
+
+    ${SectionTitle}{
+        font-size: 1.5em;
+    }
 }
 
 @media screen and (max-width: 330px){
@@ -517,6 +535,10 @@ ${NavParagraph}{
     ${HeroText}{
         font-size: 1em;
         margin-bottom: 1rem;
+    }
+
+    ${SectionTitle}{
+        font-size: 1.0em;
     }
 
     .rdt_TableHeadRow{

@@ -6,7 +6,7 @@ export const getPerfiles = async (req, res) => {
   try {
     //Se obtienen todas las empresas
     const perfiles = await Perfil.findAll();
-    res.json({ perfiles });
+    res.json(perfiles);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

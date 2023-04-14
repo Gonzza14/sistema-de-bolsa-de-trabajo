@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
+  &.boton-modal{
+    justify-content: flex-end;
+  }
 `;
 export const ButtonRegister = styled(Link)`
   margin-top: 2em;
@@ -55,18 +58,49 @@ export const ButtonOp = styled.button`
   background-color: transparent;
   cursor: pointer;
   color: #f3f3f3;
-  padding: 0.3em
+  padding: 0.3em;
   display: flex;
-  
-`
+`;
 export const StyledFontAwesomeIconBoton = styled(FontAwesomeIcon)`
-  color: #06062A;
+  color: #06062a;
 
   &:hover {
-    color: #f3f3f3
+    color: #f3f3f3;
+  }
+`;
+
+export const IconoBorrarModal = styled(FontAwesomeIcon)`
+  color: #f3f3f3;
+  padding-right: 0.5em;
+`;
+
+export const IconoCerrarModal = styled(FontAwesomeIcon)`
+  color: #f3f3f3;
+  padding-right: 1em;
+
+  &:hover {
+    color: #e84616;
   }
 `;
 
 export const SpanButton = styled.span`
   margin-left: 0.5em;
+`;
+
+export const ButtonModalClose = styled(ButtonOp)`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+`;
+
+export const ButtonModalDelete = styled(ButtonOp)`
+  background-color: #06062A;
+  width: 7em;
+  padding: 1em 4em; 
+  margin-right: 1em;
+  justify-content: center;
+
+  &:hover {
+    background-color: #e84616;
+  }
 `;

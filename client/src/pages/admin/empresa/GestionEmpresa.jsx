@@ -8,6 +8,7 @@ import { ButtonSection, GestionSection } from "../../../styles/pages/admin/gesti
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { StyledFontAwesomeIcon } from "../../../styles/elements/navBar";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
+import { Modal } from "../../../components/Modal";
 
 
 export const GestionEmpresa = () => {

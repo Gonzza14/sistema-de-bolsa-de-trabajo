@@ -61,28 +61,20 @@ export const useCustomFetch = (url) => {
     };
 
     const deleteData = (id) => {
-        let isDelete = window.confirm(
-            `¿Estás seguro de eliminar el registro con el id '${id}'?`
-        );
+        let endpoint = `${url}/${id}`;
+        let options = {
+            headers: { "content-type": "application/json" },
+        };
 
-        if (isDelete) {
-            let endpoint = `${url}/${id}`;
-            let options = {
-                headers: { "content-type": "application/json" },
-            };
-
-            helpHttp().del(endpoint, options).then((res) => {
-                //console.log(res);
-                if (!res.err) {
-                    let newData = dataBase.filter((el) => el.id !== id);
-                    setDatabase(newData);
-                } else {
-                    setError(res);
-                }
-            });
-        } else {
-            return;
-        }
+        helpHttp().del(endpoint, options).then((res) => {
+            //console.log(res);
+            if (!res.err) {
+                let newData = dataBase.filter((el) => el.id !== id);
+                setDatabase(newData);
+            } else {
+                setError(res);
+            }
+        });
     };
 
     return {

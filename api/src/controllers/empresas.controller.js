@@ -8,7 +8,7 @@ export const getEmpresas = async (req, res) => {
     //Se obtienen todas las empresas
     const empresas = await Empresa.findAll();
 
-    res.json({ empresas });
+    res.json(empresas);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

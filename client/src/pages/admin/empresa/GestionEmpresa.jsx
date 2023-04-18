@@ -8,7 +8,8 @@ import { ButtonSection, GestionSection } from "../../../styles/pages/admin/gesti
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { StyledFontAwesomeIcon } from "../../../styles/elements/navBar";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
-import { Modal } from "../../../components/Modal";
+import { Buscador } from "../../../components/Buscador";
+import { useSearch } from "../../../hooks/useSearch";
 
 
 export const GestionEmpresa = () => {
@@ -20,14 +21,19 @@ export const GestionEmpresa = () => {
     let {
         dataBase,
         dataToEdit,
-        setDataToEdit, 
-        createData, 
-        updateData, 
-        deleteData, 
-        error, 
-        loading 
+        setDataToEdit,
+        createData,
+        updateData,
+        deleteData,
+        error,
+        loading
     } = useCustomFetch(url);
 
+    let {
+        search, searcher, setSearch
+    } = useSearch()
+
+    const results = !search ? dataBase : dataBase.filter(data => data.nombre.toLowerCase().includes(search.toLowerCase()))
     return (
         <BaseContainer>
             <Header titulo="Gestion de empresa" />
@@ -35,14 +41,14 @@ export const GestionEmpresa = () => {
                 <BaseSectionData>
                     <GestionSection>
                         <ButtonSection>
-                            {pathname === "/GestionEmpresa" && <ButtonCreate to={`agregar`}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar empresa</SpanButton></ButtonCreate>}
+                            {pathname === "/GestionEmpresa" && <><Buscador placeHolder="Buscar empresa" className="gestion-empresa" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar empresa</SpanButton></ButtonCreate></>}
                         </ButtonSection>
                         <Routes>
                             <Route path={``} element={<ListarEmpresa
                                 error={error}
                                 loading={loading}
                                 setDataToEdit={setDataToEdit}
-                                dataBase={dataBase}
+                                dataBase={results}
                                 deleteData={deleteData}
                             />} />
                             <Route path={`agregar`} element={<FormularioEmpresa

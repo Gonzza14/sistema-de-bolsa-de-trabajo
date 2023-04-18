@@ -8,6 +8,13 @@ export const SearchContainer = styled.fieldset`
   margin-top: 3em;
   border: 0;
   width: 50em;
+
+  &.gestion-empresa{
+    width: 40%;
+    margin-top: 0;
+    height: 3em;
+    display: flex;
+  }
 `;
 
 export const IconsContainer = styled.div`
@@ -149,6 +156,10 @@ export const SearchInput = styled.input`
         transform: translateX(200%);
       }
     }
+  }
+  &.gestion-empresa{
+    padding: 0;
+    padding-left: 1em;
   }
 `;
 

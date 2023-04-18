@@ -7,14 +7,22 @@ import {
     SearchContainer,
     SearchInput,
 } from "../styles/elements/buscador";
+import { useRef } from "react";
 
-export const Buscador = () => {
+export const Buscador = ({ placeHolder, className, search, searcher, setSearch }) => {
+    let inputRef = useRef();
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        inputRef.current.value = "";
+        setSearch("");
+    }
     return (
-        <SearchContainer>
-            <SearchInput placeholder="Buscar empleo" />
+        <SearchContainer className={className}>
+            <SearchInput placeholder={placeHolder} className={className} ref={inputRef} value={search} onChange={searcher}/>
             <IconsContainer>
                 <IconSearch />
-                <IconClose>
+                <IconClose onClick={handleClick}>
                     <EquisArriba />
                     <EquisAbajo />
                 </IconClose>

@@ -222,6 +222,11 @@ overflow-x: hidden;
     height: 0.1em;
     }
 
+    ${SearchInput}{
+        font-size: 0.9em;
+    }
+
+
     ${HeroTitle}{
         font-size: 2.0em;
     }

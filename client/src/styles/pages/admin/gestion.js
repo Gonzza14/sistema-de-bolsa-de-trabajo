@@ -12,5 +12,5 @@ export const GestionSection = styled(DataContainer)`
 
 export const ButtonSection = styled(ButtonContainer)`
   width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;

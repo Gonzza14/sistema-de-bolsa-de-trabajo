@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 95%;
 `;
 
 export const FormTitle = styled.h2``;
 export const Formulario = styled.form`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const FormLabel = styled.label`
@@ -16,10 +19,19 @@ export const FormLabel = styled.label`
 
 export const FormInput = styled.input`
   border: 0;
+  height: 6em;
+  padding: 1em 1.3em;
+  background: #c3c1d2;
+  color: #0f2651;
+  border-radius: 3px;
+`;
+
+export const FormTextArea = styled.textarea`
+  border: 0;
   height: 100%;
   padding: 1em 1.3em;
-  background: #C3C1D2;
-  color: #0F2651;
+  background: #c3c1d2;
+  color: #0f2651;
   border-radius: 3px;
 `;
 
@@ -32,7 +44,6 @@ export const FormInputBotton = styled.input`
   align-self: flex-end;
   border: 0;
   color: #f3f3f3;
-
 
   &:hover {
     background-color: #e84616;

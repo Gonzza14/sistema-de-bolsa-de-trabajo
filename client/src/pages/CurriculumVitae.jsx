@@ -1,13 +1,12 @@
 import { Header } from "../components/Header";
-import { BaseContainer, BaseBody, BaseSection } from "../styles/base";
+import { BaseContainer, BaseBody, BaseSectionData } from "../styles/base";
 export const CurriculumVitae = () => {
     return (
         <BaseContainer>
             <Header titulo="CV"/>
             <BaseBody>
-                <BaseSection>
-                    Contenido
-                </BaseSection>
+                <BaseSectionData>
+                </BaseSectionData>
             </BaseBody>
         </BaseContainer>
     );

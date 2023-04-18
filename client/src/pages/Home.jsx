@@ -19,7 +19,7 @@ export const Home = () => {
             <BaseBody>
                 <BaseSectionHeader>
                     <HeroTitle>Descubre un mundo de oportunidades laborales</HeroTitle>
-                    <Buscador />
+                    <Buscador placeHolder="Buscar empleo" className="home" />
                     <AnimacionInicio />
                 </BaseSectionHeader>
                 <BaseSection>

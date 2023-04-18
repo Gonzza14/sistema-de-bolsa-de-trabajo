@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton } from "../../../styles/elements/formularios";
 
 const initialForm = {
   nombre: "",
@@ -51,11 +52,11 @@ export const FormularioEmpresa = ({
     navigate("/GestionEmpresa")
   };
   return (
-    <div>
-       <h3>{dataToEdit ? "Editar empresa" : "Agregar empresa"}</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="nombreEmpresa">Nombre</label>
-        <input
+    <FormContainer>
+       <FormTitle>{dataToEdit ? "Editar empresa" : "Agregar empresa"}</FormTitle>
+      <Formulario onSubmit={handleSubmit}>
+        <FormLabel htmlFor="nombreEmpresa">Nombre</FormLabel>
+        <FormInput
           type="text"
           id="nombreEmpresa"
           name="nombre"
@@ -63,8 +64,8 @@ export const FormularioEmpresa = ({
           onChange={handleChange}
           value={form.nombre}
         />
-        <label htmlFor="descripcionEmpresa">Descripcion</label>
-        <input
+        <FormLabel htmlFor="descripcionEmpresa">Descripcion</FormLabel>
+        <FormInput
           type="text"
           id="descripcionEmpresa"
           name="descripcion"
@@ -72,9 +73,9 @@ export const FormularioEmpresa = ({
           onChange={handleChange}
           value={form.descripcion}
         />
-        <input type="submit" value="Enviar" />
+        <FormInputBotton type="submit" value="Enviar" />
         {/*<input type="reset" value="Limpiar" onClick={handleReset} />*/}
-      </form>
-    </div>
+      </Formulario>
+    </FormContainer>
   );
 };

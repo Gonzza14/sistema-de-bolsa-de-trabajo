@@ -104,3 +104,5 @@ export const ButtonModalDelete = styled(ButtonOp)`
     background-color: #e84616;
   }
 `;
+
+

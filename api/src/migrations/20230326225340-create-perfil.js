@@ -12,13 +12,13 @@ module.exports = {
       descripcion: {
         type: Sequelize.STRING
       },
-      IdEmpresa: {
+      idEmpresa: {
         type: Sequelize.INTEGER,
         onDelete: 'RESTRICT',
         references: {
           model:'Empresas',
           key: 'id',
-          as: 'IdEmpresa',
+          as: 'idEmpresa',
         }
       },
       estado: {

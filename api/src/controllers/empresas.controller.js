@@ -100,7 +100,7 @@ export const getPerfilesPorEmpresa = async (req, res) => {
     const { id } = req.params;
     //Se obtienen los perfiles de la empresa
     const perfil = await Perfil.findAll({
-      where: { IdEmpresa: id },
+      where: { idEmpresa: id },
     });
 
     //Se verifica si se encontraron perfiles

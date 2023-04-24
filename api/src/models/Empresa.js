@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       //Relacion 1:N
       models.Empresa.hasMany(models.Perfil, {
-        foreignKey: "IdEmpresa",
+        foreignKey: "idEmpresa",
         sourceKey: "id",
       });
     }
@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
+      paranoid: true,
       modelName: "Empresa",
     }
   );

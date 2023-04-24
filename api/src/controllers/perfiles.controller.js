@@ -14,11 +14,11 @@ export const getPerfiles = async (req, res) => {
 export const createPerfil = async (req, res) => {
   try {
     //Se obtienen los datos del cuerpo de la peticion
-    const { descripcion, IdEmpresa } = req.body;
+    const { descripcion, idEmpresa } = req.body;
     //Se crea una nueva instancia del modelo de datos
     const newPerfil = await Perfil.create({
       descripcion,
-      IdEmpresa,
+      idEmpresa,
       estado: true,
     });
     res.json(newPerfil);

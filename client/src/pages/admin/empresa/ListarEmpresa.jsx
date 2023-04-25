@@ -2,7 +2,7 @@ import Loader from "../../../components/Loader";
 import Message from "../../../components/Message";
 import { TablaEmpresa } from "./TablaEmpresa";
 
-export const ListarEmpresa = ({error, loading, dataBase, setDataToEdit ,deleteData, tabla}) => {
+export const ListarEmpresa = ({error, loading, dataBase, setDataToEdit ,deleteData}) => {
     return (
         <>
             {loading && <Loader />}

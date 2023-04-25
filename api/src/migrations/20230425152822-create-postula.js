@@ -2,27 +2,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Perfils', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      descripcion: {
-        type: Sequelize.STRING
-      },
-      IdEmpresa: {
+    await queryInterface.createTable('Postulas', {
+      idOferta: {
         type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
         onDelete: 'RESTRICT',
         references: {
-          model:'Empresas',
+          model: 'OfertaEmpleos',
           key: 'id',
-          as: 'IdEmpresa',
-        }
+          as: 'idOferta',
+        },
       },
-      estado: {
-        type: Sequelize.BOOLEAN
+      idSolic: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        onDelete: 'RESTRICT',
+        references: {
+          model: 'Solicitantes',
+          key: 'id',
+          as: 'idSolic',
+        },
       },
       createdAt: {
         allowNull: false,
@@ -35,6 +36,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Perfils');
+    await queryInterface.dropTable('Postulas');
   }
 };

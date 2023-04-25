@@ -19,7 +19,7 @@ export const FormLabel = styled.label`
 
 export const FormInput = styled.input`
   border: 0;
-  height: 6em;
+  //height: 6em;
   padding: 1em 1.3em;
   background: #c3c1d2;
   color: #0f2651;

@@ -1,6 +1,5 @@
 //Importamos el modelo de datos
 import { Empresa } from "../models";
-import { Perfil } from "../models";
 
 //Definimos los metodos del controlador
 export const getEmpresas = async (req, res) => {
@@ -17,13 +16,15 @@ export const getEmpresas = async (req, res) => {
 export const createEmpresa = async (req, res) => {
   //Se obtienen los datos del cuerpo de la peticion
   try {
-    const { nombre, descripcion } = req.body;
+    const { idUsuario, nombreEmpresa, telefonoEmpresa, correoEmpresa, direcEmpresa } = req.body;
 
     //Se crea una nueva instancia del modelo de datos
     const newEmpresa = await Empresa.create({
-      nombre,
-      descripcion,
-      estado: true,
+      idUsuario,
+      nombreEmpresa,
+      telefonoEmpresa,
+      correoEmpresa,
+      direcEmpresa,
     });
 
     //Se imprime la empresa creada
@@ -94,13 +95,13 @@ export const getEmpresa = async (req, res) => {
   }
 };
 
-export const getPerfilesPorEmpresa = async (req, res) => {
+/*export const getPerfilesPorEmpresa = async (req, res) => {
   try {
     //Se obtiene el id de la empresa a obtener
     const { id } = req.params;
     //Se obtienen los perfiles de la empresa
     const perfil = await Perfil.findAll({
-      where: { IdEmpresa: id },
+      where: { idEmpresa: id },
     });
 
     //Se verifica si se encontraron perfiles
@@ -112,4 +113,4 @@ export const getPerfilesPorEmpresa = async (req, res) => {
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-};
+};*/

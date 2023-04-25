@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton, FormTextArea } from "../../../styles/elements/formularios";
 
 const initialForm = {
-  nombre: "",
-  descripcion: "",
+  nombreEmpresa: "",
+  correoEmpresa: "",
   id: null,
 };
 
@@ -33,7 +33,7 @@ export const FormularioEmpresa = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!form.nombre || !form.descripcion) {
+    if (!form.nombreEmpresa || !form.correoEmpresa) {
       alert("Datos incompletos");
       return;
     }
@@ -59,19 +59,19 @@ export const FormularioEmpresa = ({
         <FormInput
           type="text"
           id="nombreEmpresa"
-          name="nombre"
+          name="nombreEmpresa"
           placeholder="Nombre de la empresa"
           onChange={handleChange}
-          value={form.nombre}
+          value={form.nombreEmpresa}
         />
-        <FormLabel htmlFor="descripcionEmpresa">Descripcion</FormLabel>
-        <FormTextArea
+        <FormLabel htmlFor="correoEmpresa">Correo electronico</FormLabel>
+        <FormInput
           type="text"
-          id="descripcionEmpresa"
-          name="descripcion"
-          placeholder="Descripcion"
+          id="correoEmpresa"
+          name="correoEmpresa"
+          placeholder="Correo de la empresa"
           onChange={handleChange}
-          value={form.descripcion}
+          value={form.correoEmpresa}
         />
         <FormInputBotton type="submit" value="Enviar" />
         {/*<input type="reset" value="Limpiar" onClick={handleReset} />*/}

@@ -33,7 +33,7 @@ export const GestionEmpresa = () => {
         search, searcher, setSearch
     } = useSearch()
 
-    const results = !search ? dataBase : dataBase.filter(data => data.nombre.toLowerCase().includes(search.toLowerCase()))
+    const results = !search ? dataBase : dataBase.filter(data => data.nombreEmpresa.toLowerCase().includes(search.toLowerCase()))
     return (
         <BaseContainer>
             <Header titulo="Gestion de empresa" />

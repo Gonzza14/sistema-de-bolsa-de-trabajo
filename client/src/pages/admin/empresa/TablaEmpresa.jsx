@@ -26,12 +26,12 @@ export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
     const columns = [
         {
             name: 'Nombre',
-            selector: row => row.nombre,
+            selector: row => row.nombreEmpresa,
             sortable: true,
         },
         {
-            name: 'Descripcion',
-            selector: row => row.descripcion,
+            name: 'Correo',
+            selector: row => row.correoEmpresa,
         },
         {
             name: 'Accion',

@@ -2,38 +2,30 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Empresas', {
+    await queryInterface.createTable('Logros', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idUsuario: {
+      idCurriculum: {
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model:'Usuarios',
+          model: 'Curriculums',
           key: 'id',
-          as: 'idUsuario',
+          as: 'idCurriculum',
         }
       },
-      nombreEmpresa: {
-        allowNull: true,
-        type: Sequelize.STRING(100)
-      },
-      telefonoEmpresa: {
-        allowNull: true,
-        type: Sequelize.STRING(12)
-      },
-      correoEmpresa: {
-        allowNull: true,
-        type: Sequelize.STRING(100)
-      },
-      direcEmpresa: {
-        allowNull: true,
+      logroRealizado: {
+        allowNull: false,
         type: Sequelize.STRING(255)
+      },
+      fechaLogro: {
+        allowNull: false,
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -42,14 +34,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      deletedAt: {
-        defaultValue: null,
-        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Empresas');
+    await queryInterface.dropTable('Logros');
   }
 };

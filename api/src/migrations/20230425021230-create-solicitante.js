@@ -22,7 +22,7 @@ module.exports = {
       idUsuario: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        onDelete: 'RESTRICT',
+        onDelete: 'CASCADE',
         references: {
           model:'Usuarios',
           key: 'id',

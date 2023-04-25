@@ -7,7 +7,6 @@ import {
   getEmpresa,
   getEmpresas,
   updateEmpresa,
-  getPerfilesPorEmpresa,
 } from "../controllers/empresas.controller";
 
 //Creamos una instancia del router
@@ -19,7 +18,7 @@ router.post("/", createEmpresa);
 router.put("/:id", updateEmpresa);
 router.delete("/:id", deleteEmpresa);
 router.get("/:id", getEmpresa);
-router.get("/:id/:perfiles", getPerfilesPorEmpresa);
+//router.get("/:id/:perfiles", getPerfilesPorEmpresa);
 
 //Exportamos el router
 export default router;

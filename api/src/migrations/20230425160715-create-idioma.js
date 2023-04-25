@@ -2,38 +2,42 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Empresas', {
+    await queryInterface.createTable('Idiomas', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idUsuario: {
+      idCurriculum: {
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model:'Usuarios',
+          model: 'Curriculums',
           key: 'id',
-          as: 'idUsuario',
+          as: 'idCurriculum',
         }
       },
-      nombreEmpresa: {
-        allowNull: true,
-        type: Sequelize.STRING(100)
+      nombreIdioma: {
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
-      telefonoEmpresa: {
-        allowNull: true,
-        type: Sequelize.STRING(12)
+      puntEscritura: {
+        allowNull: false,
+        type: Sequelize.STRING(2)
       },
-      correoEmpresa: {
-        allowNull: true,
-        type: Sequelize.STRING(100)
+      puntLectura: {
+        allowNull: false,
+        type: Sequelize.STRING(2)
       },
-      direcEmpresa: {
-        allowNull: true,
-        type: Sequelize.STRING(255)
+      puntConver: {
+        allowNull: false,
+        type: Sequelize.STRING(2)
+      },
+      puntEscucha: {
+        allowNull: false,
+        type: Sequelize.STRING(2)
       },
       createdAt: {
         allowNull: false,
@@ -42,14 +46,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      deletedAt: {
-        defaultValue: null,
-        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Empresas');
+    await queryInterface.dropTable('Idiomas');
   }
 };

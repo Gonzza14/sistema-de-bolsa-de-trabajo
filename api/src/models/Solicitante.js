@@ -19,7 +19,17 @@ module.exports = (sequelize, DataTypes) => {
       models.Solicitante.belongsTo(models.Usuario, {
         foreignKey: "idUsuario", 
         targetKey: "id", 
-        onDelete: 'RESTRICT' 
+        onDelete: 'CASCADE' 
+      });
+      models.Solicitante.belongsToMany(models.OfertaEmpleo, { 
+        through: 'Postula',
+        foreignKey: 'idSolic',
+        otherKey: 'idOferta'
+      });
+      models.Solicitante.hasOne(models.Curriculum, {
+        foreignKey: "idSolic",
+        sourceKey: "id",
+        onDelete: 'CASCADE'
       });
     }
   }

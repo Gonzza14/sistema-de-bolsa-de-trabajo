@@ -19,12 +19,12 @@ module.exports = (sequelize, DataTypes) => {
       models.Usuario.hasOne(models.Empresa, {
         foreignKey: "idUsuario",
         sourceKey: "id",
-        onDelete: 'RESTRICT'
+        onDelete: 'CASCADE'
       });
       models.Usuario.hasOne(models.Solicitante, {
         foreignKey: "idUsuario",
         sourceKey: "id",
-        onDelete: 'RESTRICT'
+        onDelete: 'CASCADE'
       });
     }
   }

@@ -12,7 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       models.Empresa.belongsTo(models.Usuario, {
         foreignKey: "idUsuario", 
         targetKey: "id", 
-        onDelete: 'RESTRICT' 
+        onDelete: 'CASCADE' 
+      });
+      models.Empresa.hasMany(models.OfertaEmpleo, {
+        foreignKey: "idEmpresa",
+        sourceKey: "id",
       });
     }
   }

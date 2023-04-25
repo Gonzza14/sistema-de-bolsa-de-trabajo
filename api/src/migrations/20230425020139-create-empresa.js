@@ -9,14 +9,31 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nombre: {
-        type: Sequelize.STRING
+      idUsuario: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        onDelete: 'RESTRICT',
+        references: {
+          model:'Usuarios',
+          key: 'id',
+          as: 'idUsuario',
+        }
       },
-      descripcion: {
-        type: Sequelize.STRING
+      nombreEmpresa: {
+        allowNull: true,
+        type: Sequelize.STRING(100)
       },
-      estado: {
-        type: Sequelize.BOOLEAN
+      telefonoEmpresa: {
+        allowNull: true,
+        type: Sequelize.STRING(12)
+      },
+      correoEmpresa: {
+        allowNull: true,
+        type: Sequelize.STRING(100)
+      },
+      direcEmpresa: {
+        allowNull: true,
+        type: Sequelize.STRING(255)
       },
       createdAt: {
         allowNull: false,

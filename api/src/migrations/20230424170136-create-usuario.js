@@ -10,13 +10,21 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       idRol: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'RESTRICT',
+        references: {
+          model:'Rols',
+          key: 'id',
+          as: 'idRol',
+        }
       },
       correoUsuario: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(100)
       },
       contrasena: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(500)
       },
       createdAt: {
         allowNull: false,
@@ -24,6 +32,10 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
+        type: Sequelize.DATE
+      },
+      deletedAt: {
+        defaultValue: null,
         type: Sequelize.DATE
       }
     });

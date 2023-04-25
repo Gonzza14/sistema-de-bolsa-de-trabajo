@@ -8,18 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      //Relacion 1:N
-      models.Empresa.hasMany(models.Perfil, {
-        foreignKey: "idEmpresa",
-        sourceKey: "id",
+      //Relacion 1:1
+      models.Empresa.belongsTo(models.Usuario, {
+        foreignKey: "idUsuario", 
+        targetKey: "id", 
+        onDelete: 'RESTRICT' 
       });
     }
   }
   Empresa.init(
     {
-      nombre: DataTypes.STRING,
-      descripcion: DataTypes.STRING,
-      estado: DataTypes.BOOLEAN,
+      idUsuario: DataTypes.INTEGER,
+      nombreEmpresa: DataTypes.STRING(100),
+      telefonoEmpresa: DataTypes.STRING(12),
+      correoEmpresa: DataTypes.STRING(100),
+      direcEmpresa: DataTypes.STRING(255),
     },
     {
       sequelize,

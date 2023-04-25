@@ -12,7 +12,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.Usuario.belongsTo(models.Rol, { 
-        foreignKey: "idRol", targetKey: "id", onDelete: 'RESTRICT' 
+        foreignKey: "idRol", 
+        targetKey: "id",
+        onDelete: 'RESTRICT' 
+      });
+      models.Usuario.hasOne(models.Empresa, {
+        foreignKey: "idUsuario",
+        sourceKey: "id",
+        onDelete: 'RESTRICT'
+      });
+      models.Usuario.hasOne(models.Solicitante, {
+        foreignKey: "idUsuario",
+        sourceKey: "id",
+        onDelete: 'RESTRICT'
       });
     }
   }
@@ -22,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     contrasena: DataTypes.STRING(500)
   }, {
     sequelize,
+    paranoid: true,
     modelName: 'Usuario',
   });
   return Usuario;

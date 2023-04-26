@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton, FormTextArea } from "../../../styles/elements/formularios";
+import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton} from "../../../styles/elements/formularios";
 
 const initialForm = {
   nombreEmpresa: "",

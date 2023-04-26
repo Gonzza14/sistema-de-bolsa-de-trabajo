@@ -50,3 +50,4 @@ export const DataContainer = styled.div`
 
 export const SectionTitle = styled.h1`
 `
+

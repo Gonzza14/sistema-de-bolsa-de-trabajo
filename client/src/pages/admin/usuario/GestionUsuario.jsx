@@ -9,6 +9,8 @@ import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { Buscador } from "../../../components/Buscador";
 import { useSearch } from "../../../hooks/useSearch";
 import { ListarUsuario } from "./ListarUsuario";
+import { FormularioUsuario } from "./FormularioUsuario";
+import { EditarUsuario } from "./EditarUsuario";
 
 export const GestionUsuario = () => {
 
@@ -49,6 +51,14 @@ export const GestionUsuario = () => {
                                 setDataToEdit={setDataToEdit}
                                 dataBase={results}
                                 deleteData={deleteData}
+                            />} />
+                             <Route path={`agregar`} element={<FormularioUsuario
+                                createData={createData}
+                            />} />
+                            <Route path={`editar/:id/*`} element={<EditarUsuario
+                                updateData={updateData}
+                                dataToEdit={dataToEdit}
+                                setDataToEdit={setDataToEdit}
                             />} />
                         </Routes>
                 </GestionSection>

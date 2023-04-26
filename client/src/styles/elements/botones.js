@@ -105,4 +105,6 @@ export const ButtonModalDelete = styled(ButtonOp)`
   }
 `;
 
-
+export const EditButton = styled(ButtonCreate)`
+  margin-bottom: 0;
+`

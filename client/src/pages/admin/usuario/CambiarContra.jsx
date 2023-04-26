@@ -18,11 +18,16 @@ export const CambiarContra = ({
 
     useEffect(() => {
         if (dataToEdit) {
-            setForm(dataToEdit);
+            setForm({
+                id: dataToEdit.id,
+                correoUsuario: dataToEdit.correoUsuario,
+            });
         } else {
             setForm(initialForm);
         }
     }, [dataToEdit]);
+
+    
 
     const handleChange = (e) => {
         setForm({
@@ -60,7 +65,7 @@ export const CambiarContra = ({
                     name="contrasena"
                     placeholder="Contraseña"
                     onChange={handleChange}
-                    value={form.contrasena}
+                    value={form.contrasena || ""}
                 />
                 <FormLabel htmlFor="confirmarContrasena">Confirmar contraseña</FormLabel>
                 <FormInput

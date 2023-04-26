@@ -17,7 +17,10 @@ export const CambiarCorreo = ({
 
     useEffect(() => {
         if (dataToEdit) {
-            setForm(dataToEdit);
+            setForm({
+                id: dataToEdit.id,
+                correoUsuario: dataToEdit.correoUsuario,
+            });
         } else {
             setForm(initialForm);
         }

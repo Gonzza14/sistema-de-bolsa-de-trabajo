@@ -46,17 +46,22 @@ export const updateUsuario = async (req, res) => {
         return res.status(404).json({ message: "Usuario no encontrado" });
         }
 
-        if (!req.body.correoUsuario || !req.body.contrasena) {
+        /*if (!req.body.correoUsuario || !req.body.contrasena) {
             return res.status(400).json({ message: "Faltan campos por llenar" });
-        }
+        }*/
 
-        const rondas = 10;
-        const passEncriptada = await bcrypt.hash(req.body.contrasena, rondas);
+
+         let passEncriptada = null;
+         const rondas = 10;
+
+        if(req.body.contrasena){
+          passEncriptada = await bcrypt.hash(req.body.contrasena, rondas);
+        }
 
         const putUsuario = await usuario.set({
             idRol: req.body.idRol,
             correoUsuario: req.body.correoUsuario,
-            contrasena: passEncriptada,
+            contrasena: passEncriptada || usuario.contrasena,
         })
         await putUsuario.save();
         res.json(putUsuario);

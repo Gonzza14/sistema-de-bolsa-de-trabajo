@@ -5,6 +5,7 @@ import cors from "cors";
 
 //Importaciones de rutas
 import empresasRoutes from "./routes/empresas.routes";
+import usuariosRoutes from "./routes/usuarios.routes";
 
 //Creacion de aplicacion
 const app = express();
@@ -32,5 +33,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/empresas", empresasRoutes);
+app.use("/api/usuarios", usuariosRoutes);
 
 export default app;

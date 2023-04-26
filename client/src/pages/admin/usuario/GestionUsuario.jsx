@@ -8,19 +8,50 @@ import { StyledFontAwesomeIcon } from "../../../styles/elements/navBar";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { Buscador } from "../../../components/Buscador";
 import { useSearch } from "../../../hooks/useSearch";
+import { ListarUsuario } from "./ListarUsuario";
 
 export const GestionUsuario = () => {
 
-    //let url = "http://localhost:3000/api/usuarios"
+    let url = "http://localhost:3000/api/usuarios"
+
+    const { pathname } = useLocation()
+
+    let {
+        dataBase,
+        dataToEdit,
+        setDataToEdit,
+        createData,
+        updateData,
+        deleteData,
+        error,
+        loading
+    } = useCustomFetch(url);
+
+    let {
+        search, searcher, setSearch
+    } = useSearch()
+
+    const results = !search ? dataBase : dataBase.filter(data => data.correoUsuario.toLowerCase().includes(search.toLowerCase()))
 
     return (
         <BaseContainer>
             <Header titulo="Gestion de usuario" />
             <BaseBody>
                 <BaseSectionData>
-                    <GestionSection>
-                        <p>Hola</p>
-                    </GestionSection>
+                <GestionSection>
+                        <ButtonSection>
+                            {pathname === "/GestionUsuario" && <><Buscador placeHolder="Buscar usuario" className="gestion" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar usuario</SpanButton></ButtonCreate></>}
+                        </ButtonSection>
+                        <Routes>
+                            <Route path={``} element={<ListarUsuario
+                                error={error}
+                                loading={loading}
+                                setDataToEdit={setDataToEdit}
+                                dataBase={results}
+                                deleteData={deleteData}
+                            />} />
+                        </Routes>
+                </GestionSection>
                 </BaseSectionData>
             </BaseBody>
         </BaseContainer>

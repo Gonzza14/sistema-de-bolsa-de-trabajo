@@ -9,7 +9,7 @@ export const SearchContainer = styled.fieldset`
   border: 0;
   width: 50em;
 
-  &.gestion-empresa{
+  &.gestion{
     width: 40%;
     margin-top: 0;
     height: 3em;
@@ -157,7 +157,7 @@ export const SearchInput = styled.input`
       }
     }
   }
-  &.gestion-empresa{
+  &.gestion{
     padding: 0;
     padding-left: 1em;
   }

@@ -41,7 +41,7 @@ export const GestionEmpresa = () => {
                 <BaseSectionData>
                     <GestionSection>
                         <ButtonSection>
-                            {pathname === "/GestionEmpresa" && <><Buscador placeHolder="Buscar empresa" className="gestion-empresa" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar empresa</SpanButton></ButtonCreate></>}
+                            {pathname === "/GestionEmpresa" && <><Buscador placeHolder="Buscar empresa" className="gestion" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar empresa</SpanButton></ButtonCreate></>}
                         </ButtonSection>
                         <Routes>
                             <Route path={``} element={<ListarEmpresa

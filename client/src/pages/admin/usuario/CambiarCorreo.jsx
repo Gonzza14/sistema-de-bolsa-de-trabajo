@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from "react";
 import { FormTitle, Formulario, FormLabel, FormInput, FormInputBotton } from "../../../styles/elements/formularios";
-import { useNavigate } from "react-router-dom";
+import { MensajeValidacion } from "../../../styles/elements/mensajes";
+import { useForm } from "../../../hooks/useForm";
 
 const initialForm = {
     correoUsuario: "",
     id: null,
+};
+
+const validateForm = (form) => {
+    let errors = {};
+
+    if (!form.correoUsuario.trim()) {
+        errors.correoUsuario = "El campo correo es requerido";
+    }
+
+    return errors;
 };
 
 export const CambiarCorreo = ({
@@ -12,44 +22,30 @@ export const CambiarCorreo = ({
     dataToEdit,
     setDataToEdit
 }) => {
-    const [form, setForm] = useState(initialForm);
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (dataToEdit) {
-            setForm({
-                id: dataToEdit.id,
-                correoUsuario: dataToEdit.correoUsuario,
-            });
-        } else {
-            setForm(initialForm);
-        }
-    }, [dataToEdit]);
+    if (dataToEdit){
+        delete dataToEdit.contrasena;
+    }
 
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
-    const handleSubmit = (e) => {
-        e.preventDefault();
 
-        if (!form.correoUsuario) {
-            alert("Datos incompletos");
-            return;
-          }
-      
-          if (form.id !== null) {
-            updateData(form);
-          }
-          handleReset();
-        };
-        const handleReset = (e) => {
-          setForm(initialForm);
-          setDataToEdit(null);
-          navigate(`/GestionUsuario`)
-        };
+    let path = "/GestionUsuario";
+
+    let { 
+      form, 
+      errors, 
+      handleChange, 
+      handleBlur, 
+      handleSubmit
+    } = useForm(
+      initialForm, 
+      validateForm, 
+      path, 
+      null, 
+      updateData, 
+      dataToEdit, 
+      setDataToEdit
+      )
+
     return (
         <>
             <FormTitle>Cambiar correo electronico</FormTitle>
@@ -61,8 +57,10 @@ export const CambiarCorreo = ({
                     name="correoUsuario"
                     placeholder="Correo electrónico"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     value={form.correoUsuario}
                 />
+                {errors.correoUsuario && <MensajeValidacion>{errors.correoUsuario}</MensajeValidacion>}
                 <FormInputBotton type="submit" value="Enviar" />
             </Formulario>
         </>

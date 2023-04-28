@@ -45,7 +45,6 @@ module.exports = (sequelize, DataTypes) => {
     nup: DataTypes.STRING(20),
     direcSolic: DataTypes.STRING(255),
     telefonoSolic: DataTypes.STRING(12),
-    correoSolic: DataTypes.STRING(100),
     facebook: DataTypes.STRING(255),
     twitter: DataTypes.STRING(255),
     linkedin: DataTypes.STRING(255)

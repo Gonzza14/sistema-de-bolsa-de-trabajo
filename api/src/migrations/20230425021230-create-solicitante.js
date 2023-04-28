@@ -43,18 +43,22 @@ module.exports = {
       },
       dui: {
         allowNull: true,
+        unique: true,
         type: Sequelize.STRING(10)
       },
       pasaporte: {
         allowNull: true,
+        unique: true,
         type: Sequelize.STRING(15)
       },
       nit: {
         allowNull: true,
+        unique: true,
         type: Sequelize.STRING(15)
       },
       nup: {
         allowNull: true,
+        unique: true,
         type: Sequelize.STRING(20)
       },
       direcSolic: {
@@ -64,10 +68,6 @@ module.exports = {
       telefonoSolic: {
         allowNull: true,
         type: Sequelize.STRING(12)
-      },
-      correoSolic: {
-        allowNull: true,
-        type: Sequelize.STRING(100)
       },
       facebook: {
         allowNull: true,

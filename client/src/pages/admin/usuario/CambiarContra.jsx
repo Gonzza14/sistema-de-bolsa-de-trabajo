@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
 import { FormTitle, Formulario, FormLabel, FormInput, FormInputBotton } from "../../../styles/elements/formularios";
-import { useNavigate } from "react-router-dom";
+import { MensajeValidacion } from "../../../styles/elements/mensajes";
+import { useForm } from "../../../hooks/useForm";
 
 const initialForm = {
     contrasena: "",
@@ -8,52 +8,52 @@ const initialForm = {
     id: null,
 };
 
+const validateForm = (form) => {
+    let errors = {};
+
+    if (!form.contrasena.trim()) {
+        errors.contrasena = "La contraseña es requerida";
+    }
+    if (form.contrasena !== form.confirmarContrasena) {
+        errors.confirmarContrasena = "Las contraseñas no coinciden";
+    }
+
+    return errors;
+};
+
+
 export const CambiarContra = ({
     updateData,
     dataToEdit,
     setDataToEdit
 }) => {
-    const [form, setForm] = useState(initialForm);
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (dataToEdit) {
-            setForm({
-                id: dataToEdit.id,
-                correoUsuario: dataToEdit.correoUsuario,
-            });
-        } else {
-            setForm(initialForm);
-        }
-    }, [dataToEdit]);
+    if (dataToEdit){
+        delete dataToEdit.contrasena;
+        delete dataToEdit.confirmarContrasena;
+    }
 
-    
 
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
+    let path = "/GestionUsuario";
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    let { 
+        form, 
+        errors, 
+        handleChange, 
+        handleBlur, 
+        handleSubmit
+      } = useForm(
+        initialForm, 
+        validateForm, 
+        path, 
+        null, 
+        updateData, 
+        dataToEdit, 
+        setDataToEdit
+        )
+  
 
-        if (!form.contrasena || !form.confirmarContrasena) {
-            alert("Datos incompletos");
-            return;
-        }
 
-        if (form.id !== null) {
-            updateData(form);
-        }
-        handleReset();
-    };
-    const handleReset = (e) => {
-        setForm(initialForm);
-        setDataToEdit(null);
-        navigate(`/GestionUsuario`)
-    };
     return (
         <>
             <FormTitle>Cambiar contraseña</FormTitle>
@@ -65,8 +65,10 @@ export const CambiarContra = ({
                     name="contrasena"
                     placeholder="Contraseña"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     value={form.contrasena || ""}
                 />
+                {errors.contrasena && <MensajeValidacion>{errors.contrasena}</MensajeValidacion>}
                 <FormLabel htmlFor="confirmarContrasena">Confirmar contraseña</FormLabel>
                 <FormInput
                     type="password"
@@ -74,8 +76,10 @@ export const CambiarContra = ({
                     name="confirmarContrasena"
                     placeholder="Confirmar contraseña"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     value={form.confirmarContrasena || ""}
                 />
+                {errors.confirmarContrasena && <MensajeValidacion>{errors.confirmarContrasena}</MensajeValidacion>}
                 <FormInputBotton type="submit" value="Enviar" />
             </Formulario>
         </>

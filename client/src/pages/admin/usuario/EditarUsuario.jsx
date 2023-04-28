@@ -10,7 +10,7 @@ export const EditarUsuario = ({
     setDataToEdit
 }) => {
     const { pathname } = useLocation()
-    console.log(pathname)
+    
     return (
         <FormContainer>
             {!pathname.includes("/editarC") && <EditarMenu/>}

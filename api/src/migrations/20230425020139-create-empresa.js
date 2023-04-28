@@ -25,11 +25,7 @@ module.exports = {
       },
       telefonoEmpresa: {
         allowNull: true,
-        type: Sequelize.STRING(12)
-      },
-      correoEmpresa: {
-        allowNull: true,
-        type: Sequelize.STRING(100)
+        type: Sequelize.STRING(20)
       },
       direcEmpresa: {
         allowNull: true,

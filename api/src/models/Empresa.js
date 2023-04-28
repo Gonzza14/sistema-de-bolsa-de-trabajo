@@ -25,7 +25,6 @@ module.exports = (sequelize, DataTypes) => {
       idUsuario: DataTypes.INTEGER,
       nombreEmpresa: DataTypes.STRING(100),
       telefonoEmpresa: DataTypes.STRING(12),
-      correoEmpresa: DataTypes.STRING(100),
       direcEmpresa: DataTypes.STRING(255),
     },
     {

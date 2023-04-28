@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton} from "../../../styles/elements/formularios";
-
+import { MensajeValidacion } from "../../../styles/elements/mensajes";
+import { useForm } from "../../../hooks/useForm";
 const initialForm = {
   nombreEmpresa: "",
-  correoEmpresa: "",
+  telefonoEmpresa: "",
   id: null,
+};
+
+const validateForm = (form) => {
+    let errors = {};
+
+    if (!form.nombreEmpresa.trim()) {
+        errors.nombreEmpresa = "El nombre de la empresa es requerido";
+    }
+
+    return errors;
 };
 
 export const FormularioEmpresa = ({
@@ -14,43 +23,26 @@ export const FormularioEmpresa = ({
   dataToEdit,
   setDataToEdit,
 }) => {
-  const [form, setForm] = useState(initialForm);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (dataToEdit) {
-      setForm(dataToEdit);
-    } else {
-      setForm(initialForm);
-    }
-  }, [dataToEdit]);
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  let path = "/GestionEmpresa";
 
-    if (!form.nombreEmpresa || !form.correoEmpresa) {
-      alert("Datos incompletos");
-      return;
-    }
+  let { 
+    form, 
+    errors, 
+    handleChange, 
+    handleBlur, 
+    handleSubmit
+  } = useForm(
+    initialForm, 
+    validateForm, 
+    path, 
+    createData, 
+    updateData, 
+    dataToEdit, 
+    setDataToEdit
+    )
 
-    if (form.id === null) {
-      createData(form);
-    } else {
-      updateData(form);
-    }
-
-    handleReset();
-  };
-  const handleReset = (e) => {
-    setForm(initialForm);
-    setDataToEdit(null);
-    navigate("/GestionEmpresa")
-  };
+ 
   return (
     <FormContainer>
        <FormTitle>{dataToEdit ? "Editar empresa" : "Agregar empresa"}</FormTitle>
@@ -62,17 +54,21 @@ export const FormularioEmpresa = ({
           name="nombreEmpresa"
           placeholder="Nombre de la empresa"
           onChange={handleChange}
+          onBlur={handleBlur}
           value={form.nombreEmpresa}
         />
-        <FormLabel htmlFor="correoEmpresa">Correo electronico</FormLabel>
+         {errors.nombreEmpresa && <MensajeValidacion>{errors.nombreEmpresa}</MensajeValidacion>}
+        <FormLabel htmlFor="telefonoEmpresa">Telefono</FormLabel>
         <FormInput
-          type="text"
-          id="correoEmpresa"
-          name="correoEmpresa"
-          placeholder="Correo de la empresa"
+          type="tel"
+          id="telefonoEmpresa"
+          name="telefonoEmpresa"
+          placeholder="Telefono de la empresa"
           onChange={handleChange}
-          value={form.correoEmpresa}
+          onBlur={handleBlur}
+          value={form.telefonoEmpresa}
         />
+         {errors.telefonoEmpresa && <MensajeValidacion>{errors.telefonoEmpresa}</MensajeValidacion>}
         <FormInputBotton type="submit" value="Enviar" />
         {/*<input type="reset" value="Limpiar" onClick={handleReset} />*/}
       </Formulario>

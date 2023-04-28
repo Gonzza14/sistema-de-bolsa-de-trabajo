@@ -54,6 +54,7 @@ export const GestionUsuario = () => {
                             />} />
                              <Route path={`agregar`} element={<FormularioUsuario
                                 createData={createData}
+                                setDataToEdit={setDataToEdit}
                             />} />
                             <Route path={`editar/:id/*`} element={<EditarUsuario
                                 updateData={updateData}

@@ -30,8 +30,8 @@ export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
             sortable: true,
         },
         {
-            name: 'Correo',
-            selector: row => row.correoEmpresa,
+            name: 'Telefono',
+            selector: row => row.telefonoEmpresa,
         },
         {
             name: 'Accion',

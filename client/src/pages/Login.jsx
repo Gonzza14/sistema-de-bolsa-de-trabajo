@@ -9,11 +9,11 @@ export const Login = () => {
             <Header titulo="Login"/>
             <BaseBody>
                 <BaseSection>
-                    <div class="main">  	
+                    <div className="main">  	
                         <input type="checkbox" id="chk" aria-hidden="true"/>
-                        <div class="signup">
+                        <div className="signup">
                             <form>
-                                <label for="chk" aria-hidden="true">Crear Cuenta</label>
+                                <label htmlFor="chk" aria-hidden="true">Crear Cuenta</label>
                                 <input type="text" name="txt" placeholder="Nombre de usuario" required=""/>
                                 <input type="email" name="email" placeholder="Email" required=""/>
                                 <input type="password" name="pswd" placeholder="Contraseña" required=""/>
@@ -21,9 +21,9 @@ export const Login = () => {
                             </form>
                         </div>
 
-                        <div class="login">
+                        <div className="login">
                             <form>
-                                <label for="chk" aria-hidden="true">Iniciar Sesión</label>
+                                <label htmlFor="chk" aria-hidden="true">Iniciar Sesión</label>
                                 <input type="email" name="email" placeholder="Email" required=""/>
                                 <input type="password" name="pswd" placeholder="Constraseña" required=""/>
                                 <button>Iniciar Sesión</button>

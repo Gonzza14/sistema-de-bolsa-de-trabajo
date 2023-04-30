@@ -136,7 +136,7 @@ export const IconSearch = styled.div`
 export const SearchInput = styled.input`
   border: 0;
   width: 100%;
-  height: 100%;
+  //height: 100%;
   padding: 15px 20px;
   background: #C3C1D2;
   color: #0F2651;

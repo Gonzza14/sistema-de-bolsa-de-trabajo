@@ -15,6 +15,7 @@ export const Formulario = styled.form`
 
 export const FormLabel = styled.label`
   margin: 10px 0;
+  color: black;
 `;
 
 export const FormInput = styled.input`
@@ -38,8 +39,8 @@ export const FormTextArea = styled.textarea`
 export const FormInputBotton = styled.input`
   margin: 1.5em 0;
   background-color: #06062a;
-  width: 50%;
-  padding: 1em;
+  width: 30%;
+  padding-bottom: 1.5em;
   justify-content: center;
   align-self: flex-end;
   border: 0;

@@ -6,6 +6,7 @@ export const useCustomFetch = (url) => {
     const [dataToEdit, setDataToEdit] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [response, setResponse] = useState(null);
 
     useEffect(() => {
         helpHttp().get(url).then(res => {
@@ -29,13 +30,17 @@ export const useCustomFetch = (url) => {
             body: data,
             headers: { "content-type": "application/json" },
         };
-
+        setLoading(true);
         helpHttp().post(url, options).then((res) => {
             //console.log(res);
             if (!res.err) {
                 setDatabase([...dataBase, res]);
+                setLoading(false);
+                setResponse(true)
+                setTimeout(() => setResponse(false), 4000)
             } else {
                 setError(res);
+                setLoading(false);
             }
         });
     };
@@ -48,14 +53,18 @@ export const useCustomFetch = (url) => {
             body: data,
             headers: { "content-type": "application/json" },
         };
-
+        setLoading(true);
         helpHttp().put(endpoint, options).then((res) => {
             //console.log(res);
             if (!res.err) {
                 let newData = dataBase.map((el) => (el.id === data.id ? data : el));
                 setDatabase(newData);
+                setLoading(false);
+                setResponse(true)
+                setTimeout(() => setResponse(false), 4000)
             } else {
                 setError(res);
+                setLoading(false);
             }
         });
     };
@@ -71,11 +80,17 @@ export const useCustomFetch = (url) => {
             if (!res.err) {
                 let newData = dataBase.filter((el) => el.id !== id);
                 setDatabase(newData);
+                setResponse(true)
+                setTimeout(() => setResponse(false), 4000)
             } else {
                 setError(res);
             }
         });
     };
+
+    const handleClick = (e) => {
+        setResponse(false)
+    }
 
     return {
         dataBase,
@@ -86,5 +101,8 @@ export const useCustomFetch = (url) => {
         deleteData,
         error,
         loading,
+        response,
+        setResponse,
+        handleClick
     }
 }

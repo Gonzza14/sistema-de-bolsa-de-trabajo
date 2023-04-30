@@ -9,18 +9,20 @@ import { useState } from "react";
 import { ModalTitle } from "../../../styles/elements/modal";
 
 
-export const TablaUsuario = ({ data, setDataToEdit, deleteData }) => {
+export const TablaUsuario = ({ data, setDataToEdit, deleteData, setResponse }) => {
     const [isOpen, openModal, closeModal] = useModal(false);
     const [idToDelete, setIdToDelete] = useState(null);
 
     const navigate = useNavigate();
 
     const handleEdit = (row) => {
+        setResponse(false)
         setDataToEdit(row)
         navigate(`editar/${row.id}`)
     }
 
     const handleDelete = (row) => {
+        setResponse(false)
         setIdToDelete(row.id)
         openModal();
     }

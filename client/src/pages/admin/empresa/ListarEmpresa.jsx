@@ -2,7 +2,7 @@ import Loader from "../../../components/Loader";
 import Message from "../../../components/Message";
 import { TablaEmpresa } from "./TablaEmpresa";
 
-export const ListarEmpresa = ({error, loading, dataBase, setDataToEdit ,deleteData}) => {
+export const ListarEmpresa = ({error, loading, dataBase, setDataToEdit ,deleteData, setResponse}) => {
     return (
         <>
             {loading && <Loader />}
@@ -10,7 +10,7 @@ export const ListarEmpresa = ({error, loading, dataBase, setDataToEdit ,deleteDa
                 error && (
                     <Message
                         msg={`Error ${error.status}: ${error.statusText}`}
-                        bgColor="#dc3545"
+                        bgColor="#E84616"
                     />
                 )
             }
@@ -19,6 +19,7 @@ export const ListarEmpresa = ({error, loading, dataBase, setDataToEdit ,deleteDa
                     data={dataBase}
                     setDataToEdit={setDataToEdit}
                     deleteData={deleteData}
+                    setResponse={setResponse}
                 />
             }
         </>

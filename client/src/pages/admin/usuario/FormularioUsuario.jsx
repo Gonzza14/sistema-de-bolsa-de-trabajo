@@ -11,13 +11,23 @@ const initialForm = {
 
 const validateForm = (form) => {
     let errors = {};
+    let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
+    let regexPassword = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
 
     if (!form.correoUsuario.trim()) {
         errors.correoUsuario = "El campo correo es requerido";
+    } else if (!regexEmail.test(form.correoUsuario.trim())) {
+        errors.correoUsuario = "El campo correo no es valido";
+    }else{
+        delete errors.correoUsuario;
     }
+
     if (!form.contrasena.trim()) {
         errors.contrasena = "La contraseña es requerida";
+    }else if (!regexPassword.test(form.contrasena.trim())) {
+        errors.contrasena = "La contraseña debe tener al menos 8 caracteres, una mayuscula, una minuscula y un numero";
     }
+
     if (form.contrasena !== form.confirmarContrasena) {
         errors.confirmarContrasena = "Las contraseñas no coinciden";
     }

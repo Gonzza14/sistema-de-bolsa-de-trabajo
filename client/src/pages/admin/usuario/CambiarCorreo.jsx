@@ -9,11 +9,15 @@ const initialForm = {
 
 const validateForm = (form) => {
     let errors = {};
-
+    let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
     if (!form.correoUsuario.trim()) {
         errors.correoUsuario = "El campo correo es requerido";
+    } else if (!regexEmail.test(form.correoUsuario.trim())) {
+        errors.correoUsuario = "El campo correo no es valido";
+    }else{
+        delete errors.correoUsuario;
     }
-
+    
     return errors;
 };
 

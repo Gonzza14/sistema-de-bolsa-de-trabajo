@@ -32,9 +32,11 @@ export const useForm = (initialForm, validateForm, path, createData, updateData,
 
 
     const handleSubmit = (e) => {
+        handleChange(e);
         e.preventDefault();
+        setErrors(validateForm(form));
 
-        if (Object.keys(errors).length === 0) {
+        if (Object.keys(validateForm(form)).length === 0) {
             if (form.id === null) {
                 createData(form);
             } else if (updateData){

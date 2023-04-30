@@ -26,6 +26,7 @@ export const DataTableStyle = styled(DataTable)`
 
   .rdt_TableBody{
     overflow-y: scroll;
+    overflow-x: scroll;
   }
   .rdt_TableCell {
     font-weight: normal;

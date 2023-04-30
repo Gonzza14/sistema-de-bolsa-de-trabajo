@@ -64,6 +64,7 @@ export const deleteRol = async (req, res) => {
     return res.status(500).json({ message: err.message });
     }
 };
+
 export const getRol = async (req, res) => {
     try {
     //Se obtiene el id del rol

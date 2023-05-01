@@ -10,6 +10,8 @@ import { StyledFontAwesomeIcon } from "../../../styles/elements/navBar";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { Buscador } from "../../../components/Buscador";
 import { useSearch } from "../../../hooks/useSearch";
+import Message from "../../../components/Message";
+
 
 
 export const GestionEmpresa = () => {
@@ -26,7 +28,10 @@ export const GestionEmpresa = () => {
         updateData,
         deleteData,
         error,
-        loading
+        loading,
+        response,
+        setResponse,
+        handleClick
     } = useCustomFetch(url);
 
     let {
@@ -34,14 +39,18 @@ export const GestionEmpresa = () => {
     } = useSearch()
 
     const results = !search ? dataBase : dataBase.filter(data => data.nombreEmpresa.toLowerCase().includes(search.toLowerCase()))
+
     return (
         <BaseContainer>
             <Header titulo="Gestion de empresa" />
             <BaseBody>
                 <BaseSectionData>
                     <GestionSection>
+                        {response && (
+                            <Message msg="La operacion se realizo con exito" bgColor="#0F2651"/>
+                        )}
                         <ButtonSection>
-                            {pathname === "/GestionEmpresa" && <><Buscador placeHolder="Buscar empresa" className="gestion" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar empresa</SpanButton></ButtonCreate></>}
+                            {pathname === "/GestionEmpresa" && <><Buscador placeHolder="Buscar empresa" className="gestion" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`} onClick={handleClick}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar empresa</SpanButton></ButtonCreate></>}
                         </ButtonSection>
                         <Routes>
                             <Route path={``} element={<ListarEmpresa
@@ -50,6 +59,7 @@ export const GestionEmpresa = () => {
                                 setDataToEdit={setDataToEdit}
                                 dataBase={results}
                                 deleteData={deleteData}
+                                setResponse={setResponse}
                             />} />
                             <Route path={`agregar`} element={<FormularioEmpresa
                                 createData={createData}

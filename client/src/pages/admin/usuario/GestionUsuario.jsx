@@ -11,6 +11,7 @@ import { useSearch } from "../../../hooks/useSearch";
 import { ListarUsuario } from "./ListarUsuario";
 import { FormularioUsuario } from "./FormularioUsuario";
 import { EditarUsuario } from "./EditarUsuario";
+import Message from "../../../components/Message";
 
 export const GestionUsuario = () => {
 
@@ -26,7 +27,10 @@ export const GestionUsuario = () => {
         updateData,
         deleteData,
         error,
-        loading
+        loading,
+        response,
+        setResponse,
+        handleClick
     } = useCustomFetch(url);
 
     let {
@@ -40,9 +44,12 @@ export const GestionUsuario = () => {
             <Header titulo="Gestion de usuario" />
             <BaseBody>
                 <BaseSectionData>
-                <GestionSection>
+                    <GestionSection>
+                        {response && (
+                            <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
+                        )}
                         <ButtonSection>
-                            {pathname === "/GestionUsuario" && <><Buscador placeHolder="Buscar usuario" className="gestion" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar usuario</SpanButton></ButtonCreate></>}
+                            {pathname === "/GestionUsuario" && <><Buscador placeHolder="Buscar usuario" className="gestion" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`} onClick={handleClick}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar usuario</SpanButton></ButtonCreate></>}
                         </ButtonSection>
                         <Routes>
                             <Route path={``} element={<ListarUsuario
@@ -51,8 +58,9 @@ export const GestionUsuario = () => {
                                 setDataToEdit={setDataToEdit}
                                 dataBase={results}
                                 deleteData={deleteData}
+                                setResponse={setResponse}
                             />} />
-                             <Route path={`agregar`} element={<FormularioUsuario
+                            <Route path={`agregar`} element={<FormularioUsuario
                                 createData={createData}
                                 setDataToEdit={setDataToEdit}
                             />} />
@@ -62,7 +70,7 @@ export const GestionUsuario = () => {
                                 setDataToEdit={setDataToEdit}
                             />} />
                         </Routes>
-                </GestionSection>
+                    </GestionSection>
                 </BaseSectionData>
             </BaseBody>
         </BaseContainer>

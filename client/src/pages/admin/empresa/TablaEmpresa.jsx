@@ -8,18 +8,20 @@ import { useModal } from "../../../hooks/useModal";
 import { useState } from "react";
 import { ModalTitle } from "../../../styles/elements/modal";
 
-export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
+export const TablaEmpresa = ({ data, setDataToEdit, deleteData, setResponse }) => {
     const [isOpen, openModal, closeModal] = useModal(false);
     const [idToDelete, setIdToDelete] = useState(null);
 
     const navigate = useNavigate();
 
     const handleEdit = (row) => {
+        setResponse(false)
         setDataToEdit(row)
         navigate(`editar/${row.id}`)
     }
 
     const handleDelete = (row) => {
+        setResponse(false)
         setIdToDelete(row.id)
         openModal();
     }
@@ -32,6 +34,10 @@ export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
         {
             name: 'Telefono',
             selector: row => row.telefonoEmpresa,
+        },
+        {
+            name: 'Direccion',
+            selector: row => row.direcEmpresa,
         },
         {
             name: 'Accion',
@@ -60,6 +66,7 @@ export const TablaEmpresa = ({ data, setDataToEdit, deleteData }) => {
             </Modal>
             <DataTableStyle
                 dense
+                responsive
                 columns={columns}
                 data={data}
                 pagination

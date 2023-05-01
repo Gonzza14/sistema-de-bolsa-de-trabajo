@@ -2,7 +2,7 @@ import Loader from "../../../components/Loader";
 import Message from "../../../components/Message";
 import { TablaUsuario } from "./TablaUsuario.jsx";
 
-export const ListarUsuario = ({error, loading, dataBase, setDataToEdit ,deleteData}) => {
+export const ListarUsuario = ({error, loading, dataBase, setDataToEdit ,deleteData, setResponse}) => {
     return (
         <>
             {loading && <Loader />}
@@ -19,6 +19,7 @@ export const ListarUsuario = ({error, loading, dataBase, setDataToEdit ,deleteDa
                     data={dataBase}
                     setDataToEdit={setDataToEdit}
                     deleteData={deleteData}
+                    setResponse={setResponse}
                 />
             }
         </>

@@ -24,6 +24,9 @@ label{
 	cursor: pointer;
 	transition: .5s ease-in-out;
 }
+.signup label {
+	margin: 40px;
+}
 input{
 	width: 65%;
 	height: 20px;
@@ -36,6 +39,19 @@ input{
 	outline: none;
 	border-radius: 5px;
 }
+select {
+	width: 69.7%;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	color: rgb(80, 77, 77);
+}
+
 button{
 	width: 60%;
 	height: 40px;
@@ -60,7 +76,7 @@ button:hover{
 	height: 460px;
 	background: #eee;
 	border-radius: 60% / 10%;
-	transform: translateY(-180px);
+	transform: translateY(-150px);
 	transition: .8s ease-in-out;
 }
 .login label{

@@ -36,26 +36,26 @@ export const Login = () => {
                         <input type="checkbox" id="chk" aria-hidden="true"/>
                         <div className="signup">
                             <form>
-                                <label htmlFor="chk" aria-hidden="true">Crear Cuenta</label>
-                                <input type="text" name="txt" placeholder="Nombre de usuario" required=""/>
-                                <input type="email" name="email" placeholder="Email" required=""/>
-                                <select onChange={event => console.log(event.target.value)}>
+                                <label class="label-signup" htmlFor="chk" aria-hidden="true">Crear Cuenta</label>
+                                <input class="input-signup" type="text" name="txt" placeholder="Nombre de usuario" required=""/>
+                                <input class="input-signup" type="email" name="email" placeholder="Email" required=""/>
+                                <select class="select-signup" onChange={event => console.log(event.target.value)}>
                                     <option value="">Seleccione un rol</option>
                                     
                                     <option value="1" >1</option>
                                     <option value="2">2</option>
                                 </select>
-                                <input type="password" name="pswd" placeholder="Contraseña" required=""/>
-                                <button>Crear Cuenta</button>
+                                <input class="input-signup" type="password" name="pswd" placeholder="Contraseña" required=""/>
+                                <button class="button-signup">Crear Cuenta</button>
                             </form>
                         </div>
 
                         <div className="login">
                             <form>
-                                <label htmlFor="chk" aria-hidden="true">Iniciar Sesión</label>
-                                <input type="email" name="email" placeholder="Email" required=""/>
-                                <input type="password" name="pswd" placeholder="Constraseña" required=""/>
-                                <button>Iniciar Sesión</button>
+                                <label class="label-login" htmlFor="chk" aria-hidden="true">Iniciar Sesión</label>
+                                <input class="input-login" type="email" name="email" placeholder="Email" required=""/>
+                                <input class="input-login" type="password" name="pswd" placeholder="Constraseña" required=""/>
+                                <button class="button-login">Iniciar Sesión</button>
                             </form>
                         </div>
                     </div>

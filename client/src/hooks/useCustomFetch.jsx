@@ -22,6 +22,23 @@ export const useCustomFetch = (url) => {
         })
     }, [url])
 
+    const verificarData = (data) => {
+        let options = {
+            body: data,
+            headers: { "content-type": "application/json" },
+        };
+        setLoading(true);
+        helpHttp().post(url, options).then((res) => {
+            //console.log(res);
+            if (!res.err) {
+                console.log(res)
+            } else {
+                setError(res);
+                setLoading(false);
+            }
+        });
+    }
+
     const createData = (data) => {
         data.id = Date.now();
         //console.log(data);
@@ -103,6 +120,7 @@ export const useCustomFetch = (url) => {
         loading,
         response,
         setResponse,
-        handleClick
+        handleClick,
+        verificarData
     }
 }

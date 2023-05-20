@@ -108,3 +108,33 @@ export const getUsuario = async (req, res) => {
         return res.status(500).json({ message: err.message });
     }
 };
+
+export const verificarUsuario = async (req, res) => {
+    try {
+        // Obtener email de los parametros
+        
+        const { email, password } = req.body;
+        // Obtener usuario
+        res.json(req.body)
+        console.log(req.body)
+        /*const usuario = false
+        const coinciden = false
+
+        if(email){
+          usuario = await Usuario.findOne({
+            where: { correoUsuario: email }
+          });
+        }
+        if (!usuario) {
+          return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+        if(password){
+          // Comparar contraseña proporcionada con contraseña encriptada
+          coinciden = await bcrypt.compare(password, usuario.contrasena)
+        }        
+        
+        res.json({valido: coinciden});*/
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+}

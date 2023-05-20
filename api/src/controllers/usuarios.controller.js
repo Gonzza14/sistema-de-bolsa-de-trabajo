@@ -111,29 +111,28 @@ export const getUsuario = async (req, res) => {
 
 export const verificarUsuario = async (req, res) => {
     try {
-        // Obtener email de los parametros
-        
+        // Obtener email y contraseña de los parametros
         const { email, password } = req.body;
         // Obtener usuario
-        res.json(req.body)
-        console.log(req.body)
-        /*const usuario = false
-        const coinciden = false
-
-        if(email){
-          usuario = await Usuario.findOne({
-            where: { correoUsuario: email }
-          });
-        }
-        if (!usuario) {
-          return res.status(404).json({ message: "Usuario no encontrado" });
-        }
-        if(password){
-          // Comparar contraseña proporcionada con contraseña encriptada
-          coinciden = await bcrypt.compare(password, usuario.contrasena)
-        }        
+        const usuario = null
+        const coinciden = true
+        // Buscar usuario por medio del correo
+        // if(email){
+        //   usuario = await Usuario.findOne({
+        //     where: { correoUsuario: email }
+        //   });
+        // }
+        // Si no se encuentra el usuario
+        // if (!usuario) {
+        //   return res.status(404).json({ message: "Usuario no encontrado" });
+        // }
+        // Comparar contraseña proporcionada con contraseña encriptada
+        // if(password){
+        //   coinciden = await bcrypt.compare(password, usuario.contrasena)
+        // }        
+        res.json({"valido": coinciden, "rol": "solicitante", "email":email});
         
-        res.json({valido: coinciden});*/
+        //res.json({ "email": email, "password": "todavia esta encriptada" });
     } catch (err) {
         return res.status(500).json({ message: err.message });
     }

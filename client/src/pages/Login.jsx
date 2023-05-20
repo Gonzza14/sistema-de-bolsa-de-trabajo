@@ -4,6 +4,7 @@ import { BaseContainer, BaseBody, BaseSection }
 from "../styles/base";
 import "../styles/pages/login.css";
 import { useCustomFetch } from "../hooks/useCustomFetch";
+import { useVerificarPassword } from "../hooks/useVerificarPassword";
 import { useForm } from "../hooks/useForm";
 import { useState, useEffect } from "react";
 
@@ -23,20 +24,7 @@ export const Login = () => {
 
     const { pathname } = useLocation()
 
-    let {
-        dataBase,
-        dataToEdit,
-        setDataToEdit,
-        createData,
-        updateData,
-        deleteData,
-        error,
-        loading,
-        response,
-        setResponse,
-        handleClick,
-        verificarData
-    } = useCustomFetch(url);
+    let { verificarData } = useVerificarPassword(url);
 
     let path = "/";
 
@@ -50,10 +38,6 @@ export const Login = () => {
         initialForm,
         validateForm,
         path,
-        createData,
-        updateData,
-        dataToEdit,
-        setDataToEdit
     )
 
     const handleLogin = ( e => {
@@ -71,24 +55,25 @@ export const Login = () => {
                         <input type="checkbox" id="chk" aria-hidden="true"/>
                         <div className="signup">
                             <form>
-                                <label htmlFor="chk" aria-hidden="true">Crear Cuenta</label>
-                                <input type="text" name="txt" placeholder="Nombre de usuario" required=""/>
-                                <input type="email" name="email" placeholder="Email" required=""/>
-                                <select onChange={event => console.log(event.target.value)}>
+                                <label className="label-signup" htmlFor="chk" aria-hidden="true">Crear Cuenta</label>
+                                <input className="input-signup" type="text" name="txt" placeholder="Nombre de usuario" required=""/>
+                                <input className="input-signup" type="email" name="email" placeholder="Email" required=""/>
+                                <select className="select-signup" onChange={event => console.log(event.target.value)}>
                                     <option value="">Seleccione un rol</option>
                                     
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                 </select>
-                                <input type="password" name="pswd" placeholder="Contraseña" required=""/>
-                                <button>Crear Cuenta</button>
+                                <input className="input-signup" type="password" name="pswd" placeholder="Contraseña" required=""/>
+                                <button className="button-signup">Crear Cuenta</button>
                             </form>
                         </div>
 
                         <div className="login">
                             <form onSubmit={handleLogin}>
-                                <label htmlFor="chk" aria-hidden="true">Iniciar Sesión</label>
+                                <label className="label-login" htmlFor="chk" aria-hidden="true">Iniciar Sesión</label>
                                 <input 
+                                    className="input-login"
                                     type="email" 
                                     name="email" 
                                     id="email"
@@ -98,6 +83,7 @@ export const Login = () => {
                                     onChange={handleChange}
                                     />
                                 <input 
+                                    className="input-login"
                                     type="password"
                                     id="password" 
                                     name="password" 
@@ -106,7 +92,7 @@ export const Login = () => {
                                     required=""
                                     onChange={handleChange}
                                     />
-                                <button type="submit">Iniciar Sesión</button>
+                                <button className="button-login" type="submit">Iniciar Sesión</button>
                             </form>
                         </div>
                     </div>

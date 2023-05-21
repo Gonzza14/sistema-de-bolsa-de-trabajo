@@ -29,6 +29,14 @@ module.exports = {
           as: 'idCategoriaOfer',
         }
       },
+      tituloOferta: {
+        allowNull: false,
+        type: Sequelize.STRING(50),
+      },
+      fechaExpiracion: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
       descOferta: {
         allowNull: false,
         type: Sequelize.STRING(2048)

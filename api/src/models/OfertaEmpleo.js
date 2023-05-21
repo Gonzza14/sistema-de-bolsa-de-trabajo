@@ -31,6 +31,8 @@ module.exports = (sequelize, DataTypes) => {
   OfertaEmpleo.init({
     idEmpresa: DataTypes.INTEGER,
     idCategoriaOfer: DataTypes.INTEGER,
+    tituloOferta: DataTypes.STRING(50),
+    fechaExpiracion: DataTypes.DATE,
     descOferta: DataTypes.STRING(2048),
     perfilAcademico: DataTypes.STRING(2048),
     habilidades: DataTypes.STRING(2048),

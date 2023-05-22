@@ -5,8 +5,8 @@ module.exports = {
       const rondas = 10;
       const passEncriptada = await bcrypt.hash('12345', rondas);
       return queryInterface.bulkInsert('Usuarios', [
-        { idRol: 1, correoUsuario: 'solicitante1@gmail.com', contrasena: passEncriptada, createdAt: new Date(), updatedAt: new Date() },
-        { idRol: 2, correoUsuario: 'admin1@gmail.com', contrasena: passEncriptada, createdAt: new Date(), updatedAt: new Date()},
+        { idRol: 2, correoUsuario: 'solicitante1@gmail.com', contrasena: passEncriptada, createdAt: new Date(), updatedAt: new Date() },
+        { idRol: 1, correoUsuario: 'admin1@gmail.com', contrasena: passEncriptada, createdAt: new Date(), updatedAt: new Date()},
         { idRol: 3, correoUsuario: 'empresa1@gmail.com', contrasena: passEncriptada, createdAt: new Date(), updatedAt: new Date()},
       ], {});
     },

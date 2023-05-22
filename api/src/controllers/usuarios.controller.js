@@ -1,4 +1,4 @@
-import { Usuario } from "../models";
+import { Usuario, Rol } from "../models";
 const bcrypt = require("bcryptjs")
 
 export const getUsuarios = async (req, res) => {
@@ -115,24 +115,32 @@ export const verificarUsuario = async (req, res) => {
         const { email, password } = req.body;
         // Obtener usuario
         let usuario = null
-        const coinciden = true
+        let coinciden = null
         // Buscar usuario por medio del correo
         if(email){
-            usuario = await Usuario.findOne({
-            where: { correoUsuario: email }
+            usuario = await Usuario.findOne({ 
+              where: { correoUsuario: email },
+              include: Rol
           });
         }
         // Si no se encuentra el usuario
-        // if (!usuario) {
-        //   return res.status(404).json({ message: "Usuario no encontrado" });
-        // }
-        // Comparar contraseña proporcionada con contraseña encriptada
-        // if(password){
-        //   coinciden = await bcrypt.compare(password, usuario.contrasena)
-        // }        
-        res.json({"valido": coinciden, "rol": usuario.rol, "email":email});
-        
-        //res.json({ "email": email, "password": "todavia esta encriptada" });
+        if (!usuario) {
+          return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+        if(!password){
+          return res.status(404).json({ message: "Constraseña no valida" });
+        }
+        //Comparar contraseña proporcionada con contraseña encriptada
+        bcrypt.compare(password, usuario.contrasena, (err, result)=>{
+          if(result){
+            res.json({"valido": true, "rol": usuario.Rol.nombreRol, "email":email});        
+          }else{
+            res.json({"valido": false});        
+          }
+          if (err){
+            return res.status(404).json({ message: err });
+          }
+        })          
     } catch (err) {
         return res.status(500).json({ message: err.message });
     }

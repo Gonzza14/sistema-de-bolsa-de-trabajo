@@ -1,6 +1,6 @@
 import Loader from "../../../components/Loader";
 import Message from "../../../components/Message";
-import { TablaRol } from "./TablaRol";
+import { TablaRol } from "../rol/TablaRol";
 
 export const ListarRol = ({error, loading, dataBase, setDataToEdit ,deleteData, setResponse}) => {
     return (

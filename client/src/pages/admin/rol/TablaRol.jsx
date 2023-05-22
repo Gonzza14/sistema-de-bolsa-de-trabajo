@@ -27,7 +27,7 @@ export const TablaRol = ({ data, setDataToEdit, deleteData, setResponse }) => {
     }
     const columns = [
         {
-            name: 'Nombre',
+            name: 'Nombre del rol',
             selector: row => row.nombreRol,
             sortable: true,
         },
@@ -53,7 +53,10 @@ export const TablaRol = ({ data, setDataToEdit, deleteData, setResponse }) => {
             <Modal isOpen={isOpen} closeModal={closeModal}>
                 <ModalTitle>¿Estás seguro de eliminar el registro con el identificador "{idToDelete}"?</ModalTitle>
                 <ButtonContainer className="boton-modal">
-                    <ButtonModalDelete onClick={() => { closeModal(); deleteData(idToDelete) }}><IconoBorrarModal icon={faTrash} size="1x"></IconoBorrarModal>Eliminar</ButtonModalDelete>
+                    <ButtonModalDelete onClick={() => { closeModal(); deleteData(idToDelete) }}>
+                        <IconoBorrarModal icon={faTrash} size="1x"></IconoBorrarModal>
+                        Eliminar
+                    </ButtonModalDelete>
                 </ButtonContainer>
             </Modal>
             <DataTableStyle

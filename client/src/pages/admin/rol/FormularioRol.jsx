@@ -1,4 +1,4 @@
-import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton, FormTextArea } from "../../../styles/elements/formularios";
+import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton } from "../../../styles/elements/formularios";
 import { MensajeValidacion } from "../../../styles/elements/mensajes";
 import { useForm } from "../../../hooks/useForm";
 const initialForm = {
@@ -11,7 +11,7 @@ const validateForm = (form) => {
   let regexName = /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s.,;:¡!¿?()-]+$/;
 
   if(!form.nombreRol.trim()){
-    errors.nombreRol = `El nombre del es requerido`
+    errors.nombreRol = `El nombre del rol es requerido`
   }else if (!regexName.test(form.nombreRol.trim())) {
     errors.nombreRol = "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
   }else{
@@ -21,7 +21,7 @@ const validateForm = (form) => {
   return errors;
 };
 
-export const FormularioEmpresa = ({
+export const FormularioRol = ({
   createData,
   updateData,
   dataToEdit,

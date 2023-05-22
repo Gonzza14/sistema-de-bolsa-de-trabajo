@@ -3,7 +3,7 @@ import { Rol } from "../models";
 export const getRoles = async (req, res) => {
     try {
         const rols = await Rol.findAll();
-        res.json({rols});
+        res.json(rols);
     } catch (err) {
         return res.status(500).json({ message: err.message });
     }

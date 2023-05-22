@@ -14,11 +14,11 @@ import Message from "../../../components/Message";
 
 
 
-export const GestionRoles = () => {
+export const GestionRol = () => {
 
-    let url = "http://localhost:3000/api/roles"
+    let url = "http://localhost:3000/api/roles";
 
-    const { pathname } = useLocation()
+    const { pathname } = useLocation();
 
     let {
         dataBase,
@@ -50,7 +50,7 @@ export const GestionRoles = () => {
                             <Message msg="La operacion se realizo con exito" bgColor="#0F2651"/>
                         )}
                         <ButtonSection>
-                            {pathname === "/GestionRoles" && <><Buscador placeHolder="Buscar rol" className="gestion" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`} onClick={handleClick}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar Rol</SpanButton></ButtonCreate></>}
+                            {pathname === "/GestionRol" && <><Buscador placeHolder="Buscar rol" className="gestion" search={search} searcher={searcher} setSearch={setSearch} /><ButtonCreate to={`agregar`} onClick={handleClick}><StyledFontAwesomeIcon icon={faPlus} size="xl"></StyledFontAwesomeIcon><SpanButton>Agregar Rol</SpanButton></ButtonCreate></>}
                         </ButtonSection>
                         <Routes>
                             <Route path={``} element={<ListarRol

@@ -12,6 +12,7 @@ import { ListarUsuario } from "./ListarUsuario";
 import { FormularioUsuario } from "./FormularioUsuario";
 import { EditarUsuario } from "./EditarUsuario";
 import Message from "../../../components/Message";
+import { useEffect } from "react";
 
 export const GestionUsuario = () => {
 
@@ -30,14 +31,17 @@ export const GestionUsuario = () => {
         loading,
         response,
         setResponse,
-        handleClick
+        handleClick,
     } = useCustomFetch(url);
 
+    
+    
     let {
         search, searcher, setSearch
     } = useSearch()
 
     const results = !search ? dataBase : dataBase.filter(data => data.correoUsuario.toLowerCase().includes(search.toLowerCase()))
+
 
     return (
         <BaseContainer>

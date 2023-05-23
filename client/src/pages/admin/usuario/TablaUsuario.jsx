@@ -34,6 +34,10 @@ export const TablaUsuario = ({ data, setDataToEdit, deleteData, setResponse }) =
             sortable: true,
         },
         {
+            name: 'Rol',
+            selector: row => row.Rol.nombreRol,
+        },
+        {
             name: 'Accion',
             key: "action",
             text: "Action",

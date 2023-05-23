@@ -88,8 +88,8 @@ export const SpanButton = styled.span`
 
 export const ButtonModalClose = styled(ButtonOp)`
   position: absolute;
-  //top: 0.5rem;
-  top: -1rem;
+  top: 0.5rem;
+  //top: -1rem;
   right: 0.5rem;
   padding: 0.3rem 0.3rem 0rem 1rem;
 `;

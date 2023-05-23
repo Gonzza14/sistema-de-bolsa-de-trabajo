@@ -14,8 +14,8 @@ export const EditarMenu = () => {
         <ButtonSection>
             <EditCard>
                 <EditContainer>
-                    <EditText>Correo electronico</EditText>
-                    <EditDescription>Cambia el correo electronico del usuario</EditDescription>
+                    <EditText>Correo electronico y/o Rol</EditText>
+                    <EditDescription>Cambia el correo electronico y/o el rol del usuario</EditDescription>
                 </EditContainer>
                 <EditButton to={`editarCorreo`}><StyledFontAwesomeIcon icon={faUserPen} size="xl"></StyledFontAwesomeIcon><SpanButton>Cambiar correo</SpanButton></EditButton>
             </EditCard>

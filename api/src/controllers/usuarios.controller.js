@@ -3,7 +3,12 @@ const bcrypt = require("bcryptjs")
 
 export const getUsuarios = async (req, res) => {
   try {
-    const usuarios = await Usuario.findAll();
+    const usuarios = await Usuario.findAll({
+      include: [{
+        model: Rol,
+        attributes: ['id', 'nombreRol']
+      }]
+  });
     res.json(usuarios);
   } catch (err) {
     return res.status(500).json({ message: err.message });
@@ -28,7 +33,16 @@ export const createUsuario = async (req, res) => {
         contrasena: passEncriptada,
     });
 
-    res.json(newUsuario);
+    const usuarios = await Usuario.findOne({
+      where: { id: newUsuario.id },
+      include: [{
+        model: Rol,
+        attributes: ['id', 'nombreRol']
+      }]
+    });
+
+
+    res.json(usuarios);
 
   } catch (err) {
     return res.status(500).json({ message: err.message });

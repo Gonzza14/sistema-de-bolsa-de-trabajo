@@ -33,7 +33,7 @@ export const createUsuario = async (req, res) => {
         contrasena: passEncriptada,
     });
 
-    const usuarios = await Usuario.findOne({
+    const usuario = await Usuario.findOne({
       where: { id: newUsuario.id },
       include: [{
         model: Rol,
@@ -42,7 +42,7 @@ export const createUsuario = async (req, res) => {
     });
 
 
-    res.json(usuarios);
+    res.json(usuario);
 
   } catch (err) {
     return res.status(500).json({ message: err.message });
@@ -78,7 +78,16 @@ export const updateUsuario = async (req, res) => {
             contrasena: passEncriptada || usuario.contrasena,
         })
         await putUsuario.save();
-        res.json(putUsuario);
+
+        const usuarioCambiado = await Usuario.findOne({
+          where: { id: putUsuario.id },
+          include: [{
+            model: Rol,
+            attributes: ['id', 'nombreRol']
+          }]
+        });
+
+        res.json(usuarioCambiado);
     
     } catch (err) {
         return res.status(500).json({ message: err.message });

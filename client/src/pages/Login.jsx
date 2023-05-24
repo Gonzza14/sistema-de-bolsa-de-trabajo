@@ -7,6 +7,7 @@ import { useCustomFetch } from "../hooks/useCustomFetch";
 import { useVerificarPassword } from "../hooks/useVerificarPassword";
 import { useForm } from "../hooks/useForm";
 import { useState, useEffect } from "react";
+import { FormSelect } from "../styles/elements/formularios";
 
 const initialForm = {
     id:null,
@@ -20,6 +21,9 @@ const validateForm = (form => {
 })
 
 export const Login = () => {  
+    let urlRegistrar = "http://localhost:3000/api/usuarios"
+    let { dataBase } = useCustomFetch("http://localhost:3000/api/roles");
+
     let url = 'http://localhost:3000/api/usuarios/verificarcuenta'
 
     const { pathname } = useLocation()
@@ -56,15 +60,41 @@ export const Login = () => {
                         <div className="signup">
                             <form>
                                 <label className="label-signup" htmlFor="chk" aria-hidden="true">Crear Cuenta</label>
-                                <input className="input-signup" type="text" name="txt" placeholder="Nombre de usuario" required=""/>
-                                <input className="input-signup" type="email" name="email" placeholder="Email" required=""/>
-                                <select className="select-signup" onChange={event => console.log(event.target.value)}>
-                                    <option value="">Seleccione un rol</option>
-                                    
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
-                                <input className="input-signup" type="password" name="pswd" placeholder="Contraseña" required=""/>
+                                <input
+                                    className="select-signup"
+                                    type="text"
+                                    id="correoUsuario"
+                                    name="correoUsuario"
+                                    placeholder="Correo del usuario"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={form.correoUsuario}
+                                    required=""/>
+                                
+                                <input
+                                    className="select-signup"
+                                    type="password"
+                                    id="contrasena"
+                                    name="contrasena"
+                                    placeholder="Contraseña"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={form.contrasena}
+                                    required=""/>
+
+                                <FormSelect
+                                    id="idRol"
+                                    name="idRol"
+                                    placeholder="Seleccione el rol"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    defaultValue={'0'}
+                                    >
+                                    <option value="0" disabled>Seleccione el rol</option>
+                                    {dataBase &&
+                                        dataBase.map((rol) => <option key={rol.id} value={rol.id}>{rol.nombreRol}</option>)
+                                    }
+                                </FormSelect>
                                 <button className="button-signup">Crear Cuenta</button>
                             </form>
                         </div>

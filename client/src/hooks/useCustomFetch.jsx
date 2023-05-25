@@ -5,7 +5,7 @@ export const useCustomFetch = (url) => {
     const [dataBase, setDatabase] = useState(null);
     const [dataToEdit, setDataToEdit] = useState(null);
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [response, setResponse] = useState(null);
 
     useEffect(() => {
@@ -62,6 +62,24 @@ export const useCustomFetch = (url) => {
         });
     };
 
+		const createDataEmpty = () => {
+			setLoading(true);
+			helpHttp()
+				.post(url)
+				.then((res) => {
+					//console.log(res);
+					if (!res.err) {
+						setDatabase(res);
+						setLoading(false);
+						setResponse(true);
+						setTimeout(() => setResponse(false), 4000);
+					} else {
+						setError(res);
+						setLoading(false);
+					}
+				});
+		};
+
     const updateData = (data) => {
         let endpoint = `${url}/${data.id}`;
         //console.log(endpoint);
@@ -114,6 +132,7 @@ export const useCustomFetch = (url) => {
         dataToEdit,
         setDataToEdit,
         createData,
+				createDataEmpty,
         updateData,
         deleteData,
         error,

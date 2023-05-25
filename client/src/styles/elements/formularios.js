@@ -50,3 +50,12 @@ export const FormInputBotton = styled.input`
     background-color: #e84616;
   }
 `;
+
+export const FormSelect = styled.select`
+  border: 0;
+  //height: 6em;
+  padding: 1em 1.3em;
+  background: #c3c1d2;
+  color: #0f2651;
+  border-radius: 3px;
+`;

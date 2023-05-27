@@ -1,5 +1,5 @@
 //Importamos el modelo de datos
-import {HabilidadTecnica} from '../models';
+import {HabilidadTecnica , TipoHabilidad} from '../models';
 
 
 //Definimos los metodos del controlador
@@ -9,6 +9,10 @@ export const getHabilidadTecnicas = async (req, res) => {
 		const { idCurriculum } = req.params;
 		const habilidadTecnicas = await HabilidadTecnica.findAll({
 			where: { idCurriculum: idCurriculum },
+			include: [{
+        model: TipoHabilidad,
+        attributes: ['id', 'nombreTipoHabilidad']
+      }]
 		});
 		res.json(habilidadTecnicas);
 	} catch (err) {
@@ -26,8 +30,16 @@ export const createHabilidadTecnica = async (req, res) => {
 			idCurriculum,
 			idTipoHab, habTec 
 		});
-
-		res.json(newHabilidadTecnica);
+		
+		const habilidadTecnica = await HabilidadTecnica.findOne({
+      where: { id: newHabilidadTecnica.id },
+      include: [{
+        model: TipoHabilidad,
+        attributes: ['id', 'nombreTipoHabilidad']
+      }]
+    });
+    
+		res.json(habilidadTecnica);
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
@@ -45,9 +57,25 @@ export const updateHabilidadTecnica = async (req, res) => {
 			return res.status(404).json({ message: "Habilidad tecnica no encontrado" });
 		}
 
-		habilidadTecnica.set(req.body);
-		await habilidadTecnica.save();
-		res.json(habilidadTecnica);
+		const habilidadTecnicaAct = await habilidadTecnica.set(
+			{
+				idTipoHab : req.body.idTipoHab, 
+				habTec : req.body.habTec,
+			}
+		);
+		await habilidadTecnicaAct.save();
+
+		const habilidadTecnicaPut = await HabilidadTecnica.findOne({
+      where: { id: habilidadTecnicaAct.id },
+      include: [{
+        model: TipoHabilidad,
+        attributes: ['id', 'nombreTipoHabilidad']
+      }]
+    });
+		console.log(habilidadTecnicaPut);
+
+
+		res.json(habilidadTecnicaPut);
 
 	} catch (err) {
 		return res.status(500).json({ message: err.message });

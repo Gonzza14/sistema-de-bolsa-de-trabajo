@@ -5,9 +5,9 @@ import { Curriculum } from '../models';
 //Definimos los metodos del controlador
 export const getCurriculumExists = async (req, res) => {
 	try {
-		//Se obtiene el id de la conAcademico a obtener
+		//Aqui debe de ir el ID de la persona que esta logeada en el sistema
 		const id = 1;
-		//Se obtiene la conAcademico
+		//
 		const curriculum = await Curriculum.findOne({
 			where: { idSolic: id },
 		});

@@ -1,8 +1,8 @@
 import Loader from "../../../components/Loader";
 import Message from "../../../components/Message";
-import { TablaConAcademico } from "./TablaConAcademico";
+import { TablaHabilidadTec } from "./TablaHabilidadTec";
 
-export const ListarConAcademico = ({error, loading, dataBase, setDataToEdit ,deleteData, setResponse, openModalCV}) => {
+export const ListarHabilidadTec = ({error, loading, dataBase, setDataToEdit ,deleteData, setResponse, openModalCV}) => {
     return (
         <>
             {loading && <Loader />}
@@ -15,7 +15,7 @@ export const ListarConAcademico = ({error, loading, dataBase, setDataToEdit ,del
                 )
             }
             {
-                dataBase && <TablaConAcademico 
+                dataBase && <TablaHabilidadTec 
 										openModalCV={openModalCV}
                     data={dataBase}
                     setDataToEdit={setDataToEdit}

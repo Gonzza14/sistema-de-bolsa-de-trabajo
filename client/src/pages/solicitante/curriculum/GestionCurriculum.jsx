@@ -12,8 +12,6 @@ import {
   ButtonSection,
   GestionSection,
 } from "../../../styles/pages/admin/gestion";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { StyledFontAwesomeIcon } from "../../../styles/elements/navBar";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import {
   Contenedor,
@@ -22,10 +20,10 @@ import {
   Subtitulo,
   Boton,
 } from "../../../styles/elements/botones";
-import { GestionEmpresa } from "../../admin/empresa/GestionEmpresa";
 import Loader from "../../../components/Loader";
-import { Formulario } from "../../../styles/elements/formularios";
 import { GestionConAcademico } from "../conAcademico/GestionConAcademico";
+import { GestionExpLabo } from "../expLaboral/GestionarExpLabo";
+import { GestionHabilidadTec } from "../habilidadesTecnicas/GestionHabilidadTec";
 
 export const GestionCurriculum = () => {
   let url = "http://localhost:3000/api/curriculum";
@@ -78,9 +76,9 @@ export const GestionCurriculum = () => {
             su registro XD
           </Column4>
           <Column8>
-            <GestionConAcademico
-              parametro={valorIdCurriculum}
-            ></GestionConAcademico>
+            <GestionConAcademico parametro={valorIdCurriculum}></GestionConAcademico>
+            <GestionExpLabo parametro={valorIdCurriculum}></GestionExpLabo>
+            <GestionHabilidadTec parametro={valorIdCurriculum}></GestionHabilidadTec>
           </Column8>
         </ContainerCol>
       </BaseBody>

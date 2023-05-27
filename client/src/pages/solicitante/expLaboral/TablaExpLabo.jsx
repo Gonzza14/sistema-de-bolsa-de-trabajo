@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   ButtonContainer,
   ButtonModalDelete,
+  ButtonOp,
   IconoBorrarModal,
 } from "../../../styles/elements/botones";
 import { StyledFontAwesomeIconBoton } from "../../../styles/elements/botones";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 import { Modal } from "../../../components/Modal";
 import { useModal } from "../../../hooks/useModal";
+import { useState } from "react";
 import { ModalTitle } from "../../../styles/elements/modal";
 import {
   Timeline,
@@ -22,7 +23,7 @@ import {
   CardContent,
 } from "../../../styles/base";
 
-export const TablaConAcademico = ({
+export const TablaExpLabo = ({
   data,
   setDataToEdit,
   deleteData,
@@ -37,7 +38,7 @@ export const TablaConAcademico = ({
   const handleEdit = (row) => {
     setResponse(false);
     setDataToEdit(row);
-    navigate(`editarConAcademico/${row.id}`);
+    navigate(`editarExpLabo/${row.id}`);
     openModalCV();
   };
 
@@ -66,35 +67,37 @@ export const TablaConAcademico = ({
           </ButtonModalDelete>
         </ButtonContainer>
       </Modal>
-      <>
-        <Timeline>
-          {data.map((item) => (
-            <TimelineCardLeft key={item.id}>
-              <CardContainer>
-                <TimelineCardContent>
-                  <CardTitle>{item.nomInstitucion}</CardTitle>
-                  <CardContent>{item.nombreCurso}</CardContent>
-                  <CardContent>{item.periodoConAcad}</CardContent>
-                </TimelineCardContent>
-                <TimelineCardButtons>
-                  <ButtonOpt onClick={() => handleEdit(item)}>
-                    <StyledFontAwesomeIconBoton
-                      icon={faPenToSquare}
-                      size="1x"
-                    ></StyledFontAwesomeIconBoton>
-                  </ButtonOpt>
-                  <ButtonOpt onClick={() => handleDelete(item)}>
-                    <StyledFontAwesomeIconBoton
-                      icon={faTrash}
-                      size="1x"
-                    ></StyledFontAwesomeIconBoton>
-                  </ButtonOpt>
-                </TimelineCardButtons>
-              </CardContainer>
-            </TimelineCardLeft>
-          ))}
-        </Timeline>
-      </>
+
+      <Timeline>
+        {data.map((item) => (
+          <TimelineCardLeft key={item.id}>
+            <CardContainer>
+              <TimelineCardContent>
+                <CardTitle>{item.puesto}</CardTitle>
+                <CardContent>{item.descPuesto}</CardContent>
+                <CardContent>{item.periodoExpLabo}</CardContent>
+                <CardContent>{item.aniostrab}</CardContent>
+                <CardContent>{item.nombreOrga}</CardContent>
+                <CardContent>{item.contactoOrga}</CardContent>
+              </TimelineCardContent>
+              <TimelineCardButtons>
+                <ButtonOpt onClick={() => handleEdit(item)}>
+                  <StyledFontAwesomeIconBoton
+                    icon={faPenToSquare}
+                    size="1x"
+                  ></StyledFontAwesomeIconBoton>
+                </ButtonOpt>
+                <ButtonOpt onClick={() => handleDelete(item)}>
+                  <StyledFontAwesomeIconBoton
+                    icon={faTrash}
+                    size="1x"
+                  ></StyledFontAwesomeIconBoton>
+                </ButtonOpt>
+              </TimelineCardButtons>
+            </CardContainer>
+          </TimelineCardLeft>
+        ))}
+      </Timeline>
     </>
   );
 };

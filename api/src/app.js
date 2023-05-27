@@ -19,6 +19,8 @@ import congresoRoutes from './routes/congresos.routes';
 import logroRoutes from './routes/logros.routes';
 import recomLaboRoutes from './routes/recomLabors.routes';
 import recomPersRoutes from './routes/recomPers.routes';
+import tipoExamenesRoutes from './routes/tipoExamenes.routes';
+import examenesRoutes from './routes/examenes.routes';
 //Creacion de aplicacion
 const app = express();
 
@@ -69,6 +71,11 @@ app.use("/api/congreso", congresoRoutes);
 app.use("/api/logro", logroRoutes);
 
 app.use("/api/recomLabo", recomLaboRoutes);
+
 app.use("/api/recomPers", recomPersRoutes);
+
+app.use("/api/tipoExamenes", tipoExamenesRoutes);
+
+app.use("/api/examenes", examenesRoutes);
 
 export default app;

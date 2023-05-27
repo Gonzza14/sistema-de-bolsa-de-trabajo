@@ -1,6 +1,5 @@
 import {
   FormContainerCV,
-  FormTitleCV,
   FormularioCV,
   FormLabelCV,
   FormInputCV,
@@ -52,6 +51,7 @@ export const FormularioConAcademico = ({
   updateData,
   dataToEdit,
   setDataToEdit,
+	
 }) => {
   let path = "/GestionCurriculum";
 
@@ -67,11 +67,6 @@ export const FormularioConAcademico = ({
 
   return (
     <FormContainerCV>
-      <FormTitleCV>
-        {dataToEdit
-          ? "Editar conocimiento academico"
-          : "Agregar conocimiento academico"}
-      </FormTitleCV>
       <FormularioCV onSubmit={handleSubmit}>
         <FormLabelCV htmlFor="nomInstitucion">Nombre Institucion</FormLabelCV>
         <FormInputCV

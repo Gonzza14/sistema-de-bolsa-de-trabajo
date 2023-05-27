@@ -65,8 +65,8 @@ export const FormSelect = styled.select`
 
 export const FormContainerCV = styled.div`
   display: flex;
+	margin : 1em;
   flex-direction: column;
-  min-width: 95%;
 `;
 
 export const FormTitleCV = styled.h4``;
@@ -85,6 +85,7 @@ export const FormLabelCV = styled.label`
 export const FormInputCV = styled.input`
   border: 0;
   height: 1em;
+	width: 90%;
   padding: 0.5em 0.65em;
   background: #e8e8e8;
   color: #4d4d4d;

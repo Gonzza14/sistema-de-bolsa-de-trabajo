@@ -6,14 +6,14 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { StyledFontAwesomeIcon } from "../../../styles/elements/navBar";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import Message from "../../../components/Message";
-import { ListarConAcademico } from "./ListarConAcademico";
-import { FormularioConAcademico } from "./FormularioConAcademico";
+import { ListarHabilidadTec } from "./ListarHabilidadTec";
+import { FormularioHabilidadTec } from "./FormularioHabilidadTec";
 import { useModalCV } from "../../../hooks/useModalCV";
 import { ModalForm } from "../../../components/ModalForm";
 
-export const GestionConAcademico = (props) => {
+export const GestionHabilidadTec = (props) => {
   let nCurriculum = props.parametro;
-  let url = `http://localhost:3000/api/conAcademicos/${nCurriculum}`;
+  let url = `http://localhost:3000/api/habilidadTecnica/${nCurriculum}`;
   const [isOpen, openModalCV, closeModal] = useModalCV();
 
   const { pathname } = useLocation();
@@ -38,7 +38,7 @@ export const GestionConAcademico = (props) => {
 
   return (
     <BaseContainerCV>
-      <h3>Conocimientos academicos</h3>
+      <h3>Habibilidades tecnicas</h3>
       {response && (
         <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
       )}
@@ -46,7 +46,7 @@ export const GestionConAcademico = (props) => {
         {
           <>
             <ButtonCreateCV
-              to={`agregarConAcademico`}
+              to={`agregarHabilidadTec`}
               onClick={(handleClick, modalActivate)}
             >
               <StyledFontAwesomeIcon
@@ -58,7 +58,7 @@ export const GestionConAcademico = (props) => {
         }
       </ButtonSection>
 
-      <ListarConAcademico
+      <ListarHabilidadTec
         openModalCV={openModalCV}
         error={error}
         loading={loading}
@@ -70,14 +70,14 @@ export const GestionConAcademico = (props) => {
 
       <Routes>
         <Route
-          path={`agregarConAcademico`}
+          path={`agregarHabilidadTec`}
           element={
             <ModalForm
               isOpen={isOpen}
               dataToEdit={null}
               closeModal={closeModal}
             >
-              <FormularioConAcademico
+              <FormularioHabilidadTec
                 createData={createData}
                 updateData={updateData}
                 dataToEdit={null}
@@ -87,14 +87,14 @@ export const GestionConAcademico = (props) => {
           }
         />
         <Route
-          path={`editarConAcademico/:id`}
+          path={`editarHabilidadTec/:id`}
           element={
             <ModalForm
               isOpen={isOpen}
               dataToEdit={dataToEdit}
               closeModal={closeModal}
             >
-              <FormularioConAcademico
+              <FormularioHabilidadTec
                 createData={createData}
                 updateData={updateData}
                 dataToEdit={dataToEdit}

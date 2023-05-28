@@ -22,7 +22,7 @@ import {
   CardContent,
 } from "../../../styles/base";
 
-export const TablaHabilidadTec = ({
+export const TablaExamen = ({
   data,
   setDataToEdit,
   deleteData,
@@ -36,7 +36,7 @@ export const TablaHabilidadTec = ({
   const handleEdit = (row) => {
     setResponse(false);
     setDataToEdit(row);
-    navigate(`editarHabilidadTec/${row.id}`);
+    navigate(`editarExamen/${row.id}`);
     openModalCV();
   };
 
@@ -71,9 +71,11 @@ export const TablaHabilidadTec = ({
                 <CardContainer>
                   <TimelineCardContent>
                     <CardTitle>
-                      {item.TipoHabilidad.nombreTipoHabilidad}
+                      {item.TipoExamen.nombreTipoExamen}
                     </CardTitle>
-                    <CardContent>{item.habTec}</CardContent>
+                    <CardContent>{item.nombreExamen}</CardContent>
+                    <CardContent>{item.archivoExamen}</CardContent>
+                    <CardContent>{item.resultadoExamen}</CardContent>
                   </TimelineCardContent>
                   <TimelineCardButtons>
                     <ButtonOpt onClick={() => handleEdit(item)}>

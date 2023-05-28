@@ -10,8 +10,8 @@ import { MensajeValidacion } from "../../../styles/elements/mensajes";
 import { useForm } from "../../../hooks/useForm";
 const initialForm = {
   nombreIdioma: "",
-  puntConver: "",
-  puntConver: "",
+  puntEscritura: "",
+  puntLectura: "",
   puntConver: "",
   puntEscucha: "",
   id: null,
@@ -42,21 +42,36 @@ const validateForm = (form) => {
     delete errors.nombreIdioma;
   }
 
-  if (!form.puntConver.trim()) {
-    errors.puntConver = `Puntuacion escritura es requerido`;
-  } else if (!regexVarchar.test(form.puntConver.trim())) {
-    errors.puntConver =
+  if (!form.puntEscritura.trim()) {
+    errors.puntEscritura = `Puntuacion escritura es requerido`;
+  } else if (!regexVarchar.test(form.puntEscritura.trim())) {
+    errors.puntEscritura =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
 
     delete errors.puntConver;
   }
 
+  if (!form.puntLectura.trim()) {
+    errors.puntLectura = `Puntuacion lectura es requerido`;
+  } else if (!regexVarchar.test(form.puntLectura.trim())) {
+    errors.puntLectura = "No debe de contener mas de 255 caracteres";
+  } else {
+    delete errors.puntLectura;
+  }
+
   if (!form.puntConver.trim()) {
-    errors.puntConver = `Puntuacion lectura es requerido`;
+    errors.puntConver = `Puntuacion conversacion es requerido`;
   } else if (!regexVarchar.test(form.puntConver.trim())) {
     errors.puntConver = "No debe de contener mas de 255 caracteres";
   } else {
     delete errors.puntConver;
+  }
+  if (!form.puntEscucha.trim()) {
+    errors.puntEscucha = `Puntuacion escucha es requerido`;
+  } else if (!regexVarchar.test(form.puntEscucha.trim())) {
+    errors.puntEscucha = "No debe de contener mas de 255 caracteres";
+  } else {
+    delete errors.puntEscucha;
   }
 
   return errors;

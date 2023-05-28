@@ -10,12 +10,8 @@ import {
 const router = new Router();
 
 //Definimos las rutas
-// router.get("/", getConAcademicos);
-router.post("/", createCurriculum);
-// router.put("/:id", updateConAcademico);
-// router.delete("/:id", deleteConAcademico);
-router.get("/", getCurriculumExists);
-//router.get("/:id/:perfiles", getPerfilesPorConAcademico);
+router.post("/:id", createCurriculum);
+router.get("/:id", getCurriculumExists);
 
 //Exportamos el router
 export default router;

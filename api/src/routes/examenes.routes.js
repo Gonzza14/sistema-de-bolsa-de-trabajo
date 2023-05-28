@@ -8,7 +8,8 @@ const router = Router();
 
 //Definimos las rutas
 router.get("/:idCurriculum", getExamens);
-router.post("/:idCurriculum", createExamen);
+router.post('/:idCurriculum', upload.single('archivoExamen'), createExamen);
+// router.post("/:idCurriculum", createExamen);
 router.put("/:idCurriculum/:id", updateExamen);
 router.delete("/:idCurriculum/:id", deleteExamen);
 //router.get("/:id/:perfiles", getPerfilesPorExpLcreateExpLabo);

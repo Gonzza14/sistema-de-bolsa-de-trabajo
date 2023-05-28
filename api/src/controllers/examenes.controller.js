@@ -1,5 +1,5 @@
 //Importamos el modelo de datos
-import { Examen } from '../models';
+import { Examen , TipoExamen } from '../models';
 
 
 //Definimos los metodos del controlador
@@ -9,6 +9,10 @@ export const getExamens = async (req, res) => {
 		const { idCurriculum } = req.params;
 		const examen = await Examen.findAll({
 			where: { idCurriculum: idCurriculum },
+			include: [{
+        model: TipoExamen,
+        attributes: ['id', 'nombreTipoExamen']
+      }]
 		});
 		res.json(examen);
 	} catch (err) {
@@ -27,7 +31,15 @@ export const createExamen = async (req, res) => {
 			idTipoEx, nombreExamen, archivoExamen, resultadoExamen
 		});
 
-		res.json(newExamen);
+		const examen = await Examen.findOne({
+      where: { id: newExamen.id },
+      include: [{
+        model: TipoExamen,
+        attributes: ['id', 'nombreTipoExamen']
+      }]
+    });
+
+		res.json(examen);
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}

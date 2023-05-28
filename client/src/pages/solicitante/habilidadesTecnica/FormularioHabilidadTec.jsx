@@ -20,7 +20,7 @@ const validateForm = (form) => {
   let regexVarchar = /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s.,;:¡!¿?()-]+$/;
 
   if (form.idTipoHab === "0") {
-    errors.idTipoHab = "El campo rol es requerido";
+    errors.idTipoHab = "El campo tipo habilidad es requerido";
   } else {
     delete errors.idTipoHab;
   }

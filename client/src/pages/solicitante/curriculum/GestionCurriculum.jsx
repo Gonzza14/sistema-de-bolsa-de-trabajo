@@ -31,15 +31,21 @@ import { GestionCongreso } from "../congreso/GestionCongreso";
 import { GestionLogro } from "../logro/GestionarLogro";
 import { GestionRecomLaboral } from "../recomendacionLaboral/GestionRecomLaboral";
 import { GestionRecomPersonal } from "../recomendacionPersonal/GestionarRecomPersonal";
+import { GestionExamen } from "../examen/GestionExamen";
 
 export const GestionCurriculum = () => {
-  let url = "http://localhost:3000/api/curriculum";
+  localStorage.setItem("id_usuario", 1);
+
+  let id_usuario = localStorage.getItem("id_usuario"),
+    url = `http://localhost:3000/api/curriculum/${id_usuario}`;
 
   const { pathname } = useLocation();
 
   let { dataBase, createDataEmpty, loading } = useCustomFetch(url);
-  if (dataBase !== null) {
-    var valorIdCurriculum = dataBase.id;
+  console.log(dataBase);
+
+  if (dataBase) {
+    var valorIdCurriculum = dataBase.curriculum.id;
   }
 
   const handleClickCurriculum = () => {
@@ -103,6 +109,7 @@ export const GestionCurriculum = () => {
             <GestionRecomPersonal
               parametro={valorIdCurriculum}
             ></GestionRecomPersonal>
+            <GestionExamen parametro={valorIdCurriculum}></GestionExamen>
           </Column8>
         </ContainerCol>
       </BaseBody>

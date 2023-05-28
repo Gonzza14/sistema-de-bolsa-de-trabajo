@@ -156,7 +156,7 @@ export const verificarUsuario = async (req, res) => {
         //Comparar contraseña proporcionada con contraseña encriptada
         bcrypt.compare(password, usuario.contrasena, (err, result)=>{
           if(result){
-            res.json({"valido": true, "rol": usuario.Rol.nombreRol, "email":email});        
+            res.json({"valido": true, "id_usuario": usuario.id, "rol": usuario.Rol.nombreRol, "email":email});        
           }else{
             res.json({"valido": false});        
           }

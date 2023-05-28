@@ -21,13 +21,15 @@ export const createIdioma = async (req, res) => {
 	try {
 		const { nombreIdioma, puntEscritura, puntLectura, puntConver, puntEscucha } = req.body;
 		const { idCurriculum } = req.params;
-		//Se crea una nueva instancia del modelo de datos
-		const newIdioma = await Idioma.create({
-			idCurriculum,
-			nombreIdioma, puntEscritura, puntLectura, puntConver, puntEscucha
-		});
-
-		res.json(newIdioma);
+		const idioma = await Idioma.findAll({ where: { idCurriculum: idCurriculum }, });
+		if (idioma.some(i => i.nombreIdioma === nombreIdioma)) {
+			return res.status(400).json({ message: "Ya existe"});
+		} else {
+				// create new instance of Idioma
+				const newIdioma = await Idioma.create({ idCurriculum, nombreIdioma, puntEscritura, puntLectura, puntConver, puntEscucha });
+				res.json(newIdioma);
+		}
+		
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
@@ -37,6 +39,7 @@ export const updateIdioma = async (req, res) => {
 	try {
 		//Se obtiene el id  actualizar
 		const { id } = req.params;
+		const { idCurriculum } = req.params;
 
 		//Se actualiza
 		const idioma = await Idioma.findByPk(id);
@@ -45,10 +48,15 @@ export const updateIdioma = async (req, res) => {
 			return res.status(404).json({ message: "Idioma no encontrado" });
 		}
 
-		idioma.set(req.body);
-		await idioma.save();
-		res.json(idioma);
-
+		const idiomaPut = await Idioma.findAll({ where: { idCurriculum: idCurriculum }, });
+		if (idiomaPut.some(i => i.nombreIdioma === req.body.nombreIdioma)) {
+			return res.status(400).json({ message: "Ya existe"});
+		} else {
+			idioma.set(req.body);
+			await idioma.save();
+			res.json(idioma);
+		}
+	
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}

@@ -23,7 +23,14 @@ import {
 import Loader from "../../../components/Loader";
 import { GestionConAcademico } from "../conAcademico/GestionConAcademico";
 import { GestionExpLabo } from "../expLaboral/GestionarExpLabo";
-import { GestionHabilidadTec } from "../habilidadesTecnicas/GestionHabilidadTec";
+import { GestionHabilidadTec } from "../habilidadesTecnica/GestionHabilidadTec";
+import { GestionIdioma } from "../idiomas/GestionIdioma";
+import { GestionLibro } from "../libro/GestionLibro";
+import { GestionCertificacion } from "../certificacion/GestionCertificacion";
+import { GestionCongreso } from "../congreso/GestionCongreso";
+import { GestionLogro } from "../logro/GestionarLogro";
+import { GestionRecomLaboral } from "../recomendacionLaboral/GestionRecomLaboral";
+import { GestionRecomPersonal } from "../recomendacionPersonal/GestionarRecomPersonal";
 
 export const GestionCurriculum = () => {
   let url = "http://localhost:3000/api/curriculum";
@@ -76,9 +83,26 @@ export const GestionCurriculum = () => {
             su registro XD
           </Column4>
           <Column8>
-            <GestionConAcademico parametro={valorIdCurriculum}></GestionConAcademico>
+            <GestionConAcademico
+              parametro={valorIdCurriculum}
+            ></GestionConAcademico>
             <GestionExpLabo parametro={valorIdCurriculum}></GestionExpLabo>
-            <GestionHabilidadTec parametro={valorIdCurriculum}></GestionHabilidadTec>
+            <GestionHabilidadTec
+              parametro={valorIdCurriculum}
+            ></GestionHabilidadTec>
+            <GestionIdioma parametro={valorIdCurriculum}></GestionIdioma>
+            <GestionLibro parametro={valorIdCurriculum}></GestionLibro>
+            <GestionCertificacion
+              parametro={valorIdCurriculum}
+            ></GestionCertificacion>
+            <GestionCongreso parametro={valorIdCurriculum}></GestionCongreso>
+            <GestionLogro parametro={valorIdCurriculum}></GestionLogro>
+            <GestionRecomLaboral
+              parametro={valorIdCurriculum}
+            ></GestionRecomLaboral>
+            <GestionRecomPersonal
+              parametro={valorIdCurriculum}
+            ></GestionRecomPersonal>
           </Column8>
         </ContainerCol>
       </BaseBody>

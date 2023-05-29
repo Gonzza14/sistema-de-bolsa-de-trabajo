@@ -1,4 +1,8 @@
 import { Header } from "../../../components/Header";
+import React from 'react';
+import styled from 'styled-components';
+import { FaPen, FaFacebook, FaTwitter, FaLinkedin, FaUser, FaHouseUser, FaPhone } from 'react-icons/fa';
+
 import {
   BaseContainer,
   BaseBody,
@@ -33,6 +37,29 @@ import { GestionRecomLaboral } from "../recomendacionLaboral/GestionRecomLaboral
 import { GestionRecomPersonal } from "../recomendacionPersonal/GestionarRecomPersonal";
 import { GestionExamen } from "../examen/GestionExamen";
 
+const ContainerPerfil = styled.div`
+  font-family: sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+`;
+
+const Title = styled.h3`
+  text-align: center;
+`;
+
+const List = styled.ul`
+  list-style: none;
+  padding: 2px;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+	margin : 5px;
+	padding: 2px;
+  align-items: center;
+`;
+
+
 export const GestionCurriculum = () => {
   localStorage.setItem("id_usuario", 1);
 
@@ -42,7 +69,6 @@ export const GestionCurriculum = () => {
   const { pathname } = useLocation();
 
   let { dataBase, createDataEmpty, loading } = useCustomFetch(url);
-  console.log(dataBase);
 
   if (dataBase) {
     var valorIdCurriculum = dataBase.curriculum.id;
@@ -84,9 +110,46 @@ export const GestionCurriculum = () => {
         <ContainerCol>
           <Column4>
             <Titulo>Perfil</Titulo>
-            !!!Alguna imagen!!!<hr></hr>
-            Aqui va a ir la informacion sobre el usuario Direccion tomada desde
-            su registro XD
+            <ContainerPerfil>
+              <hr />
+              <Title>Datos personales</Title>
+              <hr />
+              <List>
+                <ListItem>
+									<FaUser></FaUser>
+                  Nombres: {dataBase.solicitante.nombresSolic}
+                </ListItem>
+                <ListItem>
+								<FaUser></FaUser>
+                  Apellidos: {dataBase.solicitante.apellidosSolic}
+                </ListItem>
+                <ListItem>
+                  <FaHouseUser />
+                  Direccion: {dataBase.solicitante.direcSolic}
+                </ListItem>
+                <ListItem>
+                  <FaPhone />
+                  Telefono: {dataBase.solicitante.telefonoSolic}
+                </ListItem>
+              </List>
+              <hr />
+              <Title>Redes Sociales</Title>
+              <hr />
+              <List>
+                <ListItem>
+								<FaFacebook/>
+                  Facebook: {dataBase.solicitante.facebook}
+                </ListItem>
+                <ListItem>
+                  <FaTwitter/>
+                  Twitter: {dataBase.solicitante.twitter}
+                </ListItem>
+                <ListItem>
+                  <FaLinkedin />
+                  Linkedin: {dataBase.solicitante.linkedin}
+                </ListItem>
+              </List>
+            </ContainerPerfil>
           </Column4>
           <Column8>
             <GestionConAcademico

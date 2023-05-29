@@ -60,6 +60,7 @@ export const FormularioExamen = ({
   updateData,
   dataToEdit,
   setDataToEdit,
+	subirArchivo, updateSubirArchivo
 }) => {
   let url = "http://localhost:3000/api/tipoExamenes";
 
@@ -67,25 +68,26 @@ export const FormularioExamen = ({
 
   let path = "/GestionCurriculum";
 
-  let { form, errors, handleChange, handleBlur, handleSubmit } = useForm(
+  let { form, errors, handleChange, handleBlur, handleSubmit, subirArchivoSubmit } = useForm(
     initialForm,
     validateForm,
     path,
     createData,
     updateData,
     dataToEdit,
-    setDataToEdit
+    setDataToEdit, 
+		subirArchivo,
+		updateSubirArchivo
   );
   const handleSelect = (e) => {
     var index = e.nativeEvent.target.selectedIndex;
     form.TipoExamen.nombreTipoExamen = e.nativeEvent.target[index].text;
     form.TipoExamen.id = e.nativeEvent.target.value;
   };
-  console.log(dataToEdit);
 
   return (
     <FormContainerCV>
-      <FormularioCV onSubmit={handleSubmit}>
+      <FormularioCV onSubmit={subirArchivoSubmit}>
         {dataToEdit && (
           <FormSelect
             id="idTipoEx"
@@ -110,13 +112,13 @@ export const FormularioExamen = ({
           <FormSelect
             id="idTipoEx"
             name="idTipoEx"
-            placeholder="Seleccione el tipo de habilidad"
+            placeholder="Seleccione el tipo de examen"
             onChange={handleChange}
             onBlur={handleBlur}
             defaultValue={"0"}
           >
             <option value="0" disabled>
-              Seleccione el ex
+              Seleccione el tipo de examen
             </option>
             {dataBase &&
               dataBase.map((ex) => (
@@ -144,6 +146,7 @@ export const FormularioExamen = ({
         )}
 
         <FormLabelCV htmlFor="archivoExamen">Archivo Examen</FormLabelCV>
+				<FormLabelCV >{form.archivoExamen.replace("C:\\fakepath\\", "")}</FormLabelCV>
         <FormInputCV
           type="file"
           id="archivoExamen"
@@ -151,7 +154,6 @@ export const FormularioExamen = ({
           placeholder="Archivo examen"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={form.archivoExamen}
         />
         {errors.archivoExamen && (
           <MensajeValidacion>{errors.archivoExamen}</MensajeValidacion>

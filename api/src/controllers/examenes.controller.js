@@ -1,5 +1,5 @@
 //Importamos el modelo de datos
-import { Examen , TipoExamen } from '../models';
+import { Examen, TipoExamen } from '../models';
 
 
 //Definimos los metodos del controlador
@@ -10,9 +10,9 @@ export const getExamens = async (req, res) => {
 		const examen = await Examen.findAll({
 			where: { idCurriculum: idCurriculum },
 			include: [{
-        model: TipoExamen,
-        attributes: ['id', 'nombreTipoExamen']
-      }]
+				model: TipoExamen,
+				attributes: ['id', 'nombreTipoExamen']
+			}]
 		});
 		res.json(examen);
 	} catch (err) {
@@ -21,17 +21,20 @@ export const getExamens = async (req, res) => {
 };
 
 export const createExamen = async (req, res) => {
-	//Se obtienen los datos del cuerpo de la peticion
-	try {
-		const { idTipoEx, nombreExamen, archivoExamen, resultadoExamen } = req.body;
-		const { idCurriculum } = req.params;
-		//Se crea una nueva instancia del modelo de datos
-		const newExamen = await Examen.create({
-			idCurriculum,
-			idTipoEx, nombreExamen, archivoExamen, resultadoExamen
-		});
+  try {
+		const data = JSON.parse(req.body.data);
+	const { idTipoEx, nombreExamen, resultadoExamen } = data;
+    const { idCurriculum } = req.params;
+    const archivoExamen = req.file.filename;
+    const newExamen = await Examen.create({
+      idCurriculum,
+      idTipoEx,
+      nombreExamen,
+      archivoExamen,
+      resultadoExamen
+    });
 
-		const examen = await Examen.findOne({
+    const examen = await Examen.findOne({
       where: { id: newExamen.id },
       include: [{
         model: TipoExamen,
@@ -39,32 +42,56 @@ export const createExamen = async (req, res) => {
       }]
     });
 
-		res.json(examen);
-	} catch (err) {
-		return res.status(500).json({ message: err.message });
-	}
+    res.json(examen);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: err.message });
+  }
 };
+
 
 export const updateExamen = async (req, res) => {
-	try {
-		//Se obtiene el id  actualizar
-		const { id } = req.params;
+  try {
+    // Get the id to update
+    const { id } = req.params;
+		const { idCurriculum } = req.params;
 
-		//Se actualiza
-		const examen = await Examen.findByPk(id);
+    // Parse the data from the request body
+    const data = JSON.parse(req.body.data);
+    const { idTipoEx, nombreExamen, resultadoExamen } = data;
+    const archivoExamen = req.file ? req.file.filename : undefined;
 
-		if (!examen) {
-			return res.status(404).json({ message: "Examen no encontrado" });
-		}
+    // Update the exam
+    const examen = await Examen.findByPk(id);
 
-		examen.set(req.body);
-		await examen.save();
-		res.json(examen);
 
-	} catch (err) {
-		return res.status(500).json({ message: err.message });
-	}
+    if (!examen) {
+      return res.status(404).json({ message: "Examen no encontrado" });
+    }
+
+    examen.set({
+      idTipoEx,
+      nombreExamen,
+      resultadoExamen,
+      ...(archivoExamen && { archivoExamen })
+    });
+    await examen.save();
+
+		const examenActualizado = await Examen.findAll({
+			where: { idCurriculum: idCurriculum },
+      include: [{
+        model: TipoExamen,
+        attributes: ['id', 'nombreTipoExamen']
+      }]
+    });
+
+    res.json(examenActualizado);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 };
+
+
 
 export const deleteExamen = async (req, res) => {
 	try {

@@ -72,11 +72,11 @@ export const TablaIdioma = ({
             <TimelineCardLeft key={item.id}>
               <CardContainer>
                 <TimelineCardContent>
-                  <CardTitle>{item.nombreIdioma}</CardTitle>
-                  <CardContent>{item.puntEscritura}</CardContent>
-                  <CardContent>{item.puntLectura}</CardContent>
-                  <CardContent>{item.puntConver}</CardContent>
-                  <CardContent>{item.puntEscucha}</CardContent>
+                  <CardContent><b>Nombre del Idioma: </b>{item.nombreIdioma}</CardContent>
+                  <CardContent><b>Escritura: </b>{item.puntEscritura}</CardContent>
+                  <CardContent><b>Lectura: </b>{item.puntLectura}</CardContent>
+                  <CardContent><b>Conversación: </b>{item.puntConver}</CardContent>
+                  <CardContent><b>Escucha:</b>{item.puntEscucha}</CardContent>
                 </TimelineCardContent>
                 <TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>

@@ -30,6 +30,8 @@ export const GestionExamen = (props) => {
     response,
     setResponse,
     handleClick,
+		subirArchivo, 
+		updateSubirArchivo,
   } = useCustomFetch(url);
 
   const modalActivate = () => {
@@ -79,6 +81,7 @@ export const GestionExamen = (props) => {
             >
               <FormularioExamen
                 createData={createData}
+                subirArchivo={subirArchivo}
                 updateData={updateData}
                 dataToEdit={null}
                 setDataToEdit={setDataToEdit}
@@ -96,6 +99,7 @@ export const GestionExamen = (props) => {
             >
               <FormularioExamen
                 createData={createData}
+								updateSubirArchivo = {updateSubirArchivo}
                 updateData={updateData}
                 dataToEdit={dataToEdit}
                 setDataToEdit={setDataToEdit}

@@ -2,3 +2,4 @@
 .env
 # Módulos de node
 node_modules
+uploads

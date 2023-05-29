@@ -85,7 +85,7 @@ export const FormLabelCV = styled.label`
 export const FormInputCV = styled.input`
   border: 0;
   height: 1em;
-	width: 90%;
+	width: 95%;
   padding: 0.5em 0.65em;
   background: #e8e8e8;
   color: #4d4d4d;

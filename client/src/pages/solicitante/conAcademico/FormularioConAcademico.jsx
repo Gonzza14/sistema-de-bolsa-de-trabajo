@@ -23,6 +23,8 @@ const validateForm = (form) => {
   } else if (!regexVarchar.test(form.nomInstitucion.trim())) {
     errors.nomInstitucion =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.nomInstitucion.trim().length > 100) {
+    errors.nomInstitucion = "El nombre de la institución no debe tener más de 100 caracteres";
   } else {
     delete errors.nomInstitucion;
   }
@@ -30,15 +32,20 @@ const validateForm = (form) => {
   if (!form.nombreCurso.trim()) {
     errors.nombreCurso = `El nombre del curso es requerido`;
   } else if (!regexVarchar.test(form.nombreCurso.trim())) {
-    errors.nombreCurso = "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
-
+    errors.nombreCurso =
+      "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.nombreCurso.trim().length > 100) {
+    errors.nombreCurso = "El nombre del curso no debe tener más de 100 caracteres";
+  } else {
     delete errors.nombreCurso;
   }
 
   if (!form.periodoConAcad.trim()) {
     errors.periodoConAcad = `El periodo academico es requerido`;
   } else if (!regexVarchar.test(form.periodoConAcad.trim())) {
-    errors.periodoConAcad = "No debe de contener mas de 255 caracteres";
+    errors.periodoConAcad = "Periodo";
+  } else if (form.periodoConAcad.trim().length > 80) {
+    errors.periodoConAcad = "El periodo académico no debe tener más de 80 caracteres";
   } else {
     delete errors.periodoConAcad;
   }
@@ -81,12 +88,12 @@ export const FormularioConAcademico = ({
         {errors.nomInstitucion && (
           <MensajeValidacion>{errors.nomInstitucion}</MensajeValidacion>
         )}
-        <FormLabelCV htmlFor="nombreCurso">Nombre Curso</FormLabelCV>
+        <FormLabelCV htmlFor="nombreCurso">Nombre del Curso</FormLabelCV>
         <FormInputCV
           type="text"
           id="nombreCurso"
           name="nombreCurso"
-          placeholder="Nombre Curso"
+          placeholder="Nombre del curso"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.nombreCurso}

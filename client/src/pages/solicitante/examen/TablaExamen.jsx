@@ -45,57 +45,64 @@ export const TablaExamen = ({
     setIdToDelete(row.id);
     openModal();
   };
-    return (
+  return (
+    <>
+      <Modal isOpen={isOpen} closeModal={closeModal}>
+        <ModalTitle>
+          ¿Estás seguro de eliminar el registro con el identificador "
+          {idToDelete}"?
+        </ModalTitle>
+        <ButtonContainer className="boton-modal">
+          <ButtonModalDelete
+            onClick={() => {
+              closeModal();
+              deleteData(idToDelete);
+            }}
+          >
+            <IconoBorrarModal icon={faTrash} size="1x"></IconoBorrarModal>
+            Eliminar
+          </ButtonModalDelete>
+        </ButtonContainer>
+      </Modal>
       <>
-        <Modal isOpen={isOpen} closeModal={closeModal}>
-          <ModalTitle>
-            ¿Estás seguro de eliminar el registro con el identificador "
-            {idToDelete}"?
-          </ModalTitle>
-          <ButtonContainer className="boton-modal">
-            <ButtonModalDelete
-              onClick={() => {
-                closeModal();
-                deleteData(idToDelete);
-              }}
-            >
-              <IconoBorrarModal icon={faTrash} size="1x"></IconoBorrarModal>
-              Eliminar
-            </ButtonModalDelete>
-          </ButtonContainer>
-        </Modal>
-        <>
-          <Timeline>
-            {data.map((item) => (
-              <TimelineCardLeft key={item.id}>
-                <CardContainer>
-                  <TimelineCardContent>
-                    <CardTitle>
-                      {item.TipoExamen.nombreTipoExamen}
-                    </CardTitle>
-                    <CardContent>{item.nombreExamen}</CardContent>
-                    <CardContent>{item.archivoExamen}</CardContent>
-                    <CardContent>{item.resultadoExamen}</CardContent>
-                  </TimelineCardContent>
-                  <TimelineCardButtons>
-                    <ButtonOpt onClick={() => handleEdit(item)}>
-                      <StyledFontAwesomeIconBoton
-                        icon={faPenToSquare}
-                        size="1x"
-                      ></StyledFontAwesomeIconBoton>
-                    </ButtonOpt>
-                    <ButtonOpt onClick={() => handleDelete(item)}>
-                      <StyledFontAwesomeIconBoton
-                        icon={faTrash}
-                        size="1x"
-                      ></StyledFontAwesomeIconBoton>
-                    </ButtonOpt>
-                  </TimelineCardButtons>
-                </CardContainer>
-              </TimelineCardLeft>
-            ))}
-          </Timeline>
-        </>
+        <Timeline>
+          {data.map((item) => (
+            <TimelineCardLeft key={item.id}>
+              <CardContainer>
+                <TimelineCardContent>
+                  <CardTitle>{item.TipoExamen.nombreTipoExamen}</CardTitle>
+                  <CardContent>{item.nombreExamen}</CardContent>
+                  <CardContent>
+                    <a
+                      href={`http://localhost:3000/images/${item.archivoExamen.replace(
+                        "C:/fakepath/",
+                        ""
+                      )}`}
+                    >
+                      {item.archivoExamen.replace("C:\\fakepath\\", "")}
+                    </a>
+                  </CardContent>
+                  <CardContent>{item.resultadoExamen}</CardContent>
+                </TimelineCardContent>
+                <TimelineCardButtons>
+                  <ButtonOpt onClick={() => handleEdit(item)}>
+                    <StyledFontAwesomeIconBoton
+                      icon={faPenToSquare}
+                      size="1x"
+                    ></StyledFontAwesomeIconBoton>
+                  </ButtonOpt>
+                  <ButtonOpt onClick={() => handleDelete(item)}>
+                    <StyledFontAwesomeIconBoton
+                      icon={faTrash}
+                      size="1x"
+                    ></StyledFontAwesomeIconBoton>
+                  </ButtonOpt>
+                </TimelineCardButtons>
+              </CardContainer>
+            </TimelineCardLeft>
+          ))}
+        </Timeline>
       </>
-    );
+    </>
+  );
 };

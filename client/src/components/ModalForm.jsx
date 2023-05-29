@@ -9,7 +9,6 @@ import {
 
 export const ModalForm = ({ children, isOpen, closeModal, dataToEdit }) => {
   const handleModalContainerClick = (e) => e.stopPropagation();
-  console.log(dataToEdit);
   return (
     <ModalArticle className={`${isOpen && "is-open"}`}>
       <ModalContainerCV onClick={handleModalContainerClick}>

@@ -1,7 +1,6 @@
 import {
   ButtonContainer,
   ButtonModalDelete,
-  ButtonOp,
   IconoBorrarModal,
 } from "../../../styles/elements/botones";
 import { StyledFontAwesomeIconBoton } from "../../../styles/elements/botones";
@@ -15,7 +14,6 @@ import {
   Timeline,
   TimelineCardLeft,
   TimelineCardContent,
-  TimelineCard,
   TimelineCardButtons,
   ButtonOpt,
   CardContainer,
@@ -73,24 +71,24 @@ export const TablaExpLabo = ({
           <TimelineCardLeft key={item.id}>
             <CardContainer>
               <TimelineCardContent>
-                <CardTitle>{item.puesto}</CardTitle>
-                <CardContent>{item.descPuesto}</CardContent>
-                <CardContent>{item.periodoExpLabo}</CardContent>
-                <CardContent>{item.aniostrab}</CardContent>
-                <CardContent>{item.nombreOrga}</CardContent>
-                <CardContent>{item.contactoOrga}</CardContent>
+                <CardContent><b>Puesto: </b>{item.puesto}</CardContent>
+                <CardContent><b>Descripción Puesto: </b>{item.descPuesto}</CardContent>
+                <CardContent><b>Periodo Experiencia: </b>{item.periodoExpLabo}</CardContent>
+                <CardContent><b>Años: </b>{item.aniostrab}</CardContent>
+                <CardContent><b>Nombre Organización: </b>{item.nombreOrga}</CardContent>
+                <CardContent><b>Contacto Organización: </b>{item.contactoOrga}</CardContent>
               </TimelineCardContent>
               <TimelineCardButtons>
                 <ButtonOpt onClick={() => handleEdit(item)}>
                   <StyledFontAwesomeIconBoton
                     icon={faPenToSquare}
-                    size="1x"
+                    size="xl"
                   ></StyledFontAwesomeIconBoton>
                 </ButtonOpt>
                 <ButtonOpt onClick={() => handleDelete(item)}>
                   <StyledFontAwesomeIconBoton
                     icon={faTrash}
-                    size="1x"
+                    size="xl"
                   ></StyledFontAwesomeIconBoton>
                 </ButtonOpt>
               </TimelineCardButtons>

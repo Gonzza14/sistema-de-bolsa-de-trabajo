@@ -12,23 +12,34 @@ export const helpHttp = () => {
       ? { ...defaultHeader, ...options.headers }
       : defaultHeader;
 
-    options.body = JSON.stringify(options.body) || false;
-    if (!options.body) delete options.body;
 
+
+		if (options.body instanceof FormData) {
+			// Don't stringify FormData objects
+		} else {
+			options.body = JSON.stringify(options.body) || false;
+			if (!options.body) delete options.body;
+		}
+		
     //console.log(options);
     setTimeout(() => controller.abort(), 3000);
 
-    return fetch(endpoint, options)
-      .then((res) =>
-        res.ok
-          ? res.json()
-          : Promise.reject({
-              err: true,
-              status: res.status || "00",
-              statusText: res.statusText || "Ocurrió un error",
-            })
-      )
-      .catch((err) => err);
+		return fetch(endpoint, options)
+  .then((res) => {
+    if (!res.ok) {
+      console.log(res);
+    }
+    return res.ok
+      ? res.json()
+      : Promise.reject({
+          err: true,
+          status: res.status || "00",
+          statusText: res.statusText || "Ocurrió un error",
+        });
+  })
+  .catch((err) => err);
+
+
   };
 
 

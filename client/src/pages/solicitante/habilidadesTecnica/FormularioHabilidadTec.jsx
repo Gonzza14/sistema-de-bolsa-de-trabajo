@@ -99,7 +99,7 @@ console.log("first")
             defaultValue={"0"}
           >
             <option value="0" disabled>
-              Seleccione el tipoHab
+              Seleccione el Tipo De Habilidad
             </option>
             {dataBase &&
               dataBase.map((tipoHab) => (
@@ -112,12 +112,12 @@ console.log("first")
         {errors.idTipoHab && (
           <MensajeValidacion>{errors.idTipoHab}</MensajeValidacion>
         )}
-        <FormLabelCV htmlFor="habTec">Nombre Curso</FormLabelCV>
+        <FormLabelCV htmlFor="habTec">Habilidad Técnica</FormLabelCV>
         <FormInputCV
           type="text"
           id="habTec"
           name="habTec"
-          placeholder="Habilidad tecnica"
+          placeholder="Habilidad técnica"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.habTec}

@@ -70,22 +70,22 @@ export const TablaHabilidadTec = ({
               <TimelineCardLeft key={item.id}>
                 <CardContainer>
                   <TimelineCardContent>
-                    <CardTitle>
-                      {item.TipoHabilidad.nombreTipoHabilidad}
-                    </CardTitle>
-                    <CardContent>{item.habTec}</CardContent>
+                    <CardContent>
+                      <b>Tipo Habilidad: </b>{item.TipoHabilidad.nombreTipoHabilidad}
+                    </CardContent>
+                    <CardContent><b>Habilidad Técnica: </b>{item.habTec}</CardContent>
                   </TimelineCardContent>
                   <TimelineCardButtons>
                     <ButtonOpt onClick={() => handleEdit(item)}>
                       <StyledFontAwesomeIconBoton
                         icon={faPenToSquare}
-                        size="1x"
+                        size="xl"
                       ></StyledFontAwesomeIconBoton>
                     </ButtonOpt>
                     <ButtonOpt onClick={() => handleDelete(item)}>
                       <StyledFontAwesomeIconBoton
                         icon={faTrash}
-                        size="1x"
+                        size="xl"
                       ></StyledFontAwesomeIconBoton>
                     </ButtonOpt>
                   </TimelineCardButtons>

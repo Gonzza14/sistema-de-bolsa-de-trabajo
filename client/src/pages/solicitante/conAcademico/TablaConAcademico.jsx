@@ -72,21 +72,21 @@ export const TablaConAcademico = ({
             <TimelineCardLeft key={item.id}>
               <CardContainer>
                 <TimelineCardContent>
-                  <CardTitle>{item.nomInstitucion}</CardTitle>
-                  <CardContent>{item.nombreCurso}</CardContent>
-                  <CardContent>{item.periodoConAcad}</CardContent>
+                  <CardContent><b>Nombre Institución: </b>{item.nomInstitucion}</CardContent>
+                  <CardContent><b>Nombre Curso: </b>{item.nombreCurso}</CardContent>
+                  <CardContent><b>Año Finalizacion: </b>{item.periodoConAcad}</CardContent>
                 </TimelineCardContent>
                 <TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                   <ButtonOpt onClick={() => handleDelete(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faTrash}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                 </TimelineCardButtons>

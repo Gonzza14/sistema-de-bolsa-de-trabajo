@@ -1,37 +1,26 @@
 import { Header } from "../components/Header";
 import { TarjetaEmpleo } from "../components/empleo";
+import { useCustomFetch } from "../hooks/useCustomFetch";
 import { BaseContainer, BaseBody, BaseSectionData, SectionTitle } from "../styles/base";
 import { PostulacionesSection } from "../styles/pages/postulaciones";
+import { Route, Routes, useLocation } from "react-router-dom";
 
-const empleos = [
-    {
-        titulo: "Programador C#",
-        empresa: "Oracle",
-        descripcionEmpleo: "Programador con experiencia"
-    },
-    {
-        titulo: "Programador Java",
-        empresa: "DevJb",
-        descripcionEmpleo: "Programador con experiencia"
-    },
-    {
-        titulo: "Programador C#",
-        empresa: "Oracle",
-        descripcionEmpleo: "Programador con experiencia"
-    },
-    {
-        titulo: "Programador Java",
-        empresa: "DevJb",
-        descripcionEmpleo: "Programador con experiencia"
-    },
-]
-
-const getItems = empleos.map((item, key) => {
-
-})
 
 
 export const Postulaciones = () => {
+
+    let url = "http://localhost:3000/api/postulaciones/1"
+    const { pathname } = useLocation()
+
+    let {
+        dataBase,
+        response,
+        error,
+        loading,
+        setResponse,
+        handleClick
+    } = useCustomFetch(url);
+    console.log(dataBase)
     return (
         <BaseContainer>
             <Header titulo="Postulaciones" />
@@ -39,41 +28,10 @@ export const Postulaciones = () => {
                 <BaseSectionData>
                     <SectionTitle>Postulaciones realizadas</SectionTitle>
                     <PostulacionesSection>
-                        <TarjetaEmpleo
-                            tituloEmpleo="Titulo del empleo"
-                            nombreEmpresa="Nombre de la empresa"
-                            descripcionEmpleo="Descripcion del empleo"
-                            enlace="#">
-                        </TarjetaEmpleo>
-                        <TarjetaEmpleo
-                            tituloEmpleo="Titulo del empleo"
-                            nombreEmpresa="Nombre de la empresa"
-                            descripcionEmpleo="Descripcion del empleo"
-                            enlace="#">
-                        </TarjetaEmpleo>
-                        <TarjetaEmpleo
-                            tituloEmpleo="Titulo del empleo"
-                            nombreEmpresa="Nombre de la empresa"
-                            descripcionEmpleo="Descripcion del empleo"
-                            enlace="#">
-                        </TarjetaEmpleo>
-                        <TarjetaEmpleo
-                            tituloEmpleo="Titulo del empleo"
-                            nombreEmpresa="Nombre de la empresa"
-                            descripcionEmpleo="Descripcion del empleo"
-                            enlace="#">
-                        </TarjetaEmpleo>
-                        <TarjetaEmpleo
-                            tituloEmpleo="Titulo del empleo"
-                            nombreEmpresa="Nombre de la empresa"
-                            descripcionEmpleo="Descripcion del empleo"
-                            enlace="#">
-                        </TarjetaEmpleo>
-                        <TarjetaEmpleo
-                            tituloEmpleo="Titulo del empleo"
-                            nombreEmpresa="Nombre de la empresa"
-                            descripcionEmpleo="Descripcion del empleo"
-                            enlace="#">
+                        <TarjetaEmpleo 
+                            error={error}
+                            loading={loading}
+                            dataBase={dataBase}>
                         </TarjetaEmpleo>
                     </PostulacionesSection>
                 </BaseSectionData>

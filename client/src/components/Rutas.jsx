@@ -6,7 +6,7 @@ import { Empresa } from '../pages/Empresa';
 import { Buscar } from '../pages/Buscar';
 import { Home } from '../pages/Home';
 import { NavBar } from './NavBar';
-import { Usuario } from '../pages/Usuario';
+import { Usuario } from '../pages/solicitante/perfil/Usuario';
 import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
 import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
 import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad';

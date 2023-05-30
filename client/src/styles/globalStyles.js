@@ -37,6 +37,12 @@ import {
   ButtonRegister,
   SpanButton,
 } from "./elements/botones";
+
+import {
+    DatosPerfil,
+    PortadaPerfil,
+    BodyPerfil,
+} from "./pages/usuario";
 import { PostulacionesSection } from "./pages/postulaciones";
 
 const GlobalStyles = createGlobalStyle`
@@ -361,6 +367,19 @@ overflow-x: hidden;
             display: none;
         }
      }
+}
+
+@media (max-width: 750px) {
+    ${DatosPerfil}{
+        width: 100%;
+    }
+
+    ${PortadaPerfil}{
+        width: 95%;
+    }
+    ${BodyPerfil}{
+        width: 95%;
+    }
 }
 
 @media screen and (max-width: 657px) {

@@ -72,22 +72,22 @@ export const TablaCongreso = ({
             <TimelineCardLeft key={item.id}>
               <CardContainer>
                 <TimelineCardContent>
-                  <CardTitle>{item.lugarCongreso}</CardTitle>
-                  <CardTitle>{item.paisCongreso}</CardTitle>
-                  <CardTitle>{item.antiCongreso}</CardTitle>
-                  <CardTitle>{item.fechaCongreso}</CardTitle>
+                  <CardContent><b>Lugar Congreso: </b>{item.lugarCongreso}</CardContent>
+                  <CardContent><b>Pais Congreso: </b>{item.paisCongreso}</CardContent>
+                  <CardContent><b>Anfitrion Congreso: </b>{item.antiCongreso}</CardContent>
+                  <CardContent><b>Fecha Congreso: </b>{item.fechaCongreso.split("T")[0]}</CardContent>
                 </TimelineCardContent>
                 <TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                   <ButtonOpt onClick={() => handleDelete(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faTrash}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                 </TimelineCardButtons>

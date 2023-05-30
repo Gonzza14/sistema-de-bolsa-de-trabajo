@@ -26,12 +26,11 @@ const validateForm = (form) => {
     delete errors.nombreRecomPers;
   }
 
-  if (!form.telefonoRecomPers.trim()) {
-    errors.telefonoRecomPers = `El telefono de la recomendacion personal es requerido`;
-  } else if (!regexVarchar.test(form.telefonoRecomPers.trim())) {
-    errors.telefonoRecomPers =
-      "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
-
+	if (!form.telefonoRecomPers.trim()) {
+    errors.telefonoRecomPers = `El telefono de la recomendacion es requerido`;
+  } else if (form.telefonoRecomPers.trim().length > 12) {
+    errors.telefonoRecomPers = `Telefono debe tener un máximo de 12 caracteres`;
+  } else {
     delete errors.telefonoRecomPers;
   }
 
@@ -60,13 +59,13 @@ export const FormularioRecomPersonal = ({
     <FormContainerCV>
       <FormularioCV onSubmit={handleSubmit}>
         <FormLabelCV htmlFor="nombreRecomPers">
-          Nombre de la Recomendacion Personal
+          Nombre Completo
         </FormLabelCV>
         <FormInputCV
           type="text"
           id="nombreRecomPers"
           name="nombreRecomPers"
-          placeholder="Nombre de la Recomendacion Personal"
+          placeholder="Nombre completo"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.nombreRecomPers}
@@ -75,13 +74,13 @@ export const FormularioRecomPersonal = ({
           <MensajeValidacion>{errors.nombreRecomPers}</MensajeValidacion>
         )}
         <FormLabelCV htmlFor="telefonoRecomPers">
-          Telefono de la Recomendacion Personal
+          Telefono de Contacto
         </FormLabelCV>
         <FormInputCV
           type="tel"
           id="telefonoRecomPers"
           name="telefonoRecomPers"
-          placeholder="Telefono de la Recomendacion Personal"
+          placeholder="Telefono de contacto"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.telefonoRecomPers}

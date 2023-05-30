@@ -63,7 +63,7 @@ export const ButtonOp = styled.button`
 `;
 export const StyledFontAwesomeIconBoton = styled(FontAwesomeIcon)`
   color: #06062a;
-
+	font-size: 18px;
   &:hover {
     color: #f3f3f3;
   }

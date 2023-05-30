@@ -72,8 +72,8 @@ export const TablaRecomPersonal = ({
             <TimelineCardLeft key={item.id}>
               <CardContainer>
                 <TimelineCardContent>
-                  <CardTitle>{item.nombreRecomPers}</CardTitle>
-                  <CardContent>{item.telefonoRecomPers}</CardContent>
+                  <CardContent><b>Nombre Completo: </b>{item.nombreRecomPers}</CardContent>
+                  <CardContent><b>Telefono: </b>{item.telefonoRecomPers}</CardContent>
                 </TimelineCardContent>
                 <TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>

@@ -38,7 +38,7 @@ export const GestionHabilidadTec = (props) => {
 
   return (
     <BaseContainerCV>
-      <h3>Habibilidades tecnicas</h3>
+      <h3>Habilidades tecnicas</h3>
       {response && (
         <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
       )}

@@ -79,7 +79,7 @@ export const FormularioCertificacion = ({
     <FormContainerCV>
       <FormularioCV onSubmit={handleSubmit}>
         <FormLabelCV htmlFor="nomCertificacion">
-          Nombre Certificacion
+          Nombre Certificación
         </FormLabelCV>
         <FormInputCV
           type="text"
@@ -100,7 +100,7 @@ export const FormularioCertificacion = ({
           type="text"
           id="codCertificacion"
           name="codCertificacion"
-          placeholder="Codigo Certificado"
+          placeholder="Codigo certificado"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.codCertificacion}
@@ -109,7 +109,7 @@ export const FormularioCertificacion = ({
           <MensajeValidacion>{errors.codCertificacion}</MensajeValidacion>
         )}
         <FormLabelCV htmlFor="instiCertificacion">
-          Instituto Certificacion
+          Instituto Certificación
         </FormLabelCV>
 
         <FormInputCV
@@ -125,15 +125,14 @@ export const FormularioCertificacion = ({
           <MensajeValidacion>{errors.instiCertificacion}</MensajeValidacion>
         )}
 
-        <FormLabelCV htmlFor="fechaCertificacion">Fecha Certificacion</FormLabelCV>
+        <FormLabelCV htmlFor="fechaCertificacion">Fecha Certificación</FormLabelCV>
         <FormInputCV
           type="date"
           id="fechaCertificacion"
           name="fechaCertificacion"
-          placeholder="Periodo academico"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={form.fechaCertificacion}
+          value={form.fechaCertificacion.split("T")[0]}
         ></FormInputCV>
         {errors.fechaCertificacion && (
           <MensajeValidacion>{errors.fechaCertificacion}</MensajeValidacion>

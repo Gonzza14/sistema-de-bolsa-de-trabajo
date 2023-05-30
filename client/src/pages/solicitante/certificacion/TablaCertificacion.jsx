@@ -14,7 +14,6 @@ import {
   Timeline,
   TimelineCardLeft,
   TimelineCardContent,
-  TimelineCard,
   TimelineCardButtons,
   ButtonOpt,
   CardContainer,
@@ -72,22 +71,22 @@ export const TablaCertificacion = ({
             <TimelineCardLeft key={item.id}>
               <CardContainer>
                 <TimelineCardContent>
-                  <CardTitle>{item.nomCertificacion}</CardTitle>
-                  <CardContent>{item.codCertificacion}</CardContent>
-                  <CardContent>{item.instiCertificacion}</CardContent>
-                  <CardContent>{item.fechaCertificacion}</CardContent>
+                  <CardContent><b>Nombre Certificación: </b>{item.nomCertificacion}</CardContent>
+                  <CardContent><b>Código Certificado: </b>{item.codCertificacion}</CardContent>
+                  <CardContent><b>Instituto Certificación: </b>{item.instiCertificacion}</CardContent>
+                  <CardContent><b>Fecha Certificación: </b>{item.fechaCertificacion.split("T")[0]}</CardContent>
                 </TimelineCardContent>
                 <TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                   <ButtonOpt onClick={() => handleDelete(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faTrash}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                 </TimelineCardButtons>

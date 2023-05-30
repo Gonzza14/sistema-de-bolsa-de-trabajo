@@ -72,23 +72,23 @@ export const TablaLibro = ({
             <TimelineCardLeft key={item.id}>
               <CardContainer>
                 <TimelineCardContent>
-                  <CardTitle>{item.nombreLibro}</CardTitle>
-                  <CardContent>{item.lugarLibro}</CardContent>
-                  <CardContent>{item.fechaPub}</CardContent>
-                  <CardContent>{item.edicionLibro}</CardContent>
-                  <CardContent>{item.isbn}</CardContent>
+                  <CardContent><b>Nombre del Libro: </b>{item.nombreLibro}</CardContent>
+                  <CardContent><b>Lugar del Libro: </b>{item.lugarLibro}</CardContent>
+                  <CardContent><b>Fecha Publicación: </b>{item.fechaPub.split("T")[0]}</CardContent>
+                  <CardContent><b>Edición del libro: </b>{item.edicionLibro}</CardContent>
+                  <CardContent><b>ISBN: </b>{item.isbn}</CardContent>
                 </TimelineCardContent>
                 <TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                   <ButtonOpt onClick={() => handleDelete(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faTrash}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                 </TimelineCardButtons>

@@ -10,7 +10,7 @@ import { useForm } from "../../../hooks/useForm";
 const initialForm = {
   lugarCongreso: "",
   paisCongreso: "",
-	antiCongreso: "",
+  antiCongreso: "",
   fechaCongreso: "",
   id: null,
 };
@@ -24,6 +24,8 @@ const validateForm = (form) => {
   } else if (!regexVarchar.test(form.lugarCongreso.trim())) {
     errors.lugarCongreso =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.lugarCongreso.trim().length > 100) {
+    errors.lugarCongreso = `Lugar del congreso debe tener un máximo de 100 caracteres`;
   } else {
     delete errors.lugarCongreso;
   }
@@ -31,16 +33,22 @@ const validateForm = (form) => {
   if (!form.paisCongreso.trim()) {
     errors.paisCongreso = `Pais del congreso es requerido`;
   } else if (!regexVarchar.test(form.paisCongreso.trim())) {
-    errors.paisCongreso = "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
-
+    errors.paisCongreso =
+      "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.paisCongreso.trim().length > 50) {
+    errors.paisCongreso = `Pais del congreso debe tener un máximo de 50 caracteres`;
+  } else {
     delete errors.paisCongreso;
   }
 
   if (!form.antiCongreso.trim()) {
     errors.antiCongreso = `Es requerido`;
   } else if (!regexVarchar.test(form.antiCongreso.trim())) {
-    errors.antiCongreso = "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
-
+    errors.antiCongreso =
+      "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.antiCongreso.trim().length > 100) {
+    errors.antiCongreso = `Anticongreso debe tener un máximo de 100 caracteres`;
+  } else {
     delete errors.antiCongreso;
   }
 
@@ -60,7 +68,6 @@ export const FormularioCongreso = ({
   updateData,
   dataToEdit,
   setDataToEdit,
-	
 }) => {
   let path = "/GestionCurriculum";
 
@@ -82,7 +89,7 @@ export const FormularioCongreso = ({
           type="text"
           id="lugarCongreso"
           name="lugarCongreso"
-          placeholder="Lugar Congreso"
+          placeholder="Lugar del congreso"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.lugarCongreso}
@@ -95,7 +102,7 @@ export const FormularioCongreso = ({
           type="text"
           id="paisCongreso"
           name="paisCongreso"
-          placeholder="Pais Congresoo"
+          placeholder="Pais del congresoo"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.paisCongreso}
@@ -108,7 +115,7 @@ export const FormularioCongreso = ({
           type="text"
           id="antiCongreso"
           name="antiCongreso"
-          placeholder="Anfitrion del Congreso"
+          placeholder="Anfitrion del congreso"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.antiCongreso}
@@ -123,7 +130,7 @@ export const FormularioCongreso = ({
           name="fechaCongreso"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={form.fechaCongreso}
+          value={form.fechaCongreso.split("T")[0]}
         ></FormInputCV>
         {errors.fechaCongreso && (
           <MensajeValidacion>{errors.fechaCongreso}</MensajeValidacion>

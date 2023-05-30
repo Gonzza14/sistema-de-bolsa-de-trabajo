@@ -82,13 +82,13 @@ export const TablaIdioma = ({
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                   <ButtonOpt onClick={() => handleDelete(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faTrash}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                 </TimelineCardButtons>

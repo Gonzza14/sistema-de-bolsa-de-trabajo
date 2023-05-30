@@ -70,9 +70,9 @@ export const TablaExamen = ({
             <TimelineCardLeft key={item.id}>
               <CardContainer>
                 <TimelineCardContent>
-                  <CardTitle>{item.TipoExamen.nombreTipoExamen}</CardTitle>
-                  <CardContent>{item.nombreExamen}</CardContent>
-                  <CardContent>
+                  <CardContent><b>Nombre Tipo Examen: </b>{item.TipoExamen.nombreTipoExamen}</CardContent>
+                  <CardContent><b>Nombre Examen: </b>{item.nombreExamen}</CardContent>
+                  <CardContent><b>Archivo Examen: </b>
                     <a
                       href={`http://localhost:3000/images/${item.archivoExamen.replace(
                         "C:/fakepath/",
@@ -82,7 +82,7 @@ export const TablaExamen = ({
                       {item.archivoExamen.replace("C:\\fakepath\\", "")}
                     </a>
                   </CardContent>
-                  <CardContent>{item.resultadoExamen}</CardContent>
+                  <CardContent><b>Resultado del Examen: </b>{item.resultadoExamen}</CardContent>
                 </TimelineCardContent>
                 <TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>

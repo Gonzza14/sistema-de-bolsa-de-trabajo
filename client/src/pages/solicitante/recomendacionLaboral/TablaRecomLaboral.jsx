@@ -72,8 +72,8 @@ export const TablaRecomLaboral = ({
             <TimelineCardLeft key={item.id}>
               <CardContainer>
                 <TimelineCardContent>
-                  <CardTitle>{item.nombreRecomLab}</CardTitle>
-                  <CardContent>{item.telefonoRecomLab}</CardContent>
+                  <CardContent><b>Nombre Completo: </b>{item.nombreRecomLab}</CardContent>
+                  <CardContent><b>Telefono: </b>{item.telefonoRecomLab}</CardContent>
                 </TimelineCardContent>
                 <TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>

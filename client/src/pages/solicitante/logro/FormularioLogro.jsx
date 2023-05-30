@@ -22,14 +22,16 @@ const validateForm = (form) => {
   } else if (!regexVarchar.test(form.logroRealizado.trim())) {
     errors.logroRealizado =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.logroRealizado.trim().length > 255) {
+    errors.logroRealizado = `Logro realizado debe tener un máximo de 255 caracteres`;
   } else {
     delete errors.logroRealizado;
   }
 
   if (!form.fechaLogro.trim()) {
     errors.fechaLogro = `Fecha logro es requerido`;
-  } else if (!regexVarchar.test(form.fechaLogro.trim())) {
-    errors.fechaLogro = "No debe de contener mas de 255 caracteres";
+  } else if (new Date(form.fechaLogro) > new Date()) {
+    errors.fechaLogro = "La fecha no debe ser mayor a la fecha de hoy";
   } else {
     delete errors.fechaLogro;
   }
@@ -42,7 +44,6 @@ export const FormularioLogro = ({
   updateData,
   dataToEdit,
   setDataToEdit,
-	
 }) => {
   let path = "/GestionCurriculum";
 
@@ -64,7 +65,7 @@ export const FormularioLogro = ({
           type="text"
           id="logroRealizado"
           name="logroRealizado"
-          placeholder="Logro Realizado"
+          placeholder="Logro realizado"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.logroRealizado}
@@ -77,10 +78,9 @@ export const FormularioLogro = ({
           type="date"
           id="fechaLogro"
           name="fechaLogro"
-          placeholder="Fecha Logro"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={form.fechaLogro}
+          value={form.fechaLogro.split("T")[0]}
         ></FormInputCV>
         {errors.fechaLogro && (
           <MensajeValidacion>{errors.fechaLogro}</MensajeValidacion>

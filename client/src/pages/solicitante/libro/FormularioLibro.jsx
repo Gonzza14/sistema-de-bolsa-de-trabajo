@@ -25,6 +25,9 @@ const validateForm = (form) => {
   } else if (!regexVarchar.test(form.nombreLibro.trim())) {
     errors.nombreLibro =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.nombreLibro.trim().length > 100) {
+    errors.nombreLibro =
+      "El nombre del libro no puede tener mas de 100 caracteres";
   } else {
     delete errors.nombreLibro;
   }
@@ -34,23 +37,28 @@ const validateForm = (form) => {
   } else if (!regexVarchar.test(form.lugarLibro.trim())) {
     errors.lugarLibro =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
-
+  } else if (form.lugarLibro.trim().length > 80) {
+    errors.lugarLibro =
+      "El lugar del libro no puede tener mas de 80 caracteres";
+  } else {
     delete errors.lugarLibro;
   }
-  if (!form.fechaPub.trim()) {
-    errors.fechaPub = `La fecha de publicacion es requerida`;
-  } else if (!regexVarchar.test(form.fechaPub.trim())) {
-    errors.fechaPub =
-      "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
 
+	if (new Date(form.fechaPub) > new Date()) {
+    errors.fechaPub = "La fecha de publicacion no puede ser mayor a la fecha actual";
+} else {
     delete errors.fechaPub;
-  }
+}
+
 
   if (!form.edicionLibro.trim()) {
     errors.edicionLibro = `El edicion del libro es requerida`;
   } else if (!regexVarchar.test(form.edicionLibro.trim())) {
     errors.edicionLibro =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.edicionLibro.trim().length > 50) {
+    errors.edicionLibro =
+      "La edicion del libro no puede tener mas de 50 caracteres";
   } else {
     delete errors.edicionLibro;
   }
@@ -60,6 +68,8 @@ const validateForm = (form) => {
   } else if (!regexVarchar.test(form.isbn.trim())) {
     errors.isbn =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.isbn.trim().length > 10) {
+    errors.isbn = "El ISBN no puede tener mas de 10 caracteres";
   } else {
     delete errors.isbn;
   }
@@ -87,7 +97,7 @@ export const FormularioLibro = ({
   return (
     <FormContainerCV>
       <FormularioCV onSubmit={handleSubmit}>
-        <FormLabelCV htmlFor="nombreLibro">Nombre del libro</FormLabelCV>
+        <FormLabelCV htmlFor="nombreLibro">Nombre del Libro</FormLabelCV>
         <FormInputCV
           type="text"
           id="nombreLibro"
@@ -100,7 +110,7 @@ export const FormularioLibro = ({
         {errors.nombreLibro && (
           <MensajeValidacion>{errors.nombreLibro}</MensajeValidacion>
         )}
-        <FormLabelCV htmlFor="lugarLibro">Lugar del libro</FormLabelCV>
+        <FormLabelCV htmlFor="lugarLibro">Lugar del Libro</FormLabelCV>
         <FormInputCV
           type="text"
           id="lugarLibro"
@@ -113,19 +123,19 @@ export const FormularioLibro = ({
         {errors.lugarLibro && (
           <MensajeValidacion>{errors.lugarLibro}</MensajeValidacion>
         )}
-        <FormLabelCV htmlFor="fechaPub">Fecha publicacion</FormLabelCV>
+        <FormLabelCV htmlFor="fechaPub">Fecha Publicación</FormLabelCV>
         <FormInputCV
           type="date"
           id="fechaPub"
           name="fechaPub"
           onChange={handleChange}
           onBlur={handleBlur}
-          value={form.fechaPub}
+          value={form.fechaPub.split("T")[0]}
         />
         {errors.fechaPub && (
           <MensajeValidacion>{errors.fechaPub}</MensajeValidacion>
         )}
-        <FormLabelCV htmlFor="edicionLibro">Edicion libro</FormLabelCV>
+        <FormLabelCV htmlFor="edicionLibro">Edición Libro</FormLabelCV>
         <FormInputCV
           type="text"
           id="edicionLibro"

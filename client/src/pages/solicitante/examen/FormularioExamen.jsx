@@ -32,23 +32,31 @@ const validateForm = (form) => {
   } else if (!regexVarchar.test(form.nombreExamen.trim())) {
     errors.nombreExamen =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
-
+  } else if (form.nombreExamen.trim().length > 100) {
+    errors.nombreExamen = `Nombre examen debe tener un máximo de 100 caracteres`;
+  } else {
     delete errors.nombreExamen;
   }
+
   if (!form.archivoExamen.trim()) {
     errors.archivoExamen = `Nombre del archivo es requerida`;
   } else if (!regexVarchar.test(form.archivoExamen.trim())) {
     errors.archivoExamen =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
-
+  } else if (form.archivoExamen.trim().length > 1024) {
+    errors.archivoExamen = `Archivo examen debe tener un máximo de 1024 caracteres`;
+  } else {
     delete errors.archivoExamen;
   }
+
   if (!form.resultadoExamen.trim()) {
     errors.resultadoExamen = `Nombre del resultado es requerida`;
   } else if (!regexVarchar.test(form.resultadoExamen.trim())) {
     errors.resultadoExamen =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
-
+  } else if (form.resultadoExamen.trim().length > 30) {
+    errors.resultadoExamen = `Resultado examen debe tener un máximo de 30 caracteres`;
+  } else {
     delete errors.resultadoExamen;
   }
 
@@ -60,7 +68,8 @@ export const FormularioExamen = ({
   updateData,
   dataToEdit,
   setDataToEdit,
-	subirArchivo, updateSubirArchivo
+  subirArchivo,
+  updateSubirArchivo,
 }) => {
   let url = "http://localhost:3000/api/tipoExamenes";
 
@@ -68,16 +77,23 @@ export const FormularioExamen = ({
 
   let path = "/GestionCurriculum";
 
-  let { form, errors, handleChange, handleBlur, handleSubmit, subirArchivoSubmit } = useForm(
+  let {
+    form,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    subirArchivoSubmit,
+  } = useForm(
     initialForm,
     validateForm,
     path,
     createData,
     updateData,
     dataToEdit,
-    setDataToEdit, 
-		subirArchivo,
-		updateSubirArchivo
+    setDataToEdit,
+    subirArchivo,
+    updateSubirArchivo
   );
   const handleSelect = (e) => {
     var index = e.nativeEvent.target.selectedIndex;
@@ -88,6 +104,8 @@ export const FormularioExamen = ({
   return (
     <FormContainerCV>
       <FormularioCV onSubmit={subirArchivoSubmit}>
+        <FormLabelCV htmlFor="nombreExamen">Nombre Tipo Examen</FormLabelCV>
+
         {dataToEdit && (
           <FormSelect
             id="idTipoEx"
@@ -146,7 +164,9 @@ export const FormularioExamen = ({
         )}
 
         <FormLabelCV htmlFor="archivoExamen">Archivo Examen</FormLabelCV>
-				<FormLabelCV >{form.archivoExamen.replace("C:\\fakepath\\", "")}</FormLabelCV>
+        <FormLabelCV>
+          {form.archivoExamen.replace("C:\\fakepath\\", "")}
+        </FormLabelCV>
         <FormInputCV
           type="file"
           id="archivoExamen"
@@ -159,7 +179,7 @@ export const FormularioExamen = ({
           <MensajeValidacion>{errors.archivoExamen}</MensajeValidacion>
         )}
 
-        <FormLabelCV htmlFor="resultadoExamen">resultado Examen</FormLabelCV>
+        <FormLabelCV htmlFor="resultadoExamen">Resultado Examen</FormLabelCV>
         <FormInputCV
           type="text"
           id="resultadoExamen"

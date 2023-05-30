@@ -72,20 +72,20 @@ export const TablaLogro = ({
             <TimelineCardLeft key={item.id}>
               <CardContainer>
                 <TimelineCardContent>
-                  <CardTitle>{item.logroRealizado}</CardTitle>
-                  <CardContent>{item.fechaLogro}</CardContent>
+                  <CardContent><b>Logro Realizado: </b>{item.logroRealizado}</CardContent>
+                  <CardContent><b>Fecha Logro: </b>{item.fechaLogro.split("T")[0]}</CardContent>
                 </TimelineCardContent>
                 <TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                   <ButtonOpt onClick={() => handleDelete(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faTrash}
-                      size="1x"
+                      size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
                 </TimelineCardButtons>

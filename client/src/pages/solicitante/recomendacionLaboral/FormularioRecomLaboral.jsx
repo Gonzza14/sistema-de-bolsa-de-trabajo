@@ -15,26 +15,27 @@ const initialForm = {
 
 const validateForm = (form) => {
   let errors = {};
-  let regexVarchar = /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s.,;:¡!¿?()-]+$/;
+  let regexVarchar = /^[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s.,;:¡!¿?()-+]+$/;
+  const regexTelefono = /^\+503\s\d{4}-\d{4}$/;
 
   if (!form.nombreRecomLab.trim()) {
     errors.nombreRecomLab = `El nombre recomendacion es requerido`;
   } else if (!regexVarchar.test(form.nombreRecomLab.trim())) {
     errors.nombreRecomLab =
       "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
+  } else if (form.nombreRecomLab.trim().length > 100) {
+    errors.nombreRecomLab = `Nombre Recom Lab debe tener un máximo de 100 caracteres`;
   } else {
     delete errors.nombreRecomLab;
   }
 
   if (!form.telefonoRecomLab.trim()) {
     errors.telefonoRecomLab = `El telefono de la recomendacion es requerido`;
-  } else if (!regexVarchar.test(form.telefonoRecomLab.trim())) {
-    errors.telefonoRecomLab =
-      "Este campo solo acepta letras, numeros, espacios, y simbolos comunes de puntuacion";
-
+  } else if (form.telefonoRecomLab.trim().length > 12) {
+    errors.telefonoRecomLab = `Telefono debe tener un máximo de 12 caracteres`;
+  } else {
     delete errors.telefonoRecomLab;
   }
-
 
   return errors;
 };
@@ -60,12 +61,14 @@ export const FormularioRecomLaboral = ({
   return (
     <FormContainerCV>
       <FormularioCV onSubmit={handleSubmit}>
-        <FormLabelCV htmlFor="nombreRecomLab">Nombre de la Recomendacion Laboral</FormLabelCV>
+        <FormLabelCV htmlFor="nombreRecomLab">
+          Nombre Completo
+        </FormLabelCV>
         <FormInputCV
           type="text"
           id="nombreRecomLab"
           name="nombreRecomLab"
-          placeholder="Nombre de la Recomendacion Laboral"
+          placeholder="Nombre completo"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.nombreRecomLab}
@@ -73,12 +76,14 @@ export const FormularioRecomLaboral = ({
         {errors.nombreRecomLab && (
           <MensajeValidacion>{errors.nombreRecomLab}</MensajeValidacion>
         )}
-        <FormLabelCV htmlFor="telefonoRecomLab">Telefono de la Recomendacion Laboral</FormLabelCV>
+        <FormLabelCV htmlFor="telefonoRecomLab">
+          Telefono de Contacto
+        </FormLabelCV>
         <FormInputCV
           type="tel"
           id="telefonoRecomLab"
           name="telefonoRecomLab"
-          placeholder="Telefono de la Recomendacion Laboral"
+          placeholder="Telefono de contacto"
           onChange={handleChange}
           onBlur={handleBlur}
           value={form.telefonoRecomLab}
@@ -86,7 +91,7 @@ export const FormularioRecomLaboral = ({
         {errors.telefonoRecomLab && (
           <MensajeValidacion>{errors.telefonoRecomLab}</MensajeValidacion>
         )}
-        
+
         <FormInputBottonCV type="submit" value="Guardar" />
         {/*<input type="reset" value="Limpiar" onClick={handleReset} />*/}
       </FormularioCV>

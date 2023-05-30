@@ -20,7 +20,6 @@ export const Rutas = () => {
         <Router>
             <NavBar/>
             <Routes>
-                <Route path='/Usuario' element={<Usuario />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/CV' element={<CurriculumVitae />} />
                 <Route path='/Postulaciones' element={<Postulaciones />} />
@@ -32,7 +31,8 @@ export const Rutas = () => {
                     <Route path='/GestionUsuario/*' element={<GestionUsuario/>}/>
                     <Route path='/GestionTipoHabilidad/*' element={<GestionTipoHabilidad/>}/>
                     <Route path='/GestionTipoExamen/*' element={<GestionTipoExamen/>}/>
-										<Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
+					<Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
+                    <Route path='/Usuario/*' element={<Usuario />} />
                 </Route>
                 <Route path="*" element={<Error404 />} />
             </Routes>

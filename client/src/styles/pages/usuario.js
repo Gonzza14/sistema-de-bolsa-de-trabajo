@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export const EditContainer = styled.div`
   display: flex;
@@ -28,7 +29,6 @@ export const EditCard = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
 
 //-----------------------------------------------------------------------
 export const SectionPerfil = styled.section`
@@ -90,10 +90,25 @@ export const ButtonAvatarPerfil = styled.button`
   height: 45px;
   border-radius: 50%;
   cursor: pointer;
-
 `;
 
-export const IconAvatarPerfil = styled(FontAwesomeIcon)``
+export const IconAvatarPerfil = styled(FontAwesomeIcon)``;
+
+export const EditPerfil = styled(Link)`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 25px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+`;
+
+export const IconEditPerfil = styled(FontAwesomeIcon)`
+  margin-right: 1rem;
+`;
 
 export const BodyPerfil = styled.div`
   display: flex;
@@ -136,12 +151,13 @@ export const FooterPerfil = styled.div`
 `;
 
 export const DatosPerfil = styled.ul`
-  width: 50%;
+  width: 100%;
   list-style: none;
+  flex: 1;
 `;
 
 export const ItemPerfil = styled.li`
-  padding: 5px 0;
+  padding: 20px 0;
 `;
 
 export const IconDataPerfil = styled(FontAwesomeIcon)`
@@ -149,3 +165,31 @@ export const IconDataPerfil = styled(FontAwesomeIcon)`
   font-size: 1.2rem;
   vertical-align: middle;
 `;
+
+//---------------------------------------------------------------------------
+
+export const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const FormGroup = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+`;
+
+export const FormLabelUser = styled.label`
+  width: 50%;
+`;
+
+export const FormInputUser = styled.input`
+  width: 50%;`;
+
+export const FormSelectUser = styled.select`
+  width: 50%;
+`;
+
+export const InputButtonUser = styled.input`
+  `

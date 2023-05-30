@@ -38,7 +38,7 @@ const validateForm = (form) => {
     delete errors.nombreExamen;
   }
 
-  if (!form.archivoExamen.trim()) {
+  /*if (!form.archivoExamen.trim()) {
     errors.archivoExamen = `Nombre del archivo es requerida`;
   } else if (!regexVarchar.test(form.archivoExamen.trim())) {
     errors.archivoExamen =
@@ -47,7 +47,7 @@ const validateForm = (form) => {
     errors.archivoExamen = `Archivo examen debe tener un máximo de 1024 caracteres`;
   } else {
     delete errors.archivoExamen;
-  }
+  }*/
 
   if (!form.resultadoExamen.trim()) {
     errors.resultadoExamen = `Nombre del resultado es requerida`;

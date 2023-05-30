@@ -8,6 +8,20 @@ import empresasRoutes from "./routes/empresas.routes";
 import usuariosRoutes from "./routes/usuarios.routes";
 import rolesRoutes from "./routes/roles.routes";
 import tipohabilidadesRoutes from "./routes/tipohabilidades.routes";
+import curriculumRoutes from "./routes/curriculum.routes";
+import conAcademicosRoutes from "./routes/conAcademicos.routes";
+import expLaboRoutes from "./routes/expLabo.routes";
+import habilidadTecRoutes from "./routes/habilidadTecnica.routes";
+import idiomaRoutes from './routes/idiomas.routes';
+import libroRoutes from './routes/libros.routes';
+import certiRoutes from './routes/certificaciones.routes';
+import congresoRoutes from './routes/congresos.routes';
+import logroRoutes from './routes/logros.routes';
+import recomLaboRoutes from './routes/recomLabors.routes';
+import recomPersRoutes from './routes/recomPers.routes';
+import tipoExamenesRoutes from './routes/tipoExamenes.routes';
+import examenesRoutes from './routes/examenes.routes';
+import fs from 'fs';
 
 //Creacion de aplicacion
 const app = express();
@@ -31,12 +45,51 @@ app.use(express.urlencoded({ extended: false }));
 
 //----------------------------------------[Rutas]-----------------------------------------------
 app.get("/", (req, res) => {
-  res.json({ message: "Bienvenidos a la API del Sistema de Bolsa de Trabajo" });
+	res.json({ message: "Bienvenidos a la API del Sistema de Bolsa de Trabajo" });
 });
 
 app.use("/api/empresas", empresasRoutes);
 app.use("/api/usuarios", usuariosRoutes);
 app.use("/api/roles", rolesRoutes);
 app.use("/api/tipohabilidades", tipohabilidadesRoutes);
+
+//Curriculum
+app.use("/api/curriculum", curriculumRoutes);
+//Conocimientos academicos
+app.use("/api/conAcademicos", conAcademicosRoutes);
+//Experiencia laboral
+app.use("/api/expLabos", expLaboRoutes);
+//HAbilidades tecnicas
+app.use("/api/habilidadTecnica", habilidadTecRoutes);
+//Idiomas
+app.use("/api/idioma", idiomaRoutes);
+
+app.use("/api/libro", libroRoutes);
+
+app.use("/api/certificacion", certiRoutes);
+
+app.use("/api/congreso", congresoRoutes);
+
+app.use("/api/logro", logroRoutes);
+
+app.use("/api/recomLabo", recomLaboRoutes);
+
+app.use("/api/recomPers", recomPersRoutes);
+
+app.use("/api/tipoExamenes", tipoExamenesRoutes);
+
+app.use("/api/examenes", examenesRoutes);
+
+app.get('/images/:imageName', (req, res) => {
+  // Get the image name from the request
+  const imageName = req.params.imageName;
+
+  // Load the image from the file system
+  const image = fs.readFileSync(`uploads/${imageName}`);
+
+  // Return the image to the client
+  res.send(image);
+});
+
 
 export default app;

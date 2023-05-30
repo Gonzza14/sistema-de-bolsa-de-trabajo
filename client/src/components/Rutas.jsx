@@ -9,7 +9,9 @@ import { NavBar } from './NavBar';
 import { Usuario } from '../pages/Usuario';
 import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
 import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
-import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad'
+import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad';
+import { GestionTipoExamen } from '../pages/admin/tipoExamen/GestionTipoExamen';
+import {GestionCurriculum} from '../pages/solicitante/curriculum/GestionCurriculum';
 import PrivateRoutes from './PrivateRoutes';
 import { Error404 } from '../pages/errors/Error404';
 
@@ -29,6 +31,8 @@ export const Rutas = () => {
                     <Route path='/GestionEmpresa/*' element={<GestionEmpresa/>}/>
                     <Route path='/GestionUsuario/*' element={<GestionUsuario/>}/>
                     <Route path='/GestionTipoHabilidad/*' element={<GestionTipoHabilidad/>}/>
+                    <Route path='/GestionTipoExamen/*' element={<GestionTipoExamen/>}/>
+										<Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
                 </Route>
                 <Route path="*" element={<Error404 />} />
             </Routes>

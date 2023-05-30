@@ -1,4 +1,6 @@
+const db = require("../models/index.js")
 import { Postula } from "../models";
+const { QueryTypes } = require('sequelize');
 
 export const getPostulas = async (req, res) => {
     try {
@@ -91,6 +93,18 @@ export const getPostula = async (req, res) => {
 
     res.json(postula);
     } catch (err) {
-    return res.status(500).json({ message: err.message });
+        return res.status(500).json({ message: err.message });
+    }
+};
+
+export const insertarPostulaPostgre = async (req, res) => {
+    try {
+        // se crea la postulacion
+        const { idOferta, idSolic } = req.params;
+
+        const newPostula = await db.sequelize.query("SELECT insertarPostulacion(?, ?)", {replacements : [idOferta, idSolic], type : QueryTypes.RAW});
+        res.json(newPostula);
+    } catch (e) {
+        return res.status(500).json({ message: e.message });
     }
 };

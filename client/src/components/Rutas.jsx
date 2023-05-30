@@ -11,6 +11,7 @@ import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
 import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
 import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad'
 import { GestionRol } from '../pages/admin/rol/GestionRol'
+import { DetalleOferta } from '../pages/solicitante/postulacion/DetalleOferta'
 import PrivateRoutes from './PrivateRoutes';
 import { Error404 } from '../pages/errors/Error404';
 
@@ -31,6 +32,7 @@ export const Rutas = () => {
                     <Route path='/GestionUsuario/*' element={<GestionUsuario/>}/>
                     <Route path='/GestionTipoHabilidad/*' element={<GestionTipoHabilidad/>}/>
                     <Route path='/GestionRol/*' element={<GestionRol/>}/>
+                    <Route path='/DetalleOferta/*' element={<DetalleOferta/>}/>
                 </Route>
                 <Route path="*" element={<Error404 />} />
             </Routes>

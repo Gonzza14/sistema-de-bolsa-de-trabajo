@@ -8,6 +8,7 @@ import {
     FormInputUser,
     FormSelectUser,
     InputButtonUser,
+    NamePerfil
 
 } from "../../../styles/pages/usuario";
 import { faMapSigns, faCalendarAlt, faPersonHalfDress, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
@@ -84,6 +85,9 @@ export const EditarPerfil = ({
                 dataToEdit={dataToEdit}
                 dataBase={dataBase}
                 setResponse={setResponse}>
+                <BioPerfil>
+                    <NamePerfil>Editar perfil de usuario</NamePerfil>
+                </BioPerfil>
                 <FormContainer onSubmit={handleSubmit}>
                     <FooterPerfil>
                         <FormGroup>

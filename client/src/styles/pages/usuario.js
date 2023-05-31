@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { FormInput, FormInputBotton, FormSelect} from "../elements/formularios";
 
 export const EditContainer = styled.div`
   display: flex;
@@ -147,17 +148,21 @@ export const FooterPerfil = styled.div`
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   background-color: #fff;
   border-radius: 15px;
-  width: 100%;
-`;
+  justify-content: center;
+  `;
 
-export const DatosPerfil = styled.ul`
+
+export const DatosPerfil = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
   width: 100%;
   list-style: none;
-  flex: 1;
 `;
 
-export const ItemPerfil = styled.li`
-  padding: 20px 0;
+export const ItemPerfil = styled.div`
+  padding: 1.5em 2em;
+  flex: 1;
 `;
 
 export const IconDataPerfil = styled(FontAwesomeIcon)`
@@ -181,15 +186,16 @@ export const FormGroup = styled.div`
 `;
 
 export const FormLabelUser = styled.label`
-  width: 50%;
+  width: 30%;
 `;
 
-export const FormInputUser = styled.input`
-  width: 50%;`;
+export const FormInputUser = styled(FormInput)`
+  width: 70%;`;
 
-export const FormSelectUser = styled.select`
-  width: 50%;
+export const FormSelectUser = styled(FormSelect)`
+  width: 75%;
 `;
 
-export const InputButtonUser = styled.input`
+export const InputButtonUser = styled(FormInputBotton)`
+  width:50%
   `

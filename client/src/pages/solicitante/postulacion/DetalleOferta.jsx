@@ -2,42 +2,10 @@ import { Header } from "../../../components/Header";
 import { BaseContainer, BaseBody, BaseSection, BaseSectionData } from "../../../styles/base";
 import "../../../styles/elements/card-empleo.css";
 import "../../../styles/pages/detalleOferta.css";
-import { FormContainer, Formulario, FormInput, FormInputBotton } from "../../../styles/elements/formularios";
-import { MensajeValidacion } from "../../../styles/elements/mensajes";
-import { ButtonSection, GestionSection } from "../../../styles/pages/admin/gestion";
-import { Route, Routes, useLocation } from "react-router-dom";
 import { useCustomFetch } from "../../../hooks/useCustomFetchAndres";
-import { useForm } from "../../../hooks/useForm";
-
-const initialForm = {
-    idOferta: "",
-    idSolic: "",
-};
-
-const validateForm = (form) => {
-    let errors = {};
-
-    if(!form.idOferta.toString().trim() || form.idOferta === "0"){
-        errors.idOferta = `El id de la oferta es requerido`
-    }else{
-        delete errors.idOferta;
-    }
-
-    if(!form.idSolic.toString().trim() || form.idSolic === "0"){
-        errors.idSolic = `El id del solicitante es requerido`
-    }else{
-        delete errors.idSolic;
-    }
-
-    return errors;
-};
-
-
 
 export const DetalleOferta = () => {
-    let path = "/DetalleOferta";
-
-    let idOfert = "2"
+    let idOfert = "3"
     let idOfertAux = ""
     let idEmpresa = ""
     let idCategoriaOferta = ""
@@ -146,14 +114,7 @@ export const DetalleOferta = () => {
                                     <span>($) {dataBase.rangoSalar}</span>
                                 }</p>
 
-                                
-
-                                        {idSolicitanteAux && idOfertAux ? "" :<span className="">a: {idOfertAux}</span>}
-
-                                        {idSolicitanteAux && idOfertAux ? "" : <span className="">b: {idSolicitante}</span>}
-
-                                        {idSolicitanteAux && idOfertAux ? <p>Ya est&aacute; postulando por esta oferta</p> : <button className="button-card" onClick={() => registrarPostula(idOfertAux, idSolicitante)}> Postularse para este empleo </button>}
-                                    
+                                {idSolicitanteAux && idOfertAux ? <p>Ya est&aacute; postulando por esta oferta</p> : <button className="button-card" onClick={() => registrarPostula(idOfertAux, idSolicitante)}> Postularse para este empleo </button>}
                             </div>
                         </div>
                     </BaseSectionData>

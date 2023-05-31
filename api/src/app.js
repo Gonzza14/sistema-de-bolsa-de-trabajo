@@ -12,6 +12,7 @@ import postulaRoutes from "./routes/postula.routes";
 import ofertaRoutes from "./routes/ofertaEmpleo.routes";
 import categoriaRoutes from "./routes/categorias.routes";
 import solicitanteRoutes from "./routes/solicitantes.routes";
+import generoRoutes from "./routes/generos.routes";
 
 //Creacion de aplicacion
 const app = express();
@@ -46,5 +47,6 @@ app.use("/api/postula", postulaRoutes);
 app.use("/api/ofertas", ofertaRoutes);
 app.use("/api/categorias", categoriaRoutes);
 app.use("/api/solicitantes", solicitanteRoutes);
+app.use("/api/generos", generoRoutes);
 
 export default app;

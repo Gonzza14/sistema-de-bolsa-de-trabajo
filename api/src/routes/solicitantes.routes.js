@@ -7,7 +7,8 @@ import {
   getSolicitante,
   getSolicitantes,
   updateSolicitante,
-  getSolicitantePorUsuario
+  getSolicitantePorUsuario,
+  obtenerPostulantesPostgre
 } from "../controllers/solicitantes.controller";
 
 //Creamos una instancia del router
@@ -20,6 +21,7 @@ router.put("/:id", updateSolicitante);
 router.delete("/:id", deleteSolicitante);
 router.get("/:id", getSolicitante);
 router.get("/us/:idUsuario", getSolicitantePorUsuario);
+router.get("/post/:idOferta", obtenerPostulantesPostgre);
 
 //Exportamos el router
 export default router;

@@ -1,5 +1,7 @@
 //Importamos el modelo de datos
+const db = require("../models/index.js")
 import { Solicitante } from "../models";
+const { QueryTypes } = require('sequelize');
 
 //Definimos los metodos del controlador
 export const getSolicitantes = async (req, res) => {
@@ -122,4 +124,16 @@ export const getSolicitantePorUsuario = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 
+};
+
+export const obtenerPostulantesPostgre = async (req, res) => {
+  try {
+      // se crea la postulacion
+      const { idOferta } = req.params;
+
+      const postulantes = await db.sequelize.query('SELECT sol.id, sol."idGenero", sol."nombresSolic", sol."apellidosSolic", sol."fechaNacimiento", sol.dui, sol.pasaporte, sol.nit, sol.nup, sol."direcSolic", sol."telefonoSolic", sol.facebook, sol.twitter, sol.linkedin FROM "Solicitantes" sol INNER JOIN "Postulas" pos ON sol.id = pos."idSolic" INNER JOIN "OfertaEmpleos" emp ON emp.id = pos."idOferta" WHERE emp.id = ?;', {replacements : [idOferta], type : QueryTypes.RAW});
+      res.json(postulantes);
+  } catch (e) {
+      return res.status(500).json({ message: e.message });
+  }
 };

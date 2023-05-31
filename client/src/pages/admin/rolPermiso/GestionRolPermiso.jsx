@@ -63,11 +63,11 @@ export const GestionRolPermiso = () => {
                     search={search}
                     searcher={searcher}
                     setSearch={setSearch}
-                  />                           
-								</>
+                  />
+                </>
               )}
             </ButtonSection>
-						<hr />
+            <hr />
             <Routes>
               <Route
                 path={``}
@@ -82,11 +82,19 @@ export const GestionRolPermiso = () => {
                   />
                 }
               />
-              {<Route path={`editar/:id`} element={<FormularioRolPermiso
-                                updateData={updateData}
-                                dataToEdit={dataToEdit}
-                                setDataToEdit={setDataToEdit}
-                            />} /> }
+              {
+                <Route
+                  path={`editar/:id`}
+                  element={
+                    <FormularioRolPermiso
+                      createData={null}
+                      updateData={updateData}
+                      dataToEdit={dataToEdit}
+                      setDataToEdit={setDataToEdit}
+                    />
+                  }
+                />
+              }
             </Routes>
           </GestionSection>
         </BaseSectionData>

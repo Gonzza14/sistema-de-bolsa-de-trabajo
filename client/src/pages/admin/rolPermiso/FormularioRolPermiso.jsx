@@ -12,8 +12,10 @@ import { useForm } from "../../../hooks/useForm";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { useState } from "react";
 import styled from "styled-components";
+
 const initialForm = {
   idPermiso: [],
+  nombrePermisos: [],
   id: 0,
 };
 
@@ -28,7 +30,7 @@ export const FormularioRolPermiso = ({
   dataToEdit,
   setDataToEdit,
 }) => {
-	let url = "http://localhost:3000/api/permisos";
+  let url = "http://localhost:3000/api/permisos";
 
   let { dataBase } = useCustomFetch(url);
 
@@ -44,48 +46,63 @@ export const FormularioRolPermiso = ({
     setDataToEdit
   );
 
-const [checkedIds, setCheckedIds] = useState(dataToEdit.idPermiso);
+  const [checkedIds, setCheckedIds] = useState(dataToEdit.idPermiso);
+  const [checkedNames, setCheckedNames] = useState(dataToEdit.nombrePermisos);
 
-const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = (event) => {
     const id = parseInt(event.target.value);
+    const name = event.target.name;
     if (event.target.checked) {
-        setCheckedIds([...checkedIds, id]);
+      setCheckedIds([...checkedIds, id]);
+      setCheckedNames([...checkedNames, name]);
     } else {
-        setCheckedIds(checkedIds.filter(checkedId => checkedId !== id));
+      setCheckedIds(checkedIds.filter((checkedId) => checkedId !== id));
+      setCheckedNames(
+        checkedNames.filter((checkedName) => checkedName !== name)
+      );
     }
-}
-const CheckboxContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+  };
 
-	return (
-<FormContainer>
-  <FormTitle>{dataToEdit ? "Editar permiso" : "Agregar permiso"}</FormTitle>
-  <Formulario onSubmit={handleSubmit}>
-    <FormLabel htmlFor="idPermiso">Permisos del rol</FormLabel>
-    <input type="hidden" name="idPermiso" value={(form.idPermiso = checkedIds)} />
-    <input type="hidden" name="idRol" value={(form.idRol = dataToEdit.idRol)} />
-    <input type="hidden" name="id" value={(form.id = dataToEdit.idRol)} />
-    <CheckboxContainer>
-      {dataBase &&
-        dataBase.map((permiso) => (
-          <div key={permiso.id}>
-            <input
-              type="checkbox"
-              value={permiso.id}
-              onBlur={handleBlur}
-              checked={checkedIds.includes(permiso.id)}
-              onChange={handleCheckboxChange}
-            />
-            <label>{permiso.nombrePermiso}</label>
-          </div>
-        ))}
-    </CheckboxContainer>
-    <FormInputBotton type="submit" value="Enviar" />
-  </Formulario>
-</FormContainer>
-	);
-	
+  return (
+    <FormContainer>
+      <FormTitle>Asignar un permiso al Rol</FormTitle>
+      <Formulario onSubmit={handleSubmit}>
+        <FormLabel htmlFor="idPermiso">
+          <b>Lista de permisos disponibles</b>
+        </FormLabel>
+        <input
+          type="hidden"
+          name="idPermiso"
+          value={(form.idPermiso = checkedIds)}
+        />
+        <input
+          type="hidden"
+          name="idRol"
+          value={(form.idRol = dataToEdit.idRol)}
+        />
+        <input type="hidden" name="id" value={(form.id = dataToEdit.idRol)} />
+        <input
+          type="hidden"
+          name="nombrePermisos"
+          value={(form.nombrePermisos = checkedNames)}
+        />
+
+        {dataBase &&
+          dataBase.map((permiso) => (
+            <div key={permiso.id}>
+              <input
+                type="checkbox"
+                name={permiso.nombrePermiso}
+                value={permiso.id}
+                onBlur={handleBlur}
+                checked={checkedIds.includes(permiso.id)}
+                onChange={handleCheckboxChange}
+              />
+              <label>{permiso.nombrePermiso}</label>
+            </div>
+          ))}
+        <FormInputBotton type="submit" value="Asignar" />
+      </Formulario>
+    </FormContainer>
+  );
 };

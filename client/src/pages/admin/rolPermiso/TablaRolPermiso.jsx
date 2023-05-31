@@ -39,6 +39,21 @@ export const TablaRolPermiso = ({
       selector: (row) => row.Rol.nombreRol,
       sortable: true,
     },
+		{
+			name: "Permisos del rol",
+			selector: (row) => row.nombrePermisos,
+			sortable: true,
+			format: (row) => (
+				row.nombrePermisos.length > 0 ? (
+					<ul>
+						{row.nombrePermisos.map((nombrePermiso) => (
+							<li key={nombrePermiso}>{nombrePermiso}</li>
+						))}
+					</ul>
+				) : <b>Ningun permiso asignado</b>
+			),
+		}
+		,
     {
       name: "Accion",
       key: "action",

@@ -4,7 +4,8 @@ import { useCustomFetch } from "../hooks/useCustomFetch";
 import { BaseContainer, BaseBody, BaseSectionData, SectionTitle } from "../styles/base";
 import { PostulacionesSection } from "../styles/pages/postulaciones";
 import { Route, Routes, useLocation } from "react-router-dom";
-
+import Loader from "../components/Loader";
+import Message from "../components/Message"
 
 export const Postulaciones = () => {
 
@@ -16,6 +17,7 @@ export const Postulaciones = () => {
         error,
         loading,
     } = useCustomFetch(url);
+    console.log(dataBase)
     return (
         <BaseContainer>
             <Header titulo="Postulaciones" />
@@ -23,13 +25,24 @@ export const Postulaciones = () => {
                 <BaseSectionData>
                     <SectionTitle>Postulaciones realizadas</SectionTitle>
                     <PostulacionesSection>
-                        <TarjetaEmpleo
-                            dataBase={dataBase}
-                            error={error}
-                            loading={loading}
-                            > 
-                            
-                        </TarjetaEmpleo>
+                        {loading && <Loader />}
+                        {
+                            error && (
+                                <Message
+                                    msg={`Error ${error.status}: ${error.statusText}`}
+                                    bgColor="#E84616"
+                                />
+                            )
+                        }
+                        {
+                            dataBase && dataBase.map((postulacion) => (
+                                <div key={postulacion.idOferta}>
+                                    <TarjetaEmpleo
+                                        titulo={postulacion.tituloOferta}
+                                        descripcion={postulacion.descOferta}></TarjetaEmpleo>
+                                </div>
+                            ))
+                        }
                     </PostulacionesSection>
                 </BaseSectionData>
             </BaseBody>

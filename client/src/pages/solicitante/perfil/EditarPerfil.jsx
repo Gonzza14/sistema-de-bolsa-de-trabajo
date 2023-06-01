@@ -15,6 +15,7 @@ import { faMapSigns, faCalendarAlt, faPersonHalfDress, faPhoneAlt } from "@forta
 import { faFacebook, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { useForm } from "../../../hooks/useForm";
+import moment from 'moment';
 
 const initialForm = {
     Genero: {},
@@ -39,19 +40,16 @@ const validateForm = (form) => {
     return errors;
 }
 
+
 export const EditarPerfil = ({
-    updateData,
+    updateDataSolicitante,
     error,
     loading,
     setDataToEdit,
     dataToEdit,
+    dataBase,
     setResponse,
 }) => {
-
-    let url = "http://localhost:3000/api/generos"
-
-    let { dataBase } = useCustomFetch(url)
-
     let path = "/Usuario"
 
     let {
@@ -65,16 +63,31 @@ export const EditarPerfil = ({
         validateForm,
         path,
         null,
-        updateData,
+        updateDataSolicitante,
         dataToEdit,
         setDataToEdit
     )
+
 
     const handleSelect = (e) => {
         var index = e.nativeEvent.target.selectedIndex;
         form.Genero.nombreGenero = e.nativeEvent.target[index].text;
         form.Genero.id = e.nativeEvent.target.value;
     }
+
+
+    let nacimiento = null ;
+    let fechaFormateada = null;
+    if(dataBase){
+      nacimiento = new Date(form.fechaNacimiento);
+      nacimiento.setMinutes(nacimiento.getMinutes() + nacimiento.getTimezoneOffset())
+      const year = nacimiento.getFullYear();
+      const month = nacimiento.getMonth() + 1;
+      const day = nacimiento.getDate();    
+      fechaFormateada = `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
+      form.fechaNacimiento = fechaFormateada
+    }
+
 
 
     return (
@@ -161,9 +174,9 @@ export const EditarPerfil = ({
                                 defaultValue={form.idGenero}
                             >
                                 <option value={form.idGenero} disabled>{form.Genero.nombreGenero}</option>
-                                {dataBase &&
-                                    dataBase.map((genero) => <option key={genero.id} value={genero.id}>{genero.nombreGenero}</option>)
-                                }
+                                <option value="1">Masculino</option>
+                                <option value="2">Femenino</option>
+                                <option value="3">Otro</option>
                             </FormSelectUser>
                         </FormGroup>
                         <FormGroup>

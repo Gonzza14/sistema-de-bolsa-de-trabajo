@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { EditarPerfil } from "./EditarPerfil";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { DatosUsuario } from "./DatosUsuario";
+import Message from "../../../components/Message"
 
 
 export const Usuario = () => {
@@ -16,37 +17,37 @@ export const Usuario = () => {
         dataBase,
         dataToEdit,
         setDataToEdit,
-        updateData,
+        updateDataSolicitante,
         error,
         loading,
         response,
         setResponse,
-     } = useCustomFetch(url);
+    } = useCustomFetch(url);
     return (
         <BaseContainer>
             <BaseBody>
                 <BaseSectionData>
+                    {response && (
+                        <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
+                    )}
                     <Routes>
-                        {response && (
-                            <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
-                        )}
                         <Route path={''} element={<DatosUsuario
-                        error={error}
-                        loading={loading}
-                        setDataToEdit={setDataToEdit}
-                        dataToEdit={dataToEdit}
-                        dataBase={dataBase}
-                        setResponse={setResponse}
+                            error={error}
+                            loading={loading}
+                            setDataToEdit={setDataToEdit}
+                            dataToEdit={dataToEdit}
+                            dataBase={dataBase}
+                            setResponse={setResponse}
                         />} />
                         <Route path={`editar`} element={<EditarPerfil
-                         updateData={updateData}
-                         error={error}
-                         loading={loading}
-                         setDataToEdit={setDataToEdit}
-                         dataToEdit={dataToEdit}
-                         dataBase={dataBase}
-                         setResponse={setResponse}
-                        />}/>
+                            updateDataSolicitante={updateDataSolicitante}
+                            error={error}
+                            loading={loading}
+                            setDataToEdit={setDataToEdit}
+                            dataToEdit={dataToEdit}
+                            dataBase={dataBase}
+                            setResponse={setResponse}
+                        />} />
                     </Routes>
                 </BaseSectionData>
             </BaseBody>

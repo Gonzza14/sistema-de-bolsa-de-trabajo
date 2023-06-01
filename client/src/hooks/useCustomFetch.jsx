@@ -13,6 +13,7 @@ export const useCustomFetch = (url) => {
       .get(url)
       .then((res) => {
         setLoading(true);
+        console.log(res)
         if (!res.err) {
           setDatabase(res);
           setError(null);
@@ -154,7 +155,6 @@ export const useCustomFetch = (url) => {
   const updateData = (data) => {
     let endpoint = `${url}/${data.id}`;
     //console.log(endpoint);
-
     let options = {
       body: data,
       headers: { "content-type": "application/json" },
@@ -167,6 +167,29 @@ export const useCustomFetch = (url) => {
         if (!res.err) {
           let newData = dataBase.map((el) => (el.id === data.id ? data : el));
           setDatabase(newData);
+          setLoading(false);
+          setResponse(true);
+          setTimeout(() => setResponse(false), 4000);
+        } else {
+          setError(res);
+          setLoading(false);
+        }
+      });
+  };
+
+  const updateDataSolicitante = (data) => {
+    //console.log(endpoint);
+    let options = {
+      body: data,
+      headers: { "content-type": "application/json" },
+    };
+    setLoading(true);
+    helpHttp()
+      .put(url, options)
+      .then((res) => {
+        //console.log(res);
+        if (!res.err) {
+          setDatabase(res);
           setLoading(false);
           setResponse(true);
           setTimeout(() => setResponse(false), 4000);
@@ -218,5 +241,6 @@ export const useCustomFetch = (url) => {
     verificarData,
     subirArchivo,
 		updateSubirArchivo,
+    updateDataSolicitante,
   };
 };

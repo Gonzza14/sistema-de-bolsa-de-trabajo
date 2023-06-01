@@ -2,13 +2,29 @@ import { VerUsuario } from "./VerUsuario";
 import { BioPerfil, NamePerfil, FooterPerfil, DatosPerfil, ItemPerfil, IconDataPerfil } from "../../../styles/pages/usuario";
 import { faMapSigns, faCalendarAlt, faPersonHalfDress, faPhoneAlt, faIdCard, faPassport, faIdCardClip, faListNumeric } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import moment from 'moment';
+
 
 export const DatosUsuario = ({ error, loading, setDataToEdit, dataToEdit, dataBase, setResponse }) => {
 
     let nombre = null;
-
     dataBase ? nombre = dataBase.nombresSolic + " " + dataBase.apellidosSolic : nombre = "Cargando...";
-    return (
+    
+    let nacimiento = null ;
+    let fechaFormateada = null;
+    if(dataBase){
+      nacimiento = new Date(dataBase.fechaNacimiento);
+      nacimiento.setMinutes(nacimiento.getMinutes() + nacimiento.getTimezoneOffset())
+      const year = nacimiento.getFullYear();
+      const month = nacimiento.getMonth() + 1;
+      const day = nacimiento.getDate();    
+      fechaFormateada =`${day < 10 ? `0${day}` : day}/${month < 10 ? `0${month}` : month}/${year}`;
+    }else{
+        nacimiento = null;
+    }
+
+    
+    return(
         <>
             {dataBase && <VerUsuario
                 error={error}
@@ -31,7 +47,7 @@ export const DatosUsuario = ({ error, loading, setDataToEdit, dataToEdit, dataBa
                     </DatosPerfil>
                     <DatosPerfil>
                         <ItemPerfil><IconDataPerfil icon={faCalendarAlt} size="xl"></IconDataPerfil><strong>Fecha de nacimiento: </strong></ItemPerfil>
-                        <ItemPerfil>{dataBase.fechaNacimiento}</ItemPerfil>
+                        <ItemPerfil>{fechaFormateada}</ItemPerfil>
                     </DatosPerfil>
                     <DatosPerfil>
                         <ItemPerfil><IconDataPerfil icon={faPersonHalfDress} size="xl"></IconDataPerfil><strong>Genero:</strong> </ItemPerfil>

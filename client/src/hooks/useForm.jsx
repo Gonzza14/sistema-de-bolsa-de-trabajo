@@ -35,7 +35,7 @@ export const useForm = (initialForm, validateForm, path, createData, updateData,
         handleChange(e);
         e.preventDefault();
         setErrors(validateForm(form));
-
+console.log(form)
         if (Object.keys(validateForm(form)).length === 0) {
             if (form.id === null) {
                 createData(form);

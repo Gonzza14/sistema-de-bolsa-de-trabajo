@@ -22,6 +22,8 @@ import recomPersRoutes from './routes/recomPers.routes';
 import tipoExamenesRoutes from './routes/tipoExamenes.routes';
 import examenesRoutes from './routes/examenes.routes';
 import generosRoutes from './routes/generos.routes';
+import permisosRoutes from './routes/permisos.routes';
+import rolPermisosRoutes from './routes/rolPermisos.routes';
 import fs from 'fs';
 
 //Creacion de aplicacion
@@ -93,6 +95,9 @@ app.get('/images/:imageName', (req, res) => {
   // Return the image to the client
   res.send(image);
 });
+
+app.use("/api/permisos", permisosRoutes);
+app.use("/api/rolPermisos", rolPermisosRoutes);
 
 
 

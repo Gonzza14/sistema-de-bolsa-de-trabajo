@@ -12,6 +12,8 @@ import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
 import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad';
 import { GestionTipoExamen } from '../pages/admin/tipoExamen/GestionTipoExamen';
 import {GestionCurriculum} from '../pages/solicitante/curriculum/GestionCurriculum';
+import {GestionPermiso} from '../pages/admin/permiso/GestionarPermiso';
+import {GestionRolPermiso} from '../pages/admin/rolPermiso/GestionRolPermiso';
 import PrivateRoutes from './PrivateRoutes';
 import { Error404 } from '../pages/errors/Error404';
 
@@ -31,8 +33,10 @@ export const Rutas = () => {
                     <Route path='/GestionUsuario/*' element={<GestionUsuario/>}/>
                     <Route path='/GestionTipoHabilidad/*' element={<GestionTipoHabilidad/>}/>
                     <Route path='/GestionTipoExamen/*' element={<GestionTipoExamen/>}/>
-					<Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
+					          <Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
                     <Route path='/Usuario/*' element={<Usuario />} />
+										<Route path='/GestionPermiso/*'	element= {<GestionPermiso/>}/>
+										<Route path='/GestionRolPermiso/*'	element= {<GestionRolPermiso/>}/>
                 </Route>
                 <Route path="*" element={<Error404 />} />
             </Routes>

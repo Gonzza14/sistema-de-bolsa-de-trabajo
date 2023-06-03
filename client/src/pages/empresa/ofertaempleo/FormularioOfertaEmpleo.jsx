@@ -50,16 +50,16 @@ const validateForm = (form) => {
 
   if(!form.descOferta.trim()){
     errors.descOferta = `La descripción de la oferta es requerida`
-  }else if (!regexDesc.test(form.descOferta.trim())) {
-    errors.descOferta = "No debe de contener mas de 2048 caracteres";
+  /*}else if (!regexDesc.test(form.descOferta.trim())) {
+    errors.descOferta = "No debe de contener mas de 2048 caracteres";*/
   }else{
     delete errors.descOferta;
   }
 
   if(!form.perfilAcademico.trim()){
     errors.perfilAcademico = `El perfil academico de la oferta es requerido`
-  }else if (!regexDesc.test(form.perfilAcademico.trim())) {
-    errors.perfilAcademico = "No debe de contener mas de 2048 caracteres";
+  /*}else if (!regexDesc.test(form.perfilAcademico.trim())) {
+    errors.perfilAcademico = "No debe de contener mas de 2048 caracteres";*/
   }else{
     delete errors.perfilAcademico;
   }

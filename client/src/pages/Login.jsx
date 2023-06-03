@@ -9,7 +9,6 @@ import { useForm } from "../hooks/useForm";
 import { useFormReg } from "../hooks/useFormReg";
 import { MensajeValidacion } from "../styles/elements/mensajes";
 import { useState, useEffect } from "react";
-import { MensajeValidacion } from "../styles/elements/mensajes";
 import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton, FormTextArea } from "../styles/elements/formularios";
 
 

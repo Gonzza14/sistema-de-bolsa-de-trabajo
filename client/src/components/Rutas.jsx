@@ -9,7 +9,6 @@ import { NavBar } from './NavBar';
 import { Usuario } from '../pages/solicitante/perfil/Usuario';
 import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
 import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
-import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad';
 import { GestionOfertaEmpleo } from '../pages/empresa/ofertaempleo/GestionOfertaEmpleo';
 import { GestionRol } from '../pages/admin/rol/GestionRol'
 import { DetalleOferta } from '../pages/solicitante/postulacion/DetalleOferta'
@@ -42,10 +41,10 @@ export const Rutas = () => {
                     <Route path='/DetalleOferta/*' element={<DetalleOferta/>}/>
                     <Route path='/ListarPostulantes/*' element={<ListarPostulantes/>}/>
                     <Route path='/GestionTipoExamen/*' element={<GestionTipoExamen/>}/>
-					          <Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
+				    <Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
                     <Route path='/Usuario/*' element={<Usuario />} />
-										<Route path='/GestionPermiso/*'	element= {<GestionPermiso/>}/>
-										<Route path='/GestionRolPermiso/*'	element= {<GestionRolPermiso/>}/>
+					<Route path='/GestionPermiso/*'	element= {<GestionPermiso/>}/>
+				    <Route path='/GestionRolPermiso/*'	element= {<GestionRolPermiso/>}/>
                 </Route>
                 <Route path="*" element={<Error404 />} />
             </Routes>

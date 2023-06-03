@@ -6,7 +6,7 @@ import { Empresa } from '../pages/Empresa';
 import { Buscar } from '../pages/Buscar';
 import { Home } from '../pages/Home';
 import { NavBar } from './NavBar';
-import { Usuario } from '../pages/Usuario';
+import { Usuario } from '../pages/solicitante/perfil/Usuario';
 import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
 import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
 import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad';
@@ -22,7 +22,6 @@ export const Rutas = () => {
         <Router>
             <NavBar/>
             <Routes>
-                <Route path='/Usuario' element={<Usuario />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/CV' element={<CurriculumVitae />} />
                 <Route path='/Postulaciones' element={<Postulaciones />} />
@@ -34,7 +33,8 @@ export const Rutas = () => {
                     <Route path='/GestionUsuario/*' element={<GestionUsuario/>}/>
                     <Route path='/GestionTipoHabilidad/*' element={<GestionTipoHabilidad/>}/>
                     <Route path='/GestionTipoExamen/*' element={<GestionTipoExamen/>}/>
-										<Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
+					          <Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
+                    <Route path='/Usuario/*' element={<Usuario />} />
 										<Route path='/GestionPermiso/*'	element= {<GestionPermiso/>}/>
 										<Route path='/GestionRolPermiso/*'	element= {<GestionRolPermiso/>}/>
                 </Route>

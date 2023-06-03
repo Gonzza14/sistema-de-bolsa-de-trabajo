@@ -1,4 +1,4 @@
-import { Usuario, Rol } from "../models";
+import { Usuario, Rol, Solicitante, Genero } from "../models";
 const bcrypt = require("bcryptjs")
 
 export const getUsuarios = async (req, res) => {
@@ -131,6 +131,54 @@ export const getUsuario = async (req, res) => {
 		return res.status(500).json({ message: err.message });
 	}
 };
+
+export const getSolicitante = async (req, res) => {
+  try{
+    const { id } = req.params;
+    const solicitante = await Solicitante.findOne({
+      where: { id: id},
+      include: [{
+        model: Genero,
+        attributes: ['id', 'nombreGenero']
+      }]
+    });
+    if (!solicitante) {
+      return res.status(404).json({ message: "Solicitante no encontrado" });
+    }
+    res.json(solicitante);
+  }catch(err){
+    return res.status(500).json({ message: err.message });
+  }
+}
+
+export const updateSolicitante = async (req, res) => {
+  try {
+      const { id } = req.params;
+  
+      //Se actualiza la usuario
+      const solicitante = await Solicitante.findByPk(id);
+  
+      if (!solicitante) {
+      return res.status(404).json({ message: "Solicitante no encontrado" });
+      }
+
+      solicitante.set(req.body)
+      await solicitante.save()
+      
+      const solicitanteCambiado = await Solicitante.findOne({
+        where: { id: solicitante.id },
+        include: [{
+          model: Genero,
+          attributes: ['id', 'nombreGenero']
+        }]
+      });
+
+      res.json(solicitanteCambiado);
+  
+  } catch (err) {
+      return res.status(500).json({ message: err.message });
+  }
+
 
 export const verificarUsuario = async (req, res) => {
 	try {

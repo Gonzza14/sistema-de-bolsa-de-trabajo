@@ -21,6 +21,7 @@ import recomLaboRoutes from './routes/recomLabors.routes';
 import recomPersRoutes from './routes/recomPers.routes';
 import tipoExamenesRoutes from './routes/tipoExamenes.routes';
 import examenesRoutes from './routes/examenes.routes';
+import generosRoutes from './routes/generos.routes';
 import permisosRoutes from './routes/permisos.routes';
 import rolPermisosRoutes from './routes/rolPermisos.routes';
 import fs from 'fs';
@@ -82,6 +83,8 @@ app.use("/api/tipoExamenes", tipoExamenesRoutes);
 
 app.use("/api/examenes", examenesRoutes);
 
+app.use("/api/generos", generosRoutes);
+
 app.get('/images/:imageName', (req, res) => {
   // Get the image name from the request
   const imageName = req.params.imageName;
@@ -95,6 +98,8 @@ app.get('/images/:imageName', (req, res) => {
 
 app.use("/api/permisos", permisosRoutes);
 app.use("/api/rolPermisos", rolPermisosRoutes);
+
+
 
 
 export default app;

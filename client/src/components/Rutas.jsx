@@ -9,6 +9,8 @@ import { NavBar } from './NavBar';
 import { Usuario } from '../pages/solicitante/perfil/Usuario';
 import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
 import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
+import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad';
+import { GestionOfertaEmpleo } from '../pages/empresa/ofertaempleo/GestionOfertaEmpleo';
 import { GestionRol } from '../pages/admin/rol/GestionRol'
 import { DetalleOferta } from '../pages/solicitante/postulacion/DetalleOferta'
 import { ListarPostulantes } from '../pages/empresa/postulantes/listarPostulantes'
@@ -35,6 +37,7 @@ export const Rutas = () => {
                     <Route path='/GestionEmpresa/*' element={<GestionEmpresa/>}/>
                     <Route path='/GestionUsuario/*' element={<GestionUsuario/>}/>
                     <Route path='/GestionTipoHabilidad/*' element={<GestionTipoHabilidad/>}/>
+                    <Route path='/GestionOfertaEmpleo/*' element={<GestionOfertaEmpleo/>}/>
                     <Route path='/GestionRol/*' element={<GestionRol/>}/>
                     <Route path='/DetalleOferta/*' element={<DetalleOferta/>}/>
                     <Route path='/ListarPostulantes/*' element={<ListarPostulantes/>}/>

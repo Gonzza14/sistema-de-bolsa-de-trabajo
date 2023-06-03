@@ -8,6 +8,8 @@ import empresasRoutes from "./routes/empresas.routes";
 import usuariosRoutes from "./routes/usuarios.routes";
 import rolesRoutes from "./routes/roles.routes";
 import tipohabilidadesRoutes from "./routes/tipohabilidades.routes";
+import ofertaempleosRoutes from "./routes/ofertaempleos.routes";
+import categoriaofertasRoutes from "./routes/categoriaofertas.routes";
 import postulaRoutes from "./routes/postula.routes";
 import ofertaRoutes from "./routes/ofertaEmpleo.routes";
 import categoriaRoutes from "./routes/categorias.routes";
@@ -60,6 +62,9 @@ app.use("/api/empresas", empresasRoutes);
 app.use("/api/usuarios", usuariosRoutes);
 app.use("/api/roles", rolesRoutes);
 app.use("/api/tipohabilidades", tipohabilidadesRoutes);
+app.use("/api/ofertaempleos", ofertaempleosRoutes);
+app.use("/api/categoriaofertas", categoriaofertasRoutes);
+
 
 app.use("/api/postula", postulaRoutes);
 app.use("/api/ofertas", ofertaRoutes);
@@ -109,7 +114,6 @@ app.get('/images/:imageName', (req, res) => {
 
 app.use("/api/permisos", permisosRoutes);
 app.use("/api/rolPermisos", rolPermisosRoutes);
-
 
 
 export default app;

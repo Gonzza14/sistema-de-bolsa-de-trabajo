@@ -39,7 +39,8 @@ module.exports = (sequelize, DataTypes) => {
     expLaboral: DataTypes.STRING(2048),
     rangoSalar: DataTypes.STRING(255),
     ubicacion: DataTypes.STRING(255),
-    modalidad: DataTypes.STRING(15)
+    modalidad: DataTypes.STRING(15),
+    estado: DataTypes.INTEGER
   }, {
     sequelize,
     paranoid: true,

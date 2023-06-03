@@ -4,7 +4,10 @@ import { Postula, OfertaEmpleo, Solicitante, sequelize } from "../models";
 export const getPostulaciones = async (req, res) => {
     try {
         const { id } = req.params;
-        const postulaciones = await sequelize.query("SELECT * FROM public.\"Postulas\" as \"P\" JOIN public.\"OfertaEmpleos\" as \"O\" ON \"O\".\"id\"=\"P\".\"idOferta\" WHERE \"P\".\"idSolic\"="+id+";", 
+        const postulaciones = await sequelize.query(`SELECT * FROM public."Postulas" as "P" 
+                                                        JOIN public."OfertaEmpleos" as "O" ON "O"."id"="P"."idOferta" 
+                                                        JOIN public."Empresas" as "E" ON "E"."id"="O"."idEmpresa"
+                                                        WHERE "P"."idSolic"=${id};`, 
                                { type: sequelize.QueryTypes.SELECT})
         res.json(postulaciones);
     }catch (err) {

@@ -9,6 +9,9 @@ import { NavBar } from './NavBar';
 import { Usuario } from '../pages/solicitante/perfil/Usuario';
 import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
 import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
+import { GestionRol } from '../pages/admin/rol/GestionRol'
+import { DetalleOferta } from '../pages/solicitante/postulacion/DetalleOferta'
+import { ListarPostulantes } from '../pages/empresa/postulantes/listarPostulantes'
 import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad';
 import { GestionTipoExamen } from '../pages/admin/tipoExamen/GestionTipoExamen';
 import {GestionCurriculum} from '../pages/solicitante/curriculum/GestionCurriculum';
@@ -32,6 +35,9 @@ export const Rutas = () => {
                     <Route path='/GestionEmpresa/*' element={<GestionEmpresa/>}/>
                     <Route path='/GestionUsuario/*' element={<GestionUsuario/>}/>
                     <Route path='/GestionTipoHabilidad/*' element={<GestionTipoHabilidad/>}/>
+                    <Route path='/GestionRol/*' element={<GestionRol/>}/>
+                    <Route path='/DetalleOferta/*' element={<DetalleOferta/>}/>
+                    <Route path='/ListarPostulantes/*' element={<ListarPostulantes/>}/>
                     <Route path='/GestionTipoExamen/*' element={<GestionTipoExamen/>}/>
 					          <Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
                     <Route path='/Usuario/*' element={<Usuario />} />

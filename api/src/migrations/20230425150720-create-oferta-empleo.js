@@ -64,6 +64,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(15)
       },
+      estado: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

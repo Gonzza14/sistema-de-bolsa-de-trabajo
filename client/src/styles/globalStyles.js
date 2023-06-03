@@ -37,7 +37,19 @@ import {
   ButtonRegister,
   SpanButton,
 } from "./elements/botones";
+
+import {
+    DatosPerfil,
+    PortadaPerfil,
+    BodyPerfil,
+    FormGroup,
+    FormInputUser,
+    FormLabelUser,
+    FormSelectUser,
+    SectionPerfil,
+} from "./pages/usuario";
 import { PostulacionesSection } from "./pages/postulaciones";
+import { FormLabel } from "./elements/formularios";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -145,10 +157,10 @@ overflow-x: hidden;
     ${BaseHeader}{
         height: 5em;
     }
-
     ${ButtonLogin}{
         padding: 0.8em;
     }
+
 
 }
 
@@ -284,6 +296,10 @@ overflow-x: hidden;
     ${PostulacionesSection}{
         padding-bottom: 7em;
     }
+
+    ${SectionPerfil}{
+        padding-bottom: 10em;
+    }
 }
 
 @media screen and (max-height: 847px) {
@@ -363,6 +379,19 @@ overflow-x: hidden;
      }
 }
 
+@media (max-width: 750px) {
+    ${DatosPerfil}{
+        width: 100%;
+    }
+
+    ${PortadaPerfil}{
+        width: 95%;
+    }
+    ${BodyPerfil}{
+        width: 95%;
+    }
+}
+
 @media screen and (max-width: 657px) {
     ${SectionInner}{
         margin-left: 1em;
@@ -383,6 +412,27 @@ overflow-x: hidden;
             width: 20%;
         }
     }
+
+    ${FormGroup}{
+        flex-wrap: wrap;
+        justify-content: unset;
+    }
+    ${FormLabelUser}{
+        width: 100%;
+    }
+
+    ${FormInputUser}{
+        width: 100%;
+    }
+
+    ${FormSelectUser}{
+        width: 100%;
+    }
+
+    ${DatosPerfil}{
+        flex-direction: column;
+    }
+
 }
 
 @media screen and (max-height: 613px) {

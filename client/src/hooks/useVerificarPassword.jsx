@@ -1,10 +1,12 @@
 import { helpHttp } from "../helpers/helpHttp"
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useVerificarPassword = (url) => {
-    const [dataBase,setDatabase] = useState(null);
+    const [dataBase, setDatabase] = useState(null);
     const [error, setError] = useState(null);
     const [response, setResponse] = useState(null);
+    const navigate = useNavigate();
 
     const verificarData = (data) => {
         let options = {
@@ -13,11 +15,16 @@ export const useVerificarPassword = (url) => {
         };
         // Hacer peticion al servidor enviando el json con la informacion del inicio de sesion
         helpHttp().post(url, options).then((res) => {
-            //console.log(res);
+            localStorage.removeItem("rol")
+            localStorage.removeItem("id_usuario")
+            localStorage.removeItem("email")
             if (!res.err) {
-                console.log(res)
-                localStorage.removeItem("rol")
-                localStorage.setItem("rol",res.rol)
+                if(res.rol){
+                    localStorage.setItem("rol",res.rol)
+                    localStorage.setItem("id_usuario", res.id_usuario)
+                    localStorage.setItem("email", res.email)
+                    navigate('/')
+                }
             } else {
                 setError(res);
             }

@@ -6,13 +6,17 @@ import { Empresa } from '../pages/Empresa';
 import { Buscar } from '../pages/Buscar';
 import { Home } from '../pages/Home';
 import { NavBar } from './NavBar';
-import { Usuario } from '../pages/Usuario';
+import { Usuario } from '../pages/solicitante/perfil/Usuario';
 import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
 import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
-import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad'
 import { GestionRol } from '../pages/admin/rol/GestionRol'
 import { DetalleOferta } from '../pages/solicitante/postulacion/DetalleOferta'
 import { ListarPostulantes } from '../pages/empresa/postulantes/listarPostulantes'
+import { GestionTipoHabilidad } from '../pages/admin/tipohabilidad/GestionTipoHabilidad';
+import { GestionTipoExamen } from '../pages/admin/tipoExamen/GestionTipoExamen';
+import {GestionCurriculum} from '../pages/solicitante/curriculum/GestionCurriculum';
+import {GestionPermiso} from '../pages/admin/permiso/GestionarPermiso';
+import {GestionRolPermiso} from '../pages/admin/rolPermiso/GestionRolPermiso';
 import PrivateRoutes from './PrivateRoutes';
 import { Error404 } from '../pages/errors/Error404';
 
@@ -21,7 +25,6 @@ export const Rutas = () => {
         <Router>
             <NavBar/>
             <Routes>
-                <Route path='/Usuario' element={<Usuario />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/CV' element={<CurriculumVitae />} />
                 <Route path='/Postulaciones' element={<Postulaciones />} />
@@ -35,6 +38,11 @@ export const Rutas = () => {
                     <Route path='/GestionRol/*' element={<GestionRol/>}/>
                     <Route path='/DetalleOferta/*' element={<DetalleOferta/>}/>
                     <Route path='/ListarPostulantes/*' element={<ListarPostulantes/>}/>
+                    <Route path='/GestionTipoExamen/*' element={<GestionTipoExamen/>}/>
+					          <Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
+                    <Route path='/Usuario/*' element={<Usuario />} />
+										<Route path='/GestionPermiso/*'	element= {<GestionPermiso/>}/>
+										<Route path='/GestionRolPermiso/*'	element= {<GestionRolPermiso/>}/>
                 </Route>
                 <Route path="*" element={<Error404 />} />
             </Routes>

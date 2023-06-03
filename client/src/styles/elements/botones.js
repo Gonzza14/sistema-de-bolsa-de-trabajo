@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -63,7 +63,7 @@ export const ButtonOp = styled.button`
 `;
 export const StyledFontAwesomeIconBoton = styled(FontAwesomeIcon)`
   color: #06062a;
-
+	font-size: 18px;
   &:hover {
     color: #f3f3f3;
   }
@@ -88,8 +88,8 @@ export const SpanButton = styled.span`
 
 export const ButtonModalClose = styled(ButtonOp)`
   position: absolute;
-  //top: 0.5rem;
-  top: -1rem;
+  top: 0.5rem;
+  //top: -1rem;
   right: 0.5rem;
   padding: 0.3rem 0.3rem 0rem 1rem;
 `;
@@ -109,3 +109,101 @@ export const ButtonModalDelete = styled(ButtonOp)`
 export const EditButton = styled(ButtonCreate)`
   margin-bottom: 0;
 `
+//Style curriculum
+
+export const ButtonCreateCV = styled(Link)`
+  width: 1em;
+  height: 0em;
+  margin-top: 0;
+  margin-bottom: 1em;
+  margin-left: auto;
+  color: #000000;
+  background-color: #FFC0CB;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: .5em;
+`;
+
+export const ContainerButtonAdd = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const ButtonAdd = styled.button`
+  display: flex;
+  align-items: center;
+`;
+
+export const Contenedor = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5rem;
+  width: 100%;
+  height: 50vh;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100%;
+    background-image: url('/src/assets/images/img_cv2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+  }
+`;
+
+export const ContenidoIzquierdo = styled.div`
+  display: flex;
+  flex-direction: column;
+	align-items: center;
+`;
+
+
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+export const Titulo = styled.h1`
+  text-align: center;
+	text-shadow: 1px 1px 2px black;
+  padding: 10px;
+  animation: ${fadeIn} 0.5s linear;
+`;
+
+
+export const Subtitulo = styled.h2`
+  text-align: center;
+	text-shadow: 1px 1px 2px black;
+  padding: 10px;
+	animation: ${fadeIn} 1s linear;
+	
+`;
+
+export const Boton = styled.button`
+  font-size: 1.4em;
+  display: inline-block;
+  background-color: #06062a;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #C2185B;
+  }
+`;

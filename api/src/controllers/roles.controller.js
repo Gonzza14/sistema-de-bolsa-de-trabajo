@@ -1,4 +1,5 @@
 import { Rol } from "../models";
+const Op = require('sequelize').Op;
 
 export const getRoles = async (req, res) => {
     try {
@@ -80,5 +81,18 @@ export const getRol = async (req, res) => {
     res.json(rol);
     } catch (err) {
     return res.status(500).json({ message: err.message });
+    }
+};
+
+export const getRolesSinAdmin = async (req, res) => {
+    try {
+        const rols = await Rol.findAll({
+            where: {
+                id: { [Op.ne]: 1 }
+            }
+    });
+        res.json(rols);
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
     }
 };

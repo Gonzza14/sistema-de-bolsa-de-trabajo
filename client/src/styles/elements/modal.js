@@ -18,10 +18,17 @@ export const ModalArticle = styled.article`
 
 export const ModalContainer = styled.div`
   position: relative;
-  min-width: 320px;
-  max-width: 480px;
-  min-height: 200px;
-  max-height: 600px;
+  width: 50%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #c3c1d2;
+`;
+
+export const ModalContainerCV = styled.div`
+  position: relative;
+  max-width: 100%;
+  min-width: 50%;
+  height: 100%;
   overflow-y: auto;
   background-color: #c3c1d2;
 `;

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const useVerificarPassword = (url) => {
-    const [dataBase,setDatabase] = useState(null);
+    const [dataBase, setDatabase] = useState(null);
     const [error, setError] = useState(null);
     const [response, setResponse] = useState(null);
     const navigate = useNavigate();

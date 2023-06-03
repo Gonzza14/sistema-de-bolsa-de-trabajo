@@ -8,6 +8,7 @@ import empresasRoutes from "./routes/empresas.routes";
 import usuariosRoutes from "./routes/usuarios.routes";
 import rolesRoutes from "./routes/roles.routes";
 import tipohabilidadesRoutes from "./routes/tipohabilidades.routes";
+import postulacionesRoutes from "./routes/postulaciones.routes";
 import curriculumRoutes from "./routes/curriculum.routes";
 import conAcademicosRoutes from "./routes/conAcademicos.routes";
 import expLaboRoutes from "./routes/expLabo.routes";
@@ -55,6 +56,7 @@ app.use("/api/empresas", empresasRoutes);
 app.use("/api/usuarios", usuariosRoutes);
 app.use("/api/roles", rolesRoutes);
 app.use("/api/tipohabilidades", tipohabilidadesRoutes);
+app.use("/api/postulaciones", postulacionesRoutes); 
 
 //Curriculum
 app.use("/api/curriculum", curriculumRoutes);

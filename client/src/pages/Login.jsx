@@ -7,6 +7,9 @@ import { useCustomFetch } from "../hooks/useCustomFetch";
 import { useVerificarPassword } from "../hooks/useVerificarPassword";
 import { useForm } from "../hooks/useForm";
 import { useState, useEffect } from "react";
+import { MensajeValidacion } from "../styles/elements/mensajes";
+import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton, FormTextArea } from "../styles/elements/formularios";
+
 
 const initialForm = {
     id:null,
@@ -16,6 +19,21 @@ const initialForm = {
 
 const validateForm = (form => {
     let errors = {}
+    let regexEmail = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    if(!form.email.trim()){
+        errors.email = `El email del usuario es requerido`
+    }else if(!regexEmail.text(form.email.trim())){
+        errors.email = `El correo no es valido`
+    }else{
+        delete errors.email;
+    }
+
+    if(!form.password.trim()){
+        errors.password = `Password incorrecto`
+    }else{
+        delete errors.password;
+    }
+
     return errors
 })
 
@@ -78,20 +96,22 @@ export const Login = () => {
                                     name="email" 
                                     id="email"
                                     placeholder="Email" 
+                                    onBlur={handleBlur}
                                     value={form.email} 
-                                    required=""
                                     onChange={handleChange}
                                     />
+                                {errors.email && <MensajeValidacion>{errors.email}</MensajeValidacion>}
                                 <input 
                                     className="input-login"
                                     type="password"
                                     id="password" 
                                     name="password" 
                                     placeholder="Constraseña" 
-                                    value={form.password}  
-                                    required=""
+                                    value={form.password}
+                                    onBlur={handleBlur}  
                                     onChange={handleChange}
                                     />
+                                {errors.password && <MensajeValidacion>{errors.password}</MensajeValidacion>}
                                 <button className="button-login" type="submit">Iniciar Sesión</button>
                             </form>
                         </div>

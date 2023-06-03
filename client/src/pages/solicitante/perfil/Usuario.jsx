@@ -8,7 +8,7 @@ import Message from "../../../components/Message"
 
 
 export const Usuario = () => {
-    localStorage.setItem("id_usuario", 1);
+    //localStorage.setItem("id_usuario", 1);
 
     let id_usuario = localStorage.getItem("id_usuario"),
         url = `http://localhost:3000/api/usuarios/solicitante/${id_usuario}`

@@ -28,8 +28,8 @@ export const DetalleOferta = () => {
     let [empresa] = useCustomFetch(urlEmpresa);
     let [categoria] = useCustomFetch(urlCategoria);
 
-    //idUsuario = localStorage.getItem("id_usuario")
-    idUsuario = 1
+    idUsuario = localStorage.getItem("id_usuario")
+    //idUsuario = 1
     let urlSolic = "http://localhost:3000/api/solicitantes/us/" + (idUsuario).toString()
     let [solicitante] = useCustomFetch(urlSolic);
     if (solicitante) {

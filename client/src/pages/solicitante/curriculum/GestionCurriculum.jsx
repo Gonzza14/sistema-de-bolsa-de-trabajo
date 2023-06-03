@@ -61,7 +61,8 @@ const ListItem = styled.li`
 
 
 export const GestionCurriculum = () => {
-  localStorage.setItem("id_usuario", 1);
+  //localStorage.setItem("id_usuario", 1);
+  
 
   let id_usuario = localStorage.getItem("id_usuario"),
     url = `http://localhost:3000/api/curriculum/${id_usuario}`;

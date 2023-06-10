@@ -28,7 +28,7 @@ export const NavBar = () => {
                         </NavButton>
                     </NavItem>
                     <NavItem>
-                        <NavButton to="/CV">
+                        <NavButton to="/GestionCurriculum">
                             <StyledFontAwesomeIcon icon={faFileText} size="xl" />
                             <NavParagraph>CV</NavParagraph>
                         </NavButton>

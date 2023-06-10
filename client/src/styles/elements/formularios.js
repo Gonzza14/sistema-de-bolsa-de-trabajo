@@ -103,7 +103,7 @@ export const FormTextAreaCV = styled.textarea`
 
 export const FormInputBottonCV = styled.input`
   margin: 1.5em 0;
-  background-color: #06062a;
+  background-color: #4D4D66;
   width: 20%;
 	height: 5%;
   padding-bottom: 1em;
@@ -117,7 +117,7 @@ export const FormInputBottonCV = styled.input`
   border-radius: 5px;
 
   &:hover {
-    background-color: #e84616;
+    background-color: #06062a;
   }
 `;
 

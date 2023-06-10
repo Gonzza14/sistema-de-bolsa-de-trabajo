@@ -2,6 +2,9 @@ import styled, { keyframes } from 'styled-components';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
+
+
 export const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
@@ -9,6 +12,8 @@ export const ButtonContainer = styled.div`
     justify-content: flex-end;
   }
 `;
+
+
 export const ButtonRegister = styled(Link)`
   margin-top: 2em;
   text-decoration: none;
@@ -109,7 +114,15 @@ export const ButtonModalDelete = styled(ButtonOp)`
 export const EditButton = styled(ButtonCreate)`
   margin-bottom: 0;
 `
-//Style curriculum
+
+const fill = keyframes`
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+`;
 
 export const ButtonCreateCV = styled(Link)`
   width: 1em;
@@ -117,8 +130,9 @@ export const ButtonCreateCV = styled(Link)`
   margin-top: 0;
   margin-bottom: 1em;
   margin-left: auto;
+	background-image: linear-gradient(to right, #06062a 50%, rgb(232, 70, 22) 50%);
   color: #000000;
-  background-color: #FFC0CB;
+  background-color: #06062a;
   padding: 1em;
   display: flex;
   align-items: center;
@@ -146,29 +160,14 @@ export const Contenedor = styled.div`
   padding: 5rem;
   width: 100%;
   height: 50vh;
-  position: relative;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 80%;
-    height: 100%;
-    background-image: url('/src/assets/images/img_cv2.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: -1;
-  }
 `;
 
 export const ContenidoIzquierdo = styled.div`
   display: flex;
   flex-direction: column;
-	align-items: center;
+  align-items: center;
+  flex: 1;
 `;
-
-
 
 const fadeIn = keyframes`
   from {
@@ -178,6 +177,22 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
+
+
+export const ContenidoDerecho = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  background-image: url('/src/assets/images/img_cv2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+	animation: ${fadeIn} 0.5s linear;
+  min-height: 500px; // Establece una altura mínima para el contenedor
+`;
+
+
 
 export const Titulo = styled.h1`
   text-align: center;
@@ -195,15 +210,20 @@ export const Subtitulo = styled.h2`
 	
 `;
 
+
 export const Boton = styled.button`
   font-size: 1.4em;
   display: inline-block;
-  background-color: #06062a;
+  background-image: linear-gradient(to right, #06062a 50%, rgb(232, 70, 22) 50%);
+  background-size: 200% 100%;
+  background-position: left;
   color: white;
   border-radius: 5px;
+  border-color: white;
   padding: 10px 20px;
   cursor: pointer;
+  transition: background-position 0.5s ease-in-out;
   &:hover {
-    background-color: #C2185B;
+    animation: ${fill} 0.5s forwards;
   }
 `;

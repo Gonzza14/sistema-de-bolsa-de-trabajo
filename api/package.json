@@ -7,7 +7,11 @@
     "dev": "nodemon src/index.js --exec babel-node",
     "build": "babel src --out-dir dist",
     "start": "node dist/index.js",
+<<<<<<< HEAD
     "seed": "sequelize db:seed:all"
+=======
+    "seed": "sequelize db:seed:all"    
+>>>>>>> 51a2068ffb824326f972809c43058c5dda46cca3
   },
   "keywords": [],
   "author": "Gonzalo Ortiz",

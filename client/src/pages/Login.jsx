@@ -81,16 +81,28 @@ const validateFormRegistrar = (formReg) => {
 };
 
 export const Login = () => {  
-    let { dataBase } = useCustomFetch("http://localhost:3000/api/roles/sad");
+    const urlRoles = 
+        process.env.NODE_ENV === "production"
+        ? "api/roles/sad"
+        : "http://localhost:3000/api/roles/sad"
 
-    let url = 'http://localhost:3000/api/usuarios/verificarcuenta'
+    console.log(urlRoles)
+    let { dataBase } = useCustomFetch(urlRoles);
+
+    let url = 
+        process.env.NODE_ENV === "production"
+        ? "api/usuarios/verificarcuenta"
+        : "http://localhost:3000/api/usuarios/verificarcuenta"
 
     const { pathname } = useLocation()
 
     let { verificarData } = useVerificarPassword(url);
 
     let path = "/";
-    let urlRegistrar = "http://localhost:3000/api/usuarios";
+    let urlRegistrar = 
+    process.env.NODE_ENV === "production"
+    ? "api/usuarios"
+    : "http://localhost:3000/api/usuarios";
 
     let { setDataToEdit, createData } = useCustomFetch(urlRegistrar);
 

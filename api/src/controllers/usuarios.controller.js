@@ -138,7 +138,7 @@ export const getSolicitante = async (req, res) => {
   try {
     const { id } = req.params;
     const solicitante = await Solicitante.findOne({
-      where: { id: id },
+      where: { idUsuario: id },
       include: [
         {
           model: Genero,

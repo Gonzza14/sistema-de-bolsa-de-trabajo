@@ -38,6 +38,12 @@ export const ModalHeader = styled.div`
   height: 2.5em;
   background-color: #06062A;
 `;
+
+export const ModalHeaderCV = styled.div`
+  width: 100%;
+  height: 2.5em;
+  background-color: #4D4D66;
+`;
 export const ModalTitleHeader = styled.p`
   font-size: 1rem;
   padding: 0.8em;

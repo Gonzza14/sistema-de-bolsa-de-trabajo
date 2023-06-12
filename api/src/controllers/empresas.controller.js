@@ -92,9 +92,15 @@ export const getEmpresa = async (req, res) => {
   }
 };
 
-/*export const getPerfilesPorEmpresa = async (req, res) => {
+export const getPerfilesPorEmpresa = async (req, res) => {
   try {
     //Se obtiene el id de la empresa a obtener
+    
+    const empresa = await Empresa.findOne({
+      attributes: ['id'],
+      where: { idUsuario: userId },
+      raw: true,
+    });
     const { id } = req.params;
     //Se obtienen los perfiles de la empresa
     const perfil = await Perfil.findAll({
@@ -110,4 +116,4 @@ export const getEmpresa = async (req, res) => {
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
-};*/
+};

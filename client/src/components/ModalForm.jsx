@@ -3,7 +3,7 @@ import { ButtonModalClose, IconoCerrarModal } from "../styles/elements/botones";
 import {
   ModalArticle,
   ModalContainerCV,
-  ModalHeader,
+  ModalHeaderCV,
   ModalTitleHeader,
 } from "../styles/elements/modal";
 
@@ -12,7 +12,7 @@ export const ModalForm = ({ children, isOpen, closeModal, dataToEdit }) => {
   return (
     <ModalArticle className={`${isOpen && "is-open"}`}>
       <ModalContainerCV onClick={handleModalContainerClick}>
-        <ModalHeader>
+        <ModalHeaderCV>
           <ModalTitleHeader>
             {dataToEdit
               ? "Editar registro"
@@ -21,7 +21,7 @@ export const ModalForm = ({ children, isOpen, closeModal, dataToEdit }) => {
           <ButtonModalClose onClick={closeModal}>
             <IconoCerrarModal icon={faXmark} size="1x" />
           </ButtonModalClose>
-        </ModalHeader>
+        </ModalHeaderCV>
         {children}
       </ModalContainerCV>
     </ModalArticle>

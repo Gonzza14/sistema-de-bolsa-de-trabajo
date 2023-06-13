@@ -1,4 +1,4 @@
-import { Usuario, Rol, Solicitante, Genero } from "../models";
+import { Usuario, Rol, Solicitante, Genero, Empresa } from "../models";
 const bcrypt = require("bcryptjs");
 
 export const getUsuarios = async (req, res) => {
@@ -138,7 +138,7 @@ export const getSolicitante = async (req, res) => {
   try {
     const { id } = req.params;
     const solicitante = await Solicitante.findOne({
-      where: { id: id },
+      where: { idUsuario: id },
       include: [
         {
           model: Genero,
@@ -150,6 +150,20 @@ export const getSolicitante = async (req, res) => {
       return res.status(404).json({ message: "Solicitante no encontrado" });
     }
     res.json(solicitante);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+export const getEmpresa = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const empresa = await Empresa.findOne({
+      where: { id: id },
+    });
+    if (!empresa) {
+      return res.status(404).json({ message: "Empresa no encontrada" });
+    }
+    res.json(empresa);
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
@@ -180,6 +194,27 @@ export const updateSolicitante = async (req, res) => {
     });
 
     res.json(solicitanteCambiado);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+export const updateEmpresa = async (req, res) => {
+  try {
+    //Se obtiene el id de la empresa a actualizar
+    const { id } = req.params;
+
+    //Se actualiza la empresa
+    const empresa = await Empresa.findByPk(id);
+
+    if (!empresa) {
+      return res.status(404).json({ message: "Empresa no encontrada" });
+    }
+
+    empresa.set(req.body);
+    await empresa.save();
+    res.json(empresa);
+
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

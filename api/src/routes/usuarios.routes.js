@@ -9,8 +9,11 @@ import {
     getUsuarios,
     updateUsuario,
     verificarUsuario,
-    updateSolicitante
+    updateSolicitante,
+    getEmpresa,
+    updateEmpresa
 } from "../controllers/usuarios.controller";
+//import { getEmpresa, updateEmpresa } from "../controllers/empresas.controller";
 
 //Creamos una instancia del router
 const router = Router();
@@ -24,5 +27,7 @@ router.delete("/:id", deleteUsuario);
 router.post("/:id", getUsuario);
 router.get("/solicitante/:id", getSolicitante);
 router.put("/solicitante/:id", updateSolicitante);
+router.get("/empresa/:id", getEmpresa);
+router.put("/empresa/:id", updateEmpresa);
 
 export default router;

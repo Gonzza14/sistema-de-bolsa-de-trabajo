@@ -1,7 +1,15 @@
 import { Header } from "../../../components/Header";
-import React from 'react';
-import styled from 'styled-components';
-import { FaPen, FaFacebook, FaTwitter, FaLinkedin, FaUser, FaHouseUser, FaPhone } from 'react-icons/fa';
+import React from "react";
+import styled from "styled-components";
+import {
+  FaPen,
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaUser,
+  FaHouseUser,
+  FaPhone,
+} from "react-icons/fa";
 
 import {
   BaseContainer,
@@ -20,6 +28,7 @@ import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import {
   Contenedor,
   ContenidoIzquierdo,
+  ContenidoDerecho,
   Titulo,
   Subtitulo,
   Boton,
@@ -54,15 +63,13 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   display: flex;
-	margin : 5px;
-	padding: 2px;
+  margin: 5px;
+  padding: 2px;
   align-items: center;
 `;
 
-
 export const GestionCurriculum = () => {
-  //localStorage.setItem("id_usuario", 1);
-  
+  // localStorage.setItem("id_usuario", 1);
 
   let id_usuario = localStorage.getItem("id_usuario"),
     url = `http://localhost:3000/api/curriculum/${id_usuario}`;
@@ -96,6 +103,7 @@ export const GestionCurriculum = () => {
                   <Subtitulo>Destaca entre la multitud</Subtitulo>
                   <Boton onClick={handleClickCurriculum}>Inicia aqui</Boton>
                 </ContenidoIzquierdo>
+                <ContenidoDerecho></ContenidoDerecho>
               </Contenedor>
             </GestionSection>
           </BaseSectionData>
@@ -117,20 +125,16 @@ export const GestionCurriculum = () => {
               <hr />
               <List>
                 <ListItem>
-									<FaUser></FaUser>
-                  Nombres: {dataBase.solicitante.nombresSolic}
+                  <FaUser></FaUser> Nombres: {dataBase.solicitante.nombresSolic}
                 </ListItem>
                 <ListItem>
-								<FaUser></FaUser>
-                  Apellidos: {dataBase.solicitante.apellidosSolic}
+                  <FaUser></FaUser> Apellidos: {dataBase.solicitante.apellidosSolic}
                 </ListItem>
                 <ListItem>
-                  <FaHouseUser />
-                  Direccion: {dataBase.solicitante.direcSolic}
+                  <FaHouseUser /> Direccion: {dataBase.solicitante.direcSolic}
                 </ListItem>
                 <ListItem>
-                  <FaPhone />
-                  Telefono: {dataBase.solicitante.telefonoSolic}
+                  <FaPhone /> Telefono: {dataBase.solicitante.telefonoSolic}
                 </ListItem>
               </List>
               <hr />
@@ -138,16 +142,13 @@ export const GestionCurriculum = () => {
               <hr />
               <List>
                 <ListItem>
-								<FaFacebook/>
-                  Facebook: {dataBase.solicitante.facebook}
+                  <FaFacebook /> Facebook: {dataBase.solicitante.facebook}
                 </ListItem>
                 <ListItem>
-                  <FaTwitter/>
-                  Twitter: {dataBase.solicitante.twitter}
+                  <FaTwitter /> Twitter: {dataBase.solicitante.twitter}
                 </ListItem>
                 <ListItem>
-                  <FaLinkedin />
-                  Linkedin: {dataBase.solicitante.linkedin}
+                  <FaLinkedin /> Linkedin: {dataBase.solicitante.linkedin}
                 </ListItem>
               </List>
             </ContainerPerfil>

@@ -22,7 +22,7 @@ const router = Router();
 
 const upload = multer({
   storage: multer.diskStorage({
-    destination: "perfil",
+    destination: "../client/public/perfil",
     filename: (req, file, cb) => {
       // Generate a unique filename
       const filename = `${Date.now()}-${file.originalname}`;

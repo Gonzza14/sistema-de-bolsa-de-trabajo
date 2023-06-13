@@ -57,7 +57,7 @@ export const DatosUsuario = ({ error, loading, setDataToEdit, dataToEdit, dataBa
                 <HeaderPerfil>
                     <PortadaPerfil>
                         <AvatarPerfil>
-                            <ImgPerfil />
+                            <ImgPerfil src={`/perfil/${dataBase.fotoDePerfil}`}/>
                             {pathname === "/Usuario/editar" &&
                                 <>
                                     <ButtonAvatarPerfil onClick={handleFileClick}>

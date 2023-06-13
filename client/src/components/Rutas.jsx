@@ -7,6 +7,7 @@ import { Buscar } from '../pages/Buscar';
 import { Home } from '../pages/Home';
 import { NavBar } from './NavBar';
 import { Usuario } from '../pages/solicitante/perfil/Usuario';
+import { UsuarioEmp } from '../pages/empresa/perfil/UsuarioEmp';
 import { GestionEmpresa } from '../pages/admin/empresa/GestionEmpresa';
 import { GestionUsuario } from '../pages/admin/usuario/GestionUsuario';
 import { GestionOfertaEmpleo } from '../pages/empresa/ofertaempleo/GestionOfertaEmpleo';
@@ -43,6 +44,7 @@ export const Rutas = () => {
                     <Route path='/GestionTipoExamen/*' element={<GestionTipoExamen/>}/>
 				    <Route path='/GestionCurriculum/*'	element= {<GestionCurriculum/>}/>
                     <Route path='/Usuario/*' element={<Usuario />} />
+                    <Route path='/UsuarioEmp/*' element={<UsuarioEmp />} />
 					<Route path='/GestionPermiso/*'	element= {<GestionPermiso/>}/>
 				    <Route path='/GestionRolPermiso/*'	element= {<GestionRolPermiso/>}/>
                 </Route>

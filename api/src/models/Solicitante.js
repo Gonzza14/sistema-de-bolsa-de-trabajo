@@ -47,7 +47,8 @@ module.exports = (sequelize, DataTypes) => {
     telefonoSolic: DataTypes.STRING(12),
     facebook: DataTypes.STRING(255),
     twitter: DataTypes.STRING(255),
-    linkedin: DataTypes.STRING(255)
+    linkedin: DataTypes.STRING(255),
+    fotoDePerfil: DataTypes.STRING(1024),
   }, {
     sequelize,
     paranoid: true,

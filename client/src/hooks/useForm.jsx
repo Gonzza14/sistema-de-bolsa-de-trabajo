@@ -74,6 +74,24 @@ export const useForm = (
     }
   };
 
+  const subirFotoSubmit = (e) => {
+    handleChange(e);
+    e.preventDefault();
+    setErrors(validateForm(form));
+
+    if (Object.keys(validateForm(form)).length === 0) {
+      // Obtener el archivo del formulario
+      const fileInput = document.querySelector("#fotoDePerfil");
+      const file = fileInput.files[0];
+      if (updateData) {
+        console.log(form);
+        updateData(form, file);
+      }
+
+      handleReset();
+    }
+  };
+
   const handleReset = (e) => {
     setForm(initialForm);
     setDataToEdit(null);
@@ -88,5 +106,6 @@ export const useForm = (
     handleSubmit,
     subirArchivoSubmit,
     setForm,
+    subirFotoSubmit
   };
 };

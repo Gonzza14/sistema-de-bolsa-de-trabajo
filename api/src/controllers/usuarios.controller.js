@@ -69,6 +69,8 @@ export const updateUsuario = async (req, res) => {
     let passEncriptada = null;
     const rondas = 10;
 
+    console.log(req.body);
+
     if (req.body.contrasena) {
       passEncriptada = await bcrypt.hash(req.body.contrasena, rondas);
     }
@@ -173,6 +175,26 @@ export const updateSolicitante = async (req, res) => {
   try {
     const { id } = req.params;
 
+   
+
+    const data = JSON.parse(req.body.data);
+    const { 
+      idGenero, 
+      idUsuario, 
+      nombresSolic, 
+      apellidosSolic,
+      fechaNacimiento,
+      dui,
+      pasaporte,
+      nit,
+      nup,
+      direcSolic,
+      telefonoSolic,
+      facebook,
+      twitter,
+      linkedin
+     } = data;
+     const fotoDePerfil = req.file ? req.file.filename : undefined;
     //Se actualiza la usuario
     const solicitante = await Solicitante.findByPk(id);
 
@@ -180,7 +202,24 @@ export const updateSolicitante = async (req, res) => {
       return res.status(404).json({ message: "Solicitante no encontrado" });
     }
 
-    solicitante.set(req.body);
+
+    solicitante.set({
+      idGenero, 
+      idUsuario, 
+      nombresSolic, 
+      apellidosSolic,
+      fechaNacimiento,
+      dui,
+      pasaporte,
+      nit,
+      nup,
+      direcSolic,
+      telefonoSolic,
+      facebook,
+      twitter,
+      linkedin,
+      ...(fotoDePerfil && { fotoDePerfil })
+  });
     await solicitante.save();
 
     const solicitanteCambiado = await Solicitante.findOne({

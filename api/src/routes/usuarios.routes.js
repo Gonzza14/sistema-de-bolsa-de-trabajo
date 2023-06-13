@@ -15,8 +15,21 @@ import {
 } from "../controllers/usuarios.controller";
 //import { getEmpresa, updateEmpresa } from "../controllers/empresas.controller";
 
+import multer from 'multer';
+
 //Creamos una instancia del router
 const router = Router();
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: "perfil",
+    filename: (req, file, cb) => {
+      // Generate a unique filename
+      const filename = `${Date.now()}-${file.originalname}`;
+      cb(null, filename);
+    },
+  }),
+});
 
 //Definimos las rutas
 router.get("/", getUsuarios);
@@ -26,7 +39,7 @@ router.put("/:id", updateUsuario);
 router.delete("/:id", deleteUsuario);
 router.post("/:id", getUsuario);
 router.get("/solicitante/:id", getSolicitante);
-router.put("/solicitante/:id", updateSolicitante);
+router.put("/solicitante/:id", upload.single('fotoDePerfil'), updateSolicitante);
 router.get("/empresa/:id", getEmpresa);
 router.put("/empresa/:id", updateEmpresa);
 

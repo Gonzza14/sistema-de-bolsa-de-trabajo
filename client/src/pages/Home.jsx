@@ -15,7 +15,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { TarjetaEmpleo } from "../components/empleo";
 import { PostulacionesSection } from "../styles/pages/postulaciones";
 import { useCustomFetch } from "../hooks/useCustomFetch";
-
+import Loader from "../components/Loader";
 
 export const Home = () => {
     // Verificar si se ha iniciado sesion
@@ -31,7 +31,19 @@ export const Home = () => {
         error,
         loading,
     } = useCustomFetch(url);
-
+    let postulaciones = <h1>No hay nada</h1>;
+    if(dataBase) {
+        postulaciones = dataBase.map((postulacion, index) => {
+            return <div key={index}>
+                    <TarjetaEmpleo 
+                        titulo={postulacion.tituloOferta}
+                        descripcion={postulacion.descOferta}
+                        idOferta={postulacion.id}
+                        link={"/detalleoferta/"+postulacion.id}>
+                    </TarjetaEmpleo>
+                </div>
+        })
+    }
     return (
         <BaseContainer>
             <Header/>
@@ -64,16 +76,15 @@ export const Home = () => {
                             </SectionContainer>)
                     }
                     {
-                        haySesion && dataBase.map((postulacion) => (
-                                <div key={postulacion.idOferta}>
-                                    <TarjetaEmpleo
-                                        titulo={postulacion.tituloOferta}
-                                        empresa={postulacion.nombreEmpresa}
-                                        descripcion={postulacion.descOferta}></TarjetaEmpleo>
-                                </div>
-
-                            ))
+                        haySesion && dataBase && (
+                            <SectionContainer>
+                            <div>
+                                {postulaciones}
+                            </div>
+                            </SectionContainer>
+                        )
                     }
+                    {loading && <Loader />}
                     
                 </BaseSection>
             </BaseBody>

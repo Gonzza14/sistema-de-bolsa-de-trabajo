@@ -4,9 +4,11 @@ import "../../../styles/elements/card-empleo.css";
 import "../../../styles/pages/detalleOferta.css";
 import { useCustomFetch } from "../../../hooks/useCustomFetchAndres";
 import { GestionSection } from "../../../styles/pages/admin/gestion";
+import { useParams } from "react-router-dom";
 
 export const DetalleOferta = () => {
-    let idOfert = "3"
+    const {idOfert} = useParams(); 
+    console.log(idOfert)
     let idOfertAux = ""
     let idEmpresa = ""
     let idCategoriaOferta = ""

@@ -50,7 +50,7 @@ export const Rutas = () => {
             element={<GestionOfertaEmpleo />}
           />
           <Route path="/GestionRol/*" element={<GestionRol />} />
-          <Route path="/DetalleOferta/*" element={<DetalleOferta />} />
+          <Route path="/DetalleOferta/:idOfert" element={<DetalleOferta />} />
           <Route path="/ListarPostulantes/*" element={<ListarPostulantes />} />
           <Route path="/GestionTipoExamen/*" element={<GestionTipoExamen />} />
           <Route path="/GestionCurriculum/*" element={<GestionCurriculum />} />

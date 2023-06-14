@@ -54,11 +54,11 @@ const initialForm = {
 const validateForm = (form) => {
     let errors = {};
 
-    if (form.dui != null) {
+    /*if (form.dui == null) {
         errors.dui = `El Documento Unico de identidad es requerido`;
     } else {
         delete errors.dui;
-    }
+    }*/
 
 
     return errors;
@@ -278,9 +278,9 @@ export const EditarPerfil = ({
                                     onBlur={handleBlur}
                                     value={form.dui}
                                 />
-                                {errors.dui && (
+                                {/*errors.dui && (
                                     <MensajeValidacion>{errors.dui}</MensajeValidacion>
-                                )}
+                                )*/}
                             </FormGroup>
                             <FormGroup>
                                 <FormLabelUser htmlFor="pasaporte">Pasaporte:</FormLabelUser>

@@ -26,9 +26,10 @@ import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { useForm } from "../../../hooks/useForm";
 import moment from 'moment';
 import { useLocation } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useEffect} from "react";
 import { faImage, faPen } from "@fortawesome/free-solid-svg-icons";
 import { MensajeValidacion } from "../../../styles/elements/mensajes";
+import React, { useState } from 'react';
 
 
 const initialForm = {
@@ -57,7 +58,7 @@ const validateForm = (form) => {
         errors.dui = `El Documento Unico de identidad es requerido`;
     } else {
         delete errors.dui;
-      }
+    }
 
 
     return errors;
@@ -97,14 +98,37 @@ export const EditarPerfil = ({
 
     const hiddenFileInput = useRef(null);
 
+    const [selectedFile, setSelectedFile] = useState()
+
+    const [previewImage, setPreviewImage] = useState(null);
+
+    useEffect(() => {
+        if (!selectedFile) {
+            {dataBase && setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`)}
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setPreviewImage(objectUrl)
+
+
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile])
+
+    //dataBase ? setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`) : setPreviewImage('/perfil/nofoto.png')
+
     const handleFileClick = e => {
         hiddenFileInput.current.click();
         e.preventDefault();
     }
-    /*const handleFileChange = e => {
-        const fileUploaded = e.target.files[0];
-        console.log(fileUploaded);
-    };*/
+    const handleFileChange = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        setSelectedFile(e.target.files[0])
+    };
 
     const handleEditClick = () => {
         setResponse(false);
@@ -144,13 +168,13 @@ export const EditarPerfil = ({
                     <HeaderPerfil>
                         <PortadaPerfil>
                             <AvatarPerfil>
-                                <ImgPerfil src={`/perfil/${dataBase.fotoDePerfil}`}/>
+                                {previewImage && <ImgPerfil src={previewImage} alt="Preview" />}
                                 {pathname === "/Usuario/editar" &&
                                     <>
                                         <ButtonAvatarPerfil onClick={handleFileClick}>
                                             <IconAvatarPerfil icon={faImage} size="xl"></IconAvatarPerfil>
                                         </ButtonAvatarPerfil>
-                                        <input id="fotoDePerfil" name="fotoDePerfil" type="file" style={{ display: 'none' }} ref={hiddenFileInput} onChange={handleChange}/>
+                                        <input id="fotoDePerfil" name="fotoDePerfil" type="file" style={{ display: 'none' }} ref={hiddenFileInput} onChange={handleFileChange} />
                                     </>
                                 }
                             </AvatarPerfil>

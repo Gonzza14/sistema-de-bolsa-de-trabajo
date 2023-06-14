@@ -1,20 +1,33 @@
 import { MainNav, NavContainer, NavImage, NavList, NavLogo, NavButton, NavItem, NavParagraph, StyledFontAwesomeIcon } from "../styles/elements/navBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faBars, faUser, faFileText, faPaperPlane, faSearch, faBuildingUser } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faBars, faUser, faFileText, faPaperPlane, faSearch, faBuildingUser, faClose } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import user from "../assets/images/user.jpg";
 
 export const NavBar = () => {
+    // Verificar si se ha iniciado sesion
+    let empresa = false;
+    empresa = localStorage.getItem("rol") != "empresa" ? false: true;
+    // Verificar si se ha iniciado sesion
+    let haySesion = null;
+    haySesion = localStorage.getItem("rol") == null ? haySesion = false: haySesion = true;
+
     return (
         <MainNav>
             <NavContainer>
                 <NavList>
-                    <NavItem>
+                    { haySesion && (<NavItem>
+                        <NavButton to="/Login">
+                            <StyledFontAwesomeIcon icon={faClose} size="xl" />
+                            <NavParagraph>Cerrar Sesión</NavParagraph>
+                        </NavButton>
+                    </NavItem>)}
+                    { empresa && (<NavItem>
                         <NavButton to="/Empresa">
                             <StyledFontAwesomeIcon icon={faBuildingUser} size="xl" />
                             <NavParagraph>Empresa</NavParagraph>
                         </NavButton>
-                    </NavItem>
+                    </NavItem>)}
                     <NavItem>
                         <NavButton to="/Buscar">
                             <StyledFontAwesomeIcon icon={faSearch} size="xl" />

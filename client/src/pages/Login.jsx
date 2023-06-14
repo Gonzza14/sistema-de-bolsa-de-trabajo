@@ -89,7 +89,8 @@ export const Login = () => {
 
     let { verificarData } = useVerificarPassword(url);
 
-    let path = "/";
+    let pathLogin = "/";
+    let pathCrearCuenta = "/Usuario"
     let urlRegistrar = "http://localhost:3000/api/usuarios";
 
     let { setDataToEdit, createData } = useCustomFetch(urlRegistrar);
@@ -103,7 +104,7 @@ export const Login = () => {
     } = useForm(
         initialForm,
         validateForm,
-        path,
+        pathLogin,
     )
 
     let {
@@ -115,7 +116,7 @@ export const Login = () => {
     } = useFormReg(
         initialFormRegistrar,
         validateFormRegistrar,
-        path,
+        pathCrearCuenta,
         createData,
         null,
         null,

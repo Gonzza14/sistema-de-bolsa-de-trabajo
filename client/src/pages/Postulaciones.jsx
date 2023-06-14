@@ -39,7 +39,7 @@ export const Postulaciones = () => {
                                 <div key={postulacion.idOferta}>
                                     <TarjetaEmpleo
                                         titulo={postulacion.tituloOferta}
-                                        empresa={postulacion.nombreEmpresa}
+                                        link={"/detalleoferta/"+postulacion.id}
                                         descripcion={postulacion.descOferta}></TarjetaEmpleo>
                                 </div>
                                 

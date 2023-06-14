@@ -45,6 +45,7 @@ import { GestionLogro } from "../logro/GestionarLogro";
 import { GestionRecomLaboral } from "../recomendacionLaboral/GestionRecomLaboral";
 import { GestionRecomPersonal } from "../recomendacionPersonal/GestionarRecomPersonal";
 import { GestionExamen } from "../examen/GestionExamen";
+import { CenteredDiv, ImgPerfilCV } from "../../../styles/pages/usuario";
 
 const ContainerPerfil = styled.div`
   font-family: sans-serif;
@@ -119,6 +120,7 @@ export const GestionCurriculum = () => {
         <ContainerCol>
           <Column4>
             <Titulo>Perfil</Titulo>
+						<CenteredDiv><ImgPerfilCV src={`/perfil/${dataBase.solicitante.fotoDePerfil}`}/></CenteredDiv>
             <ContainerPerfil>
               <hr />
               <Title>Datos personales</Title>

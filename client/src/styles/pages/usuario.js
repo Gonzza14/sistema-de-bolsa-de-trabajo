@@ -76,8 +76,10 @@ export const AvatarPerfil = styled.div`
 
 export const ImgPerfil = styled.img`
   width: 100%;
+  height: 100%;
   position: relative;
   border-radius: 50%;
+  object-fit: cover;
 `;
 
 export const ButtonAvatarPerfil = styled.button`

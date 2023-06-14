@@ -177,27 +177,35 @@ export const useCustomFetch = (url) => {
       });
   };
 
-  const updateDataSolicitante = (data) => {
+  const updateDataSolicitante = (data, file) => {
     //console.log(endpoint);
-    let options = {
-      body: data,
-      headers: { "content-type": "application/json" },
-    };
-    setLoading(true);
-    helpHttp()
-      .put(url, options)
-      .then((res) => {
-        //console.log(res);
-        if (!res.err) {
-          setDatabase(res);
-          setLoading(false);
-          setResponse(true);
-          setTimeout(() => setResponse(false), 4000);
-        } else {
-          setError(res);
-          setLoading(false);
-        }
-      });
+		// Create a FormData object and append the data and file
+		const formData = new FormData();
+		formData.append("data", JSON.stringify(data));
+		formData.append("fotoDePerfil", file);
+		let options = {
+			body: formData,
+			headers: {
+				"Accept": "application/json",
+				"type": "formData",
+			},
+		};
+	
+		setLoading(true);
+		helpHttp()
+			.put(url, options)
+			.then((res) => {
+				if (!res.err) {
+					console.log(res)
+					setDatabase(res);
+					setLoading(false);
+					setResponse(true);
+					setTimeout(() => setResponse(false), 4000);
+				} else {
+					setError(res);
+					setLoading(false);
+				}
+			});
   };
 
   const deleteData = (id) => {

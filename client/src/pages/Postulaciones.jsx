@@ -17,14 +17,30 @@ export const Postulaciones = () => {
         error,
         loading,
     } = useCustomFetch(url);
-    console.log(dataBase)
+
+    const estilos = {
+        display: 'flex'
+    }
+
+    let postulaciones = null;
+    if(dataBase){
+        postulaciones = dataBase.map((postulacion, index) => {
+            return <div key={index}>
+                        <TarjetaEmpleo
+                            width={"80%"}
+                            titulo={postulacion.tituloOferta}
+                            link={"/detalleoferta/"+postulacion.id}
+                            descripcion={postulacion.descOferta}></TarjetaEmpleo>
+                    </div>
+            
+        })
+    }
     return (
         <BaseContainer>
             <Header titulo="Postulaciones" />
             <BaseBody>
                 <BaseSectionData>
                     <SectionTitle>Postulaciones realizadas</SectionTitle>
-                    <PostulacionesSection>
                         {loading && <Loader />}
                         {
                             error && (
@@ -35,17 +51,12 @@ export const Postulaciones = () => {
                             )
                         }
                         {
-                            dataBase && dataBase.map((postulacion) => (
-                                <div key={postulacion.idOferta}>
-                                    <TarjetaEmpleo
-                                        titulo={postulacion.tituloOferta}
-                                        link={"/detalleoferta/"+postulacion.id}
-                                        descripcion={postulacion.descOferta}></TarjetaEmpleo>
-                                </div>
-                                
-                            ))
+                            dataBase && (
+                                <PostulacionesSection>
+                                    {postulaciones}
+                                </PostulacionesSection>
+                            )
                         }
-                    </PostulacionesSection>
                 </BaseSectionData>
             </BaseBody>
         </BaseContainer>

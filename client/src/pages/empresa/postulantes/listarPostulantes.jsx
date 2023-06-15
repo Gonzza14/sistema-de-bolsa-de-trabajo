@@ -4,19 +4,25 @@ import "../../../styles/elements/card-empleo.css";
 import "../../../styles/pages/detalleOferta.css";
 import { useCustomFetch } from "../../../hooks/useCustomFetchAndres";
 import { GestionSection } from "../../../styles/pages/admin/gestion";
-
+import { useParams } from "react-router-dom";
 
 export const ListarPostulantes = () => {
-
-    let idOfert = "1"
+    const {idOfert} = useParams();
+    //let idOfert = "1"
     let tituloOferta = ""
     let titulo = ""
     let id = ""
 
-    let urlPostulantes = "http://127.0.0.1:3000/api/solicitantes/post/" + idOfert
+    const urlPostulantes = 
+        process.env.NODE_ENV === "production"
+        ? "api/solicitantes/post/" + idOfert
+        : "http://127.0.0.1:3000/api/solicitantes/post/" + idOfert;
     let [postulantes] = useCustomFetch(urlPostulantes);
 
-    let urlOferta = "http://localhost:3000/api/ofertas/" + idOfert
+    const urlOferta = 
+        process.env.NODE_ENV === "production"
+        ? "api/ofertas/" + idOfert
+        : "http://localhost:3000/api/ofertas/" + idOfert;
     let [oferta] = useCustomFetch(urlOferta);
     if (oferta) {
         tituloOferta = (oferta.tituloOferta)
@@ -26,7 +32,10 @@ export const ListarPostulantes = () => {
 
     function nombrarGenero(idPost, idGenero) {
         const Http = new XMLHttpRequest();
-        let urlGenero = "http://127.0.0.1:3000/api/generos/" + idGenero;
+        const urlGenero = 
+            process.env.NODE_ENV === "production"
+            ? "api/generos/" + idGenero
+            : "http://127.0.0.1:3000/api/generos/" + idGenero;
         Http.open("GET", urlGenero);
         Http.send();
 
@@ -34,24 +43,7 @@ export const ListarPostulantes = () => {
             var genero = JSON.parse(Http.responseText)
             document.getElementById('gen' + idPost).innerHTML = genero.nombreGenero;
         }
-
-        //window.location.reload()
     }
-
-    /*function registrarPostula (idOfertAux, idSolicitante) {
-        console.log('Botón clickeado');
-        
-        const Http = new XMLHttpRequest();
-        let urlRegistrarPostulacion = "http://localhost:3000/api/postula/ins/" + idOfertAux + "/" + idSolicitante;
-        Http.open("GET", urlRegistrarPostulacion);
-        Http.send();
-
-        Http.onreadystatechange = (e) => {
-            console.log(Http.responseText)
-        }
-
-        window.location.reload()
-    }*/
 
     return (
         <BaseContainer>

@@ -10,6 +10,7 @@ import { useFormReg } from "../hooks/useFormReg";
 import { MensajeValidacion } from "../styles/elements/mensajes";
 import { useState, useEffect } from "react";
 import { FormContainer, FormTitle, Formulario, FormLabel, FormInput, FormInputBotton, FormTextArea } from "../styles/elements/formularios";
+import process from "kute.js/src/process/process";
 
 
 const initialForm = {
@@ -81,9 +82,17 @@ const validateFormRegistrar = (formReg) => {
 };
 
 export const Login = () => {  
-    let { dataBase } = useCustomFetch("http://localhost:3000/api/roles/sad");
+    const urlRoles = 
+        process.env.NODE_ENV === "production"
+        ? "api/roles/sad"
+        : "http://localhost:3000/api/roles/sad";
 
-    let url = 'http://localhost:3000/api/usuarios/verificarcuenta'
+    let { dataBase } = useCustomFetch(urlRoles);
+
+    const url = 
+        process.env.NODE_ENV === "production"
+        ? "api/usuarios/verificarcuenta"
+        : "http://localhost:3000/api/usuarios/verificarcuenta";
 
     const { pathname } = useLocation()
 
@@ -91,7 +100,11 @@ export const Login = () => {
 
     let pathLogin = "/";
     let pathCrearCuenta = "/Usuario"
-    let urlRegistrar = "http://localhost:3000/api/usuarios";
+
+    const urlRegistrar = 
+        process.env.NODE_ENV === "production"
+        ? "api/usuarios"
+        : "http://localhost:3000/api/usuarios";
 
     let { setDataToEdit, createData } = useCustomFetch(urlRegistrar);
 

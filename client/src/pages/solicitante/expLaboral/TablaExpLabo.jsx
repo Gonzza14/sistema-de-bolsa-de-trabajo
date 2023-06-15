@@ -5,7 +5,7 @@ import {
 } from "../../../styles/elements/botones";
 import { StyledFontAwesomeIconBoton } from "../../../styles/elements/botones";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Modal } from "../../../components/Modal";
 import { useModal } from "../../../hooks/useModal";
 import { useState } from "react";
@@ -32,7 +32,8 @@ export const TablaExpLabo = ({
   const [idToDelete, setIdToDelete] = useState(null);
 
   const navigate = useNavigate();
-
+  const { pathname } = useLocation()
+  
   const handleEdit = (row) => {
     setResponse(false);
     setDataToEdit(row);
@@ -78,7 +79,7 @@ export const TablaExpLabo = ({
                 <CardContent><b>Nombre Organización: </b>{item.nombreOrga}</CardContent>
                 <CardContent><b>Contacto Organización: </b>{item.contactoOrga}</CardContent>
               </TimelineCardContent>
-              <TimelineCardButtons>
+              {pathname !== "/VerCV" &&(<TimelineCardButtons>
                 <ButtonOpt onClick={() => handleEdit(item)}>
                   <StyledFontAwesomeIconBoton
                     icon={faPenToSquare}
@@ -91,7 +92,7 @@ export const TablaExpLabo = ({
                     size="xl"
                   ></StyledFontAwesomeIconBoton>
                 </ButtonOpt>
-              </TimelineCardButtons>
+              </TimelineCardButtons>)}
             </CardContainer>
           </TimelineCardLeft>
         ))}

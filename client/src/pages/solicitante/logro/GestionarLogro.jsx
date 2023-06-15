@@ -42,7 +42,7 @@ export const GestionLogro = (props) => {
       {response && (
         <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
       )}
-      <ButtonSection>
+      {pathname !== "/VerCV" &&(<ButtonSection>
         {
           <>
             <ButtonCreateCV
@@ -56,7 +56,7 @@ export const GestionLogro = (props) => {
             </ButtonCreateCV>
           </>
         }
-      </ButtonSection>
+      </ButtonSection>)}
 
       <ListarLogro
         openModalCV={openModalCV}

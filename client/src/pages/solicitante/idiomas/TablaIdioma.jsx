@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   ButtonContainer,
   ButtonModalDelete,
@@ -33,6 +33,7 @@ export const TablaIdioma = ({
   const [idToDelete, setIdToDelete] = useState(null);
 
   const navigate = useNavigate();
+  const { pathname } = useLocation()
 
   const handleEdit = (row) => {
     setResponse(false);
@@ -78,7 +79,7 @@ export const TablaIdioma = ({
                   <CardContent><b>Conversación: </b>{item.puntConver}</CardContent>
                   <CardContent><b>Escucha:</b>{item.puntEscucha}</CardContent>
                 </TimelineCardContent>
-                <TimelineCardButtons>
+                {pathname !== "/VerCV" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
@@ -91,7 +92,7 @@ export const TablaIdioma = ({
                       size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
-                </TimelineCardButtons>
+                </TimelineCardButtons>)}
               </CardContainer>
             </TimelineCardLeft>
           ))}

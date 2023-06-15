@@ -26,6 +26,7 @@ import { GestionPermiso } from "../pages/admin/permiso/GestionarPermiso";
 import { GestionRolPermiso } from "../pages/admin/rolPermiso/GestionRolPermiso";
 import PrivateRoutes from "./PrivateRoutes";
 import { Error404 } from "../pages/errors/Error404";
+import { VerCV } from "../pages/empresa/postulantes/vercv";
 
 export const Rutas = () => {
   return (
@@ -58,6 +59,7 @@ export const Rutas = () => {
           <Route path='/UsuarioEmp/*' element={<UsuarioEmp />} />
           <Route path="/GestionPermiso/*" element={<GestionPermiso />} />
           <Route path="/GestionRolPermiso/*" element={<GestionRolPermiso />} />
+          <Route path="/VerCV/*" element={<VerCV />} />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>

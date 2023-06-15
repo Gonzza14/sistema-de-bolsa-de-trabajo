@@ -78,9 +78,7 @@ export const Home = () => {
                     {
                         haySesion && dataBase && (
                             <SectionContainer>
-                            <div>
                                 {postulaciones}
-                            </div>
                             </SectionContainer>
                         )
                     }

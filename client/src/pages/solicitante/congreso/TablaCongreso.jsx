@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   ButtonContainer,
   ButtonModalDelete,
@@ -33,6 +33,7 @@ export const TablaCongreso = ({
   const [idToDelete, setIdToDelete] = useState(null);
 
   const navigate = useNavigate();
+  const { pathname } = useLocation()
 
   const handleEdit = (row) => {
     setResponse(false);
@@ -77,7 +78,7 @@ export const TablaCongreso = ({
                   <CardContent><b>Anfitrion Congreso: </b>{item.antiCongreso}</CardContent>
                   <CardContent><b>Fecha Congreso: </b>{item.fechaCongreso.split("T")[0]}</CardContent>
                 </TimelineCardContent>
-                <TimelineCardButtons>
+                {pathname !== "/VerCV" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
@@ -90,7 +91,7 @@ export const TablaCongreso = ({
                       size="xl"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
-                </TimelineCardButtons>
+                </TimelineCardButtons>)}
               </CardContainer>
             </TimelineCardLeft>
           ))}

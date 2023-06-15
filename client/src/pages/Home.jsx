@@ -31,7 +31,7 @@ export const Home = () => {
         error,
         loading,
     } = useCustomFetch(url);
-    let postulaciones = <h1>No hay nada</h1>;
+    let postulaciones = null;
     if(dataBase) {
         postulaciones = dataBase.map((postulacion, index) => {
             return <div key={index}>

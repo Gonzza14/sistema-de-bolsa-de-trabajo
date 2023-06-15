@@ -72,8 +72,11 @@ const ListItem = styled.li`
 
 export const VerCV = () => {
 
-    let id_usuario = localStorage.getItem("id_usuario"),
-    url = `http://localhost:3000/api/curriculum/${id_usuario}`;
+    let id_usuario = localStorage.getItem("id_usuario");
+    const url = 
+    process.env.NODE_ENV === "production"
+    ? `api/curriculum/${id_usuario}`
+    :`http://localhost:3000/api/curriculum/${id_usuario}`;
 
     const { pathname } = useLocation();
 

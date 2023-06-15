@@ -12,7 +12,10 @@ import { Buscador } from "../../../components/Buscador";
 import { useSearch } from "../../../hooks/useSearch";
 
 export const GestionTipoHabilidad = () => {
-    let url = "http://localhost:3000/api/tipohabilidades";
+    let url = 
+    process.env.NODE_ENV === "production"
+    ? "api/tipohabilidades"
+    :"http://localhost:3000/api/tipohabilidades";
 
     const { pathname } = useLocation();
 

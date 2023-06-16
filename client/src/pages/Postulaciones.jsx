@@ -8,8 +8,11 @@ import Loader from "../components/Loader";
 import Message from "../components/Message"
 
 export const Postulaciones = () => {
-
-    let url = "http://localhost:3000/api/postulaciones/1"
+    let id_usuario = localStorage.getItem("id_usuario");
+    let url = 
+    process.env.NODE_ENV === "production"
+    ? `api/postulaciones/${id_usuario}`
+    :`http://localhost:3000/api/postulaciones/${id_usuario}`
     const { pathname } = useLocation()
 
     let {

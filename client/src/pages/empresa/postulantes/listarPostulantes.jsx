@@ -4,7 +4,28 @@ import "../../../styles/elements/card-empleo.css";
 import "../../../styles/pages/detalleOferta.css";
 import { useCustomFetch } from "../../../hooks/useCustomFetchAndres";
 import { GestionSection } from "../../../styles/pages/admin/gestion";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { ButtonRegister } from '../../../styles/elements/botones'
+import styled from "styled-components";
+
+const ButtonVer = styled(Link)`
+     margin: 2px;
+     border-radius: 5px;
+     width: 96%;
+     text-align: center;
+     background:#06062a;
+     margin-top: 2em;
+     text-decoration: none;
+     color: #f3f3f3;
+     padding: 1em;
+     height: 1.5rem;
+     display: block;
+     justify-content: center;
+     align-items: center;
+     font-size: 1.0rem;
+     font-weight: 600;
+     border: none;
+`;
 
 export const ListarPostulantes = () => {
     const {idOfert} = useParams();
@@ -45,6 +66,7 @@ export const ListarPostulantes = () => {
         }
     }
 
+
     return (
         <BaseContainer>
             <Header titulo={titulo} />
@@ -54,8 +76,8 @@ export const ListarPostulantes = () => {
                         <GestionSection>
                             {postulantes &&
                                 postulantes[0].map((postu) =>
-
                                     <div className="card-oferta">
+    
                                         <div className="card-header">
                                             <h1 className="">{postu.nombresSolic} {postu.apellidosSolic}</h1>
                                             <p className="">Telefono: {postu.telefonoSolic}</p>
@@ -80,7 +102,7 @@ export const ListarPostulantes = () => {
                                             <h3 className="titulos">Linkedin</h3>
                                             <p className="">{postu.linkedin}</p>
 
-                                            <button className="button-card"> Ver CV </button>
+                                            <ButtonVer to={"/VerCV/"+postu.id}>Ver oferta</ButtonVer>
                                         </div>
                                     </div>
 

@@ -16,6 +16,7 @@ import { TarjetaEmpleo } from "../components/empleo";
 import { PostulacionesSection } from "../styles/pages/postulaciones";
 import { useCustomFetch } from "../hooks/useCustomFetch";
 import Loader from "../components/Loader";
+import process from "kute.js/src/process/process";
 
 export const Home = () => {
     // Verificar si se ha iniciado sesion
@@ -23,8 +24,12 @@ export const Home = () => {
     haySesion = localStorage.getItem("rol") == null ? haySesion = false: haySesion = true;
     
     // Obtener datos de oferta
-    let url = "http://localhost:3000/api/ofertas"
-    const { pathname } = useLocation()
+    let url = 
+        process.env.NODE_ENV === "production"
+        ? "api/ofertas"
+        :"http://localhost:3000/api/ofertas"
+    
+        const { pathname } = useLocation()
 
     let {
         dataBase,

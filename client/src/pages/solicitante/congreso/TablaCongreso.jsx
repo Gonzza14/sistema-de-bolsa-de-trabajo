@@ -78,7 +78,7 @@ export const TablaCongreso = ({
                   <CardContent><b>Anfitrion Congreso: </b>{item.antiCongreso}</CardContent>
                   <CardContent><b>Fecha Congreso: </b>{item.fechaCongreso.split("T")[0]}</CardContent>
                 </TimelineCardContent>
-                {pathname !== "/VerCV" &&(<TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}

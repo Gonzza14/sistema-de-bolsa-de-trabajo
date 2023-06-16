@@ -79,7 +79,7 @@ export const TablaExpLabo = ({
                 <CardContent><b>Nombre Organización: </b>{item.nombreOrga}</CardContent>
                 <CardContent><b>Contacto Organización: </b>{item.contactoOrga}</CardContent>
               </TimelineCardContent>
-              {pathname !== "/VerCV" &&(<TimelineCardButtons>
+              {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                 <ButtonOpt onClick={() => handleEdit(item)}>
                   <StyledFontAwesomeIconBoton
                     icon={faPenToSquare}

@@ -59,7 +59,7 @@ export const Rutas = () => {
           <Route path='/UsuarioEmp/*' element={<UsuarioEmp />} />
           <Route path="/GestionPermiso/*" element={<GestionPermiso />} />
           <Route path="/GestionRolPermiso/*" element={<GestionRolPermiso />} />
-          <Route path="/VerCV/*" element={<VerCV />} />
+          <Route path="/VerCV/:parametro" element={<VerCV />} />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>

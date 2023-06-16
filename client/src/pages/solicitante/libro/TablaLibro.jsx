@@ -79,7 +79,7 @@ export const TablaLibro = ({
                   <CardContent><b>Edición del libro: </b>{item.edicionLibro}</CardContent>
                   <CardContent><b>ISBN: </b>{item.isbn}</CardContent>
                 </TimelineCardContent>
-                {pathname !== "/VerCV" &&(<TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}

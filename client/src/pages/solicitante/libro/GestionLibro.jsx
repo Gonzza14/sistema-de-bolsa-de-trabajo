@@ -13,7 +13,11 @@ import { ModalForm } from "../../../components/ModalForm";
 
 export const GestionLibro = (props) => {
   let nCurriculum = props.parametro;
-  let url = `http://localhost:3000/api/libro/${nCurriculum}`;
+  let url = 
+  process.env.NODE_ENV === "production"
+  ? `api/libro/${nCurriculum}`
+  : `http://localhost:3000/api/libro/${nCurriculum}`;
+  
   const [isOpen, openModalCV, closeModal] = useModalCV();
 
   const { pathname } = useLocation();
@@ -42,7 +46,7 @@ export const GestionLibro = (props) => {
       {response && (
         <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
       )}
-      {pathname !== "/VerCV" &&(<ButtonSection>
+      {pathname == "/GestionCurriculum" &&(<ButtonSection>
         {
           <>
             <ButtonCreateCV

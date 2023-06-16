@@ -85,7 +85,7 @@ export const TablaExamen = ({
                   </CardContent>
                   <CardContent><b>Resultado del Examen: </b>{item.resultadoExamen}</CardContent>
                 </TimelineCardContent>
-                {pathname !== "/VerCV" &&(<TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}

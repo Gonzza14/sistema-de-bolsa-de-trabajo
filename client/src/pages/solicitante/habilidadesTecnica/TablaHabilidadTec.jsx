@@ -76,7 +76,7 @@ export const TablaHabilidadTec = ({
                     </CardContent>
                     <CardContent><b>Habilidad Técnica: </b>{item.habTec}</CardContent>
                   </TimelineCardContent>
-                  {pathname !== "/VerCV" &&(<TimelineCardButtons>
+                  {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                     <ButtonOpt onClick={() => handleEdit(item)}>
                       <StyledFontAwesomeIconBoton
                         icon={faPenToSquare}

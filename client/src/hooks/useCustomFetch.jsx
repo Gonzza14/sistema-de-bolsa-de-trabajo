@@ -13,7 +13,6 @@ export const useCustomFetch = (url) => {
       .get(url)
       .then((res) => {
         setLoading(true);
-        console.log(res)
         if (!res.err) {
           setDatabase(res);
           setError(null);

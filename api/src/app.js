@@ -2,6 +2,9 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import session from "express-session";
+import MemoryStore from "memorystore";
+
 
 //Importaciones de rutas
 import empresasRoutes from "./routes/empresas.routes";
@@ -36,6 +39,18 @@ import fs from 'fs';
 //Creacion de aplicacion
 const app = express();
 
+app.use(session({
+  secret: "987f4bd6d4315c20b2ec70a46ae846d19d0ce563450c02c5b1bc71d5d580060b",
+  saveUninitialized: true,
+  resave: true,
+}));
+
+app.use((req, res, next) => {
+  if (!req.session.isAuthenticated) {
+    req.session.isAuthenticated = false;
+  }
+  next();
+});
 //----------------------------------------[Configuraciones]------------------------------------
 //Configuracion del puerto|Si no existe un puerto definido en el sistema, se usa el puerto 3000
 app.set("port", process.env.PORT || 3000);
@@ -48,14 +63,26 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 //Permite que el servidor pueda recibir y enviar datos desde un formulario
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true
+}
+
+app.use(cors(corsOptions));
+
 
 //Entender los datos que vienen desde un formulario
 app.use(express.urlencoded({ extended: false }));
 
+// Configurar express-session
+
+
+
+
 //----------------------------------------[Rutas]-----------------------------------------------
 app.get("/", (req, res) => {
 	res.json({ message: "Bienvenidos a la API del Sistema de Bolsa de Trabajo" });
+	console.log(  req.session.isAuthenticated);
 });
 
 app.use("/api/empresas", empresasRoutes);

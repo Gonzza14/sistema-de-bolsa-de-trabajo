@@ -79,7 +79,7 @@ export const TablaIdioma = ({
                   <CardContent><b>Conversación: </b>{item.puntConver}</CardContent>
                   <CardContent><b>Escucha:</b>{item.puntEscucha}</CardContent>
                 </TimelineCardContent>
-                {pathname !== "/VerCV" &&(<TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}

@@ -76,7 +76,7 @@ export const TablaRecomLaboral = ({
                   <CardContent><b>Nombre Completo: </b>{item.nombreRecomLab}</CardContent>
                   <CardContent><b>Telefono: </b>{item.telefonoRecomLab}</CardContent>
                 </TimelineCardContent>
-                {pathname !== "/VerCV" &&(<TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}

@@ -78,7 +78,7 @@ export const TablaConAcademico = ({
                   <CardContent><b>Nombre Curso: </b>{item.nombreCurso}</CardContent>
                   <CardContent><b>Año Finalizacion: </b>{item.periodoConAcad}</CardContent>
                 </TimelineCardContent>
-                {pathname !== "/VerCV" &&(<TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}

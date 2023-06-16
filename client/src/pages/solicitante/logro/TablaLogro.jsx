@@ -76,7 +76,7 @@ export const TablaLogro = ({
                   <CardContent><b>Logro Realizado: </b>{item.logroRealizado}</CardContent>
                   <CardContent><b>Fecha Logro: </b>{item.fechaLogro.split("T")[0]}</CardContent>
                 </TimelineCardContent>
-                {pathname !== "/VerCV" &&(<TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}

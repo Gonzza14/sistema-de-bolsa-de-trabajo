@@ -71,15 +71,14 @@ const ListItem = styled.li`
 
 
 export const VerCV = () => {
-
+    const { pathname } = useLocation();
+    const id_postulante = pathname.split("/")
     let id_usuario = localStorage.getItem("id_usuario");
     const url = 
     process.env.NODE_ENV === "production"
     ? `api/curriculum/${id_usuario}`
-    :`http://localhost:3000/api/curriculum/${id_usuario}`;
-
-    const { pathname } = useLocation();
-
+    :`http://localhost:3000/api/curriculum/${id_postulante[2]}`;
+  
     let { dataBase, createDataEmpty, loading } = useCustomFetch(url);
 
     if (dataBase) {

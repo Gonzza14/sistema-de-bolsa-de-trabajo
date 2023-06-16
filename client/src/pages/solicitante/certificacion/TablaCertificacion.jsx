@@ -77,7 +77,7 @@ export const TablaCertificacion = ({
                   <CardContent><b>Instituto Certificación: </b>{item.instiCertificacion}</CardContent>
                   <CardContent><b>Fecha Certificación: </b>{item.fechaCertificacion.split("T")[0]}</CardContent>
                 </TimelineCardContent>
-                {pathname !== "/VerCV" &&(<TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}

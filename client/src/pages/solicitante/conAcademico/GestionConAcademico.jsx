@@ -42,7 +42,7 @@ export const GestionConAcademico = (props) => {
       {response && (
         <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
       )}
-      { pathname !== "/VerCV" && (<ButtonSection>
+      { pathname == "/GestionCurriculum" && (<ButtonSection>
         {
           <>
             <ButtonCreateCV

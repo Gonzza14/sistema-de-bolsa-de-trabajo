@@ -46,7 +46,7 @@ export const GestionLibro = (props) => {
       {response && (
         <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
       )}
-      {pathname !== "/VerCV" &&(<ButtonSection>
+      {pathname == "/GestionCurriculum" &&(<ButtonSection>
         {
           <>
             <ButtonCreateCV

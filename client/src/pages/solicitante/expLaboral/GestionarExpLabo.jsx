@@ -52,7 +52,7 @@ export const GestionExpLabo = (props) => {
               bgColor="#0F2651"
             />
           )}
-          {pathname !== "/VerCV" &&(<ButtonSection>
+          {pathname == "/GestionCurriculum" &&(<ButtonSection>
             {
               <>
                 <ButtonCreateCV to={`agregarExpLabo`} onClick={(handleClick, modalActivate)}

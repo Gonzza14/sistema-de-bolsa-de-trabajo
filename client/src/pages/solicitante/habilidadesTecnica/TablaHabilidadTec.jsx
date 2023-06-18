@@ -47,7 +47,7 @@ export const TablaHabilidadTec = ({
   };
     return (
       <>
-        <Modal isOpen={isOpen} closeModal={closeModal}>
+        <Modal isOpen={isOpen} closeModal={closeModal} titulo="Eliminar registro">
           <ModalTitle>
             ¿Estás seguro de eliminar el registro con el identificador "
             {idToDelete}"?

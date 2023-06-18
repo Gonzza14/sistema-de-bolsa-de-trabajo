@@ -2,7 +2,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { ButtonModalClose, IconoCerrarModal, StyledFontAwesomeIconBoton } from "../styles/elements/botones";
 import { ModalArticle, ModalContainer, ModalHeader, ModalTitleHeader } from "../styles/elements/modal";
 
-export const Modal = ({ children, isOpen, closeModal }) => {
+export const Modal = ({ children, isOpen, closeModal, titulo}) => {
 
     const handleModalContainerClick = (e) => e.stopPropagation();
 
@@ -10,7 +10,7 @@ export const Modal = ({ children, isOpen, closeModal }) => {
         <ModalArticle className={`${isOpen && "is-open"}`} onClick={closeModal}>
             <ModalContainer onClick={handleModalContainerClick}>
                 <ModalHeader>
-                    <ModalTitleHeader>Eliminar registro</ModalTitleHeader>
+                    <ModalTitleHeader>{titulo}</ModalTitleHeader>
                     <ButtonModalClose onClick={closeModal}>
                         <IconoCerrarModal icon={faXmark} size="1x" />
                     </ButtonModalClose>

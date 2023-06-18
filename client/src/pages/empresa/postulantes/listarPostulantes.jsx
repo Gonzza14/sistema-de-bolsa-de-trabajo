@@ -4,9 +4,14 @@ import "../../../styles/elements/card-empleo.css";
 import "../../../styles/pages/detalleOferta.css";
 import { useCustomFetch } from "../../../hooks/useCustomFetchAndres";
 import { GestionSection } from "../../../styles/pages/admin/gestion";
+import { useModal } from "../../../hooks/useModal";
+import { Modal } from "../../../components/Modal";
+import { ModalTitle } from "../../../styles/elements/modal";
+import { FormularioCorreo }  from "./FormularioCorreo";
 
 
 export const ListarPostulantes = () => {
+    const [isOpen, openModal, closeModal] = useModal(false);
 
     let idOfert = "1"
     let tituloOferta = ""
@@ -53,6 +58,10 @@ export const ListarPostulantes = () => {
         window.location.reload()
     }*/
 
+    const handleSend = (e) => {
+        openModal();
+    }
+
     return (
         <BaseContainer>
             <Header titulo={titulo} />
@@ -62,39 +71,47 @@ export const ListarPostulantes = () => {
                         <GestionSection>
                             {postulantes &&
                                 postulantes[0].map((postu) =>
+                                    <>
+                                        <div className="card-oferta">
+                                            <div className="card-header">
+                                                <h1 className="">{postu.nombresSolic} {postu.apellidosSolic}</h1>
+                                                <p className="">Telefono: {postu.telefonoSolic}</p>
+                                            </div>
 
-                                    <div className="card-oferta">
-                                        <div className="card-header">
-                                            <h1 className="">{postu.nombresSolic} {postu.apellidosSolic}</h1>
-                                            <p className="">Telefono: {postu.telefonoSolic}</p>
+                                            <div className="card-body">
+                                                <h3 className="titulos">Fecha de nacimiento</h3>
+                                                <p className="">{(postu.fechaNacimiento).toString().slice(0, 10)}</p>
+
+                                                <h3 className="titulos">Genero</h3>
+                                                <p className="" id={id = "gen" + postu.id}>{nombrarGenero(postu.id, postu.idGenero)}</p>
+
+                                                <h3 className="titulos">Direccion</h3>
+                                                <p className="">{postu.direcSolic}</p>
+
+                                                <h3 className="titulos">Facebook</h3>
+                                                <p className="">{postu.facebook}</p>
+
+                                                <h3 className="titulos">Twitter</h3>
+                                                <p className="">{postu.twitter}</p>
+
+                                                <h3 className="titulos">Linkedin</h3>
+                                                <p className="">{postu.linkedin}</p>
+
+                                                <button className="button-card"> Ver CV </button>
+                                                <button className="button-card" onClick={handleSend}> Enviar correo electronico </button>
+                                            </div>
                                         </div>
 
-                                        <div className="card-body">
-                                            <h3 className="titulos">Fecha de nacimiento</h3>
-                                            <p className="">{(postu.fechaNacimiento).toString().slice(0, 10)}</p>
+                                        <Modal isOpen={isOpen} closeModal={closeModal} titulo="Enviar correo">
+                                            <FormularioCorreo correo={postu.correoUsuario}></FormularioCorreo>
+                                        </Modal>
 
-                                            <h3 className="titulos">Genero</h3>
-                                            <p className="" id={id = "gen" + postu.id}>{nombrarGenero(postu.id, postu.idGenero)}</p>
-
-                                            <h3 className="titulos">Direccion</h3>
-                                            <p className="">{postu.direcSolic}</p>
-
-                                            <h3 className="titulos">Facebook</h3>
-                                            <p className="">{postu.facebook}</p>
-
-                                            <h3 className="titulos">Twitter</h3>
-                                            <p className="">{postu.twitter}</p>
-
-                                            <h3 className="titulos">Linkedin</h3>
-                                            <p className="">{postu.linkedin}</p>
-
-                                            <button className="button-card"> Ver CV </button>
-                                        </div>
-                                    </div>
+                                    </>
 
                                 )
                             }
                         </GestionSection>
+
                     </BaseSectionData>
                 </BaseSection>
             </BaseBody>

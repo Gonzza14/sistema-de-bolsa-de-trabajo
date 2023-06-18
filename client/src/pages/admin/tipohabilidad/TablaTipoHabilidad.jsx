@@ -54,7 +54,7 @@ export const TablaTipoHabilidad = ({ data, setDataToEdit, deleteData}) => {
     ];
     return (
         <>
-            <Modal isOpen={isOpen} closeModal={closeModal}>
+            <Modal isOpen={isOpen} closeModal={closeModal} titulo="Eliminar registro">
                 <ModalTitle> ¿Estás seguro de eliminar el registro con el identificador "{idToDelete}"?</ModalTitle>
                 <ButtonContainer className="boton-modal">
                     <ButtonModalDelete onClick={() => {closeModal(); deleteData(idToDelete) }}>

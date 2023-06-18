@@ -82,6 +82,24 @@ export const ImgPerfil = styled.img`
   object-fit: cover;
 `;
 
+export const CenteredDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+
+export const ImgPerfilCV = styled.img`
+  width: 140px;
+  height: 140px;
+  position: relative;
+	border-radius: 10%;
+  object-fit: cover;
+`;
+
+
+
+
 export const ButtonAvatarPerfil = styled.button`
   position: absolute;
   left: -2px;

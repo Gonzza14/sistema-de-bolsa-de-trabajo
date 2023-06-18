@@ -1,6 +1,7 @@
 import { Header } from "../../../components/Header";
 import React from "react";
 import styled from "styled-components";
+import { Route, Routes, useLocation } from "react-router-dom";
 import {
   FaPen,
   FaFacebook,
@@ -19,7 +20,6 @@ import {
   Column4,
   Column8,
 } from "../../../styles/base";
-import { Route, Routes, useLocation } from "react-router-dom";
 import {
   ButtonSection,
   GestionSection,
@@ -34,17 +34,17 @@ import {
   Boton,
 } from "../../../styles/elements/botones";
 import Loader from "../../../components/Loader";
-import { GestionConAcademico } from "../conAcademico/GestionConAcademico";
-import { GestionExpLabo } from "../expLaboral/GestionarExpLabo";
-import { GestionHabilidadTec } from "../habilidadesTecnica/GestionHabilidadTec";
-import { GestionIdioma } from "../idiomas/GestionIdioma";
-import { GestionLibro } from "../libro/GestionLibro";
-import { GestionCertificacion } from "../certificacion/GestionCertificacion";
-import { GestionCongreso } from "../congreso/GestionCongreso";
-import { GestionLogro } from "../logro/GestionarLogro";
-import { GestionRecomLaboral } from "../recomendacionLaboral/GestionRecomLaboral";
-import { GestionRecomPersonal } from "../recomendacionPersonal/GestionarRecomPersonal";
-import { GestionExamen } from "../examen/GestionExamen";
+import { GestionConAcademico } from "../../solicitante/conAcademico/GestionConAcademico";
+import { GestionExpLabo } from "../../solicitante/expLaboral/GestionarExpLabo";
+import { GestionHabilidadTec } from "../../solicitante/habilidadesTecnica/GestionHabilidadTec";
+import { GestionIdioma } from "../../solicitante/idiomas/GestionIdioma";
+import { GestionLibro } from "../../solicitante/libro/GestionLibro";
+import { GestionCertificacion } from "../../solicitante/certificacion/GestionCertificacion";
+import { GestionCongreso } from "../../solicitante/congreso/GestionCongreso";
+import { GestionLogro } from "../../solicitante/logro/GestionarLogro";
+import { GestionRecomLaboral } from "../../solicitante/recomendacionLaboral/GestionRecomLaboral";
+import { GestionRecomPersonal } from "../../solicitante/recomendacionPersonal/GestionarRecomPersonal";
+import { GestionExamen } from "../../solicitante/examen/GestionExamen";
 import { CenteredDiv, ImgPerfilCV } from "../../../styles/pages/usuario";
 
 const ContainerPerfil = styled.div`
@@ -69,53 +69,33 @@ const ListItem = styled.li`
   align-items: center;
 `;
 
-export const GestionCurriculum = () => {
-  // localStorage.setItem("id_usuario", 1);
 
-  let id_usuario = localStorage.getItem("id_usuario"),
-    url = `http://localhost:3000/api/curriculum/${id_usuario}`;
+export const VerCV = () => {
+    const { pathname } = useLocation();
+    const id_postulante = pathname.split("/")
+    let id_usuario = localStorage.getItem("id_usuario");
+    const url = 
+    process.env.NODE_ENV === "production"
+    ? `api/curriculum/${id_usuario}`
+    :`http://localhost:3000/api/curriculum/${id_postulante[2]}`;
+  
+    let { dataBase, createDataEmpty, loading } = useCustomFetch(url);
 
-  const { pathname } = useLocation();
+    if (dataBase) {
+        var valorIdCurriculum = dataBase.curriculum.id;
+    }
 
-  let { dataBase, createDataEmpty, loading } = useCustomFetch(url);
+    const handleClickCurriculum = () => {
+        createDataEmpty();
+    };
 
-  if (dataBase) {
-    var valorIdCurriculum = dataBase.curriculum.id;
-  }
+    if (loading == true) {
+        return <Loader />;
+    }
 
-  const handleClickCurriculum = () => {
-    createDataEmpty();
-  };
-
-  if (loading == true) {
-    return <Loader />;
-  }
-
-  if (!dataBase) {
     return (
-      <BaseContainer>
-        <Header titulo="Curriculum" />
-        <BaseBody>
-          <BaseSectionData>
-            <GestionSection>
-              <Contenedor>
-                <ContenidoIzquierdo>
-                  <Titulo>¡Crea tu currículum ahora!</Titulo>
-                  <Subtitulo>Destaca entre la multitud</Subtitulo>
-                  <Boton onClick={handleClickCurriculum}>Inicia aqui</Boton>
-                </ContenidoIzquierdo>
-                <ContenidoDerecho></ContenidoDerecho>
-              </Contenedor>
-            </GestionSection>
-          </BaseSectionData>
-        </BaseBody>
-      </BaseContainer>
-    );
-  }
-
-  return (
-    <BaseContainer>
-      <Header titulo="Crear curriculum" />
+        <BaseContainer>
+      <Header titulo="Ver curriculum" />
       <BaseBody>
         <ContainerCol>
           <Column4>
@@ -181,5 +161,5 @@ export const GestionCurriculum = () => {
         </ContainerCol>
       </BaseBody>
     </BaseContainer>
-  );
-};
+    )
+}

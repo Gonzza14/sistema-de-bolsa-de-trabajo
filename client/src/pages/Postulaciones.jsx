@@ -8,8 +8,11 @@ import Loader from "../components/Loader";
 import Message from "../components/Message"
 
 export const Postulaciones = () => {
-
-    let url = "http://localhost:3000/api/postulaciones/1"
+    let id_usuario = localStorage.getItem("id_usuario");
+    let url = 
+    process.env.NODE_ENV === "production"
+    ? `api/postulaciones/${id_usuario}`
+    :`http://localhost:3000/api/postulaciones/${id_usuario}`
     const { pathname } = useLocation()
 
     let {
@@ -17,14 +20,30 @@ export const Postulaciones = () => {
         error,
         loading,
     } = useCustomFetch(url);
-    console.log(dataBase)
+
+    const estilos = {
+        display: 'flex'
+    }
+
+    let postulaciones = null;
+    if(dataBase){
+        postulaciones = dataBase.map((postulacion, index) => {
+            return <div key={index}>
+                        <TarjetaEmpleo
+                            width={"80%"}
+                            titulo={postulacion.tituloOferta}
+                            link={"/detalleoferta/"+postulacion.id}
+                            descripcion={postulacion.descOferta}></TarjetaEmpleo>
+                    </div>
+            
+        })
+    }
     return (
         <BaseContainer>
             <Header titulo="Postulaciones" />
             <BaseBody>
                 <BaseSectionData>
                     <SectionTitle>Postulaciones realizadas</SectionTitle>
-                    <PostulacionesSection>
                         {loading && <Loader />}
                         {
                             error && (
@@ -35,17 +54,12 @@ export const Postulaciones = () => {
                             )
                         }
                         {
-                            dataBase && dataBase.map((postulacion) => (
-                                <div key={postulacion.idOferta}>
-                                    <TarjetaEmpleo
-                                        titulo={postulacion.tituloOferta}
-                                        empresa={postulacion.nombreEmpresa}
-                                        descripcion={postulacion.descOferta}></TarjetaEmpleo>
-                                </div>
-                                
-                            ))
+                            dataBase && (
+                                <PostulacionesSection>
+                                    {postulaciones}
+                                </PostulacionesSection>
+                            )
                         }
-                    </PostulacionesSection>
                 </BaseSectionData>
             </BaseBody>
         </BaseContainer>

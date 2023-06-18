@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   ButtonContainer,
   ButtonModalDelete,
@@ -33,6 +33,7 @@ export const TablaRecomLaboral = ({
   const [idToDelete, setIdToDelete] = useState(null);
 
   const navigate = useNavigate();
+  const { pathname } = useLocation()
 
   const handleEdit = (row) => {
     setResponse(false);
@@ -75,7 +76,7 @@ export const TablaRecomLaboral = ({
                   <CardContent><b>Nombre Completo: </b>{item.nombreRecomLab}</CardContent>
                   <CardContent><b>Telefono: </b>{item.telefonoRecomLab}</CardContent>
                 </TimelineCardContent>
-                <TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
@@ -88,7 +89,7 @@ export const TablaRecomLaboral = ({
                       size="1x"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
-                </TimelineCardButtons>
+                </TimelineCardButtons>)}
               </CardContainer>
             </TimelineCardLeft>
           ))}

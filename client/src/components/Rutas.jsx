@@ -26,6 +26,7 @@ import { GestionPermiso } from "../pages/admin/permiso/GestionarPermiso";
 import { GestionRolPermiso } from "../pages/admin/rolPermiso/GestionRolPermiso";
 import PrivateRoutes from "./PrivateRoutes";
 import { Error404 } from "../pages/errors/Error404";
+import { VerCV } from "../pages/empresa/postulantes/vercv";
 
 export const Rutas = () => {
   return (
@@ -50,14 +51,15 @@ export const Rutas = () => {
             element={<GestionOfertaEmpleo />}
           />
           <Route path="/GestionRol/*" element={<GestionRol />} />
-          <Route path="/DetalleOferta/*" element={<DetalleOferta />} />
-          <Route path="/ListarPostulantes/*" element={<ListarPostulantes />} />
+          <Route path="/DetalleOferta/:idOfert" element={<DetalleOferta />} />
+          <Route path="/ListarPostulantes/:idOfert" element={<ListarPostulantes />} />
           <Route path="/GestionTipoExamen/*" element={<GestionTipoExamen />} />
           <Route path="/GestionCurriculum/*" element={<GestionCurriculum />} />
           <Route path="/Usuario/*" element={<Usuario />} />
           <Route path='/UsuarioEmp/*' element={<UsuarioEmp />} />
           <Route path="/GestionPermiso/*" element={<GestionPermiso />} />
           <Route path="/GestionRolPermiso/*" element={<GestionRolPermiso />} />
+          <Route path="/VerCV/:parametro" element={<VerCV />} />
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>

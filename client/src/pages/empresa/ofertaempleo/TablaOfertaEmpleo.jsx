@@ -1,6 +1,6 @@
 import { ButtonContainer, ButtonModalDelete, ButtonOp, IconoBorrarModal } from "../../../styles/elements/botones";
 import { StyledFontAwesomeIconBoton } from "../../../styles/elements/botones";
-import { faEye, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faPenToSquare, faTrash, faPerson } from "@fortawesome/free-solid-svg-icons";
 import { DataTableStyle, paginationComponentOptions } from "../../../styles/elements/tabla";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "../../../components/Modal";
@@ -29,6 +29,10 @@ export const TablaOfertaEmpleo = ({ data, setDataToEdit, deleteData, setResponse
         setResponse(false)
         setIdToDelete(row.id)
         openModal();
+    }
+    const handleListar = (row) => {
+        setResponse(false)
+        navigate("/ListarPostulantes/"+row.id);
     }
     const columns = [
         {
@@ -109,6 +113,7 @@ export const TablaOfertaEmpleo = ({ data, setDataToEdit, deleteData, setResponse
             cell: (row) => {
                 return (
                     <>
+                        <ButtonOp onClick={() => handleListar(row)}><StyledFontAwesomeIconBoton icon={faPerson} size="1x"></StyledFontAwesomeIconBoton></ButtonOp>
                         <ButtonOp onClick={() => handleDetalle(row)}><StyledFontAwesomeIconBoton icon={faEye} size="1x"></StyledFontAwesomeIconBoton></ButtonOp>
                         <ButtonOp onClick={() => handleEdit(row)}><StyledFontAwesomeIconBoton icon={faPenToSquare} size="1x"></StyledFontAwesomeIconBoton></ButtonOp>
                         <ButtonOp onClick={() => handleDelete(row)}><StyledFontAwesomeIconBoton icon={faTrash} size="1x"></StyledFontAwesomeIconBoton></ButtonOp>

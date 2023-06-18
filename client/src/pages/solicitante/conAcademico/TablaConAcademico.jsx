@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   ButtonContainer,
   ButtonModalDelete,
@@ -33,6 +33,8 @@ export const TablaConAcademico = ({
   const [idToDelete, setIdToDelete] = useState(null);
 
   const navigate = useNavigate();
+
+  const { pathname } = useLocation()
 
   const handleEdit = (row) => {
     setResponse(false);
@@ -76,7 +78,7 @@ export const TablaConAcademico = ({
                   <CardContent><b>Nombre Curso: </b>{item.nombreCurso}</CardContent>
                   <CardContent><b>Año Finalizacion: </b>{item.periodoConAcad}</CardContent>
                 </TimelineCardContent>
-                <TimelineCardButtons>
+                {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                   <ButtonOpt onClick={() => handleEdit(item)}>
                     <StyledFontAwesomeIconBoton
                       icon={faPenToSquare}
@@ -89,7 +91,7 @@ export const TablaConAcademico = ({
                       size="1x"
                     ></StyledFontAwesomeIconBoton>
                   </ButtonOpt>
-                </TimelineCardButtons>
+                </TimelineCardButtons>)}
               </CardContainer>
             </TimelineCardLeft>
           ))}

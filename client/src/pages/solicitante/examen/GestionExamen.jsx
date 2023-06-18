@@ -44,7 +44,7 @@ export const GestionExamen = (props) => {
       {response && (
         <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
       )}
-      <ButtonSection>
+      {pathname == "/GestionCurriculum" &&(<ButtonSection>
         {
           <>
             <ButtonCreateCV
@@ -58,7 +58,7 @@ export const GestionExamen = (props) => {
             </ButtonCreateCV>
           </>
         }
-      </ButtonSection>
+      </ButtonSection>)}
 
       <ListarExamen
         openModalCV={openModalCV}

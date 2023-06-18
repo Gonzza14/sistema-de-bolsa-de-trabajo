@@ -52,7 +52,7 @@ export const GestionExpLabo = (props) => {
               bgColor="#0F2651"
             />
           )}
-          <ButtonSection>
+          {pathname == "/GestionCurriculum" &&(<ButtonSection>
             {
               <>
                 <ButtonCreateCV to={`agregarExpLabo`} onClick={(handleClick, modalActivate)}
@@ -64,7 +64,7 @@ export const GestionExpLabo = (props) => {
                 </ButtonCreateCV>
               </>
             }
-          </ButtonSection>
+          </ButtonSection>)}
 					<ListarExpLabo openModalCV={openModalCV}
                   error={error}
                   loading={loading}

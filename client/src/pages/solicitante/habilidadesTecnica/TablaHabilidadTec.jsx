@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   ButtonContainer,
   ButtonModalDelete,
@@ -32,6 +32,7 @@ export const TablaHabilidadTec = ({
   const [isOpen, openModal, closeModal] = useModal(false);
   const [idToDelete, setIdToDelete] = useState(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation()
 
   const handleEdit = (row) => {
     setResponse(false);
@@ -75,7 +76,7 @@ export const TablaHabilidadTec = ({
                     </CardContent>
                     <CardContent><b>Habilidad Técnica: </b>{item.habTec}</CardContent>
                   </TimelineCardContent>
-                  <TimelineCardButtons>
+                  {pathname == "/GestionCurriculum" &&(<TimelineCardButtons>
                     <ButtonOpt onClick={() => handleEdit(item)}>
                       <StyledFontAwesomeIconBoton
                         icon={faPenToSquare}
@@ -88,7 +89,7 @@ export const TablaHabilidadTec = ({
                         size="xl"
                       ></StyledFontAwesomeIconBoton>
                     </ButtonOpt>
-                  </TimelineCardButtons>
+                  </TimelineCardButtons>)}
                 </CardContainer>
               </TimelineCardLeft>
             ))}

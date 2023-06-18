@@ -4,9 +4,11 @@ import "../../../styles/elements/card-empleo.css";
 import "../../../styles/pages/detalleOferta.css";
 import { useCustomFetch } from "../../../hooks/useCustomFetchAndres";
 import { GestionSection } from "../../../styles/pages/admin/gestion";
+import { useParams } from "react-router-dom";
 
 export const DetalleOferta = () => {
-    let idOfert = "3"
+    const {idOfert} = useParams(); 
+    console.log(idOfert)
     let idOfertAux = ""
     let idEmpresa = ""
     let idCategoriaOferta = ""
@@ -16,26 +18,43 @@ export const DetalleOferta = () => {
     let ids = ""
     let urlPostula = ""
 
-    let urlOferta = "http://localhost:3000/api/ofertas/" + idOfert
+    const urlOferta = 
+        process.env.NODE_ENV === "production"
+        ? "api/ofertas/" + idOfert
+        : "http://localhost:3000/api/ofertas/" + idOfert;
     let [dataBase] = useCustomFetch(urlOferta);
     if (dataBase) {
         idEmpresa = (dataBase.idEmpresa).toString()
         idCategoriaOferta = (dataBase.idCategoriaOfer).toString()
     }
 
-    let urlEmpresa = "http://localhost:3000/api/empresas/" + idEmpresa
-    let urlCategoria = "http://localhost:3000/api/categorias/" + idCategoriaOferta
+    const urlEmpresa = 
+        process.env.NODE_ENV === "production"
+        ? "api/empresas/" + idEmpresa
+        : "http://localhost:3000/api/empresas/" + idEmpresa;
+    
+    const urlCategoria = 
+        process.env.NODE_ENV === "production"
+        ? "api/categorias/" + idCategoriaOferta
+        : "http://localhost:3000/api/categorias/" + idCategoriaOferta;
     let [empresa] = useCustomFetch(urlEmpresa);
     let [categoria] = useCustomFetch(urlCategoria);
 
     idUsuario = localStorage.getItem("id_usuario")
     //idUsuario = 1
-    let urlSolic = "http://localhost:3000/api/solicitantes/us/" + (idUsuario).toString()
+    const urlSolic = 
+        process.env.NODE_ENV === "production"
+        ? "api/solicitantes/us/" + (idUsuario).toString()
+        : "http://localhost:3000/api/solicitantes/us/" + (idUsuario).toString();
     let [solicitante] = useCustomFetch(urlSolic);
+
     if (solicitante) {
         idSolicitante = solicitante.id;
         ids = (idOfert).toString() + "/" + (idSolicitante).toString()
-        urlPostula = "http://localhost:3000/api/postula/" + ids
+        urlPostula = 
+            process.env.NODE_ENV === "production"
+            ? "api/postula/" + ids
+            : "http://localhost:3000/api/postula/" + ids;
     }
 
     let [postula] = useCustomFetch(urlPostula);
@@ -54,7 +73,10 @@ export const DetalleOferta = () => {
         console.log('Botón clickeado');
 
         const Http = new XMLHttpRequest();
-        let urlRegistrarPostulacion = "http://localhost:3000/api/postula/ins/" + idOfertAux + "/" + idSolicitante;
+        const urlRegistrarPostulacion = 
+            process.env.NODE_ENV === "production"
+            ? "api/postula/ins/" + idOfertAux + "/" + idSolicitante
+            : "http://localhost:3000/api/postula/ins/" + idOfertAux + "/" + idSolicitante;
         Http.open("GET", urlRegistrarPostulacion);
         Http.send();
 

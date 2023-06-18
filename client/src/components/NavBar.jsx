@@ -19,6 +19,14 @@ import {
   faSearch,
   faBuildingUser,
   faClose,
+  faBriefcase,
+  faTasks,
+  faUserCog,
+  faHandshake,
+  faUserTag,
+  faListAlt,
+  faAddressCard,
+  faFileAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import user from "../assets/images/user.jpg";
@@ -66,6 +74,86 @@ export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno }) => {
               </NavButton>
             </NavItem>
           )}
+
+          <NavItem>
+            <NavButton to="/GestionEmpresa">
+              <StyledFontAwesomeIcon icon={faBriefcase} size="xl" />
+              <NavParagraph>Gestión Empresa</NavParagraph>
+            </NavButton>
+          </NavItem>
+          <NavItem>
+            <NavButton to="/GestionUsuario">
+              <StyledFontAwesomeIcon icon={faUserCog} size="xl" />
+              <NavParagraph>Gestión Usuario</NavParagraph>
+            </NavButton>
+          </NavItem>
+          <NavItem>
+            <NavButton to="/GestionTipoHabilidad">
+              <StyledFontAwesomeIcon icon={faTasks} size="xl" />
+              <NavParagraph>Gestión Tipo Habilidad</NavParagraph>
+            </NavButton>
+          </NavItem>
+          <NavItem>
+            <NavButton to="/GestionOfertaEmpleo">
+              <StyledFontAwesomeIcon icon={faHandshake} size="xl" />
+              <NavParagraph>Gestión Oferta Empleo</NavParagraph>
+            </NavButton>
+          </NavItem>
+          <NavItem>
+            <NavButton to="/GestionRol">
+              <StyledFontAwesomeIcon icon={faUserTag} size="xl" />
+              <NavParagraph>Gestión Rol</NavParagraph>
+            </NavButton>
+          </NavItem>
+          <NavItem>
+            <NavButton to="/DetalleOferta/:idOfert">
+              <StyledFontAwesomeIcon icon={faSearch} size="xl" />
+              <NavParagraph>Detalle Oferta</NavParagraph>
+            </NavButton>
+          </NavItem>
+          <NavItem>
+            <NavButton to="/ListarPostulantes">
+              <StyledFontAwesomeIcon icon={faListAlt} size="xl" />
+              <NavParagraph>Listar Postulantes</NavParagraph>
+            </NavButton>
+          </NavItem>
+          <NavItem>
+            <NavButton to="/GestionTipoExamen">
+              <StyledFontAwesomeIcon icon={faFileAlt} size="xl" />
+              <NavParagraph>Gestión Tipo Examen</NavParagraph>
+            </NavButton>
+          </NavItem>
+          <NavItem>
+            <NavButton to="/GestionCurriculum">
+              <StyledFontAwesomeIcon icon={faAddressCard} size="xl" />
+              <NavParagraph>Gestión Curriculum</NavParagraph>
+            </NavButton>
+          </NavItem>
+          {/* <NavItem> 
+  <Nabutton to="/Usuario"> 
+  	<StyledFontAwesomeIcon icon={faUser} size="xl"/> 
+  	<Nabparagraph>Usuario</Nabparagraph> 
+  	</Nabutton> 
+  	</Nabitem> 
+  	<Nabitem> 
+  		<Nabutton to="/UsuarioEmp"> 
+  			<StyledFontAwesomeIcon icon={faUserTie} size="xl"/> 
+  			<Nabparagraph>Usuario Empresarial</Nabparagraph> 
+  		</Nabutton> 
+  	</Nabitem> 
+  	<Nabitem> 
+  		<Nabutton to="/GestionPermiso"> 
+  			<StyledFontAwesomeIcon icon={faUnlockAlt} size="xl"/> 
+  			<Nabparagraph>Gestión Permiso</Nabparagraph> 
+  		</Nabutton> 
+  	</Nabitem> 
+  	<Nabitem> 
+  		<Nabutton to="/GestionRolPermiso"> 
+  			<StyledFontAwesomeIcon icon={faUserLock} size="xl"/> 
+  			<Nabparagraph>Gestión Rol Permiso</Nabparagraph> 
+  		</Nabutton> 
+  	</Nabitem> */}
+
           <NavItem>
             <NavButton to="/Buscar">
               <StyledFontAwesomeIcon icon={faSearch} size="xl" />

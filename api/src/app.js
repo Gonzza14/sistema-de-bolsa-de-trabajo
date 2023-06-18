@@ -60,15 +60,15 @@ app.use(session({
 
 store.sync();
 
-app.use((req, res, next) => {
-	if (!req.session.isInitialized) {
-    // Inicializa tus variables de sesión aquí
-    req.session.isAuthenticated = false;
-    req.session.datosLlenos = false;
-    req.session.isInitialized = true;
-  } 
-  next();
-});
+// app.use((req, res, next) => {
+// 	if (!req.session.isInitialized) {
+//     // Inicializa tus variables de sesión aquí
+//     req.session.isAuthenticated = false;
+//     req.session.datosLlenos = false;
+//     req.session.isInitialized = true;
+//   } 
+//   next();
+// });
 
 
 

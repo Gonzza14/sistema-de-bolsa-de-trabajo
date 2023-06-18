@@ -109,7 +109,7 @@ export const Rutas = () => {
               path="/GestionCurriculum/*"
               element={<GestionCurriculum />}
             />
-            <Route path="/Usuario/*" element={<Usuario />} />
+            <Route path="/Usuario/*" element={<Usuario setDataLleno={setDataLleno} />} />
             <Route path="/UsuarioEmp/*" element={<UsuarioEmp />} />
             <Route path="/GestionPermiso/*" element={<GestionPermiso />} />
             <Route

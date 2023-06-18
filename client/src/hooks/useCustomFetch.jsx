@@ -162,7 +162,7 @@ export const useCustomFetch = (url, setDataLleno, navigate) => {
     helpHttp()
       .put(endpoint, options)
       .then((res) => {
-        //console.log(res);
+        console.log(res);
         if (!res.err) {
           let newData = dataBase.map((el) => (el.id === data.id ? data : el));
           setDatabase(newData);
@@ -178,6 +178,7 @@ export const useCustomFetch = (url, setDataLleno, navigate) => {
 
   const updateDataSolicitante = (data, file) => {
     //console.log(endpoint);
+		console.log(data)
     // Create a FormData object and append the data and file
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
@@ -194,6 +195,7 @@ export const useCustomFetch = (url, setDataLleno, navigate) => {
     helpHttp()
       .put(url, options)
       .then((res) => {
+				console.log(res)
         if (!res.err) {
           console.log(res);
           console.log(res["datosLlenos"]);
@@ -201,8 +203,7 @@ export const useCustomFetch = (url, setDataLleno, navigate) => {
           setDataLleno(res.datosLlenos);
           console.log(res.datosLlenos);
           localStorage.setItem("dataLleno", res.datosLlenos);
-          navigate("/Usuario");
-
+          // navigate("/Usuario");
           setDatabase(res);
           setLoading(false);
           setResponse(true);

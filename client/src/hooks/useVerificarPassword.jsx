@@ -2,7 +2,7 @@ import { helpHttp } from "../helpers/helpHttp";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const useVerificarPassword = (url, setAuth, setDataLleno) => {
+export const useVerificarPassword = (url, setAuth, setDataLleno, setRol) => {
   const [dataBase, setDatabase] = useState(null);
   const [error, setError] = useState(null);
   const [response, setResponse] = useState(null);
@@ -16,6 +16,10 @@ export const useVerificarPassword = (url, setAuth, setDataLleno) => {
   const updateDataLleno = (data) => {
     localStorage.setItem("dataLleno", data);
     setDataLleno(data);
+  };
+  const updateRol = (data) => {
+    localStorage.setItem("rol", data);
+    setRol(data);
   };
 
   const verificarData = (data) => {
@@ -39,6 +43,7 @@ export const useVerificarPassword = (url, setAuth, setDataLleno) => {
 						console.log(res)
             updateAuth(res.token);
             updateDataLleno(res.datosLlenos);
+            updateRol(res.rol);
             if (res.datosLlenos) {
 							navigate("/");
 						}else{

@@ -24,11 +24,8 @@ import { Link } from "react-router-dom";
 import user from "../assets/images/user.jpg";
 import { useCustomFetch } from "../hooks/useCustomFetch";
 
-export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno }) => {
-  // Verificar si se ha iniciado sesion
-  let empresa = false;
-  empresa = localStorage.getItem("rol") != "empresa" ? false : true;
-  // Verificar si se ha iniciado sesion
+export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno, rol, setRol }) => {
+
   let haySesion = localStorage.getItem("authtoken");
 
   const handleCerrarSession = () => {
@@ -58,7 +55,7 @@ export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno }) => {
               </NavButton>
             </NavItem>
           )}
-          {empresa && (
+          {rol === "empresa" && (
             <NavItem>
               <NavButton to="/Empresa">
                 <StyledFontAwesomeIcon icon={faBuildingUser} size="xl" />
@@ -90,11 +87,25 @@ export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno }) => {
               <NavParagraph>Inicio</NavParagraph>
             </NavButton>
           </NavItem>
-          <NavItem className="imagen">
+					{ rol == "empresa" && (
+						<NavItem className="imagen">
+            <NavLogo to="UsuarioEmp">
+              <NavImage src={user}></NavImage>
+            </NavLogo>
+          </NavItem>
+					)
+
+					}
+					{ rol == "solicitante" && (
+						<NavItem className="imagen">
             <NavLogo to="Usuario">
               <NavImage src={user}></NavImage>
             </NavLogo>
           </NavItem>
+					)
+
+					}
+          
         </NavList>
       </NavContainer>
     </MainNav>

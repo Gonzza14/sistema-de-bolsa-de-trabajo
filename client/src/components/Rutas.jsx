@@ -33,6 +33,7 @@ import { useCustomFetch } from "../hooks/useCustomFetch";
 export const Rutas = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [dataLleno, setDataLleno] = useState(localStorage.getItem("dataLleno"));
+  const [rol, setRol] = useState(localStorage.getItem("rol"));
 
   const [auth, setAuth] = useState({
     token: localStorage.getItem("token"),
@@ -46,9 +47,10 @@ export const Rutas = () => {
     if (dataBase) {
       localStorage.setItem("authToken", dataBase.token);
       localStorage.setItem("dataLleno", dataBase.datosLlenos);
+      localStorage.setItem("rol", dataBase.rol);
       setAuth({ token: dataBase.token });
       setDataLleno(dataBase.datosLlenos);
-      console.log("AAR");
+      setRol(dataBase.rol);
       setDataLoaded(loading);
     }
   }, [dataBase]);
@@ -63,6 +65,8 @@ export const Rutas = () => {
         setAuth={setAuth}
         dataLleno={dataLleno}
         setDataLleno={setDataLleno}
+        rol={rol}
+        setRol={setRol}
       />
       {!dataLoaded && (
         <Routes>
@@ -70,7 +74,7 @@ export const Rutas = () => {
           <Route path="/Buscar" element={<Buscar />} />
           <Route
             path="/Login"
-            element={<Login setAuth={setAuth} setDataLleno={setDataLleno} />}
+            element={<Login setAuth={setAuth} setDataLleno={setDataLleno} setRol={setRol}/>}
           />
           <Route
             element={
@@ -79,6 +83,8 @@ export const Rutas = () => {
                 setAuth={setAuth}
                 dataLleno={dataLleno}
                 setDataLleno={setDataLleno}
+								rol={rol}
+								setRol={setRol}
               />
             }
           >
@@ -110,7 +116,7 @@ export const Rutas = () => {
               element={<GestionCurriculum />}
             />
             <Route path="/Usuario/*" element={<Usuario setDataLleno={setDataLleno} />} />
-            <Route path="/UsuarioEmp/*" element={<UsuarioEmp />} />
+            <Route path="/UsuarioEmp/*" element={<UsuarioEmp setDataLleno={setDataLleno} />} />
             <Route path="/GestionPermiso/*" element={<GestionPermiso />} />
             <Route
               path="/GestionRolPermiso/*"

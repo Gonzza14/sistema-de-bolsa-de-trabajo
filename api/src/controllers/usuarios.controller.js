@@ -253,7 +253,7 @@ export const updateEmpresa = async (req, res) => {
 	try {
 		//Se obtiene el id de la empresa a actualizar
 		const { id } = req.params;
-
+		console.log(req.body)
 		//Se actualiza la empresa
 		const empresa = await Empresa.findByPk(id);
 
@@ -263,6 +263,15 @@ export const updateEmpresa = async (req, res) => {
 
 		empresa.set(req.body);
 		await empresa.save();
+
+		if (empresa && empresa.nombreEmpresa) {
+			req.session.datosLlenos = true;
+
+		} else {
+			req.session.datosLlenos = false;
+
+		}
+		empresa.setDataValue('datosLlenos', req.session.datosLlenos)
 		res.json(empresa);
 
 	} catch (err) {
@@ -305,6 +314,7 @@ export const verificarUsuario = async (req, res) => {
 				// Check if user has role "solicitante"
 				if (usuario.Rol.nombreRol === "solicitante") {
 					// Query Solicitantes table using usuario_id
+					req.session.rol = usuario.Rol.nombreRol;
 					const solicitante = await Solicitante.findOne({
 						where: { idUsuario: usuario.id },
 					});
@@ -321,6 +331,7 @@ export const verificarUsuario = async (req, res) => {
 
 				// Check if user has role "empresa"
 				if (usuario.Rol.nombreRol === "empresa") {
+					req.session.rol = usuario.Rol.nombreRol;
 					// Query Empresas table using usuario_id
 					const empresa = await Empresa.findOne({
 						where: { idUsuario: usuario.id },
@@ -338,6 +349,13 @@ export const verificarUsuario = async (req, res) => {
 					}
 				}
 
+				if (usuario.Rol.nombreRol === "administrador") {
+					req.session.rol = usuario.Rol.nombreRol;
+						req.session.datosLlenos = true;
+				}
+
+				
+
 				res.json({
 					valido: true,
 					id_usuario: usuario.id,
@@ -346,6 +364,7 @@ export const verificarUsuario = async (req, res) => {
 					token: req.session.isAuthenticated,
 					datosLlenos: req.session.datosLlenos,
 				});
+
 			} else {
 				res.json({ valido: false });
 			}
@@ -379,6 +398,7 @@ export const autenticacion = async (req, res) => {
 		res.json({
 			token: req.session.isAuthenticated,
 			datosLlenos: req.session.datosLlenos,
+			rol : req.session.rol,
 		});
 	} catch (err) {
 		return res.status(500).json({ message: err.message });

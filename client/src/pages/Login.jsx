@@ -81,7 +81,7 @@ const validateFormRegistrar = (formReg) => {
     return errorsReg
 };
 
-export const Login = ({ setAuth, setDataLleno }) => {  
+export const Login = ({ setAuth, setDataLleno, setRol }) => {  
     const urlRoles = 
         process.env.NODE_ENV === "production"
         ? "api/roles/sad"
@@ -93,7 +93,7 @@ export const Login = ({ setAuth, setDataLleno }) => {
         process.env.NODE_ENV === "production"
         ? "api/usuarios/verificarcuenta"
         : "http://localhost:3000/api/usuarios/verificarcuenta";;
-    let { verificarData } = useVerificarPassword(url, setAuth, setDataLleno);
+    let { verificarData } = useVerificarPassword(url, setAuth, setDataLleno, setRol);
     const { pathname } = useLocation()
 
 

@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { useModal } from "../../../hooks/useModal";
 import { Modal } from "../../../components/Modal";
 import { ModalTitle } from "../../../styles/elements/modal";
-import { FormularioCorreo }  from "./FormularioCorreo";
+import { FormularioCorreo } from "./FormularioCorreo";
 
 const ButtonVer = styled(Link)`
      margin: 2px;
@@ -32,23 +32,24 @@ const ButtonVer = styled(Link)`
 `;
 
 export const ListarPostulantes = () => {
-    const {idOfert} = useParams();    const [isOpen, openModal, closeModal] = useModal(false);
+    const { idOfert } = useParams(); 
+    const [isOpen, openModal, closeModal] = useModal(false);
 
     //let idOfert = "1"
     let tituloOferta = ""
     let titulo = ""
     let id = ""
 
-    const urlPostulantes = 
+    const urlPostulantes =
         process.env.NODE_ENV === "production"
-        ? "api/solicitantes/post/" + idOfert
-        : "http://127.0.0.1:3000/api/solicitantes/post/" + idOfert;
+            ? "api/solicitantes/post/" + idOfert
+            : "http://127.0.0.1:3000/api/solicitantes/post/" + idOfert;
     let [postulantes] = useCustomFetch(urlPostulantes);
 
-    const urlOferta = 
+    const urlOferta =
         process.env.NODE_ENV === "production"
-        ? "api/ofertas/" + idOfert
-        : "http://localhost:3000/api/ofertas/" + idOfert;
+            ? "api/ofertas/" + idOfert
+            : "http://localhost:3000/api/ofertas/" + idOfert;
     let [oferta] = useCustomFetch(urlOferta);
     if (oferta) {
         tituloOferta = (oferta.tituloOferta)
@@ -58,10 +59,10 @@ export const ListarPostulantes = () => {
 
     function nombrarGenero(idPost, idGenero) {
         const Http = new XMLHttpRequest();
-        const urlGenero = 
+        const urlGenero =
             process.env.NODE_ENV === "production"
-            ? "api/generos/" + idGenero
-            : "http://127.0.0.1:3000/api/generos/" + idGenero;
+                ? "api/generos/" + idGenero
+                : "http://127.0.0.1:3000/api/generos/" + idGenero;
         Http.open("GET", urlGenero);
         Http.send();
 
@@ -85,8 +86,8 @@ export const ListarPostulantes = () => {
                         <GestionSection>
                             {postulantes &&
                                 postulantes[0].map((postu) =>
-                                    <>                                        <div className="card-oferta">
-    
+                                    <>
+                                        <div className="card-oferta">
                                             <div className="card-header">
                                                 <h1 className="">{postu.nombresSolic} {postu.apellidosSolic}</h1>
                                                 <p className="">Telefono: {postu.telefonoSolic}</p>
@@ -111,21 +112,17 @@ export const ListarPostulantes = () => {
                                                 <h3 className="titulos">Linkedin</h3>
                                                 <p className="">{postu.linkedin}</p>
 
-                                                <ButtonVer to={"/VerCV/"+postu.id}>Ver oferta</ButtonVer>
+                                                <ButtonVer to={"/VerCV/" + postu.id}>Ver oferta</ButtonVer>
                                                 <button className="button-card" onClick={handleSend}> Enviar correo electronico </button>
                                             </div>
                                         </div>
-
                                         <Modal isOpen={isOpen} closeModal={closeModal} titulo="Enviar correo">
-                                            <FormularioCorreo correo={postu.correoUsuario}></FormularioCorreo>
+                                            <FormularioCorreo correo={postu.correoUsuario} closeModal={closeModal}></FormularioCorreo>
                                         </Modal>
-
                                     </>
-
                                 )
                             }
                         </GestionSection>
-
                     </BaseSectionData>
                 </BaseSection>
             </BaseBody>

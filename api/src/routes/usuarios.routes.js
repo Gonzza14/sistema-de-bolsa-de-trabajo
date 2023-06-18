@@ -11,7 +11,9 @@ import {
     verificarUsuario,
     updateSolicitante,
     getEmpresa,
-    updateEmpresa
+    updateEmpresa,
+		logout,
+		autenticacion,
 } from "../controllers/usuarios.controller";
 //import { getEmpresa, updateEmpresa } from "../controllers/empresas.controller";
 
@@ -35,6 +37,8 @@ const upload = multer({
 router.get("/", getUsuarios);
 router.post("/", createUsuario);
 router.post("/verificarcuenta", verificarUsuario);
+router.get("/logout", logout);
+router.get("/autenticacion", autenticacion);
 router.put("/:id", updateUsuario);
 router.delete("/:id", deleteUsuario);
 router.post("/:id", getUsuario);

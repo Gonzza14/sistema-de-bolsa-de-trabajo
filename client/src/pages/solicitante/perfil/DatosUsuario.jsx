@@ -44,7 +44,6 @@ export const DatosUsuario = ({ error, loading, setDataToEdit, dataToEdit, dataBa
         nacimiento = null;
     }
 
-    console.log(dataBase)
 
     return (
         <>

@@ -12,7 +12,7 @@ import { Buscar } from "../pages/Buscar";
 import { Home } from "../pages/Home";
 import { NavBar } from "./NavBar";
 import { Usuario } from "../pages/solicitante/perfil/Usuario";
-import { UsuarioEmp } from '../pages/empresa/perfil/UsuarioEmp';
+import { UsuarioEmp } from "../pages/empresa/perfil/UsuarioEmp";
 import { GestionEmpresa } from "../pages/admin/empresa/GestionEmpresa";
 import { GestionUsuario } from "../pages/admin/usuario/GestionUsuario";
 import { GestionOfertaEmpleo } from "../pages/empresa/ofertaempleo/GestionOfertaEmpleo";
@@ -27,18 +27,53 @@ import { GestionRolPermiso } from "../pages/admin/rolPermiso/GestionRolPermiso";
 import PrivateRoutes from "./PrivateRoutes";
 import { Error404 } from "../pages/errors/Error404";
 import { VerCV } from "../pages/empresa/postulantes/vercv";
+import { useEffect, useState } from "react";
+import { useCustomFetch } from "../hooks/useCustomFetch";
 
 export const Rutas = () => {
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const [dataLleno, setDataLleno] = useState(
+    localStorage.getItem("dataLleno")
+  );
+
+  const [auth, setAuth] = useState({
+    token: localStorage.getItem("token"),
+  });
+
+  let url = "http://localhost:3000/api/usuarios/autenticacion";
+
+  let { dataBase, error, loading } = useCustomFetch(url, setDataLleno);
+
+
+
+  useEffect(() => {
+    if (dataBase && dataBase.token) {
+      localStorage.setItem("authToken", dataBase.token);
+      localStorage.setItem("dataLleno", dataBase.datosLlenos);
+      setAuth({ token: dataBase.token });
+      setDataLleno(dataBase.datosLlenos);
+
+      setDataLoaded(loading);
+    }
+  }, [dataBase]);
+
+  console.log(dataBase);
+
+
   return (
     <Router>
-      <NavBar />
+      <NavBar auth={auth} setAuth={setAuth} dataLleno={dataLleno} setDataLleno={setDataLleno} />
+      {!dataLoaded && (
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Buscar" element={<Buscar />} />
+          <Route path="/Login" element={<Login setAuth={setAuth} setDataLleno={setDataLleno} />} />
+          <Route element={<PrivateRoutes auth={auth} setAuth={setAuth} dataLleno ={dataLleno} setDataLleno={setDataLleno}  />}>
+
+          </Route>
         <Route path="/GestionCurriculum/*" element={<GestionCurriculum />} />
         <Route path="/Postulaciones" element={<Postulaciones />} />
-        <Route path="/Buscar" element={<Buscar />} />
         <Route path="/Empresa" element={<Empresa />} />
-        <Route path="/Login" element={<Login />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/GestionEmpresa/*" element={<GestionEmpresa />} />
           <Route path="/GestionUsuario/*" element={<GestionUsuario />} />
@@ -63,7 +98,7 @@ export const Rutas = () => {
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
+      )}
     </Router>
   );
 };
-

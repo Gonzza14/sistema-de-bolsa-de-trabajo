@@ -2,6 +2,13 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+import Sequelize from 'sequelize';
+import session from 'express-session';
+import connectSessionSequelize from 'connect-session-sequelize';
+import sequelizeInstance from './sessionDB';
+const Session = require('./models/Session')(sequelizeInstance, Sequelize.DataTypes);
+
+
 
 //Importaciones de rutas
 import empresasRoutes from "./routes/empresas.routes";
@@ -36,6 +43,35 @@ import fs from 'fs';
 //Creacion de aplicacion
 const app = express();
 
+const SequelizeStore = connectSessionSequelize(session.Store);
+
+const store = new SequelizeStore({
+  db: sequelizeInstance,
+  table: 'Session',
+});
+
+
+app.use(session({
+  secret: "987f4bd6d4315c20b2ec70a46ae846d19d0ce563450c02c5b1bc71d5d580060b",
+  store: store,
+  resave: false,
+  saveUninitialized: false,
+}));
+
+store.sync();
+
+app.use((req, res, next) => {
+	if (!req.session.isInitialized) {
+    // Inicializa tus variables de sesión aquí
+    req.session.isAuthenticated = false;
+    req.session.datosLlenos = false;
+    req.session.isInitialized = true;
+  } 
+  next();
+});
+
+
+
 //----------------------------------------[Configuraciones]------------------------------------
 //Configuracion del puerto|Si no existe un puerto definido en el sistema, se usa el puerto 3000
 app.set("port", process.env.PORT || 3000);
@@ -48,14 +84,26 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 //Permite que el servidor pueda recibir y enviar datos desde un formulario
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true
+}
+
+app.use(cors(corsOptions));
+
 
 //Entender los datos que vienen desde un formulario
 app.use(express.urlencoded({ extended: false }));
 
+// Configurar express-session
+
+
+
+
 //----------------------------------------[Rutas]-----------------------------------------------
 app.get("/", (req, res) => {
 	res.json({ message: "Bienvenidos a la API del Sistema de Bolsa de Trabajo" });
+	console.log(  req.session.isAuthenticated);
 });
 
 app.use("/api/empresas", empresasRoutes);

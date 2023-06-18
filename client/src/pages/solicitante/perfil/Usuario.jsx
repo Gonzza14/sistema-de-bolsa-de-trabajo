@@ -1,15 +1,15 @@
 import { BaseContainer, BaseBody, BaseSectionData } from "../../../styles/base";
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { EditarPerfil } from "./EditarPerfil";
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { DatosUsuario } from "./DatosUsuario";
 import Message from "../../../components/Message"
 
 
-export const Usuario = () => {
+export const Usuario = ({ setDataLleno }) => {
     //localStorage.setItem("id_usuario", 1);
-
+		const navigate = useNavigate();
     let id_usuario = localStorage.getItem("id_usuario"),
         url = `http://localhost:3000/api/usuarios/solicitante/${id_usuario}`
 
@@ -22,7 +22,8 @@ export const Usuario = () => {
         loading,
         response,
         setResponse,
-    } = useCustomFetch(url);
+    } = useCustomFetch(url, setDataLleno, navigate);
+
     return (
         <BaseContainer>
             <BaseBody>

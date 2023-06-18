@@ -55,7 +55,7 @@ export const updateSolicitante = async (req, res) => {
     if (!solicitante) {
       return res.status(404).json({ message: "Solicitante no encontrado" });
     }
-
+		
     solicitante.set(req.body);
     await solicitante.save();
     res.json(solicitante);

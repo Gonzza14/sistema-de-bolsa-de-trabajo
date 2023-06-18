@@ -24,12 +24,12 @@ import { Link } from "react-router-dom";
 import user from "../assets/images/user.jpg";
 import { useCustomFetch } from "../hooks/useCustomFetch";
 
-export const NavBar = ({ auth, setAuth }) => {
+export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno }) => {
   // Verificar si se ha iniciado sesion
   let empresa = false;
   empresa = localStorage.getItem("rol") != "empresa" ? false : true;
   // Verificar si se ha iniciado sesion
-  var haySesion = auth.token;
+  let haySesion = localStorage.getItem("authtoken");
 
   const handleCerrarSession = () => {
     let url = "http://localhost:3000/api/usuarios/logout";
@@ -38,17 +38,19 @@ export const NavBar = ({ auth, setAuth }) => {
       .then((data) => {
         localStorage.setItem("authToken", data.token);
         setAuth({ token: data.token });
+        localStorage.setItem("dataLleno", data.dataLleno);
+        setDataLleno(data.dataLleno);
       })
       .catch((error) => console.error(error));
   };
 
-  haySesion = auth.token;
+  haySesion = localStorage.getItem("authToken");
   console.log(haySesion);
   return (
     <MainNav>
       <NavContainer>
         <NavList>
-          {haySesion && (
+          {haySesion === "true" && (
             <NavItem>
               <NavButton onClick={handleCerrarSession} to="/">
                 <StyledFontAwesomeIcon icon={faClose} size="xl" />

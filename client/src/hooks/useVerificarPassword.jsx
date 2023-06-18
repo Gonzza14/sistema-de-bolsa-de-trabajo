@@ -2,7 +2,7 @@ import { helpHttp } from "../helpers/helpHttp";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const useVerificarPassword = (url, setAuth) => {
+export const useVerificarPassword = (url, setAuth, setDataLleno) => {
   const [dataBase, setDatabase] = useState(null);
   const [error, setError] = useState(null);
   const [response, setResponse] = useState(null);
@@ -11,6 +11,11 @@ export const useVerificarPassword = (url, setAuth) => {
   const updateAuth = (token) => {
     localStorage.setItem("authToken", token);
     setAuth({ token: true });
+  };
+
+  const updateDataLleno = (data) => {
+    localStorage.setItem("dataLleno", data);
+    setDataLleno(data);
   };
 
   const verificarData = (data) => {
@@ -28,12 +33,17 @@ export const useVerificarPassword = (url, setAuth) => {
         localStorage.removeItem("email");
         if (!res.err) {
           if (res.rol) {
-            console.log(res.valido);
             localStorage.setItem("rol", res.rol);
             localStorage.setItem("id_usuario", res.id_usuario);
             localStorage.setItem("email", res.email);
+						console.log(res)
             updateAuth(res.token);
-            navigate("/");
+            updateDataLleno(res.datosLlenos);
+            if (res.datosLlenos) {
+							navigate("/");
+						}else{
+						res.rol === "solicitante" ? navigate("/Usuario/editar") : navigate("/");
+						}
           }
         } else {
           setError(res);

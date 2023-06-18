@@ -31,53 +31,86 @@ import { useEffect, useState } from "react";
 import { useCustomFetch } from "../hooks/useCustomFetch";
 
 export const Rutas = () => {
-  const [auth, setAuth] = useState({ token: false });
+  const [dataLoaded, setDataLoaded] = useState(false);
+	const [dataLleno, setDataLleno] = useState(
+		localStorage.getItem("dataLleno")
+	);
+
+	const [auth, setAuth] = useState({
+		token: localStorage.getItem("token"),
+	});
 
   let url = "http://localhost:3000/api/usuarios/autenticacion";
 
-  let { dataBase, error, loading } = useCustomFetch(url);
+  let { dataBase, error, loading } = useCustomFetch(url, setDataLleno);
+
+
 
   useEffect(() => {
     if (dataBase && dataBase.token) {
+			localStorage.setItem("authToken", dataBase.token);
+			localStorage.setItem("dataLleno", dataBase.datosLlenos);
       setAuth({ token: dataBase.token });
+      setDataLleno(dataBase.datosLlenos);
+
+      setDataLoaded(loading);
     }
   }, [dataBase]);
 
-  console.log(auth);
+  console.log(dataBase);
+
+
   return (
     <Router>
-      <NavBar auth={auth} setAuth={setAuth} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Postulaciones" element={<Postulaciones />} />
-        <Route path="/Buscar" element={<Buscar />} />
-        <Route path="/Empresa" element={<Empresa />} />
-        <Route path="/Login" element={<Login setAuth={setAuth} />} />
-        <Route element={<PrivateRoutes auth={auth} setAuth={setAuth} />}>
-          <Route path="/GestionCurriculum/*" element={<GestionCurriculum />} />
-          <Route path="/GestionEmpresa/*" element={<GestionEmpresa />} />
-          <Route path="/GestionUsuario/*" element={<GestionUsuario />} />
-          <Route
-            path="/GestionTipoHabilidad/*"
-            element={<GestionTipoHabilidad />}
-          />
-          <Route
-            path="/GestionOfertaEmpleo/*"
-            element={<GestionOfertaEmpleo />}
-          />
-          <Route path="/GestionRol/*" element={<GestionRol />} />
-          <Route path="/DetalleOferta/:idOfert" element={<DetalleOferta />} />
-          <Route path="/ListarPostulantes/*" element={<ListarPostulantes />} />
-          <Route path="/GestionTipoExamen/*" element={<GestionTipoExamen />} />
-          <Route path="/GestionCurriculum/*" element={<GestionCurriculum />} />
-          <Route path="/Usuario/*" element={<Usuario />} />
-          <Route path="/UsuarioEmp/*" element={<UsuarioEmp />} />
-          <Route path="/GestionPermiso/*" element={<GestionPermiso />} />
-          <Route path="/GestionRolPermiso/*" element={<GestionRolPermiso />} />
-          <Route path="/VerCV/*" element={<VerCV />} />
-        </Route>
-        <Route path="*" element={<Error404 />} />
-      </Routes>
+      <NavBar auth={auth} setAuth={setAuth} dataLleno ={dataLleno} setDataLleno={setDataLleno} />
+      {!dataLoaded && (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Buscar" element={<Buscar />} />
+          <Route path="/Login" element={<Login setAuth={setAuth} setDataLleno={setDataLleno} />} />
+          <Route element={<PrivateRoutes auth={auth} setAuth={setAuth} dataLleno ={dataLleno} setDataLleno={setDataLleno}  />}>
+            <Route
+              path="/GestionCurriculum/*"
+              element={<GestionCurriculum />}
+            />
+            <Route path="/Postulaciones" element={<Postulaciones />} />
+            <Route path="/Empresa" element={<Empresa />} />
+            <Route path="/GestionEmpresa/*" element={<GestionEmpresa />} />
+            <Route path="/GestionUsuario/*" element={<GestionUsuario />} />
+            <Route
+              path="/GestionTipoHabilidad/*"
+              element={<GestionTipoHabilidad />}
+            />
+            <Route
+              path="/GestionOfertaEmpleo/*"
+              element={<GestionOfertaEmpleo />}
+            />
+            <Route path="/GestionRol/*" element={<GestionRol />} />
+            <Route path="/DetalleOferta/:idOfert" element={<DetalleOferta />} />
+            <Route
+              path="/ListarPostulantes/*"
+              element={<ListarPostulantes />}
+            />
+            <Route
+              path="/GestionTipoExamen/*"
+              element={<GestionTipoExamen />}
+            />
+            <Route
+              path="/GestionCurriculum/*"
+              element={<GestionCurriculum />}
+            />
+            <Route path="/Usuario/*" element={<Usuario setDataLleno={setDataLleno} />} />
+            <Route path="/UsuarioEmp/*" element={<UsuarioEmp />} />
+            <Route path="/GestionPermiso/*" element={<GestionPermiso />} />
+            <Route
+              path="/GestionRolPermiso/*"
+              element={<GestionRolPermiso />}
+            />
+            <Route path="/VerCV/*" element={<VerCV />} />
+          </Route>
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      )}
     </Router>
   );
 };

@@ -80,11 +80,11 @@ const validateFormRegistrar = (formReg) => {
     return errorsReg
 };
 
-export const Login = ({ setAuth }) => {  
+export const Login = ({ setAuth, setDataLleno }) => {  
     let { dataBase } = useCustomFetch("http://localhost:3000/api/roles/sad");
 
 		let url = 'http://localhost:3000/api/usuarios/verificarcuenta';
-    let { verificarData } = useVerificarPassword(url, setAuth);
+    let { verificarData } = useVerificarPassword(url, setAuth, setDataLleno);
     const { pathname } = useLocation()
 
 

@@ -6,12 +6,13 @@ export const helpHttp = () => {
 
 		const controller = new AbortController();
 		options.signal = controller.signal;
-		options.credentials = 'include';
 
 		options.method = options.method || "GET";
 		options.headers = options.headers
 			? { ...defaultHeader, ...options.headers }
 			: defaultHeader;
+
+		options.credentials = 'include';
 
 
 
@@ -48,16 +49,21 @@ export const helpHttp = () => {
 
 	const post = (url, options = {}) => {
 		options.method = "POST";
+		options.credentials = 'include';
+
 		return customFetch(url, options);
 	};
 
 	const put = (url, options = {}) => {
 		options.method = "PUT";
+		options.credentials = 'include';
+
 		return customFetch(url, options);
 	};
 
 	const del = (url, options = {}) => {
 		options.method = "DELETE";
+		options.credentials = 'include';
 		return customFetch(url, options);
 	};
 

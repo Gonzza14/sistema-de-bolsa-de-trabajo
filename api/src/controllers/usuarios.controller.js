@@ -203,6 +203,7 @@ export const updateSolicitante = async (req, res) => {
 		}
 
 
+
 		solicitante.set({
 			idGenero,
 			idUsuario,
@@ -231,6 +232,16 @@ export const updateSolicitante = async (req, res) => {
 				},
 			],
 		});
+
+		// Check if dui field is not empty
+		if (solicitanteCambiado && solicitanteCambiado.dui) {
+			req.session.datosLlenos = true;
+
+		} else {
+			req.session.datosLlenos = false;
+
+		}
+		solicitanteCambiado.setDataValue('datosLlenos', req.session.datosLlenos);
 
 		res.json(solicitanteCambiado);
 	} catch (err) {
@@ -263,9 +274,11 @@ export const verificarUsuario = async (req, res) => {
 	try {
 		// Obtener email y contraseña de los parametros
 		const { email, password } = req.body;
+
 		// Obtener usuario
 		let usuario = null;
 		let coinciden = null;
+
 		// Buscar usuario por medio del correo
 		if (email) {
 			usuario = await Usuario.findOne({
@@ -273,27 +286,70 @@ export const verificarUsuario = async (req, res) => {
 				include: Rol,
 			});
 		}
+
 		// Si no se encuentra el usuario
 		if (!usuario) {
 			return res.status(404).json({ message: "Usuario no encontrado" });
 		}
+
 		if (!password) {
 			return res.status(404).json({ message: "Constraseña no valida" });
 		}
+
 		//Comparar contraseña proporcionada con contraseña encriptada
-		bcrypt.compare(password, usuario.contrasena, (err, result) => {
+		bcrypt.compare(password, usuario.contrasena, async (err, result) => {
 			if (result) {
+				let datosLlenos = false;
 				req.session.isAuthenticated = true;
+
+				// Check if user has role "solicitante"
+				if (usuario.Rol.nombreRol === "solicitante") {
+					// Query Solicitantes table using usuario_id
+					const solicitante = await Solicitante.findOne({
+						where: { idUsuario: usuario.id },
+					});
+
+					// Check if dui field is not empty
+					if (solicitante && solicitante.dui) {
+						datosLlenos = true;
+						req.session.datosLlenos = true;
+					} else {
+						datosLlenos = false;
+						req.session.datosLlenos = false;
+					}
+				}
+
+				// Check if user has role "empresa"
+				if (usuario.Rol.nombreRol === "empresa") {
+					// Query Empresas table using usuario_id
+					const empresa = await Empresa.findOne({
+						where: { idUsuario: usuario.id },
+					});
+
+					// Check if nombreEmpresa field is not empty
+					if (empresa && empresa.nombreEmpresa) {
+						datosLlenos = true;
+						req.session.datosLlenos = true;
+
+					} else {
+						datosLlenos = false;
+						req.session.datosLlenos = false;
+
+					}
+				}
+
 				res.json({
 					valido: true,
 					id_usuario: usuario.id,
 					rol: usuario.Rol.nombreRol,
 					email: email,
 					token: req.session.isAuthenticated,
+					datosLlenos: req.session.datosLlenos,
 				});
 			} else {
 				res.json({ valido: false });
 			}
+
 			if (err) {
 				return res.status(404).json({ message: err });
 			}
@@ -303,20 +359,26 @@ export const verificarUsuario = async (req, res) => {
 	}
 };
 
+
 export const logout = async (req, res) => {
 	try {
 		req.session.isAuthenticated = false;
+		req.session.datosLlenos = false;
+
 		res.json({
-			token: req.session.isAuthenticated
+			token: req.session.isAuthenticated,
+			dataLleno: req.session.datosLlenos,
 		});
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
 };
+
 export const autenticacion = async (req, res) => {
 	try {
 		res.json({
-			token: req.session.isAuthenticated
+			token: req.session.isAuthenticated,
+			datosLlenos: req.session.datosLlenos,
 		});
 	} catch (err) {
 		return res.status(500).json({ message: err.message });

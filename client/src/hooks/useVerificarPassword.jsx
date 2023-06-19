@@ -35,11 +35,13 @@ export const useVerificarPassword = (url, setAuth, setDataLleno, setRol) => {
         localStorage.removeItem("rol");
         localStorage.removeItem("id_usuario");
         localStorage.removeItem("email");
+        localStorage.removeItem("nombreUsuario");
         if (!res.err) {
           if (res.rol) {
             localStorage.setItem("rol", res.rol);
             localStorage.setItem("id_usuario", res.id_usuario);
             localStorage.setItem("email", res.email);
+            localStorage.setItem("nombreUsuario", res.nombreUsuario);
 						console.log(res)
             updateAuth(res.token);
             updateDataLleno(res.datosLlenos);

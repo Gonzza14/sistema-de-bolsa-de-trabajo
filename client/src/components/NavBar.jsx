@@ -42,7 +42,12 @@ export const NavBar = ({
   let haySesion = localStorage.getItem("authtoken");
 
   const handleCerrarSession = () => {
-    let url = "http://localhost:3000/api/usuarios/logout";
+
+		let url = 
+		process.env.NODE_ENV === "production"
+		? "api/usuarios/logout"
+		:"http://localhost:3000/api/usuarios/logout";
+
     fetch(url, { credentials: "include" })
       .then((response) => response.json())
       .then((data) => {
@@ -118,18 +123,14 @@ export const NavBar = ({
               <NavItem>
                 <NavButton to="/GestionPermiso">
                   <StyledFontAwesomeIcon icon={faUnlockAlt} size="xl" />
-                  <NavParagraph>
-             						Permisos
-                  </NavParagraph>
+                  <NavParagraph>Permisos</NavParagraph>
                 </NavButton>
               </NavItem>
 
               <NavItem>
                 <NavButton to="/GestionRol">
                   <StyledFontAwesomeIcon icon={faUserTag} size="xl" />
-                  <NavParagraph>
-Roles
-                  </NavParagraph>
+                  <NavParagraph>Roles</NavParagraph>
                 </NavButton>
               </NavItem>
 

@@ -12,7 +12,23 @@ export const ButtonContainer = styled.div`
     justify-content: flex-end;
   }
 `;
+export const SmallButton = styled.button`
+  color: #f3f3f3;
+  background-color: #e84616;
+  padding: 0.5em;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
 
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+`;
 
 export const ButtonRegister = styled(Link)`
   margin-top: 2em;

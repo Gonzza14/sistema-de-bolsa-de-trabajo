@@ -4,13 +4,7 @@ import { ButtonLogin } from "../styles/elements/botones";
 import logo from "../assets/images/logo.png";
 
 export const Header = ({ titulo }) => {
-  let pathname = window.location.pathname;
-  const [isIndex, setIsIndex] = useState(false);
   const [timeString, setTimeString] = useState("");
-
-  useEffect(() => {
-    pathname == "/" ? setIsIndex(true) : setIsIndex(false);
-  }, [isIndex]);
 
   useEffect(() => {
     const updateTime = () => {
@@ -33,7 +27,7 @@ export const Header = ({ titulo }) => {
 				<p style={{ fontSize: '1.1em', fontWeight: 'bold' }}>Bienvenido {localStorage.getItem("nombreUsuario")}</p>
       </div>
       <p>{timeString}</p>
-      {isIndex && haySesion !== "true" ? (
+      { haySesion !== "true" ? (
         <ButtonLogin to={"/Login"}>Iniciar sesion</ButtonLogin>
       ) : (
         <BaseTitle>{titulo}</BaseTitle>

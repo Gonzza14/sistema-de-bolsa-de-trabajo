@@ -16,7 +16,12 @@ import { useSearch } from "../../../hooks/useSearch";
 import Message from "../../../components/Message";
 
 export const GestionRolPermiso = () => {
-  let url = "http://localhost:3000/api/rolPermisos";
+
+	let url = 
+	process.env.NODE_ENV === "production"
+	? "api/rolPermisos"
+	:"http://localhost:3000/api/rolPermisos";
+
 
   const { pathname } = useLocation();
 

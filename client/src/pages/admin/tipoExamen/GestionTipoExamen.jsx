@@ -12,7 +12,12 @@ import { Buscador } from "../../../components/Buscador";
 import { useSearch } from "../../../hooks/useSearch";
 
 export const GestionTipoExamen = () => {
-    let url = "http://localhost:3000/api/tipoExamenes";
+
+		let url = 
+    process.env.NODE_ENV === "production"
+    ? "api/tipoExamenes"
+    :"http://localhost:3000/api/tipoExamenes";
+
 
     const { pathname } = useLocation();
 

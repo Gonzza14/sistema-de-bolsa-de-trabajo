@@ -16,7 +16,10 @@ import Message from "../../../components/Message";
 
 export const GestionPermiso = () => {
 
-    let url = "http://localhost:3000/api/permisos"
+		let url = 
+    process.env.NODE_ENV === "production"
+    ? "api/permisos"
+    :"http://localhost:3000/api/permisos";
 
     const { pathname } = useLocation()
 

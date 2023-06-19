@@ -74,7 +74,13 @@ export const Rutas = () => {
           <Route path="/Buscar" element={<Buscar />} />
           <Route
             path="/Login"
-            element={<Login setAuth={setAuth} setDataLleno={setDataLleno} setRol={setRol}/>}
+            element={
+              <Login
+                setAuth={setAuth}
+                setDataLleno={setDataLleno}
+                setRol={setRol}
+              />
+            }
           />
           <Route
             element={
@@ -83,45 +89,66 @@ export const Rutas = () => {
                 setAuth={setAuth}
                 dataLleno={dataLleno}
                 setDataLleno={setDataLleno}
-								rol={rol}
-								setRol={setRol}
+                rol={rol}
+                setRol={setRol}
               />
             }
           >
-          <Route path="/GestionCurriculum/*" element={<GestionCurriculum />} />
-          <Route path="/Postulaciones" element={<Postulaciones />} />
-          <Route path="/Empresa" element={<Empresa />} />
+            {/* ==================================ADMINISTRADOR=================================== */}
+
             <Route path="/GestionEmpresa/*" element={<GestionEmpresa />} />
             <Route path="/GestionUsuario/*" element={<GestionUsuario />} />
             <Route
               path="/GestionTipoHabilidad/*"
               element={<GestionTipoHabilidad />}
             />
-            <Route
-              path="/GestionOfertaEmpleo/*"
-              element={<GestionOfertaEmpleo />}
-            />
-            <Route path="/GestionRol/*" element={<GestionRol />} />
-            <Route path="/DetalleOferta/:idOfert" element={<DetalleOferta />} />
-            <Route
-              path="/ListarPostulantes/:idOfert"
-              element={<ListarPostulantes />}
-            />
-            <Route
+						<Route
               path="/GestionTipoExamen/*"
               element={<GestionTipoExamen />}
             />
-            <Route
-              path="/GestionCurriculum/*"
-              element={<GestionCurriculum />}
-            />
-            <Route path="/Usuario/*" element={<Usuario setDataLleno={setDataLleno} />} />
-            <Route path="/UsuarioEmp/*" element={<UsuarioEmp setDataLleno={setDataLleno} />} />
+            <Route path="/GestionRol/*" element={<GestionRol />} />
+
             <Route path="/GestionPermiso/*" element={<GestionPermiso />} />
             <Route
               path="/GestionRolPermiso/*"
               element={<GestionRolPermiso />}
             />
+
+            {/* ==================================SOLICITANTE=================================== */}
+            <Route
+              path="/Usuario/*"
+              element={<Usuario setDataLleno={setDataLleno} />}
+            />
+            <Route
+              path="/GestionCurriculum/*"
+              element={<GestionCurriculum />}
+            />
+
+            <Route path="/Postulaciones" element={<Postulaciones />} />
+
+            {/* ===================================EMPRESA=================================== */}
+
+            <Route
+              path="/UsuarioEmp/*"
+              element={<UsuarioEmp setDataLleno={setDataLleno} />}
+            />
+
+            <Route path="/Empresa" element={<Empresa />} />
+
+            <Route
+              path="/GestionOfertaEmpleo/*"
+              element={<GestionOfertaEmpleo />}
+            />
+
+            <Route path="/DetalleOferta/:idOfert" element={<DetalleOferta />} />
+            
+						<Route
+              path="/ListarPostulantes/:idOfert"
+              element={<ListarPostulantes />}
+            />
+
+
+
             <Route path="/VerCV/:parametro" element={<VerCV />} />
           </Route>
           <Route path="*" element={<Error404 />} />

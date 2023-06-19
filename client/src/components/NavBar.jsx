@@ -19,13 +19,26 @@ import {
   faSearch,
   faBuildingUser,
   faClose,
+  faBriefcase,
+  faFileAlt,
+  faTasks,
+  faUserTag,
+  faUserLock,
+  faUnlockAlt,
+  faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import user from "../assets/images/user.jpg";
 import { useCustomFetch } from "../hooks/useCustomFetch";
 
-export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno, rol, setRol }) => {
-
+export const NavBar = ({
+  auth,
+  setAuth,
+  dataLleno,
+  setDataLleno,
+  rol,
+  setRol,
+}) => {
   let haySesion = localStorage.getItem("authtoken");
 
   const handleCerrarSession = () => {
@@ -35,6 +48,8 @@ export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno, rol, setRol }) 
       .then((data) => {
         localStorage.setItem("authToken", data.token);
         setAuth({ token: data.token });
+        localStorage.setItem("rol", data.rol);
+        setRol({ token: data.token });
         localStorage.setItem("dataLleno", data.dataLleno);
         setDataLleno(data.dataLleno);
       })
@@ -42,7 +57,6 @@ export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno, rol, setRol }) 
   };
 
   haySesion = localStorage.getItem("authToken");
-  console.log(haySesion);
   return (
     <MainNav>
       <NavContainer>
@@ -56,56 +70,132 @@ export const NavBar = ({ auth, setAuth, dataLleno, setDataLleno, rol, setRol }) 
             </NavItem>
           )}
           {rol === "empresa" && (
-            <NavItem>
-              <NavButton to="/Empresa">
-                <StyledFontAwesomeIcon icon={faBuildingUser} size="xl" />
-                <NavParagraph>Empresa</NavParagraph>
-              </NavButton>
+            <>
+              {/* <NavItem>
+                <NavButton to="/Empresa">
+                  <StyledFontAwesomeIcon icon={faBuildingUser} size="xl" />
+                  <NavParagraph>Empresa</NavParagraph>
+                </NavButton>
+              </NavItem> */}
+
+              <NavItem>
+                <NavButton to="/GestionOfertaEmpleo">
+                  <StyledFontAwesomeIcon icon={faHandshake} size="xl" />
+                  <NavParagraph>Mis Ofertas</NavParagraph>
+                </NavButton>
+              </NavItem>
+            </>
+          )}
+          {rol === "solicitante" && (
+            <>
+              <NavItem>
+                <NavButton to="/Postulaciones">
+                  <StyledFontAwesomeIcon icon={faPaperPlane} size="xl" />
+                  <NavParagraph>Postulacion</NavParagraph>
+                </NavButton>
+              </NavItem>
+              <NavItem>
+                <NavButton to="/GestionCurriculum">
+                  <StyledFontAwesomeIcon icon={faFileText} size="xl" />
+                  <NavParagraph>CV</NavParagraph>
+                </NavButton>
+              </NavItem>
+            </>
+          )}
+          {rol === "administrador" && (
+            <>
+              <NavItem>
+                <NavButton to="/GestionRolPermiso">
+                  <StyledFontAwesomeIcon icon={faUserLock} size="xl" />
+                  <NavParagraph>
+                    Asignar
+                    <br /> Permisos
+                  </NavParagraph>
+                </NavButton>
+              </NavItem>
+
+              <NavItem>
+                <NavButton to="/GestionPermiso">
+                  <StyledFontAwesomeIcon icon={faUnlockAlt} size="xl" />
+                  <NavParagraph>
+             						Permisos
+                  </NavParagraph>
+                </NavButton>
+              </NavItem>
+
+              <NavItem>
+                <NavButton to="/GestionRol">
+                  <StyledFontAwesomeIcon icon={faUserTag} size="xl" />
+                  <NavParagraph>
+Roles
+                  </NavParagraph>
+                </NavButton>
+              </NavItem>
+
+              <NavItem>
+                <NavButton to="/GestionTipoExamen">
+                  <StyledFontAwesomeIcon icon={faFileAlt} size="xl" />
+                  <NavParagraph>
+                    Gestión
+                    <br /> Tipo Exa
+                  </NavParagraph>
+                </NavButton>
+              </NavItem>
+
+              <NavItem>
+                <NavButton to="/GestionTipoHabilidad">
+                  <StyledFontAwesomeIcon icon={faTasks} size="xl" />
+                  <NavParagraph>
+                    Gestión
+                    <br /> Tip Habili
+                  </NavParagraph>
+                </NavButton>
+              </NavItem>
+
+              <NavItem>
+                <NavButton to="/GestionEmpresa">
+                  <StyledFontAwesomeIcon icon={faBriefcase} size="xl" />
+                  <NavParagraph>
+                    Gestión
+                    <br />
+                    Empresa
+                  </NavParagraph>
+                </NavButton>
+              </NavItem>
+            </>
+          )}
+
+          {rol !== "administrador" && (
+            <>
+              <NavItem>
+                <NavButton to="/Buscar">
+                  <StyledFontAwesomeIcon icon={faSearch} size="xl" />
+                  <NavParagraph>Buscar</NavParagraph>
+                </NavButton>
+              </NavItem>
+              <NavItem>
+                <NavButton to="/">
+                  <StyledFontAwesomeIcon icon={faHome} size="xl" />
+                  <NavParagraph>Inicio</NavParagraph>
+                </NavButton>
+              </NavItem>
+            </>
+          )}
+
+          {rol === "empresa" && (
+            <NavItem className="imagen">
+              <NavLogo to="UsuarioEmp">
+                <NavImage src={user}></NavImage>
+              </NavLogo>
             </NavItem>
           )}
-          <NavItem>
-            <NavButton to="/Buscar">
-              <StyledFontAwesomeIcon icon={faSearch} size="xl" />
-              <NavParagraph>Buscar</NavParagraph>
-            </NavButton>
-          </NavItem>
-          <NavItem>
-            <NavButton to="/Postulaciones">
-              <StyledFontAwesomeIcon icon={faPaperPlane} size="xl" />
-              <NavParagraph>Postulacion</NavParagraph>
-            </NavButton>
-          </NavItem>
-          <NavItem>
-            <NavButton to="/GestionCurriculum">
-              <StyledFontAwesomeIcon icon={faFileText} size="xl" />
-              <NavParagraph>CV</NavParagraph>
-            </NavButton>
-          </NavItem>
-          <NavItem>
-            <NavButton to="/">
-              <StyledFontAwesomeIcon icon={faHome} size="xl" />
-              <NavParagraph>Inicio</NavParagraph>
-            </NavButton>
-          </NavItem>
-					{ rol == "empresa" && (
-						<NavItem className="imagen">
-            <NavLogo to="UsuarioEmp">
-              <NavImage src={user}></NavImage>
-            </NavLogo>
-          </NavItem>
-					)
-
-					}
-					{ rol == "solicitante" && (
-						<NavItem className="imagen">
-            <NavLogo to="Usuario">
-              <NavImage src={user}></NavImage>
-            </NavLogo>
-          </NavItem>
-					)
-
-					}
-          
+          {rol === "solicitante" && (
+            <NavItem className="imagen">
+              <NavLogo to="Usuario">
+                <NavImage src={user}></NavImage>
+              </NavLogo>
+            </NavItem>
+          )}
         </NavList>
       </NavContainer>
     </MainNav>

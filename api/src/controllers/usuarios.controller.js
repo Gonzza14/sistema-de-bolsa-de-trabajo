@@ -383,10 +383,12 @@ export const logout = async (req, res) => {
 	try {
 		req.session.isAuthenticated = false;
 		req.session.datosLlenos = false;
+		req.session.rol = "empty";
 
 		res.json({
 			token: req.session.isAuthenticated,
 			dataLleno: req.session.datosLlenos,
+			rol: req.session.rol,
 		});
 	} catch (err) {
 		return res.status(500).json({ message: err.message });

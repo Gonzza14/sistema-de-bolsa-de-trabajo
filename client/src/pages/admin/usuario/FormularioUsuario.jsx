@@ -53,8 +53,11 @@ const validateForm = (form) => {
 };
 
 export const FormularioUsuario = ({ createData, setDataToEdit }) => {
-  let url = "http://localhost:3000/api/roles";
-
+  const url = 
+    process.env.NODE_ENV === "production"
+    ? "api/roles"
+    : "http://localhost:3000/api/roles"
+  
   let { dataBase } = useCustomFetch(url);
 
   let path = "/GestionUsuario";

@@ -16,7 +16,10 @@ import { useEffect } from "react";
 
 export const GestionUsuario = () => {
 
-    let url = "http://localhost:3000/api/usuarios"
+    const url = 
+    process.env.NODE_ENV === "production"
+    ? "api/usuarios"
+    : "http://localhost:3000/api/usuarios"
 
     const { pathname } = useLocation()
 

@@ -10,9 +10,14 @@ import Message from "../../../components/Message"
 export const Usuario = ({ setDataLleno }) => {
     //localStorage.setItem("id_usuario", 1);
 		const navigate = useNavigate();
-    let id_usuario = localStorage.getItem("id_usuario"),
-        url = `http://localhost:3000/api/usuarios/solicitante/${id_usuario}`
 
+        let id_usuario = localStorage.getItem("id_usuario")
+
+        const url = 
+        process.env.NODE_ENV === "production"
+        ? `api/usuarios/solicitante/${id_usuario}`
+        : `http://localhost:3000/api/usuarios/solicitante/${id_usuario}`
+   
     let {
         dataBase,
         dataToEdit,

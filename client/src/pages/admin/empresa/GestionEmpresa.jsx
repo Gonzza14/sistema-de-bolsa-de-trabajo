@@ -16,7 +16,10 @@ import Message from "../../../components/Message";
 
 export const GestionEmpresa = () => {
 
-    let url = "http://localhost:3000/api/empresas"
+    const url = 
+    process.env.NODE_ENV === "production"
+    ? "api/empresas"
+    : "http://localhost:3000/api/empresas"
 
     const { pathname } = useLocation()
 

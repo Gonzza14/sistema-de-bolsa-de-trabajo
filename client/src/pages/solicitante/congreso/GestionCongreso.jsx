@@ -13,7 +13,11 @@ import { ModalForm } from "../../../components/ModalForm";
 
 export const GestionCongreso = (props) => {
   let nCurriculum = props.parametro;
-  let url = `http://localhost:3000/api/congreso/${nCurriculum}`;
+	let url = 
+	process.env.NODE_ENV === "production"
+	? `api/congreso/${nCurriculum}`
+	:`http://localhost:3000/api/congreso/${nCurriculum}`;
+
   const [isOpen, openModalCV, closeModal] = useModalCV();
 
   const { pathname } = useLocation();

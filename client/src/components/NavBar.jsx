@@ -51,6 +51,7 @@ export const NavBar = ({
         localStorage.setItem("rol", data.rol);
         setRol({ token: data.token });
         localStorage.setItem("dataLleno", data.dataLleno);
+        localStorage.setItem("nombreUsuario", " ");
         setDataLleno(data.dataLleno);
       })
       .catch((error) => console.error(error));

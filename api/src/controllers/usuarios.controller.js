@@ -315,6 +315,12 @@ export const verificarUsuario = async (req, res) => {
 				if (usuario.Rol.nombreRol === "solicitante") {
 					// Query Solicitantes table using usuario_id
 					req.session.rol = usuario.Rol.nombreRol;
+					const soli = await Solicitante.findOne({
+						where : {idUsuario : usuario.id}
+					});
+
+					soli.nombresSolic && soli.apellidosSolic ? req.session.nombreUsuario = soli.nombresSolic +' '+ soli.apellidosSolic : req.session.nombreUsuario = ' ';
+
 					const solicitante = await Solicitante.findOne({
 						where: { idUsuario: usuario.id },
 					});
@@ -332,6 +338,13 @@ export const verificarUsuario = async (req, res) => {
 				// Check if user has role "empresa"
 				if (usuario.Rol.nombreRol === "empresa") {
 					req.session.rol = usuario.Rol.nombreRol;
+
+					const emp = await Empresa.findOne({
+						where : {idUsuario : usuario.id}
+					});
+
+					emp.nombreEmpresa ? req.session.nombreUsuario = emp.nombreEmpresa : req.session.nombreUsuario = ' ';
+
 					// Query Empresas table using usuario_id
 					const empresa = await Empresa.findOne({
 						where: { idUsuario: usuario.id },
@@ -351,6 +364,7 @@ export const verificarUsuario = async (req, res) => {
 
 				if (usuario.Rol.nombreRol === "administrador") {
 					req.session.rol = usuario.Rol.nombreRol;
+					req.session.nombreUsuario = email;
 						req.session.datosLlenos = true;
 				}
 
@@ -361,6 +375,7 @@ export const verificarUsuario = async (req, res) => {
 					id_usuario: usuario.id,
 					rol: usuario.Rol.nombreRol,
 					email: email,
+					nombreUsuario: req.session.nombreUsuario,
 					token: req.session.isAuthenticated,
 					datosLlenos: req.session.datosLlenos,
 				});

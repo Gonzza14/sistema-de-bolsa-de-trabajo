@@ -13,7 +13,12 @@ import { ModalForm } from "../../../components/ModalForm";
 
 export const GestionRecomLaboral = (props) => {
   let nCurriculum = props.parametro;
-  let url = `http://localhost:3000/api/recomLabo/${nCurriculum}`;
+
+  let url = 
+  process.env.NODE_ENV === "production"
+  ? `api/recomLabo/${nCurriculum}`
+  : `http://localhost:3000/api/recomLabo/${nCurriculum}`;
+
   const [isOpen, openModalCV, closeModal] = useModalCV();
 
   const { pathname } = useLocation();

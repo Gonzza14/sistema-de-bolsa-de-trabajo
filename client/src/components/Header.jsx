@@ -6,10 +6,21 @@ import logo from "../assets/images/logo.png";
 export const Header = ({ titulo }) => {
   let pathname = window.location.pathname;
   const [isIndex, setIsIndex] = useState(false);
+  const [timeString, setTimeString] = useState("");
 
   useEffect(() => {
     pathname == "/" ? setIsIndex(true) : setIsIndex(false);
   }, [isIndex]);
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTimeString(now.toLocaleTimeString());
+    };
+    updateTime();
+    const intervalId = setInterval(updateTime, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   // Verificar si se ha iniciado sesion
   let haySesion = null;
@@ -17,7 +28,11 @@ export const Header = ({ titulo }) => {
 
   return (
     <BaseHeader>
-      <BaseLogo src={logo} alt="Logo de la empresa" />
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <BaseLogo src={logo} alt="Logo de la empresa" />
+				<p style={{ fontSize: '1.1em', fontWeight: 'bold' }}>Bienvenido {localStorage.getItem("nombreUsuario")}</p>
+      </div>
+      <p>{timeString}</p>
       {isIndex && haySesion !== "true" ? (
         <ButtonLogin to={"/Login"}>Iniciar sesion</ButtonLogin>
       ) : (

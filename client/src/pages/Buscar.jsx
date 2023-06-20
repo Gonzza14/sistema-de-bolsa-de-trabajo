@@ -11,6 +11,7 @@ import { useCustomFetch } from "../hooks/useCustomFetch";
 import Loader from "../components/Loader";
 import { Buscador } from "../components/Buscador";
 import "../styles/elements/card-empleo.css"
+import { useSearch } from "../hooks/useSearch";
 
 export const Buscar = () => {
   // Verificar si se ha iniciado sesion
@@ -30,6 +31,11 @@ export const Buscar = () => {
     } = useCustomFetch(url);
     let ofertas = null;
   
+    let {
+      search, searcher, setSearch
+    } = useSearch()
+
+
     if(dataBase) {
         ofertas = dataBase.map((postulacion, index) => {
             return <div className="row" key={index}>
@@ -54,7 +60,8 @@ export const Buscar = () => {
       </SmallButton>
       <BaseBody>
         <BaseSectionData className="center">
-          <Buscador placeHolder="Buscar empleo" className="home" />
+          <Buscador placeHolder="Buscar empleo" className="home" search={search} searcher={searcher} setSearch={setSearch}/>
+
           <hr/><hr/><hr/>
           {
             dataBase && (

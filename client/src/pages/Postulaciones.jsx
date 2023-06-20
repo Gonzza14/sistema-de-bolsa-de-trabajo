@@ -1,11 +1,12 @@
 import { Header } from "../components/Header";
 import { TarjetaEmpleo } from "../components/empleo";
 import { useCustomFetch } from "../hooks/useCustomFetch";
-import { BaseContainer, BaseBody, BaseSectionData, SectionTitle } from "../styles/base";
+import { BaseContainer, BaseBody, BaseSectionData, SectionTitle, SectionContainer } from "../styles/base";
 import { PostulacionesSection } from "../styles/pages/postulaciones";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
 import Message from "../components/Message"
+import "../styles/elements/card-empleo.css"
 
 export const Postulaciones = () => {
     let id_usuario = localStorage.getItem("id_usuario");
@@ -24,18 +25,17 @@ export const Postulaciones = () => {
     const estilos = {
         display: 'flex'
     }
-
+    console.log(dataBase)
     let postulaciones = null;
     if(dataBase){
         postulaciones = dataBase.map((postulacion, index) => {
             return <div key={index}>
                         <TarjetaEmpleo
-                            width={"80%"}
+                            width={"90%"}
                             titulo={postulacion.tituloOferta}
-                            link={"/detalleoferta/"+postulacion.id}
+                            link={"/detalleoferta/"+postulacion.idOferta}
                             descripcion={postulacion.descOferta}></TarjetaEmpleo>
-                    </div>
-            
+                    </div>  
         })
     }
     return (
@@ -55,9 +55,9 @@ export const Postulaciones = () => {
                         }
                         {
                             dataBase && (
-                                <PostulacionesSection>
+                                <SectionContainer>
                                     {postulaciones}
-                                </PostulacionesSection>
+                                </SectionContainer>
                             )
                         }
                 </BaseSectionData>

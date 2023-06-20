@@ -15,7 +15,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import process from "kute.js/src/process/process";
 
 export const Home = () => {
-    let haySesion = false;
+    let haySesion = localStorage.getItem("authToken");
     return (
         <BaseContainer>
             <Header/>
@@ -25,27 +25,24 @@ export const Home = () => {
                     <AnimacionInicio />
                 </BaseSectionHeader>
                 <BaseSection>
-                    {
-                        !haySesion && (
-                            <SectionContainer>
-                                <SectionInner>
-                                    <HeroTitleTwo>
-                                        Si buscas empleo, estás en el lugar correcto.
-                                    </HeroTitleTwo>
-                                    <HeroText>
-                                        Únete a nuestra comunidad de búsqueda de empleo y descubre todas las oportunidades laborales que tenemos para ti. Con nuestra ayuda, encontrarás el trabajo que siempre has deseado y podrás avanzar en tu carrera profesional.
-                                    </HeroText>
-                                    <ButtonContainer>
-                                        <ButtonRegister to={"/Login"}>
-                                            Crea tu cuenta
-                                        </ButtonRegister>
-                                    </ButtonContainer>
-                                </SectionInner>
-                                <ImgSection src={imagen}>
+                        <SectionContainer>
+                            <SectionInner>
+                                <HeroTitleTwo>
+                                    Si buscas empleo, estás en el lugar correcto.
+                                </HeroTitleTwo>
+                                <HeroText>
+                                    Únete a nuestra comunidad de búsqueda de empleo y descubre todas las oportunidades laborales que tenemos para ti. Con nuestra ayuda, encontrarás el trabajo que siempre has deseado y podrás avanzar en tu carrera profesional.
+                                </HeroText>
+                                {!haySesion === "true" && (<ButtonContainer>
+                                    <ButtonRegister to={"/Login"}>
+                                        Crea tu cuenta
+                                    </ButtonRegister>
+                                </ButtonContainer>)}
+                            </SectionInner>
+                            <ImgSection src={imagen}>
 
-                                </ImgSection>
-                            </SectionContainer>)
-                    }  
+                            </ImgSection>
+                        </SectionContainer> 
                 </BaseSection>
             </BaseBody>
         </BaseContainer>

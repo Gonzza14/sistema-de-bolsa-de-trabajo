@@ -61,15 +61,13 @@ export const NavBar = ({
 
   let { dataBase } = useCustomFetch(urlSolicitante);
 
-  const [previewImage, setPreviewImage] = useState(user);
+  let previewImage = user;
 
-  useEffect(() => {
-    if(dataBase){
+   if(dataBase){
       if(dataBase.fotoDePerfil != null){
-        setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`) 
+        previewImage = `/perfil/${dataBase.fotoDePerfil}` 
       }
     }
-  }, [previewImage])
 
   const handleCerrarSession = () => {
 

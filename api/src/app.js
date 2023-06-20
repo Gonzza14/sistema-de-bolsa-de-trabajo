@@ -88,6 +88,8 @@ const allowedOrigins = ['http://18.217.157.17', 'http://localhost:5173'];
 
 //Permite que el servidor pueda recibir y enviar datos desde un formulario
 const corsOptions = {
+  //origin: 'http://18.217.157.17/',
+  //origin: 'http://localhost:5173',
   origin: allowedOrigins,
   credentials: true
 }

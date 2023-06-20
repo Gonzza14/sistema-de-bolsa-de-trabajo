@@ -12,10 +12,10 @@ import {
 const router = Router();
 
 //Definimos las rutas
-router.get("/", getOferta);
-router.post("/", createOfertaEmpleo);
-router.put("/:id", updateOfertaEmpleo);
-router.delete("/:id", deleteOfertaEmpleo);
+router.get("/:id", getOferta);
+router.post("/:idEmpresa", createOfertaEmpleo);
+router.put("/:idEmpresa/:id", updateOfertaEmpleo);
+router.delete("/:idEmpresa:id", deleteOfertaEmpleo);
 //router.get("/", getEmpresa);
 //router.get("/:id/:perfiles", getPerfilesPorEmpresa);
 

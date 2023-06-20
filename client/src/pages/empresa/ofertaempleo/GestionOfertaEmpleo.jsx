@@ -19,7 +19,7 @@ export const GestionOfertaEmpleo = () => {
     let id_usuario = localStorage.getItem("id_usuario"),
     url =
     process.env.NODE_ENV === "production"
-      ? "/api/usuarios/autenticacion"
+      ? `/api/ofertaEmpleos/${id_usuario}`
       : `http://localhost:3000/api/ofertaEmpleos/${id_usuario}`;
 
     const { pathname } = useLocation()

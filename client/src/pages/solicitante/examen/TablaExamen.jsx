@@ -75,7 +75,7 @@ export const TablaExamen = ({
                   <CardContent><b>Nombre Examen: </b>{item.nombreExamen}</CardContent>
                   <CardContent><b>Archivo Examen: </b>
                     <a
-                      href={`http://localhost:3000/images/${item.archivoExamen.replace(
+                      href={`/uploads/${item.archivoExamen.replace(
                         "C:/fakepath/",
                         ""
                       )}`}

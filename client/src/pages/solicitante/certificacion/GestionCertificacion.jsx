@@ -16,7 +16,7 @@ export const GestionCertificacion = (props) => {
 
 	let url = 
 	process.env.NODE_ENV === "production"
-	? `api/certificacion/${nCurriculum}`
+	? `/api/certificacion/${nCurriculum}`
 	:`http://localhost:3000/api/certificacion/${nCurriculum}`;
 
   const [isOpen, openModalCV, closeModal] = useModalCV();

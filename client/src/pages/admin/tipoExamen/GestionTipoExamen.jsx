@@ -15,7 +15,7 @@ export const GestionTipoExamen = () => {
 
 		let url = 
     process.env.NODE_ENV === "production"
-    ? "api/tipoExamenes"
+    ? "/api/tipoExamenes"
     :"http://localhost:3000/api/tipoExamenes";
 
 

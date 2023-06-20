@@ -84,15 +84,15 @@ const validateFormRegistrar = (formReg) => {
 export const Login = ({ setAuth, setDataLleno, setRol }) => {  
     const urlRoles = 
         process.env.NODE_ENV === "production"
-        ? "api/roles/sad"
+        ? "/api/roles/sad"
         : "http://localhost:3000/api/roles/sad";
 
     let { dataBase } = useCustomFetch(urlRoles);
 
 		const url = 
         process.env.NODE_ENV === "production"
-        ? "api/usuarios/verificarcuenta"
-        : "http://localhost:3000/api/usuarios/verificarcuenta";;
+        ? "/api/usuarios/verificarcuenta"
+        : "http://localhost:3000/api/usuarios/verificarcuenta";
     let { verificarData } = useVerificarPassword(url, setAuth, setDataLleno, setRol);
     const { pathname } = useLocation()
 
@@ -102,7 +102,7 @@ export const Login = ({ setAuth, setDataLleno, setRol }) => {
 
     const urlRegistrar = 
         process.env.NODE_ENV === "production"
-        ? "api/usuarios"
+        ? "/api/usuarios"
         : "http://localhost:3000/api/usuarios";
 
     let { setDataToEdit, createData } = useCustomFetch(urlRegistrar);

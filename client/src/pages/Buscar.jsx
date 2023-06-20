@@ -21,7 +21,7 @@ export const Buscar = () => {
   // Obtener datos de oferta
     let url = 
         process.env.NODE_ENV === "production"
-        ? "api/ofertas"
+        ? "/api/ofertas"
         :"http://localhost:3000/api/ofertas"
 
     let {

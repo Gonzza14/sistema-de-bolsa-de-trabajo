@@ -17,8 +17,11 @@ import { DetalleOfertaEmpleo } from "./DetalleOfertaEmpleo";
 
 export const GestionOfertaEmpleo = () => {
 
-    let url = "http://localhost:3000/api/ofertaEmpleos"
-
+    const url = 
+    process.env.NODE_ENV === "production"
+    ? "/api/ofertaEmpleos"
+    : "http://localhost:3000/api/ofertaEmpleos"
+    
     const { pathname } = useLocation()
 
     let {

@@ -12,7 +12,7 @@ export const Postulaciones = () => {
     let id_usuario = localStorage.getItem("id_usuario");
     let url = 
     process.env.NODE_ENV === "production"
-    ? `api/postulaciones/${id_usuario}`
+    ? `/api/postulaciones/${id_usuario}`
     :`http://localhost:3000/api/postulaciones/${id_usuario}`
     const { pathname } = useLocation()
 

@@ -26,7 +26,7 @@ export const DetalleOferta = () => {
 
   const urlOferta =
     process.env.NODE_ENV === "production"
-      ? "api/ofertas/" + idOfert
+      ? "/api/ofertas/" + idOfert
       : "http://localhost:3000/api/ofertas/" + idOfert;
   let [dataBase] = useCustomFetch(urlOferta);
   if (dataBase) {
@@ -36,12 +36,12 @@ export const DetalleOferta = () => {
 
   const urlEmpresa =
     process.env.NODE_ENV === "production"
-      ? "api/empresas/" + idEmpresa
+      ? "/api/empresas/" + idEmpresa
       : "http://localhost:3000/api/empresas/" + idEmpresa;
 
   const urlCategoria =
     process.env.NODE_ENV === "production"
-      ? "api/categorias/" + idCategoriaOferta
+      ? "/api/categorias/" + idCategoriaOferta
       : "http://localhost:3000/api/categorias/" + idCategoriaOferta;
   let [empresa] = useCustomFetch(urlEmpresa);
   let [categoria] = useCustomFetch(urlCategoria);
@@ -51,7 +51,7 @@ export const DetalleOferta = () => {
   //idUsuario = 1
   const urlSolic =
     process.env.NODE_ENV === "production"
-      ? "api/solicitantes/us/" + idUsuario.toString()
+      ? "/api/solicitantes/us/" + idUsuario.toString()
       : "http://localhost:3000/api/solicitantes/us/" + idUsuario.toString();
   let [solicitante] = useCustomFetch(urlSolic);
 
@@ -60,7 +60,7 @@ export const DetalleOferta = () => {
     ids = idOfert.toString() + "/" + idSolicitante.toString();
     urlPostula =
       process.env.NODE_ENV === "production"
-        ? "api/postula/" + ids
+        ? "/api/postula/" + ids
         : "http://localhost:3000/api/postula/" + ids;
   }
 
@@ -81,7 +81,7 @@ export const DetalleOferta = () => {
     const Http = new XMLHttpRequest();
     const urlRegistrarPostulacion =
       process.env.NODE_ENV === "production"
-        ? "api/postula/ins/" + idOfertAux + "/" + idSolicitante
+        ? "/api/postula/ins/" + idOfertAux + "/" + idSolicitante
         : "http://localhost:3000/api/postula/ins/" +
           idOfertAux +
           "/" +

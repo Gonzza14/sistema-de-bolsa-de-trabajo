@@ -15,7 +15,7 @@ export const GestionIdioma = (props) => {
   let nCurriculum = props.parametro;
   let url = 
   process.env.NODE_ENV === "production"
-  ? `api/idioma/${nCurriculum}`
+  ? `/api/idioma/${nCurriculum}`
   : `http://localhost:3000/api/idioma/${nCurriculum}`;
   
   const [isOpen, openModalCV, closeModal] = useModalCV();

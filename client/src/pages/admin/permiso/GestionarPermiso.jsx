@@ -18,7 +18,7 @@ export const GestionPermiso = () => {
 
 		let url = 
     process.env.NODE_ENV === "production"
-    ? "api/permisos"
+    ? "/api/permisos"
     :"http://localhost:3000/api/permisos";
 
     const { pathname } = useLocation()

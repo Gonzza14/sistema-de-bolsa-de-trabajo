@@ -41,7 +41,7 @@ export const Rutas = () => {
 
   let url =
     process.env.NODE_ENV === "production"
-      ? "api/usuarios/autenticacion"
+      ? "/api/usuarios/autenticacion"
       : "http://localhost:3000/api/usuarios/autenticacion";
 
   let { dataBase, error, loading } = useCustomFetch(url, setDataLleno);

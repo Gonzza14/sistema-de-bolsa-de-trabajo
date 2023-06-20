@@ -18,7 +18,7 @@ export const GestionRol = () => {
 
     const url = 
         process.env.NODE_ENV === "production"
-        ? "api/roles"
+        ? "/api/roles"
         : "http://localhost:3000/api/roles";
 
     const { pathname } = useLocation();

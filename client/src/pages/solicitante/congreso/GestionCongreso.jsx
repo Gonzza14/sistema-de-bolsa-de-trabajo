@@ -15,7 +15,7 @@ export const GestionCongreso = (props) => {
   let nCurriculum = props.parametro;
 	let url = 
 	process.env.NODE_ENV === "production"
-	? `api/congreso/${nCurriculum}`
+	? `/api/congreso/${nCurriculum}`
 	:`http://localhost:3000/api/congreso/${nCurriculum}`;
 
   const [isOpen, openModalCV, closeModal] = useModalCV();

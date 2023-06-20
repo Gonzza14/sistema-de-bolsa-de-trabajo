@@ -42,13 +42,13 @@ export const ListarPostulantes = () => {
 
     const urlPostulantes =
         process.env.NODE_ENV === "production"
-            ? "api/solicitantes/post/" + idOfert
+            ? "/api/solicitantes/post/" + idOfert
             : "http://127.0.0.1:3000/api/solicitantes/post/" + idOfert;
     let [postulantes] = useCustomFetch(urlPostulantes);
 
     const urlOferta =
         process.env.NODE_ENV === "production"
-            ? "api/ofertas/" + idOfert
+            ? "/api/ofertas/" + idOfert
             : "http://localhost:3000/api/ofertas/" + idOfert;
     let [oferta] = useCustomFetch(urlOferta);
     if (oferta) {
@@ -61,7 +61,7 @@ export const ListarPostulantes = () => {
         const Http = new XMLHttpRequest();
         const urlGenero =
             process.env.NODE_ENV === "production"
-                ? "api/generos/" + idGenero
+                ? "/api/generos/" + idGenero
                 : "http://127.0.0.1:3000/api/generos/" + idGenero;
         Http.open("GET", urlGenero);
         Http.send();

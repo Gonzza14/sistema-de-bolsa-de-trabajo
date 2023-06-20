@@ -16,7 +16,7 @@ export const GestionRecomPersonal = (props) => {
 
 	let url = 
   process.env.NODE_ENV === "production"
-  ? `api/recomPers/${nCurriculum}`
+  ? `/api/recomPers/${nCurriculum}`
   : `http://localhost:3000/api/recomPers/${nCurriculum}`;
 
   const [isOpen, openModalCV, closeModal] = useModalCV();

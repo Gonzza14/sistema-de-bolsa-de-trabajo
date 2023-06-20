@@ -15,7 +15,7 @@ export const GestionLibro = (props) => {
   let nCurriculum = props.parametro;
   let url = 
   process.env.NODE_ENV === "production"
-  ? `api/libro/${nCurriculum}`
+  ? `/api/libro/${nCurriculum}`
   : `http://localhost:3000/api/libro/${nCurriculum}`;
   
   const [isOpen, openModalCV, closeModal] = useModalCV();

@@ -18,7 +18,7 @@ export const GestionEmpresa = () => {
 
     const url = 
     process.env.NODE_ENV === "production"
-    ? "api/empresas"
+    ? "/api/empresas"
     : "http://localhost:3000/api/empresas"
 
     const { pathname } = useLocation()

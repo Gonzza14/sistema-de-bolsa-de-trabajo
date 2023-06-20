@@ -14,7 +14,7 @@ export const Usuario = ({ setDataLleno }) => {
 
   const url =
     process.env.NODE_ENV === "production"
-      ? `api/usuarios/solicitante/${id_usuario}`
+      ? `/api/usuarios/solicitante/${id_usuario}`
       : `http://localhost:3000/api/usuarios/solicitante/${id_usuario}`;
 
   let {

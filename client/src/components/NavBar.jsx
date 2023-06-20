@@ -31,6 +31,7 @@ import { Link } from "react-router-dom";
 import user from "../assets/images/user.jpg";
 import { useCustomFetch } from "../hooks/useCustomFetch";
 import Swal from "sweetalert2";
+import React, { useState, useEffect } from 'react';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -51,12 +52,33 @@ export const NavBar = ({
 }) => {
   let haySesion = localStorage.getItem("authtoken");
 
+  let id_usuario = localStorage.getItem("id_usuario");
+
+  const urlSolicitante =
+    process.env.NODE_ENV === "production"
+      ? `/api/usuarios/solicitante/${id_usuario}`
+      : `http://localhost:3000/api/usuarios/solicitante/${id_usuario}`;
+
+  let { dataBase } = useCustomFetch(urlSolicitante);
+
+  let previewImage = user;
+
+   if(dataBase){
+      if(dataBase.fotoDePerfil != null){
+        previewImage = `/perfil/${dataBase.fotoDePerfil}` 
+      }
+    }
+
   const handleCerrarSession = () => {
 
-		let url = 
-		process.env.NODE_ENV === "production"
-		? "/api/usuarios/logout"
-		:"http://localhost:3000/api/usuarios/logout";
+    let url =
+      process.env.NODE_ENV === "production"
+        ? "/api/usuarios/logout"
+        : "http://localhost:3000/api/usuarios/logout";
+
+    let id_usuario = localStorage.getItem("id_usuario");
+
+
 
     fetch(url, { credentials: "include" })
       .then((response) => response.json())
@@ -68,10 +90,10 @@ export const NavBar = ({
         localStorage.setItem("dataLleno", data.dataLleno);
         localStorage.setItem("nombreUsuario", " ");
         setDataLleno(data.dataLleno);
-				Toast.fire({
-					icon: "success",
-					title: "Hasta luego",
-				});
+        Toast.fire({
+          icon: "success",
+          title: "Hasta luego",
+        });
       })
       .catch((error) => console.error(error));
   };
@@ -208,7 +230,7 @@ export const NavBar = ({
           {rol === "solicitante" && (
             <NavItem className="imagen">
               <NavLogo to="Usuario">
-                <NavImage src={user}></NavImage>
+                <NavImage src={previewImage}></NavImage>
               </NavLogo>
             </NavItem>
           )}

@@ -131,7 +131,7 @@ export const obtenerPostulantesPostgre = async (req, res) => {
       // se crea la postulacion
       const { idOferta } = req.params;
 
-      const postulantes = await db.sequelize.query('SELECT sol.id, sol."idGenero", sol."nombresSolic", sol."apellidosSolic", sol."fechaNacimiento", sol.dui, sol.pasaporte, sol.nit, sol.nup, sol."direcSolic", sol."telefonoSolic", sol.facebook, sol.twitter, sol.linkedin, usuario."correoUsuario" FROM "Solicitantes" sol INNER JOIN "Usuarios" usuario ON sol."idUsuario" = usuario.id INNER JOIN "Postulas" pos ON sol.id = pos."idSolic" INNER JOIN "OfertaEmpleos" emp ON emp.id = pos."idOferta" WHERE emp.id = ?;', {replacements : [idOferta], type : QueryTypes.RAW});
+      const postulantes = await db.sequelize.query('SELECT sol.id, sol."idGenero", pos."idOferta", emp."idEmpresa", sol."nombresSolic", sol."apellidosSolic", sol."fechaNacimiento", sol.dui, sol.pasaporte, sol.nit, sol.nup, sol."direcSolic", sol."telefonoSolic", sol.facebook, sol.twitter, sol.linkedin, usuario."correoUsuario" FROM "Solicitantes" sol INNER JOIN "Usuarios" usuario ON sol."idUsuario" = usuario.id INNER JOIN "Postulas" pos ON sol.id = pos."idSolic" INNER JOIN "OfertaEmpleos" emp ON emp.id = pos."idOferta" WHERE emp.id = ?;', {replacements : [idOferta], type : QueryTypes.RAW});
       res.json(postulantes);
   } catch (e) {
       return res.status(500).json({ message: e.message });

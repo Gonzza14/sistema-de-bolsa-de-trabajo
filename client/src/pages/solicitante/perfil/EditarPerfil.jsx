@@ -26,7 +26,7 @@ import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { useForm } from "../../../hooks/useForm";
 import moment from 'moment';
 import { useLocation } from "react-router-dom";
-import { useRef, useEffect} from "react";
+import { useRef, useEffect } from "react";
 import { faImage, faPen } from "@fortawesome/free-solid-svg-icons";
 import { MensajeValidacion } from "../../../styles/elements/mensajes";
 import React, { useState } from 'react';
@@ -53,12 +53,118 @@ const initialForm = {
 
 const validateForm = (form) => {
     let errors = {};
+    let regexDui = /^\d{8}-?\d$/;
+    let regexPasaporte = /^[A-Z]{1,2}\d{7}$/
+    let regexNit = /^\d{15}$/
+    let regexNup = /^\d{12}$/
+    var hoy = new Date();
+    var fechaNac = new Date(form.fechaNacimiento);
 
-    /*if (form.dui == null) {
-        errors.dui = `El Documento Unico de identidad es requerido`;
+    // Restamos la fecha de nacimiento a la fecha actual
+    var edad = hoy.getFullYear() - fechaNac.getFullYear();
+    var mes = hoy.getMonth() - fechaNac.getMonth();
+    var dia = hoy.getDate() - fechaNac.getDate();
+
+    // Ajustamos la edad en función del mes y el día
+    if (mes < 0 || (mes === 0 && dia < 0)) {
+        edad--;
+    }
+
+    if (!form.nombresSolic.trim()) {
+        errors.nombresSolic = "El campo nombre es requerido";
+    } else {
+        delete errors.nombresSolic;
+    }
+
+    if (!form.apellidosSolic.trim()) {
+        errors.apellidosSolic = "El campo apellidos es requerido";
+    } else {
+        delete errors.apellidosSolic;
+    }
+
+    if (form.direcSolic.length > 255) {
+        errors.direcSolic = "El campo no debe poseer mas de 255 caracteres";
+    } else if (form.direcSolic === "") {
+        delete errors.direcSolic;
+    } else {
+        delete errors.direcSolic;
+    }
+
+    if (form.telefonoSolic.length > 12) {
+        errors.telefonoSolic = "El campo no debe poseer mas de 12 caracteres";
+    } else if (form.telefonoSolic === "") {
+        delete errors.telefonoSolic;
+    } else {
+        delete errors.telefonoSolic;
+    }
+
+    if (edad < 15) {
+        errors.fechaNacimiento = "Debes ser mayor de 15 años"
+    } else {
+        delete errors.fechaNacimiento;
+    }
+
+    if (form.idGenero === "0") {
+        errors.idGenero = "El campo genero es requerido";
+    } else {
+        delete errors.idGenero;
+    }
+
+    if (!form.dui.trim()) {
+        errors.dui = "El campo DUI es requerido";
+    } else if (!regexDui.test(form.dui.trim())) {
+        errors.dui = "El campo DUI no es valido";
     } else {
         delete errors.dui;
-    }*/
+    }
+
+    if (!regexPasaporte.test(form.pasaporte.trim())) {
+        errors.pasaporte = "El campo pasaporte no es valido";
+    } else if (form.pasaporte === "") {
+        delete errors.pasaporte;
+    } else {
+        delete errors.pasaporte;
+    }
+
+    if (!regexNit.test(form.nit.trim())) {
+        errors.nit = "El campo NIT no es valido";
+    } else if (form.nit === "") {
+        delete errors.nit;
+    } else {
+        delete errors.nit;
+    }
+
+    if (!regexNup.test(form.nup.trim())) {
+        errors.nup = "El campo Nup no es valido";
+    } else if (form.nup === "") {
+        delete errors.nup;
+    } else {
+        delete errors.nup;
+    }
+
+    if (form.facebook.length > 255) {
+        errors.facebook = "El campo no debe poseer mas de 255 caracteres";
+    } else if (form.facebook === "") {
+        delete errors.facebook;
+    } else {
+        delete errors.facebook;
+    }
+
+    if (form.twitter.length > 255) {
+        errors.twitter = "El campo no debe poseer mas de 255 caracteres";
+    } else if (form.twitter === "") {
+        delete errors.twitter;
+    } else {
+        delete errors.twitter;
+    }
+
+    if (form.twitter.linkedin > 255) {
+        errors.linkedin = "El campo no debe poseer mas de 255 caracteres";
+    } else if (form.linkedin === "") {
+        delete errors.linkedin;
+    } else {
+        delete errors.linkedin;
+    }
 
 
     return errors;
@@ -104,7 +210,7 @@ export const EditarPerfil = ({
 
     useEffect(() => {
         if (!selectedFile) {
-            {dataBase && setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`)}
+            { dataBase && setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`) }
             return
         }
 
@@ -203,6 +309,7 @@ export const EditarPerfil = ({
                                     value={form.nombresSolic}
                                 />
                             </FormGroup>
+                            {errors.nombresSolic && <MensajeValidacion>{errors.nombresSolic}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="apellidosSolic">Apellidos</FormLabelUser>
                                 <FormInputUser
@@ -215,6 +322,7 @@ export const EditarPerfil = ({
                                     value={form.apellidosSolic}
                                 />
                             </FormGroup>
+                            {errors.apellidosSolic && <MensajeValidacion>{errors.apellidosSolic}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="direcSolic">Direccion de usuario:</FormLabelUser>
                                 <FormInputUser
@@ -227,6 +335,7 @@ export const EditarPerfil = ({
                                     value={form.direcSolic}
                                 />
                             </FormGroup>
+                            {errors.direcSolic && <MensajeValidacion>{errors.direcSolic}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="telefonoSolic">Telefono:</FormLabelUser>
                                 <FormInputUser
@@ -239,6 +348,7 @@ export const EditarPerfil = ({
                                     value={form.telefonoSolic}
                                 />
                             </FormGroup>
+                            {errors.telefonoSolic && <MensajeValidacion>{errors.telefonoSolic}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="fechaNacimiento">Fecha de nacimiento:</FormLabelUser>
                                 <FormInputUser
@@ -251,6 +361,7 @@ export const EditarPerfil = ({
                                     value={form.fechaNacimiento}
                                 />
                             </FormGroup>
+                            {errors.fechaNacimiento && <MensajeValidacion>{errors.fechaNacimiento}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="idGenero">Genero:</FormLabelUser>
                                 <FormSelectUser
@@ -267,6 +378,7 @@ export const EditarPerfil = ({
                                     <option value="3">Otro</option>
                                 </FormSelectUser>
                             </FormGroup>
+                            {errors.idGenero && <MensajeValidacion>{errors.idGenero}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="dui">Documento unico de identidad (DUI):</FormLabelUser>
                                 <FormInputUser
@@ -282,6 +394,7 @@ export const EditarPerfil = ({
                                     <MensajeValidacion>{errors.dui}</MensajeValidacion>
                                 )*/}
                             </FormGroup>
+                            {errors.dui && <MensajeValidacion>{errors.dui}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="pasaporte">Pasaporte:</FormLabelUser>
                                 <FormInputUser
@@ -294,6 +407,7 @@ export const EditarPerfil = ({
                                     value={form.pasaporte}
                                 />
                             </FormGroup>
+                            {errors.pasaporte && <MensajeValidacion>{errors.pasaporte}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="nit">NIT:</FormLabelUser>
                                 <FormInputUser
@@ -306,6 +420,7 @@ export const EditarPerfil = ({
                                     value={form.nit}
                                 />
                             </FormGroup>
+                            {errors.nit && <MensajeValidacion>{errors.nit}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="nup">NUP:</FormLabelUser>
                                 <FormInputUser
@@ -318,6 +433,7 @@ export const EditarPerfil = ({
                                     value={form.nup}
                                 />
                             </FormGroup>
+                            {errors.nup && <MensajeValidacion>{errors.nup}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="facebook">Facebook:</FormLabelUser>
                                 <FormInputUser
@@ -330,6 +446,7 @@ export const EditarPerfil = ({
                                     value={form.facebook}
                                 />
                             </FormGroup>
+                            {errors.facebook && <MensajeValidacion>{errors.facebook}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="twitter">Twitter:</FormLabelUser>
                                 <FormInputUser
@@ -342,6 +459,7 @@ export const EditarPerfil = ({
                                     value={form.twitter}
                                 />
                             </FormGroup>
+                            {errors.twitter && <MensajeValidacion>{errors.twitter}</MensajeValidacion>}
                             <FormGroup>
                                 <FormLabelUser htmlFor="linkedin">Linkedin:</FormLabelUser>
                                 <FormInputUser
@@ -354,6 +472,7 @@ export const EditarPerfil = ({
                                     value={form.linkedin}
                                 />
                             </FormGroup>
+                            {errors.linkedin && <MensajeValidacion>{errors.linkedin}</MensajeValidacion>}
                         </FooterPerfil>
                     </BodyPerfil>
                     <InputButtonUser type="submit" value="Enviar" />

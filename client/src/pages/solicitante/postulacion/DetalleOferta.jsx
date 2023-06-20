@@ -14,15 +14,16 @@ import { useEffect, useState } from "react";
 
 export const DetalleOferta = () => {
   const { idOfert } = useParams();
-  console.log(idOfert);
-  let idOfertAux = "";
+  let idOfertAux = null;
   let idEmpresa = "";
   let idCategoriaOferta = "";
   let idUsuario = "";
   let idSolicitante = "";
-  let idSolicitanteAux = "";
+  let idSolicitanteAux = null;
   let ids = "";
   let urlPostula = "";
+  let rol = localStorage.getItem("rol");
+  let rolAux = null;
 
   const urlOferta =
     process.env.NODE_ENV === "production"
@@ -48,32 +49,49 @@ export const DetalleOferta = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   idUsuario = localStorage.getItem("id_usuario");
-  //idUsuario = 1
-  const urlSolic =
-    process.env.NODE_ENV === "production"
-      ? "/api/solicitantes/us/" + idUsuario.toString()
-      : "http://localhost:3000/api/solicitantes/us/" + idUsuario.toString();
-  let [solicitante] = useCustomFetch(urlSolic);
 
-  if (solicitante) {
-    idSolicitante = solicitante.id;
-    ids = idOfert.toString() + "/" + idSolicitante.toString();
-    urlPostula =
-      process.env.NODE_ENV === "production"
-        ? "/api/postula/" + ids
-        : "http://localhost:3000/api/postula/" + ids;
-  }
+  if(rol == 'solicitante'){
+    console.log('Pase el primer if')
+    rolAux = 'solicitante'
+    if(idUsuario){
+      console.log('pase el segundo if')
+      const urlSolic =
+        process.env.NODE_ENV === "production"
+          ? "/api/solicitantes/us/" + idUsuario.toString()
+          : "http://localhost:3000/api/solicitantes/us/" + idUsuario.toString();
+      let [solicitante] = useCustomFetch(urlSolic);
 
-  let [postula] = useCustomFetch(urlPostula);
-  if (postula) {
-    if (postula.length > 0) {
-      idOfertAux = postula[0].idOferta;
-      idSolicitanteAux = postula[0].idSolic;
-    } else {
-      idOfertAux = idOfert;
-      idSolicitanteAux = null;
+      if (solicitante) {
+        idSolicitante = solicitante.id;
+        ids = idOfert.toString() + "/" + idSolicitante.toString();
+        urlPostula =
+          process.env.NODE_ENV === "production"
+            ? "/api/postula/" + ids
+            : "http://localhost:3000/api/postula/" + ids;
+      }
+
+      let [postula] = useCustomFetch(urlPostula);
+      if (postula) {
+        if (postula.length > 0) {
+          idOfertAux = postula[0].idOferta;
+          idSolicitanteAux = postula[0].idSolic;
+        } else {
+          idOfertAux = idOfert;
+          idSolicitanteAux = null;
+        }
+      }
+
+      useEffect(() => {
+        if (dataBase && empresa && categoria && solicitante && postula) {
+          setIsLoading(false);
+        }
+      }, [dataBase, empresa, categoria, solicitante, postula]);
     }
+
+  }else{
+    rolAux = null
   }
+  
 
   function registrarPostula(idOfertAux, idSolicitante) {
     console.log("Botón clickeado");
@@ -82,10 +100,7 @@ export const DetalleOferta = () => {
     const urlRegistrarPostulacion =
       process.env.NODE_ENV === "production"
         ? "/api/postula/ins/" + idOfertAux + "/" + idSolicitante
-        : "http://localhost:3000/api/postula/ins/" +
-          idOfertAux +
-          "/" +
-          idSolicitante;
+        : "http://localhost:3000/api/postula/ins/" + idOfertAux + "/" + idSolicitante;
     Http.open("GET", urlRegistrarPostulacion);
     Http.send();
 
@@ -95,19 +110,13 @@ export const DetalleOferta = () => {
 
     window.location.reload();
   }
-  useEffect(() => {
-    if (dataBase && empresa && categoria && solicitante && postula) {
-      setIsLoading(false);
-    }
-  }, [dataBase, empresa, categoria, solicitante, postula]);
+  
 
   return (
     <BaseContainer>
       <Header titulo="Detalle de la oferta" />
       <BaseBody>
-        {isLoading ? (
-          <div>Cargando...</div>
-        ) : (
+        
           <div className="card-ofertaDe">
             <div
               className="card-headerDetalle"
@@ -164,23 +173,28 @@ export const DetalleOferta = () => {
             </div>
 
             <div className="card-footerDe">
-              {idSolicitanteAux && idOfertAux ? (
-                <p>
-								<span className="postulando">Ya está postulando a esta oferta</span>
-						</p>
-						
-              ) : (
-                <button
-                  className="button-cardDeta"
-                  onClick={() => registrarPostula(idOfertAux, idSolicitante)}
-                >
-                  {" "}
-                  Postularse para este empleo{" "}
-                </button>
+              {rolAux == 'solicitante' ? (
+                idSolicitanteAux && idOfertAux ? (
+                  <p>
+                    <span className="postulando">Ya está postulando a esta oferta</span>
+                  </p>
+              
+                ) : (
+                  <button
+                    className="button-cardDeta"
+                    onClick={() => registrarPostula(idOfertAux, idSolicitante)}>
+                    {" "}
+                    Postularse para este empleo{" "}
+                  </button>
+                )
+
+                ) : (
+
+                <p></p>
               )}
             </div>
           </div>
-        )}
+        
       </BaseBody>
     </BaseContainer>
   );

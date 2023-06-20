@@ -31,6 +31,7 @@ import { Link } from "react-router-dom";
 import user from "../assets/images/user.jpg";
 import { useCustomFetch } from "../hooks/useCustomFetch";
 import Swal from "sweetalert2";
+import React, { useState, useEffect } from 'react';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -51,12 +52,29 @@ export const NavBar = ({
 }) => {
   let haySesion = localStorage.getItem("authtoken");
 
+  const urlSolicitante =
+  process.env.NODE_ENV === "production"
+    ? `/api/usuarios/solicitante/${id_usuario}`
+    : `http://localhost:3000/api/usuarios/solicitante/${id_usuario}`;
+
+  let { dataBase } = useCustomFetch(urlSolicitante);
+
+  const [previewImage, setPreviewImage] = useState(user);
+
+  useEffect(() => {
+    { dataBase && setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`) }
+}, [previewImage])
+
   const handleCerrarSession = () => {
 
 		let url = 
 		process.env.NODE_ENV === "production"
 		? "/api/usuarios/logout"
 		:"http://localhost:3000/api/usuarios/logout";
+
+    let id_usuario = localStorage.getItem("id_usuario");
+
+
 
     fetch(url, { credentials: "include" })
       .then((response) => response.json())
@@ -208,7 +226,7 @@ export const NavBar = ({
           {rol === "solicitante" && (
             <NavItem className="imagen">
               <NavLogo to="Usuario">
-                <NavImage src={user}></NavImage>
+                <NavImage src={previewImage}></NavImage>
               </NavLogo>
             </NavItem>
           )}

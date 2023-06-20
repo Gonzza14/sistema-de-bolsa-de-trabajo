@@ -55,8 +55,8 @@ const validateForm = (form) => {
     let errors = {};
     let regexDui = /^\d{8}-?\d$/;
     let regexPasaporte = /^[A-Z]{1,2}\d{7}$/
-    let regexNit = /^\d{4}(-?\d{6}){2}-?\d{1}$/
-    let regexNup = /^\d{4}(-?\d{4}){1,2}$/
+    let regexNit = /^\d{15}$/
+    let regexNup = /^\d{12}$/
     var hoy = new Date();
     var fechaNac = new Date(form.fechaNacimiento);
 
@@ -70,13 +70,13 @@ const validateForm = (form) => {
         edad--;
     }
 
-    if (form.nombresSolic.trim()) {
+    if (!form.nombresSolic.trim()) {
         errors.nombresSolic = "El campo nombre es requerido";
     } else {
         delete errors.nombresSolic;
     }
 
-    if (form.apellidosSolic.trim()) {
+    if (!form.apellidosSolic.trim()) {
         errors.apellidosSolic = "El campo apellidos es requerido";
     } else {
         delete errors.apellidosSolic;

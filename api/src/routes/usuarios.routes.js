@@ -45,6 +45,6 @@ router.post("/:id", getUsuario);
 router.get("/solicitante/:id", getSolicitante);
 router.put("/solicitante/:id", upload.single('fotoDePerfil'), updateSolicitante);
 router.get("/empresa/:id", getEmpresa);
-router.put("/empresa/:id", updateEmpresa);
+router.put("/empresa/:id", upload.single('fotoDePerfil'), updateEmpresa);
 
 export default router;

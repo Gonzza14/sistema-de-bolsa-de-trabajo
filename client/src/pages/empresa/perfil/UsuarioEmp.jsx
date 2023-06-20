@@ -11,8 +11,13 @@ export const UsuarioEmp = ({ setDataLleno }) => {
     //localStorage.setItem("id_usuario", 1);
 		const navigate = useNavigate();
 
-    let id_usuario = localStorage.getItem("id_usuario"),
-        url = `http://localhost:3000/api/usuarios/empresa/${id_usuario}`
+    let id_usuario = localStorage.getItem("id_usuario");
+
+    const  url =  process.env.NODE_ENV === "production"
+        ? "api/usuarios/autenticacion"
+        : `http://localhost:3000/api/usuarios/empresa/${id_usuario}`;
+  
+        
 
     let {
         dataBase,
@@ -24,7 +29,8 @@ export const UsuarioEmp = ({ setDataLleno }) => {
         response,
         setResponse,
 			} = useCustomFetch(url, setDataLleno, navigate);
-			return (
+			
+      return (
         <BaseContainer>
             <BaseBody>
                 <BaseSectionData>
@@ -32,23 +38,31 @@ export const UsuarioEmp = ({ setDataLleno }) => {
                         <Message msg="La operacion se realizo con exito" bgColor="#0F2651" />
                     )}
                     <Routes>
-                        <Route path={''} element={<DatosUsuarioEmp
-                            error={error}
-                            loading={loading}
-                            setDataToEdit={setDataToEdit}
-                            dataToEdit={dataToEdit}
-                            dataBase={dataBase}
-                            setResponse={setResponse}
-                        />} />
-                        <Route path={`editar`} element={<EditarPerfilEmp
-                            updateDataSolicitante={updateDataSolicitante}
-                            error={error}
-                            loading={loading}
-                            setDataToEdit={setDataToEdit}
-                            dataToEdit={dataToEdit}
-                            dataBase={dataBase}
-                            setResponse={setResponse}
-                        />} />
+                        <Route  path={""}
+              element={
+                <DatosUsuarioEmp
+                  error={error}
+                  loading={loading}
+                  setDataToEdit={setDataToEdit}
+                  dataToEdit={dataToEdit}
+                  dataBase={dataBase}
+                  setResponse={setResponse}
+                />
+              }
+            />
+            <Route
+              path={`editar`}
+              element={
+                <EditarPerfilEmp
+                  updateDataSolicitante={updateDataSolicitante}
+                  error={error}
+                  loading={loading}
+                  setDataToEdit={setDataToEdit}
+                  dataToEdit={dataToEdit}
+                  dataBase={dataBase}
+                  setResponse={setResponse}
+                />
+              } />
                     </Routes>
                 </BaseSectionData>
             </BaseBody>

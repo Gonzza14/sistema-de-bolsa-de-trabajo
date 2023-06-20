@@ -6,9 +6,17 @@ import {
     FormGroup,
     FormLabelUser,
     FormInputUser,
-    FormSelectUser,
     InputButtonUser,
-    NamePerfil
+    NamePerfil,
+    HeaderPerfil,
+    PortadaPerfil,
+    AvatarPerfil,
+    EditPerfil,
+    IconEditPerfil,
+    ImgPerfil,
+    ButtonAvatarPerfil,
+    IconAvatarPerfil,
+    BodyPerfil
 
 } from "../../../styles/pages/usuario";
 import { faMapSigns, faCalendarAlt, faPersonHalfDress, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
@@ -16,11 +24,17 @@ import { faFacebook, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-
 import { useCustomFetch } from "../../../hooks/useCustomFetch";
 import { useForm } from "../../../hooks/useForm";
 import moment from 'moment';
+import { useLocation } from "react-router-dom";
+import { useRef, useEffect} from "react";
+import { faImage, faPen } from "@fortawesome/free-solid-svg-icons";
+import { MensajeValidacion } from "../../../styles/elements/mensajes";
+import React, { useState } from 'react';
 
 const initialForm = {
     nombresEmpresa: "",
     direcEmpresa: "",
     telefonoEmpresa: "",
+    fotoDePerfil: "",
     id: null
 }
 
@@ -46,7 +60,8 @@ export const EditarPerfilEmp = ({
         errors,
         handleChange,
         handleBlur,
-        handleSubmit
+        handleSubmit,
+        subirFotoSubmit
     } = useForm(
         initialForm,
         validateForm,
@@ -56,20 +71,83 @@ export const EditarPerfilEmp = ({
         dataToEdit,
         setDataToEdit
     )
+    
+    const { pathname } = useLocation()
+
+    const hiddenFileInput = useRef(null);
+
+    const [selectedFile, setSelectedFile] = useState()
+
+    const [previewImage, setPreviewImage] = useState(null);
+
+    useEffect(() => {
+        if (!selectedFile) {
+            {dataBase && setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`)}
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setPreviewImage(objectUrl)
+
+
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile])
+
+    //dataBase ? setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`) : setPreviewImage('/perfil/nofoto.png')
+
+    const handleFileClick = e => {
+        hiddenFileInput.current.click();
+        e.preventDefault();
+    }
+    const handleFileChange = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        setSelectedFile(e.target.files[0])
+    };
+
+    const handleEditClick = () => {
+        setResponse(false);
+        setDataToEdit(dataBase);
+    }
 
     return (
         <>
             {dataBase && <VerUsuarioEmp
                 error={error}
-                loading={loading} dui
+                loading={loading}
                 dataToEdit={dataToEdit}
                 dataBase={dataBase}
                 setResponse={setResponse}>
-                <BioPerfil>
-                    <NamePerfil>Editar perfil de usuario</NamePerfil>
-                </BioPerfil>
-                <FormContainer onSubmit={handleSubmit}>
-                    <FooterPerfil>
+                <FormContainer onSubmit={subirFotoSubmit}>
+                    <HeaderPerfil>
+                        <PortadaPerfil>
+                            <AvatarPerfil>
+                                {previewImage && <ImgPerfil src={previewImage} alt="Preview" />}
+                                {pathname === "/UsuarioEmp/editar" &&
+                                    <>
+                                        <ButtonAvatarPerfil onClick={handleFileClick}>
+                                            <IconAvatarPerfil icon={faImage} size="xl"></IconAvatarPerfil>
+                                        </ButtonAvatarPerfil>
+                                        <input id="fotoDePerfil" name="fotoDePerfil" type="file" style={{ display: 'none' }} ref={hiddenFileInput} onChange={handleFileChange} />
+                                    </>
+                                }
+                            </AvatarPerfil>
+                            {pathname !== "/UsuarioEmp/editar" &&
+                                <EditPerfil to={'editar'} onClick={handleEditClick}>
+                                    <IconEditPerfil icon={faPen} size="xl"></IconEditPerfil>
+                                    Editar usuario
+                                </EditPerfil>
+                            }
+                        </PortadaPerfil>
+                    </HeaderPerfil>
+                    <BodyPerfil>
+                        <BioPerfil>
+                            <NamePerfil>Editar perfil de usuario</NamePerfil>
+                        </BioPerfil>
+                        <FooterPerfil>
                         <FormGroup>
                             <FormLabelUser htmlFor="nombreEmpresa">Nombre Empresa</FormLabelUser>
                             <FormInputUser
@@ -106,11 +184,15 @@ export const EditarPerfilEmp = ({
                                 value={form.telefonoEmpresa}
                             />
                         </FormGroup>
-                        
-                        <InputButtonUser type="submit" value="Enviar" />
-                    </FooterPerfil>
+                        </FooterPerfil>
+                    </BodyPerfil>
+                    <InputButtonUser type="submit" value="Enviar" />
                 </FormContainer>
             </VerUsuarioEmp>}
+            
+
+
+
         </>
     )
 }

@@ -16,8 +16,11 @@ import { DetalleOfertaEmpleo } from "./DetalleOfertaEmpleo";
 
 
 export const GestionOfertaEmpleo = () => {
-
-    let url = "http://localhost:3000/api/ofertaEmpleos"
+    let id_usuario = localStorage.getItem("id_usuario"),
+    url =
+    process.env.NODE_ENV === "production"
+      ? "api/usuarios/autenticacion"
+      : `http://localhost:3000/api/ofertaEmpleos/${id_usuario}`;
 
     const { pathname } = useLocation()
 

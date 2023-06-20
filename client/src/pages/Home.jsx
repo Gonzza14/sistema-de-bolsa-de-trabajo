@@ -28,7 +28,7 @@ export const Home = () => {
                 <BaseSection>
                         <SectionContainer>
                             <SectionInner>
-                                {rol==="solicitante" || rol=== "empty" &&(<><HeroTitleTwo>
+                                {rol!=="empresa" &&(<><HeroTitleTwo>
                                     Si buscas empleo, estás en el lugar correcto.
                                 </HeroTitleTwo>
                                 <HeroText>

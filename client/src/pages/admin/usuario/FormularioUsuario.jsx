@@ -32,7 +32,7 @@ const validateForm = (form) => {
     delete errors.correoUsuario;
   }
 
-  if (form.idRol === "0") {
+  if (!form.idRol.trim() || form.idRol === "0") {
     errors.idRol = "El campo rol es requerido";
   } else {
     delete errors.idRol;

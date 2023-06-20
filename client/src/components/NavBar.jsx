@@ -52,10 +52,12 @@ export const NavBar = ({
 }) => {
   let haySesion = localStorage.getItem("authtoken");
 
+  let id_usuario = localStorage.getItem("id_usuario");
+
   const urlSolicitante =
-  process.env.NODE_ENV === "production"
-    ? `/api/usuarios/solicitante/${id_usuario}`
-    : `http://localhost:3000/api/usuarios/solicitante/${id_usuario}`;
+    process.env.NODE_ENV === "production"
+      ? `/api/usuarios/solicitante/${id_usuario}`
+      : `http://localhost:3000/api/usuarios/solicitante/${id_usuario}`;
 
   let { dataBase } = useCustomFetch(urlSolicitante);
 
@@ -63,14 +65,14 @@ export const NavBar = ({
 
   useEffect(() => {
     { dataBase && setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`) }
-}, [previewImage])
+  })
 
   const handleCerrarSession = () => {
 
-		let url = 
-		process.env.NODE_ENV === "production"
-		? "/api/usuarios/logout"
-		:"http://localhost:3000/api/usuarios/logout";
+    let url =
+      process.env.NODE_ENV === "production"
+        ? "/api/usuarios/logout"
+        : "http://localhost:3000/api/usuarios/logout";
 
     let id_usuario = localStorage.getItem("id_usuario");
 
@@ -86,10 +88,10 @@ export const NavBar = ({
         localStorage.setItem("dataLleno", data.dataLleno);
         localStorage.setItem("nombreUsuario", " ");
         setDataLleno(data.dataLleno);
-				Toast.fire({
-					icon: "success",
-					title: "Hasta luego",
-				});
+        Toast.fire({
+          icon: "success",
+          title: "Hasta luego",
+        });
       })
       .catch((error) => console.error(error));
   };

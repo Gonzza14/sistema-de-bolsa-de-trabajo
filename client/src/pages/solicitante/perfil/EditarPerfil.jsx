@@ -104,7 +104,7 @@ const validateForm = (form) => {
         delete errors.fechaNacimiento;
     }
 
-    if (!form.idGenero.trim() || form.idGenero === "0") {
+    if (form.idGenero === "0") {
         errors.idGenero = "El campo genero es requerido";
     } else {
         delete errors.idGenero;

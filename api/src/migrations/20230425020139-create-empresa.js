@@ -31,6 +31,10 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING(255)
       },
+      fotoDePerfil: {
+        allowNull: true,
+        type: Sequelize.STRING(1024)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

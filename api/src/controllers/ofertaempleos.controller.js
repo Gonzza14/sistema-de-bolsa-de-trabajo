@@ -6,18 +6,13 @@ const { QueryTypes } = require('sequelize');
 export const getOferta = async (req, res) => {
   try {
 
-    const userId =3;
-     const empresa = await Empresa.findOne({
-      attributes: ['id'],
-      where: { idUsuario: userId },
-      raw: true,
-    });
-    console.log(empresa);
+    const { id } = req.params;
+    console.log(id);
      const anuncios = await db.sequelize.query(
 
         'SELECT a.id, "categoriaOfer", "idCategoriaOfer", "tituloOferta", "fechaExpiracion", "descOferta", "perfilAcademico", habilidades, "expLaboral", "rangoSalar", ubicacion, modalidad, estado, DATE(a."createdAt")AS "createdAt" FROM public."OfertaEmpleos" a INNER JOIN public."CategoriaOferta" b ON a."idCategoriaOfer"  = b.id WHERE a."deletedAt" iS NULL AND "idEmpresa" = :valor ORDER BY  id ASC',
         {
-          replacements: {valor: empresa.id},
+          replacements: {valor: id},
           type: QueryTypes.SELECT
         }
         
@@ -39,7 +34,8 @@ export const getOferta = async (req, res) => {
 export const createOfertaEmpleo = async (req, res) => {
   //Se obtienen los datos del cuerpo de la peticion
   try {
-    const { idEmpresa, idCategoriaOfer, tituloOferta, fechaExpiracion, descOferta, perfilAcademico,habilidades,expLaboral,rangoSalar,ubicacion,modalidad,estado } = req.body;
+    const { idEmpresa } = req.params;
+    const { idCategoriaOfer, tituloOferta, fechaExpiracion, descOferta, perfilAcademico,habilidades,expLaboral,rangoSalar,ubicacion,modalidad,estado } = req.body;
 
     //Se crea una nueva instancia del modelo de datos
     const newOferta = await OfertaEmpleo.create({

@@ -42,7 +42,7 @@ export const TablaOfertaEmpleo = ({ data, setDataToEdit, deleteData, setResponse
         },
         {
             name: 'Fecha de anuncio',
-            selector: row => row.createdAt,
+            selector: row => row.createdAt.split("T")[0],
         },
         {
             name: 'Titulo',

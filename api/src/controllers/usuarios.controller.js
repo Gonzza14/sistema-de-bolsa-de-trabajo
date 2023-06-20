@@ -248,36 +248,44 @@ export const updateSolicitante = async (req, res) => {
 		return res.status(500).json({ message: err.message });
 	}
 };
-
 export const updateEmpresa = async (req, res) => {
 	try {
-		//Se obtiene el id de la empresa a actualizar
 		const { id } = req.params;
-		console.log(req.body)
-		//Se actualiza la empresa
+		const data = JSON.parse(req.body.data);
+		
+		const {
+			nombreEmpresa,
+			telefonoEmpresa,
+			direcEmpresa
+		} = data;
+		//console.log(data);
+		const fotoDePerfil = req.file ? req.file.filename : undefined;
+		//Se actualiza la usuario
 		const empresa = await Empresa.findByPk(id);
 
 		if (!empresa) {
-			return res.status(404).json({ message: "Empresa no encontrada" });
+			return res.status(404).json({ message: "Empresa no encontrado" });
 		}
-
-		empresa.set(req.body);
+		empresa.set({
+			nombreEmpresa,
+			telefonoEmpresa,
+			direcEmpresa,
+			...(fotoDePerfil && { fotoDePerfil })
+		});
 		await empresa.save();
 
-		if (empresa && empresa.nombreEmpresa) {
-			req.session.datosLlenos = true;
+		const EmpresaCambiado = await Empresa.findOne({
+			where: { id: empresa.id }
+		});
 
-		} else {
-			req.session.datosLlenos = false;
+		EmpresaCambiado.setDataValue('datosLlenos', req.session.datosLlenos);
 
-		}
-		empresa.setDataValue('datosLlenos', req.session.datosLlenos)
-		res.json(empresa);
-
+		res.json(EmpresaCambiado);
 	} catch (err) {
 		return res.status(500).json({ message: err.message });
 	}
 };
+
 
 export const verificarUsuario = async (req, res) => {
 	try {

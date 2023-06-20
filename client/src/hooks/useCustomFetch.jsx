@@ -178,7 +178,7 @@ export const useCustomFetch = (url, setDataLleno, navigate) => {
 
   const updateDataSolicitante = (data, file) => {
     //console.log(endpoint);
-		console.log(data)
+    console.log(data);
     // Create a FormData object and append the data and file
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));
@@ -195,7 +195,7 @@ export const useCustomFetch = (url, setDataLleno, navigate) => {
     helpHttp()
       .put(url, options)
       .then((res) => {
-				console.log(res)
+        console.log(res);
         if (!res.err) {
           console.log(res);
           console.log(res["datosLlenos"]);
@@ -203,13 +203,17 @@ export const useCustomFetch = (url, setDataLleno, navigate) => {
           setDataLleno(res.datosLlenos);
           console.log(res.datosLlenos);
           localStorage.setItem("dataLleno", res.datosLlenos);
-					if(res.datosLlenos && localStorage.getItem("rol") === "solicitante"){
-          navigate("/Usuario");
-					} else if(res.datosLlenos && localStorage.getItem("rol") === "empresa"){
-						navigate("/UsuarioEmp");
-					} else {
-						navigate("/");
-					}
+          if (
+            res.datosLlenos &&
+            localStorage.getItem("rol") === "solicitante"
+          ) {
+            navigate("/Usuario");
+          } else if (
+            res.datosLlenos &&
+            localStorage.getItem("rol") === "empresa"
+          ) {
+            navigate("/UsuarioEmp");
+          }
           setDatabase(res);
           setLoading(false);
           setResponse(true);

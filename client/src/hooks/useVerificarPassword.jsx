@@ -1,6 +1,15 @@
 import { helpHttp } from "../helpers/helpHttp";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+});
+
 
 export const useVerificarPassword = (url, setAuth, setDataLleno, setRol) => {
   const [dataBase, setDatabase] = useState(null);
@@ -42,18 +51,28 @@ export const useVerificarPassword = (url, setAuth, setDataLleno, setRol) => {
             localStorage.setItem("id_usuario", res.id_usuario);
             localStorage.setItem("email", res.email);
             localStorage.setItem("nombreUsuario", res.nombreUsuario);
-						console.log(res)
+            console.log(res);
             updateAuth(res.token);
             updateDataLleno(res.datosLlenos);
             updateRol(res.rol);
+						Toast.fire({
+							icon: "success",
+							title: "Los datos son correctos. Bienvenido.",
+						});
             if (res.datosLlenos) {
-							navigate("/");
-						}else{
-						res.rol === "solicitante" ? navigate("/Usuario/editar") : navigate("/");
-						}
+              navigate("/");
+            } else {
+              res.rol === "solicitante"
+                ? navigate("/Usuario/editar")
+                : navigate("/");
+            }
           }
         } else {
           setError(res);
+          Toast.fire({
+            icon: "error",
+            title: "Los datos son incorrectos. Por favor, vuelva a intentarlo.",
+          });
         }
       });
   };

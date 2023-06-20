@@ -32,8 +32,8 @@ const validateForm = (form => {
     let regexEmail = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     if(!form.email.trim()){
         errors.email = `El email del usuario es requerido`
-    }else if(!regexEmail.text(form.email.trim())){
-        errors.email = `El correo no es valido`
+    // }else if(!regexEmail.text(form.email.trim())){
+    //     errors.email = `El correo no es valido`
     }else{
         delete errors.email;
     }

@@ -1,3 +1,4 @@
+/*
 :root{
     --card-color: rgba(54, 0, 204, 0.555);
     --card-header-color: #06062a;
@@ -70,3 +71,132 @@
     display: flex;
     width: 100%;
   }
+*/
+:root {
+  --card-color: rgba(54, 0, 204, 0.555);
+  --card-header-color: #06062a;
+  --card-body-color: white;
+  --card-footer-color: white;
+}
+.card {
+  margin: 1em;
+  background: var(--card-color);
+  color: black;
+  width: 75%;
+  padding: 20px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
+  border-radius: 20px;
+}
+
+.card-oferta {
+  margin: 1em;
+  background: var(--card-color);
+  color: black;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
+  border-radius: 20px;
+}
+
+@media (max-width: 600px) {
+	.card-ofertaDe {
+			padding-bottom: 60px;
+	}
+}
+
+.card-ofertaDe {
+  margin: 1em;
+  background: var(--card-color);
+  color: black;
+  width:80%;
+  padding: 20px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
+  border-radius: 20px;
+}
+
+.card-header {
+  background: var(--card-header-color);
+  color: white;
+  margin: -20px;
+  padding: 20px;
+  height: 70px;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.card-headerDetalle {
+  background: var(--card-header-color);
+  color: white;
+  margin: -20px;
+  padding: 20px;
+  height: 80%;
+}
+
+
+
+.card-body {
+  background: var(--card-body-color);
+  margin: -20px;
+  padding: 20px;
+  border-radius: 00px 00px 20px 20px;
+}
+
+.card-bodyDeta {
+	display: flex;
+	align-items: flex-start;
+  background: var(--card-body-color);
+  margin: -20px;
+	padding: 20px 20px 40px;
+}
+
+.card-bodyDeta > div {
+	width: 50%;
+}
+
+.card-footer {
+  background: var(--card-footer-color);
+  margin: -20px;
+  padding: 20px;
+  border-radius: 00px 00px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.card-footerDe {
+  background: #151519;
+  margin: -20px;
+  padding: 10px;
+  display: flex;
+	justify-content: center;
+}
+.button-card {
+  padding: 8px;
+  margin: 2px;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  background: #06062a;
+  text-decoration: none;
+}
+.button-cardDeta {
+  padding: 8px;
+  margin: 2px;
+  border-radius: 5px;
+  width: 40%;
+  text-align: center;
+  color: white;
+  background: #06062a;
+  text-decoration: none;
+}
+.button-card:hover {
+  background-color: #e84616;
+}
+.button-cardDeta:hover {
+  background-color: #5b5966;
+}
+.titulos {
+  margin: 2px 4px 5px;
+}
+.postulando {
+	font-weight: bold;
+	color: white;
+}

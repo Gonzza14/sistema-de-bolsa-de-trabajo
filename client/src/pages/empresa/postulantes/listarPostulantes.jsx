@@ -32,7 +32,7 @@ const ButtonVer = styled(Link)`
 `;
 
 export const ListarPostulantes = () => {
-    const { idOfert } = useParams(); 
+    const { idOfert } = useParams();
     const [isOpen, openModal, closeModal] = useModal(false);
 
     //let idOfert = "1"
@@ -54,7 +54,6 @@ export const ListarPostulantes = () => {
     if (oferta) {
         tituloOferta = (oferta.tituloOferta)
         titulo = 'Ver postulantes para la oferta "' + tituloOferta + '"'
-
     }
 
     function nombrarGenero(idPost, idGenero) {
@@ -117,7 +116,7 @@ export const ListarPostulantes = () => {
                                             </div>
                                         </div>
                                         <Modal isOpen={isOpen} closeModal={closeModal} titulo="Enviar correo">
-                                            <FormularioCorreo correo={postu.correoUsuario} closeModal={closeModal}></FormularioCorreo>
+                                            <FormularioCorreo oferta={postu.idOferta} empresa={postu.idEmpresa} postulante={postu.id} correo={postu.correoUsuario} closeModal={closeModal}></FormularioCorreo>
                                         </Modal>
                                     </>
                                 )

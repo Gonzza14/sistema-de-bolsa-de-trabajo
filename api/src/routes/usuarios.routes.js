@@ -43,7 +43,7 @@ router.put("/:id", updateUsuario);
 router.delete("/:id", deleteUsuario);
 router.post("/:id", getUsuario);
 router.get("/solicitante/:id", getSolicitante);
-router.put("/solicitante/:id", upload.single('fotoDePerfil'), updateSolicitante);
+router.put("/solicitante/:id",upload.single('fotoDePerfil'), updateSolicitante);
 router.get("/empresa/:id", getEmpresa);
 router.put("/empresa/:id", updateEmpresa);
 

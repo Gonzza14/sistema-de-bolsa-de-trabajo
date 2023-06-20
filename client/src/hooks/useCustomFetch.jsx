@@ -191,6 +191,7 @@ export const useCustomFetch = (url, setDataLleno, navigate) => {
       },
     };
 
+    console.log(url);
     setLoading(true);
     helpHttp()
       .put(url, options)

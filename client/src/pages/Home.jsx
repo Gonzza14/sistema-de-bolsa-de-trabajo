@@ -16,6 +16,7 @@ import process from "kute.js/src/process/process";
 
 export const Home = () => {
     let haySesion = localStorage.getItem("authToken");
+    let rol = localStorage.getItem("rol");
     return (
         <BaseContainer>
             <Header/>
@@ -27,12 +28,21 @@ export const Home = () => {
                 <BaseSection>
                         <SectionContainer>
                             <SectionInner>
-                                <HeroTitleTwo>
+                                {rol==="solicitante" || rol=== "empty" &&(<><HeroTitleTwo>
                                     Si buscas empleo, estás en el lugar correcto.
                                 </HeroTitleTwo>
                                 <HeroText>
                                     Únete a nuestra comunidad de búsqueda de empleo y descubre todas las oportunidades laborales que tenemos para ti. Con nuestra ayuda, encontrarás el trabajo que siempre has deseado y podrás avanzar en tu carrera profesional.
-                                </HeroText>
+                                </HeroText></>)}
+                                {rol==="empresa" &&(<><HeroTitleTwo>
+                                    ¡Bienvenido a nuestra plataforma de bolsa de trabajo!
+                                </HeroTitleTwo>
+                                <HeroText>
+                                    ¡No pierdas la oportunidad de conectarte con candidatos talentosos y encontrar al candidato perfecto para tu empresa!
+                                    Estamos emocionados de trabajar contigo para encontrar el talento que hará crecer tu empresa.
+                                    Atentamente, 
+                                    SBT tu bolsa de trabajo favorita.
+                                </HeroText></>)}
                                 {!haySesion === "true" && (<ButtonContainer>
                                     <ButtonRegister to={"/Login"}>
                                         Crea tu cuenta

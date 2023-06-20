@@ -31,7 +31,7 @@ import { Link } from "react-router-dom";
 import user from "../assets/images/user.jpg";
 import { useCustomFetch } from "../hooks/useCustomFetch";
 import Swal from "sweetalert2";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const Toast = Swal.mixin({
   toast: true,
@@ -40,7 +40,6 @@ const Toast = Swal.mixin({
   timer: 3000,
   timerProgressBar: true,
 });
-
 
 export const NavBar = ({
   auth,
@@ -63,22 +62,19 @@ export const NavBar = ({
 
   let previewImage = user;
 
-   if(dataBase){
-      if(dataBase.fotoDePerfil != null){
-        previewImage = `/perfil/${dataBase.fotoDePerfil}` 
-      }
+  if (dataBase) {
+    if (dataBase.fotoDePerfil != null) {
+      previewImage = `/perfil/${dataBase.fotoDePerfil}`;
     }
+  }
 
   const handleCerrarSession = () => {
-
     let url =
       process.env.NODE_ENV === "production"
         ? "/api/usuarios/logout"
         : "http://localhost:3000/api/usuarios/logout";
 
     let id_usuario = localStorage.getItem("id_usuario");
-
-
 
     fetch(url, { credentials: "include" })
       .then((response) => response.json())
@@ -173,31 +169,26 @@ export const NavBar = ({
               <NavItem>
                 <NavButton to="/GestionTipoExamen">
                   <StyledFontAwesomeIcon icon={faFileAlt} size="xl" />
-                  <NavParagraph>
-                    Gestión
-                    <br /> Tipo Exa
-                  </NavParagraph>
+                  <NavParagraph>Tipo Exa</NavParagraph>
                 </NavButton>
               </NavItem>
 
               <NavItem>
                 <NavButton to="/GestionTipoHabilidad">
                   <StyledFontAwesomeIcon icon={faTasks} size="xl" />
-                  <NavParagraph>
-                    Gestión
-                    <br /> Tip Habili
-                  </NavParagraph>
+                  <NavParagraph>Tip Habili</NavParagraph>
                 </NavButton>
               </NavItem>
-
+              <NavItem>
+                <NavButton to="/GestionUsuario">
+                  <StyledFontAwesomeIcon icon={faUser} size="xl" />
+                  <NavParagraph>Usuarios</NavParagraph>
+                </NavButton>
+              </NavItem>
               <NavItem>
                 <NavButton to="/GestionEmpresa">
                   <StyledFontAwesomeIcon icon={faBriefcase} size="xl" />
-                  <NavParagraph>
-                    Gestión
-                    <br />
-                    Empresa
-                  </NavParagraph>
+                  <NavParagraph>Empresa</NavParagraph>
                 </NavButton>
               </NavItem>
             </>

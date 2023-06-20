@@ -23,6 +23,7 @@ import "../styles/elements/buscador-ofertas.css";
 import { useSearch } from "../hooks/useSearch";
 import { useState } from "react";
 import { StyledSelect } from "../styles/elements/buscador-ofertas";
+import { TarjetaEmpleoBuscador } from "../components/empleoBuscador";
 
 export const Buscar = () => {
   // Verificar si se ha iniciado sesion
@@ -96,7 +97,7 @@ export const Buscar = () => {
             .map((postulacion, index) => {
               return (
                 <div key={index}>
-                  <TarjetaEmpleo
+                  <TarjetaEmpleoBuscador
                     titulo={postulacion.tituloOferta}
                     descripcion={
                       postulacion.idCategoriaOfer 
@@ -108,7 +109,7 @@ export const Buscar = () => {
                     idOferta={postulacion.id}
                     link={"/detalleoferta/" + postulacion.id}
                     width={"90%"}
-                  ></TarjetaEmpleo>
+                  ></TarjetaEmpleoBuscador>
                 </div>
               );
             })}

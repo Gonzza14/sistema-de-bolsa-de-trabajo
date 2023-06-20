@@ -30,6 +30,16 @@ import {
 import { Link } from "react-router-dom";
 import user from "../assets/images/user.jpg";
 import { useCustomFetch } from "../hooks/useCustomFetch";
+import Swal from "sweetalert2";
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+});
+
 
 export const NavBar = ({
   auth,
@@ -58,6 +68,10 @@ export const NavBar = ({
         localStorage.setItem("dataLleno", data.dataLleno);
         localStorage.setItem("nombreUsuario", " ");
         setDataLleno(data.dataLleno);
+				Toast.fire({
+					icon: "success",
+					title: "Hasta luego",
+				});
       })
       .catch((error) => console.error(error));
   };

@@ -39,10 +39,10 @@ export const Rutas = () => {
     token: localStorage.getItem("token"),
   });
 
-	let url = 
-	process.env.NODE_ENV === "production"
-	? "api/usuarios/autenticacion"
-	:"http://localhost:3000/api/usuarios/autenticacion";
+  let url =
+    process.env.NODE_ENV === "production"
+      ? "api/usuarios/autenticacion"
+      : "http://localhost:3000/api/usuarios/autenticacion";
 
   let { dataBase, error, loading } = useCustomFetch(url, setDataLleno);
 
@@ -105,7 +105,7 @@ export const Rutas = () => {
               path="/GestionTipoHabilidad/*"
               element={<GestionTipoHabilidad />}
             />
-						<Route
+            <Route
               path="/GestionTipoExamen/*"
               element={<GestionTipoExamen />}
             />
@@ -144,16 +144,15 @@ export const Rutas = () => {
             />
 
             <Route path="/DetalleOferta/:idOfert" element={<DetalleOferta />} />
-            
-						<Route
+
+            <Route
               path="/ListarPostulantes/:idOfert"
               element={<ListarPostulantes />}
             />
 
-
-
             <Route path="/VerCV/:parametro" element={<VerCV />} />
           </Route>
+					
           <Route path="*" element={<Error404 />} />
         </Routes>
       )}

@@ -151,7 +151,7 @@ export const Login = ({ setAuth, setDataLleno, setRol }) => {
                         <input type="checkbox" id="chk" aria-hidden="true"/>
                         <div className="signup">
                             <form onSubmit={handleSubmitReg}>
-                                <label className="label-signup" htmlFor="chk" aria-hidden="true">Crear Cuenta</label>
+                                <label className="label-signup" htmlFor="chk" aria-hidden="true">Crea una cuenta</label>
                                 <input
                                     className="input-signup"
                                     type="text"
@@ -209,7 +209,7 @@ export const Login = ({ setAuth, setDataLleno, setRol }) => {
 
                         <div className="login">
                             <form onSubmit={handleLogin}>
-                                <label className="label-login" htmlFor="chk" aria-hidden="true">Iniciar Sesión</label>
+                                <label className="label-login" htmlFor="chk" aria-hidden="true">Inicia Sesión aqui</label>
                                 <input 
                                     className="input-login"
                                     type="email" 

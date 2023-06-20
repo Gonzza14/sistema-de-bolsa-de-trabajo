@@ -39,7 +39,10 @@ export const Rutas = () => {
     token: localStorage.getItem("token"),
   });
 
-  let url = "http://localhost:3000/api/usuarios/autenticacion";
+	let url = 
+	process.env.NODE_ENV === "production"
+	? "api/usuarios/autenticacion"
+	:"http://localhost:3000/api/usuarios/autenticacion";
 
   let { dataBase, error, loading } = useCustomFetch(url, setDataLleno);
 

@@ -12,50 +12,16 @@ import { AnimacionInicio } from "../util/AnimacionInicio";
 import { BaseContainer, BaseBody, BaseSection, BaseSectionHeader, SectionContainer } from "../styles/base";
 import imagen from "../assets/images/imagen-seccion.png";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { TarjetaEmpleo } from "../components/empleo";
-import { PostulacionesSection } from "../styles/pages/postulaciones";
-import { useCustomFetch } from "../hooks/useCustomFetch";
-import Loader from "../components/Loader";
 import process from "kute.js/src/process/process";
 
 export const Home = () => {
-    // Verificar si se ha iniciado sesion
-    let haySesion = null;
-    haySesion = localStorage.getItem("rol") == null ? haySesion = false: haySesion = true;
-    
-    // Obtener datos de oferta
-    let url = 
-        process.env.NODE_ENV === "production"
-        ? "api/ofertas"
-        :"http://localhost:3000/api/ofertas"
-    
-        const { pathname } = useLocation()
-
-    let {
-        dataBase,
-        error,
-        loading,
-    } = useCustomFetch(url);
-    let postulaciones = null;
-    if(dataBase) {
-        postulaciones = dataBase.map((postulacion, index) => {
-            return <div key={index}>
-                    <TarjetaEmpleo 
-                        titulo={postulacion.tituloOferta}
-                        descripcion={postulacion.descOferta}
-                        idOferta={postulacion.id}
-                        link={"/detalleoferta/"+postulacion.id}>
-                    </TarjetaEmpleo>
-                </div>
-        })
-    }
+    let haySesion = false;
     return (
         <BaseContainer>
             <Header/>
             <BaseBody>
                 <BaseSectionHeader>
                     <HeroTitle>Descubre un mundo de oportunidades laborales</HeroTitle>
-                    <Buscador placeHolder="Buscar empleo" className="home" />
                     <AnimacionInicio />
                 </BaseSectionHeader>
                 <BaseSection>
@@ -79,16 +45,7 @@ export const Home = () => {
 
                                 </ImgSection>
                             </SectionContainer>)
-                    }
-                    {
-                        haySesion && dataBase && (
-                            <SectionContainer>
-                                {postulaciones}
-                            </SectionContainer>
-                        )
-                    }
-                    {loading && <Loader />}
-                    
+                    }  
                 </BaseSection>
             </BaseBody>
         </BaseContainer>

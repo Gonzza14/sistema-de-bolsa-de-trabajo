@@ -8,7 +8,6 @@
      margin: 1em;
      background: var(--card-color);
      color: black;
-     width: 75%;
      padding: 20px;
      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
      border-radius: 20px;            
@@ -62,3 +61,12 @@
  .titulos{
     margin: 2px 4px 5px ;
  }
+
+ .column {
+    flex: 1;
+  }
+  
+  .row {
+    display: flex;
+    width: 100%;
+  }

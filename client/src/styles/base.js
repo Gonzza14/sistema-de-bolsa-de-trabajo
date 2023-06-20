@@ -38,6 +38,7 @@ export const SectionContainer = styled.div`
   max-height: 40em;
   padding: 8rem 6rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
 `;
 

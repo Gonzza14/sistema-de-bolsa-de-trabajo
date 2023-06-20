@@ -114,7 +114,11 @@ export const FormularioOfertaEmpleo = ({
   setDataToEdit,
 }) => {
 
-  let url = "http://localhost:3000/api/categoriaofertas"
+  const url = 
+  process.env.NODE_ENV === "production"
+  ? "/api/categoriaofertas"
+  : "http://localhost:3000/api/categoriaofertas"
+  
   let { dataBase } = useCustomFetch(url);
   let path = "/GestionOfertaEmpleo";
 

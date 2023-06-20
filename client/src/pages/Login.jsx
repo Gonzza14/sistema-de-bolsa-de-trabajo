@@ -226,7 +226,7 @@ export const Login = ({ setAuth, setDataLleno, setRol }) => {
                                     type="password"
                                     id="password" 
                                     name="password" 
-                                    placeholder="Constraseña" 
+                                    placeholder="Contraseña" 
                                     value={form.password}
                                     onBlur={handleBlur}  
                                     onChange={handleChange}

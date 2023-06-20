@@ -43,7 +43,11 @@ export const FormularioHabilidadTec = ({
   dataToEdit,
   setDataToEdit,
 }) => {
-  let url = "http://localhost:3000/api/tipoHabilidades";
+
+	let url = 
+	process.env.NODE_ENV === "production"
+	? "/api/tipoHabilidades"
+	: "http://localhost:3000/api/tipoHabilidades";
 
   let { dataBase } = useCustomFetch(url);
 

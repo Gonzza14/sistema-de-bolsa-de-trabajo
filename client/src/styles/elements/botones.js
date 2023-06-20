@@ -72,6 +72,21 @@ export const ButtonCreate = styled(Link)`
   font-weight: 600;
 `;
 
+export const ButtonNextPrev = styled(Link)`
+	margin: 0 0.5em;
+  height: 0%;
+  margin-top: 0;
+  margin-bottom: 1em;
+  color: #f3f3f3;
+  background-color: #06062a;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
+  font-weight: 540;
+`;
+
 export const ButtonOp = styled.button`
   width: 1em;
   margin-right: 0.5em;

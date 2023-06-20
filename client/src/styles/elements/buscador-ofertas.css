@@ -1,93 +1,35 @@
-/*
-:root{
-    --card-color: rgba(54, 0, 204, 0.555);
-    --card-header-color: #06062a;
-    --card-body-color: white;
-    --card-footer-color: white;
- }
- .card{
-     margin: 1em;
-     background: var(--card-color);
-     color: black;
-     padding: 20px;
-     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
-     border-radius: 20px;            
- }
-
- .card-oferta{
-    margin: 1em;
-    background: var(--card-color);
-    color: black;
-    width: 100%;
-    padding: 20px;
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
-    border-radius: 20px;            
-}
-
- .card-header{
-     background: var(--card-header-color);
-     color: white;            
-     margin: -20px;
-     padding: 20px;
-     height: 70px;
-     border-radius: 20px 20px 0px 0px;
- }
- .card-body{
-     background: var(--card-body-color);
-     margin: -20px;
-     padding: 20px;
-     border-radius: 00px 00px 20px 20px;
- }
- .card-footer{
-     background: var(--card-footer-color);
-     margin: -20px;
-     padding: 20px;
-     border-radius: 00px 00px 20px 20px;
-     display: flex;
-     justify-content: space-between
- }
- .button-card{
-     padding: 8px;
-     margin: 2px;
-     border-radius: 5px;
-     width: 100%;
-     text-align: center;
-     color: white;
-     background:#06062a;
-     text-decoration: none;
- }
- .button-card:hover{
-     background-color: #e84616;
- }
- .titulos{
-    margin: 2px 4px 5px ;
- }
-
- .column {
-    flex: 1;
-  }
-  
-  .row {
-    display: flex;
-    width: 100%;
-  }
-*/
 :root {
-  --card-color: rgba(54, 0, 204, 0.555);
+  --card-color: rgba(213, 210, 223, 0.555);
   --card-header-color: #06062a;
   --card-body-color: white;
   --card-footer-color: white;
 }
-.card {
-  margin: 1em;
+
+.card-buscador {
   background: var(--card-color);
   color: black;
-  width: 100%;
-	margin: auto;
-  padding: 15px;
+  width: 90%;
+  padding: 10px;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
-  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
 }
+
+.card-buscador > div {
+  display: flex;
+  flex-direction: column;
+	margin: 1em;
+	flex: 1;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5em;
+}
+
+
+
 
 .card-oferta {
   margin: 1em;
@@ -100,16 +42,16 @@
 }
 
 @media (max-width: 600px) {
-	.card-ofertaDe {
-			padding-bottom: 60px;
-	}
+  .card-ofertaDe {
+    padding-bottom: 60px;
+  }
 }
 
 .card-ofertaDe {
   margin: 1em;
   background: var(--card-color);
   color: black;
-  width:80%;
+  width: 80%;
   padding: 20px;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
   border-radius: 20px;
@@ -132,8 +74,6 @@
   height: 80%;
 }
 
-
-
 .card-body {
   background: var(--card-body-color);
   margin: -20px;
@@ -142,15 +82,15 @@
 }
 
 .card-bodyDeta {
-	display: flex;
-	align-items: flex-start;
+  display: flex;
+  align-items: flex-start;
   background: var(--card-body-color);
   margin: -20px;
-	padding: 20px 20px 40px;
+  padding: 20px 20px 40px;
 }
 
 .card-bodyDeta > div {
-	width: 50%;
+  width: 50%;
 }
 
 .card-footer {
@@ -166,7 +106,7 @@
   margin: -20px;
   padding: 10px;
   display: flex;
-	justify-content: center;
+  justify-content: center;
 }
 .button-card {
   padding: 8px;
@@ -198,6 +138,6 @@
   margin: 2px 4px 5px;
 }
 .postulando {
-	font-weight: bold;
-	color: white;
+  font-weight: bold;
+  color: white;
 }

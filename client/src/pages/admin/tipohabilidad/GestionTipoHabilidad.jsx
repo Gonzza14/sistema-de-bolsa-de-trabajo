@@ -14,7 +14,7 @@ import { useSearch } from "../../../hooks/useSearch";
 export const GestionTipoHabilidad = () => {
     let url = 
     process.env.NODE_ENV === "production"
-    ? "api/tipohabilidades"
+    ? "/api/tipohabilidades"
     :"http://localhost:3000/api/tipohabilidades";
 
     const { pathname } = useLocation();

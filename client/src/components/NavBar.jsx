@@ -55,7 +55,7 @@ export const NavBar = ({
 
 		let url = 
 		process.env.NODE_ENV === "production"
-		? "api/usuarios/logout"
+		? "/api/usuarios/logout"
 		:"http://localhost:3000/api/usuarios/logout";
 
     fetch(url, { credentials: "include" })

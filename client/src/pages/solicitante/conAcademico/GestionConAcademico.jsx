@@ -15,7 +15,7 @@ export const GestionConAcademico = (props) => {
   let nCurriculum = props.parametro;
 	let url = 
 	process.env.NODE_ENV === "production"
-	? `api/conAcademicos/${nCurriculum}`
+	? `/api/conAcademicos/${nCurriculum}`
 	:`http://localhost:3000/api/conAcademicos/${nCurriculum}`;
 
   const [isOpen, openModalCV, closeModal] = useModalCV();

@@ -76,7 +76,7 @@ export const GestionCurriculum = () => {
 
 	let url = 
 	process.env.NODE_ENV === "production"
-	? `api/curriculum/${id_usuario}`
+	? `/api/curriculum/${id_usuario}`
 	:`http://localhost:3000/api/curriculum/${id_usuario}`;
 
   const { pathname } = useLocation();

@@ -22,7 +22,7 @@ export const GestionExpLabo = (props) => {
 
 	let url = 
 	process.env.NODE_ENV === "production"
-	? `api/expLabos/${nCurriculum}`
+	? `/api/expLabos/${nCurriculum}`
 	:`http://localhost:3000/api/expLabos/${nCurriculum}`;
 
 	const [isOpen, openModalCV, closeModal] = useModalCV();

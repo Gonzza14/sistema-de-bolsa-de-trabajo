@@ -19,7 +19,7 @@ export const GestionRolPermiso = () => {
 
 	let url = 
 	process.env.NODE_ENV === "production"
-	? "api/rolPermisos"
+	? "/api/rolPermisos"
 	:"http://localhost:3000/api/rolPermisos";
 
 

@@ -15,7 +15,7 @@ export const GestionHabilidadTec = (props) => {
   let nCurriculum = props.parametro;
 	let url = 
 	process.env.NODE_ENV === "production"
-	? `api/habilidadTecnica/${nCurriculum}`
+	? `/api/habilidadTecnica/${nCurriculum}`
 	:`http://localhost:3000/api/habilidadTecnica/${nCurriculum}`;
 
   const [isOpen, openModalCV, closeModal] = useModalCV();

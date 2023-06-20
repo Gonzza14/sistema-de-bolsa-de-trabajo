@@ -39,7 +39,7 @@ export const CambiarCorreo = ({
 
     const url = 
     process.env.NODE_ENV === "production"
-    ? "api/roles"
+    ? "/api/roles"
     : "http://localhost:3000/api/roles"
 
     let { dataBase } = useCustomFetch(url);

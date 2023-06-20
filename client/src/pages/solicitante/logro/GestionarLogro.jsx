@@ -16,7 +16,7 @@ export const GestionLogro = (props) => {
 
 	let url = 
   process.env.NODE_ENV === "production"
-  ? `api/logro/${nCurriculum}`
+  ? `/api/logro/${nCurriculum}`
   : `http://localhost:3000/api/logro/${nCurriculum}`;
 
   const [isOpen, openModalCV, closeModal] = useModalCV();

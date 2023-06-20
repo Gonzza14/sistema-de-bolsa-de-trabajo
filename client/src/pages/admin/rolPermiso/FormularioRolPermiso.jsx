@@ -30,7 +30,10 @@ export const FormularioRolPermiso = ({
   dataToEdit,
   setDataToEdit,
 }) => {
-  let url = "http://localhost:3000/api/permisos";
+  const url = 
+  process.env.NODE_ENV === "production"
+  ? "/api/permisos"
+  : "http://localhost:3000/api/permisos";
 
   let { dataBase } = useCustomFetch(url);
 

@@ -1,3 +1,77 @@
+/*
+:root{
+    --card-color: rgba(54, 0, 204, 0.555);
+    --card-header-color: #06062a;
+    --card-body-color: white;
+    --card-footer-color: white;
+ }
+ .card{
+     margin: 1em;
+     background: var(--card-color);
+     color: black;
+     padding: 20px;
+     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
+     border-radius: 20px;            
+ }
+
+ .card-oferta{
+    margin: 1em;
+    background: var(--card-color);
+    color: black;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.377);
+    border-radius: 20px;            
+}
+
+ .card-header{
+     background: var(--card-header-color);
+     color: white;            
+     margin: -20px;
+     padding: 20px;
+     height: 70px;
+     border-radius: 20px 20px 0px 0px;
+ }
+ .card-body{
+     background: var(--card-body-color);
+     margin: -20px;
+     padding: 20px;
+     border-radius: 00px 00px 20px 20px;
+ }
+ .card-footer{
+     background: var(--card-footer-color);
+     margin: -20px;
+     padding: 20px;
+     border-radius: 00px 00px 20px 20px;
+     display: flex;
+     justify-content: space-between
+ }
+ .button-card{
+     padding: 8px;
+     margin: 2px;
+     border-radius: 5px;
+     width: 100%;
+     text-align: center;
+     color: white;
+     background:#06062a;
+     text-decoration: none;
+ }
+ .button-card:hover{
+     background-color: #e84616;
+ }
+ .titulos{
+    margin: 2px 4px 5px ;
+ }
+
+ .column {
+    flex: 1;
+  }
+  
+  .row {
+    display: flex;
+    width: 100%;
+  }
+*/
 :root {
   --card-color: rgba(54, 0, 204, 0.555);
   --card-header-color: #06062a;

@@ -71,7 +71,11 @@ export const FormularioExamen = ({
   subirArchivo,
   updateSubirArchivo,
 }) => {
-  let url = "http://localhost:3000/api/tipoExamenes";
+  
+  const url = 
+  process.env.NODE_ENV === "production"
+  ? "/api/tipoExamenes"
+  : "http://localhost:3000/api/tipoExamenes";
 
   let { dataBase } = useCustomFetch(url);
 

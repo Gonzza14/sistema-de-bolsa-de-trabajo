@@ -203,7 +203,13 @@ export const useCustomFetch = (url, setDataLleno, navigate) => {
           setDataLleno(res.datosLlenos);
           console.log(res.datosLlenos);
           localStorage.setItem("dataLleno", res.datosLlenos);
-          // navigate("/Usuario");
+					if(res.datosLlenos && localStorage.getItem("rol") === "solicitante"){
+          navigate("/Usuario");
+					} else if(res.datosLlenos && localStorage.getItem("rol") === "empresa"){
+						navigate("/UsuarioEmp");
+					} else {
+						navigate("/");
+					}
           setDatabase(res);
           setLoading(false);
           setResponse(true);

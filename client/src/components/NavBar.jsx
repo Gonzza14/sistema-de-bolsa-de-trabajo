@@ -64,8 +64,12 @@ export const NavBar = ({
   const [previewImage, setPreviewImage] = useState(user);
 
   useEffect(() => {
-    { dataBase && setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`) }
-  })
+    if(dataBase){
+      if(dataBase.fotoDePerfil != null){
+        setPreviewImage(`/perfil/${dataBase.fotoDePerfil}`) 
+      }
+    }
+  }, [previewImage])
 
   const handleCerrarSession = () => {
 

@@ -38,6 +38,7 @@ import tipoExamenesRoutes from './routes/tipoExamenes.routes';
 import examenesRoutes from './routes/examenes.routes';
 import permisosRoutes from './routes/permisos.routes';
 import rolPermisosRoutes from './routes/rolPermisos.routes';
+import seguimientoRoutes from './routes/seguimiento.routes'
 import fs from 'fs';
 
 //Creacion de aplicacion
@@ -83,7 +84,7 @@ app.use(morgan("dev"));
 //Permite que el servidor pueda recibir y enviar datos en formato json
 app.use(express.json());
 
-const allowedOrigins = ['http://18.217.157.17', 'http://localhost:5173/'];
+const allowedOrigins = ['http://18.217.157.17', 'http://localhost:5173'];
 
 //Permite que el servidor pueda recibir y enviar datos desde un formulario
 const corsOptions = {
@@ -164,6 +165,8 @@ app.get('/images/:imageName', (req, res) => {
 
 app.use("/api/permisos", permisosRoutes);
 app.use("/api/rolPermisos", rolPermisosRoutes);
+
+app.use("/api/seguimiento", seguimientoRoutes)
 
 
 export default app;

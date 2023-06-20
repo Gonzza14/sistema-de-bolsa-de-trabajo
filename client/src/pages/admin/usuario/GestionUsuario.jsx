@@ -18,7 +18,7 @@ export const GestionUsuario = () => {
 
     const url = 
     process.env.NODE_ENV === "production"
-    ? "api/usuarios"
+    ? "/api/usuarios"
     : "http://localhost:3000/api/usuarios"
 
     const { pathname } = useLocation()
